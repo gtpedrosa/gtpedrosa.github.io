@@ -17,4 +17,4 @@ script:
   - hugo
 after_success:
   - chmod a+x ./scripts/deploy.sh
-- ./scripts/deploy.sh
+  - ./scripts/deploy.sh
