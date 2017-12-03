@@ -1,0 +1,84 @@
+baseurl             = "https://gtpedrosa.github.io/"
+builddrafts         = true
+canonifyurls        = true
+contentdir          = "content"
+languageCode        = "en-US"
+layoutdir           = "layouts"
+publishdir          = "public"
+theme               = "cocoa"
+author              = "Guilherme Pedrosa"
+title               = "Guilherme Pedrosa"
+pygmentsuseclasses  = true
+#disqusshortname     = "brodoll" # Comment out to disable Disqus.
+pluralizelisttitles = false
+googleAnalytics     = "UA-93472104-1"
+
+[permalinks]
+blog  = "blog/:slug/"
+
+[[menu.main]]
+name                   = "Blog"
+weight                 = -120
+identifier             = "blog"
+url                    = "/blog/"
+
+[[menu.main]]
+name                   = "About"
+weight                 = -110
+identifier             = "about"
+url                    = "/about/"
+
+[[menu.main]]
+name                   = "Projects"
+weight                 = -100
+identifier             = "projects"
+url                    = "/projects/"
+
+[params]
+latestpostscount       = 5                             # how many posts to display on the home page
+i18n_flags             = false                         # whether to display small country flags for available translations
+author                 = "Guilherme Pedrosa"
+cachebuster            = true                          # add the current unix timestamp in query string for cache busting css assets
+dateform               = "Jan 2, 2006"
+dateformfull           = "Mon Jan 2 2006 15:04:05 MST"
+description            = "Guilherme Pedrosa"
+email                  = "guilherme.pedrosa@gmail.com"
+github                 = "//github.com/gtpedrosa"
+linkedin               = "//linkedin.com/in/guilherme-pedrosa-73213aa0/"
+twitter                = "//twitter.com/gtpedrosa"
+lang                   = "en"
+noshowreadtime         = false                         # if true, don't show "<x> minutes read" in posts
+selfintro              = ""                            # appears in the site header when set to a non-em
+extracssfiles          = [ "/css/override.css" ]       # In your `static` directory, add/remove files as necessary.
+faviconfile            = "img/leaf.ico"
+
+
+highlightjs            = true
+# highlightjslanguages = ["go"]                        # additional languages not included in the "common" set
+# highlightjsStyle     = "darcula"
+
+piwik                  = false                         # If true, Piwik integration is enabled
+# piwik_url            = "//www.example.com/piwik/"    # URL to your Piwik installation. Must End with a slash
+# piwik_id             = 2                             # Id of your site in Piwik
+
+gitalk                 = false
+# if gitalk is true, the following params should be set. These parameters could be retrieved from github OAuth
+#gitalk_clientID        = "your client id"
+#gitalk_clientSecret    = "your client secret"
+#gitalk_repo            = "your repo url"
+#gitalk_owner           = "the owner of this repo"
+#gitalk_admin           = ['a', 'list', 'of', 'administrator']
+
+avatar                 = "img/profile.png" # path to image in static dir e.g img/avatar.png (do not use in the same time as gravatar)
+# gravatar             = ""                # gravatar hash. see https://en.gravatar.com/site/implement/hash/. do not use in the same time as avatar
+
+[staticman]
+endpoint = "https://api.staticman.net/v2/entry/"
+username = "gtpedrosa"
+repository = "gtpedrosa.github.io"
+branch = "master"
+
+
+# The following are DEPRECATED.
+gatracker              = "XYZ" # use googleAnalytics instead
+initials               = "ad"  # displayed on single post page; deprecated in v0.3.0.
