@@ -1,5 +1,8 @@
-language: go
+dist: xenial
 sudo: required
+language: go
+go:
+  - master
 env:
   global:
     - SSH_KEY="id_rsa"
@@ -8,9 +11,9 @@ env:
     - SOURCE_DIR="public"
     - DEPLOY_BRANCH="code"
     - TEMP_DIR=$(sudo mktemp -d /tmp/$REPO_NAME.XXXX)
-before_script:
-  - wget https://github.com/gohugoio/hugo/releases/download/v0.31.1/hugo_0.31.1_Linux-64bit.deb
-  - sudo dpkg -i hugo_0.31.1_Linux-64bit.deb
+install:
+  - wget -O /tmp/hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.31.1/hugo_0.31.1_Linux-64bit.deb
+  - sudo dpkg -i /tmp/hugo.deb
 script:
   - hugo
 after_success:
