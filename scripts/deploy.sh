@@ -44,9 +44,9 @@ if [ -n "$TRAVIS_BUILD_ID" ]; then
       REPO=${REPO/git:\/\/github.com\//git@github.com:}
       REPO=${REPO/https:\/\/github.com\//git@github.com:}
 
-      chmod 600 $SSH_KEY
-      eval `ssh-agent -s`
-      ssh-add $SSH_KEY
+      #chmod 600 $SSH_KEY
+      #eval `ssh-agent -s`
+      #ssh-add $SSH_KEY
       git config --global user.name "$GIT_NAME"
       git config --global user.email "$GIT_EMAIL"
     fi
