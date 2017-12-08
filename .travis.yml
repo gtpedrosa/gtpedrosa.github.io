@@ -1,9 +1,5 @@
 language: go
 sudo: required
-go:
-  - 1.8.1
-os:
-  - linux
 env:
   global:
     - SSH_KEY="id_rsa"
