@@ -1,6 +1,9 @@
 language: go
+sudo: required
 go:
   - 1.8.1
+os:
+  - linux
 env:
   global:
     - SSH_KEY="id_rsa"
@@ -10,8 +13,8 @@ env:
     - DEPLOY_BRANCH="code"
     - TEMP_DIR=$(sudo mktemp -d /tmp/$REPO_NAME.XXXX)
 before_script:
-  - git clone --branch v2 https://github.com/go-yaml/yaml $GOPATH/src/gopkg.in/yaml.v2
-  - go get -u -v github.com/spf13/hugo
+  - wget https://github.com/gohugoio/hugo/releases/download/v0.31.1/hugo_0.31.1_Linux-64bit.deb
+  - sudo dpkg -i hugo_0.31.1_Linux-64bit.deb
 script:
   - hugo
 after_success:
