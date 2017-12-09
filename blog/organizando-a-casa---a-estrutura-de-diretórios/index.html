@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Guilherme Pedrosa">
+<meta name="description" content="Antes de inciar o desenvolvimento do meu mestrado me deparei com o seguinte dilema: como organizar o diretório principal? Existe uma maneira ótima e/ou recomendada para organizar os arquivos?
+
+">
+
+<meta property="og:title" content="Organizando a casa - A estrutura de diretórios" />
+<meta property="og:description" content="Antes de inciar o desenvolvimento do meu mestrado me deparei com o seguinte dilema: como organizar o diretório principal? Existe uma maneira ótima e/ou recomendada para organizar os arquivos?
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/organizando-a-casa---a-estrutura-de-diret%C3%B3rios/" />
+
+
+
+<meta property="article:published_time" content="2017-01-28T19:11:44-03:00"/>
+
+<meta property="article:modified_time" content="2017-01-28T19:11:44-03:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+<title>
+
+
+     Organizando a casa - A estrutura de diretórios 
+
+</title>
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/organizando-a-casa---a-estrutura-de-diret%C3%B3rios/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2017-12-09%2012%3a49%3a38.102396867%20%2b0000%20UTC%20m%3d%2b0.044430359">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2017-12-09%2012%3a49%3a38.102396867%20%2b0000%20UTC%20m%3d%2b0.044430359">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2017-12-09%2012%3a49%3a38.102396867%20%2b0000%20UTC%20m%3d%2b0.044430359">
+    
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2017-12-09%2012%3a49%3a38.102396867%20%2b0000%20UTC%20m%3d%2b0.044430359">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://gtpedrosa.github.io/img/leaf.ico"
+
+>
+
+
+
+
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="https://gtpedrosa.github.io/"><img class="avatar" src="https://gtpedrosa.github.io/img/profile.png" srcset="https://gtpedrosa.github.io/img/profile.png 1x"></a>
+            
+            <a href="https://gtpedrosa.github.io/"><div class="name">Guilherme Pedrosa</div></a>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="https://gtpedrosa.github.io/blog/"><span>Blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="https://gtpedrosa.github.io/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-projects"><a href="https://gtpedrosa.github.io/projects/"><span>Projects</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/github.svg" alt="github" /></a>
+        
+
+        
+            <a href="//twitter.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/twitter.svg" alt="twitter" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/guilherme-pedrosa-73213aa0/" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+            
+        
+
+        
+
+        
+            <a href="mailto:guilherme.pedrosa@gmail.com"><img class="icon" src="https://gtpedrosa.github.io/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="https://gtpedrosa.github.io/index.xml"><img class="icon" src="https://gtpedrosa.github.io/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Organizando a casa - A estrutura de diretórios
+
+</div>
+
+                    <div class="initials"><a href="https://gtpedrosa.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Sat Jan 28 2017 19:11:44 -0300'>Jan 28, 2017</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>3 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                <p>Antes de inciar o desenvolvimento do meu mestrado me deparei com o seguinte dilema: como organizar o diretório principal? Existe uma maneira ótima e/ou recomendada para organizar os arquivos?</p>
+
+<p></p>
+
+<p>Em busca de uma estrutura de organização dos diretórios para realização do mestrado topei com o conceito de <em>preoductible research</em> ou pesquisa reprodutível. O tema me fascinou desde o princípio, pois como pesquisador tentar reproduzir o feito de outros autores é algo imprescindível e que todos faremos. Devemos, portanto, estar preparados para auxiliar outros pesquisadores a utilizar o nosso trabalho. Isto é o ápice da disseminação do conhecimento e pode ser feito de diversas formas, dentre elas a mais óbvia (mas não simplies) é a escrita objetiva e lúcida de artigos científicos.</p>
+
+<p>Para áreas da ciência que lidam com análise de dados, porém, o tema toma outras proporções. Além da metodologia, códigos e dados podem tornar-se fontes de erros, acarretando em discrepâncias entre os resultados obtidos por diferentes pesquisadores. Com o intuito de agilizar e conferir transparência à disseminação do conhecimento correto, há um movimento que tem como objetivo compartilhar os códigos, softwares e dados para que outros pesquisadores possam reproduzir os resultados com maior facilidade. Faço das palavras do <a href="http://danielmarcelino.github.io/blog/2016/reproducible-research.html">Daniel Marcelino</a> as minhas: <strong>mesmos dados + mesmos scripts = mesmos resultados</strong>. Foi com esta premissa que decidi seguir adiante com o projeto do mestrado, a premissa de uma realizar uma pesquisa reprodutível.</p>
+
+<p>Antes de tudo, gostaria de reforçar que elaborar projetos reprodutíveis necessitarão de uma modificação no modo de trabalho de muitos. Comigo não foi diferente. Três pontos que me chamaram bastante atenção foram:</p>
+
+<ul>
+<li>Estruturação de diretórios</li>
+<li>Programação literária</li>
+<li>Controle de versão</li>
+</ul>
+
+<h2 id="organizando-a-casa-estrutura-de-diretórios">Organizando a casa: estrutura de diretórios</h2>
+
+<p>O primeiro parece óbvio, mas faz grande diferença no longo prazo. Não, não sou apenas eu quem diz isto. Basta ver iniciativas como <a href="http://projecttemplate.net/index.html">ProjectTemplate</a> para se ter uma noção. Uma boa estrutura de diretório pode favorecer a boa documentação do projeto, o facilitamento de compartilhamento e promover boa práticas de programação científica como a utilização de testes de unidade e profiling. Adianto que não segui à risca estas recomendações. Contudo, fiquei bastante satisfeito adotando a seguinte estrutura de diretórios:</p>
+
+<pre><code class="language-bash">
+tree -d
+.
+├── data
+│   ├── case_study
+├── docear
+├── literature
+│   ├── Academic works
+│   ├── Books
+│   ├── Misc
+│   ├── Papers
+│   ├── Presentations
+│   ├── Reports
+│   ├── Standards
+│   └── White papers
+├── other
+│   ├── Corrections
+│   ├── Meetings
+│   └── Schedule
+├── routines
+│   ├── html
+│   └── libs
+├── slides
+│   └── beamer
+└── writeup
+    ├── latex
+    │   ├── doc
+    │   ├── elementos-pos-textuais
+    │   │   ├── anexos
+    │   │   └── apendices
+    │   ├── elementos-pre-textuais
+    │   ├── elementos-textuais
+    │   ├── figuras
+    │   ├── lib
+    │   └── tabelas
+    └── Notes
+</code></pre>
+
+<p>Enquanto este setup não oferece algumas benécies ofertadas pela adoção de um esquema mais completo como o do ProjectTemplate, ele permitiu:</p>
+
+<ul>
+<li><strong>Portabilidade</strong>: Todos estes diretórios encontram-se em uma pasta denominada <em>Thesis</em> dentro do meu Dropbox, permitindo que eu trabalhasse no projeto mesmo em diferentes máquinas;</li>
+<li><strong>Integração</strong> entre os resultados dos scripts e o texto da dissertação. Figuras eram salvas diretamente na pasta <code>./writeup/latex/figuras</code> e tabelas na pasta <code>./writeup/latex/tabelas</code>. Com isto, a medida que correções foram sendo necessárias nestes elementos a atualização do texto foi simplificada, bastando compilar o documento novamente.</li>
+<li><strong>Bibliografia</strong>: Incluí toda a bilbiografia utilizada no trabalho bem como o banco de referencias juntamente com o código e documento da dissertação. Vale ressaltar que a portabilidade e integração também ocorreram com o gerenciador de referências (Jabref/Docear), que serão abordados em outros posts.</li>
+</ul>
+                <br>
+		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+            <form method="POST" action="https://api.staticman.net/v2/entry////">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/organizando-a-casa---a-estrutura-de-diret%C3%B3rios/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="2e6664b209e4bc4979a28d5ef666391c">
+    <input name="fields[name]" type="text" placeholder="Your name">
+    <input name="fields[email]" type="email" placeholder="Your email address">
+    <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
+    <input type="submit" value="Submit">
+</form>
+
+
+  	     
+ 
+ 
+
+ 
+   
+ 
+
+ 
+   <p>Hey, be the first who comment this article.</p>
+ 
+
+            
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-93472104-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+
+</body>
+</html>
+

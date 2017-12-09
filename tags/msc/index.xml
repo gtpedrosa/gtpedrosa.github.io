@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Msc on Guilherme Pedrosa</title>
+    <link>https://gtpedrosa.github.io/tags/msc/</link>
+    <description>Recent content in Msc on Guilherme Pedrosa</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 23 Oct 2017 17:58:45 -0300</lastBuildDate>
+    
+	<atom:link href="https://gtpedrosa.github.io/tags/msc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>editor vs processador</title>
+      <link>https://gtpedrosa.github.io/blog/editor-vs-processador/</link>
+      <pubDate>Mon, 23 Oct 2017 17:58:45 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/editor-vs-processador/</guid>
+      <description>&lt;p&gt;Com o objetivo de redigir textos científicos, qual a ferramenta mais adequada para o trabalho? Editores ou processadores de texto?&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Gerenciador de referências bibliográficas: Jabref</title>
+      <link>https://gtpedrosa.github.io/blog/gerenciador-de-refer%C3%AAncias-bibliogr%C3%A1ficas-jabref/</link>
+      <pubDate>Wed, 26 Apr 2017 19:55:02 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/gerenciador-de-refer%C3%AAncias-bibliogr%C3%A1ficas-jabref/</guid>
+      <description>&lt;p&gt;Este post tem como único objetivo explicar porque escolhi utilizar o &lt;strong&gt;Jabref&lt;/strong&gt; para gerenciar minhas referências.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Programação Literária</title>
+      <link>https://gtpedrosa.github.io/blog/programa%C3%A7%C3%A3o-liter%C3%A1ria/</link>
+      <pubDate>Mon, 10 Apr 2017 19:11:44 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/programa%C3%A7%C3%A3o-liter%C3%A1ria/</guid>
+      <description>&lt;p&gt;Este conceito foi criado por ninguém menos que Donald Knuth (lembra-se do \( \LaTeX \)?). Knuth argumenta que os programas de computador devem ser tão legíveis quanto obras literárias.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Organizando a casa - A estrutura de diretórios</title>
+      <link>https://gtpedrosa.github.io/blog/organizando-a-casa---a-estrutura-de-diret%C3%B3rios/</link>
+      <pubDate>Sat, 28 Jan 2017 19:11:44 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/organizando-a-casa---a-estrutura-de-diret%C3%B3rios/</guid>
+      <description>&lt;p&gt;Antes de inciar o desenvolvimento do meu mestrado me deparei com o seguinte dilema: como organizar o diretório principal? Existe uma maneira ótima e/ou recomendada para organizar os arquivos?&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

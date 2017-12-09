@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Guilherme Pedrosa</title>
+    <link>https://gtpedrosa.github.io/tags/</link>
+    <description>Recent content in Tags on Guilherme Pedrosa</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 26 Apr 2017 19:55:02 -0300</lastBuildDate>
+    
+	<atom:link href="https://gtpedrosa.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Educação</title>
+      <link>https://gtpedrosa.github.io/tags/educa%C3%A7%C3%A3o/</link>
+      <pubDate>Wed, 26 Apr 2017 19:55:02 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/tags/educa%C3%A7%C3%A3o/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Latex</title>
+      <link>https://gtpedrosa.github.io/tags/latex/</link>
+      <pubDate>Mon, 23 Oct 2017 17:58:45 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/tags/latex/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Msc</title>
+      <link>https://gtpedrosa.github.io/tags/msc/</link>
+      <pubDate>Mon, 23 Oct 2017 17:58:45 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/tags/msc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pesquisa Reprodutível</title>
+      <link>https://gtpedrosa.github.io/tags/pesquisa-reprodut%C3%ADvel/</link>
+      <pubDate>Mon, 10 Apr 2017 19:11:44 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/tags/pesquisa-reprodut%C3%ADvel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Programming</title>
+      <link>https://gtpedrosa.github.io/tags/programming/</link>
+      <pubDate>Thu, 10 Nov 2016 19:11:44 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://gtpedrosa.github.io/tags/python/</link>
+      <pubDate>Thu, 10 Nov 2016 19:11:44 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Referências</title>
+      <link>https://gtpedrosa.github.io/tags/refer%C3%AAncias/</link>
+      <pubDate>Wed, 26 Apr 2017 19:55:02 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/tags/refer%C3%AAncias/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Virtualenv</title>
+      <link>https://gtpedrosa.github.io/tags/virtualenv/</link>
+      <pubDate>Thu, 10 Nov 2016 19:11:44 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/tags/virtualenv/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Referências on Guilherme Pedrosa</title>
+    <link>https://gtpedrosa.github.io/tags/refer%C3%AAncias/</link>
+    <description>Recent content in Referências on Guilherme Pedrosa</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 26 Apr 2017 19:55:02 -0300</lastBuildDate>
+    
+	<atom:link href="https://gtpedrosa.github.io/tags/refer%C3%AAncias/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Gerenciador de referências bibliográficas: Jabref</title>
+      <link>https://gtpedrosa.github.io/blog/gerenciador-de-refer%C3%AAncias-bibliogr%C3%A1ficas-jabref/</link>
+      <pubDate>Wed, 26 Apr 2017 19:55:02 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/gerenciador-de-refer%C3%AAncias-bibliogr%C3%A1ficas-jabref/</guid>
+      <description>&lt;p&gt;Este post tem como único objetivo explicar porque escolhi utilizar o &lt;strong&gt;Jabref&lt;/strong&gt; para gerenciar minhas referências.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

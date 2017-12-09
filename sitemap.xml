@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/about/</loc>
+    <lastmod>2017-12-02T06:42:21-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/blog/editor-vs-processador/</loc>
+    <lastmod>2017-10-23T17:58:45-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/blog/gerenciador-de-refer%C3%AAncias-bibliogr%C3%A1ficas-jabref/</loc>
+    <lastmod>2017-04-26T19:55:02-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/blog/programa%C3%A7%C3%A3o-liter%C3%A1ria/</loc>
+    <lastmod>2017-04-10T19:11:44-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/blog/organizando-a-casa---a-estrutura-de-diret%C3%B3rios/</loc>
+    <lastmod>2017-01-28T19:11:44-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/blog/ferramentas-e-m%C3%A9todos-de-organiza%C3%A7%C3%A3o-aplicados-ao-mestrado/</loc>
+    <lastmod>2016-11-10T19:11:44-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/blog/installing-a-virtualenv-with-specific-python-version/</loc>
+    <lastmod>2016-11-10T19:11:44-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/blog/</loc>
+    <lastmod>2015-08-22T06:42:21-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/about/colophon/</loc>
+    <lastmod>2015-08-22T06:28:26-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/projects/</loc>
+    <lastmod>2015-08-19T20:29:37-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/educa%C3%A7%C3%A3o/</loc>
+    <lastmod>2017-04-26T19:55:02-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/</loc>
+    <lastmod>2017-10-23T17:58:45-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/latex/</loc>
+    <lastmod>2017-10-23T17:58:45-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/msc/</loc>
+    <lastmod>2017-10-23T17:58:45-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/pesquisa-reprodut%C3%ADvel/</loc>
+    <lastmod>2017-04-10T19:11:44-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/programming/</loc>
+    <lastmod>2016-11-10T19:11:44-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/python/</loc>
+    <lastmod>2016-11-10T19:11:44-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/refer%C3%AAncias/</loc>
+    <lastmod>2017-04-26T19:55:02-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/</loc>
+    <lastmod>2017-04-26T19:55:02-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/virtualenv/</loc>
+    <lastmod>2016-11-10T19:11:44-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
