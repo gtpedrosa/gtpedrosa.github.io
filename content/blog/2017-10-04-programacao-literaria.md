@@ -2,6 +2,7 @@
 date = "2017-04-10T19:11:44-03:00"
 title = "Programação Literária"
 tags = ["Pesquisa Reprodutível", "Msc", "Educação"]
+mathjax = true
 +++
 
  Este conceito foi criado por ninguém menos que Donald Knuth (lembra-se do \\( \LaTeX \\)?). Knuth argumenta que os programas de computador devem ser tão legíveis quanto obras literárias. 
