@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Guilherme Pedrosa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 26 Apr 2017 19:55:02 -0300</lastBuildDate>
+    <lastBuildDate>Sat, 16 Dec 2017 06:42:38 -0300</lastBuildDate>
     
 	<atom:link href="https://gtpedrosa.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Docear</title>
+      <link>https://gtpedrosa.github.io/tags/docear/</link>
+      <pubDate>Sat, 16 Dec 2017 06:42:38 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/tags/docear/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Educação</title>
@@ -23,7 +32,7 @@
     <item>
       <title>Latex</title>
       <link>https://gtpedrosa.github.io/tags/latex/</link>
-      <pubDate>Mon, 23 Oct 2017 17:58:45 -0300</pubDate>
+      <pubDate>Sat, 16 Dec 2017 06:42:38 -0300</pubDate>
       
       <guid>https://gtpedrosa.github.io/tags/latex/</guid>
       <description></description>
@@ -32,7 +41,7 @@
     <item>
       <title>Msc</title>
       <link>https://gtpedrosa.github.io/tags/msc/</link>
-      <pubDate>Mon, 23 Oct 2017 17:58:45 -0300</pubDate>
+      <pubDate>Sat, 16 Dec 2017 06:42:38 -0300</pubDate>
       
       <guid>https://gtpedrosa.github.io/tags/msc/</guid>
       <description></description>

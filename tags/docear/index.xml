@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Latex on Guilherme Pedrosa</title>
-    <link>https://gtpedrosa.github.io/tags/latex/</link>
-    <description>Recent content in Latex on Guilherme Pedrosa</description>
+    <title>Docear on Guilherme Pedrosa</title>
+    <link>https://gtpedrosa.github.io/tags/docear/</link>
+    <description>Recent content in Docear on Guilherme Pedrosa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Sat, 16 Dec 2017 06:42:38 -0300</lastBuildDate>
     
-	<atom:link href="https://gtpedrosa.github.io/tags/latex/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gtpedrosa.github.io/tags/docear/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,17 +19,6 @@
       <guid>https://gtpedrosa.github.io/blog/apresentando-o-docear/</guid>
       <description>&lt;p&gt;Já ouviu falar no software Docear? Eu também não havia até o início do mestrado, então deixe-me apresenta-los a este fantástico software.
 &lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>editor vs processador</title>
-      <link>https://gtpedrosa.github.io/blog/editor-vs-processador/</link>
-      <pubDate>Mon, 23 Oct 2017 17:58:45 -0300</pubDate>
-      
-      <guid>https://gtpedrosa.github.io/blog/editor-vs-processador/</guid>
-      <description>&lt;p&gt;Com o objetivo de redigir textos científicos, qual a ferramenta mais adequada para o trabalho? Editores ou processadores de texto?&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

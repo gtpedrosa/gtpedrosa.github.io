@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://gtpedrosa.github.io/blog/apresentando-o-docear/</loc>
+    <lastmod>2017-12-16T06:42:38-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/about/</loc>
     <lastmod>2017-12-02T06:42:21-07:00</lastmod>
   </url>
@@ -58,6 +63,12 @@
   </url>
   
   <url>
+    <loc>https://gtpedrosa.github.io/tags/docear/</loc>
+    <lastmod>2017-12-16T06:42:38-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/tags/educa%C3%A7%C3%A3o/</loc>
     <lastmod>2017-04-26T19:55:02-03:00</lastmod>
     <priority>0</priority>
@@ -65,19 +76,19 @@
   
   <url>
     <loc>https://gtpedrosa.github.io/</loc>
-    <lastmod>2017-10-23T17:58:45-03:00</lastmod>
+    <lastmod>2017-12-16T06:42:38-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://gtpedrosa.github.io/tags/latex/</loc>
-    <lastmod>2017-10-23T17:58:45-03:00</lastmod>
+    <lastmod>2017-12-16T06:42:38-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://gtpedrosa.github.io/tags/msc/</loc>
-    <lastmod>2017-10-23T17:58:45-03:00</lastmod>
+    <lastmod>2017-12-16T06:42:38-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -107,7 +118,7 @@
   
   <url>
     <loc>https://gtpedrosa.github.io/tags/</loc>
-    <lastmod>2017-04-26T19:55:02-03:00</lastmod>
+    <lastmod>2017-12-16T06:42:38-03:00</lastmod>
     <priority>0</priority>
   </url>
   

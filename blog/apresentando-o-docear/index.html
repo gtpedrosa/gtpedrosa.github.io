@@ -9,22 +9,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="no-referrer">
 <meta name="author" content="Guilherme Pedrosa">
-<meta name="description" content="When trying to install the requirements for a course on coursera I found out that my system&rsquo;s python distribution was a bit outdated. Since I did not want to change anything systemwide (and possibily break things) I decided to finally go for a virtual environment.
-
+<meta name="description" content="Já ouviu falar no software Docear? Eu também não havia até o início do mestrado, então deixe-me apresenta-los a este fantástico software.
 ">
 
-<meta property="og:title" content="Installing a virtualenv with specific python version" />
-<meta property="og:description" content="When trying to install the requirements for a course on coursera I found out that my system&rsquo;s python distribution was a bit outdated. Since I did not want to change anything systemwide (and possibily break things) I decided to finally go for a virtual environment.
-
+<meta property="og:title" content="Apresentando o Docear" />
+<meta property="og:description" content="Já ouviu falar no software Docear? Eu também não havia até o início do mestrado, então deixe-me apresenta-los a este fantástico software.
 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gtpedrosa.github.io/blog/installing-a-virtualenv-with-specific-python-version/" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/apresentando-o-docear/" />
 
 
 
-<meta property="article:published_time" content="2016-11-10T19:11:44-03:00"/>
+<meta property="article:published_time" content="2017-12-16T06:42:38-03:00"/>
 
-<meta property="article:modified_time" content="2016-11-10T19:11:44-03:00"/>
+<meta property="article:modified_time" content="2017-12-16T06:42:38-03:00"/>
 
 
 
@@ -40,10 +38,10 @@
 <title>
 
 
-     Installing a virtualenv with specific python version 
+     Apresentando o Docear 
 
 </title>
-<link rel="canonical" href="https://gtpedrosa.github.io/blog/installing-a-virtualenv-with-specific-python-version/">
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/apresentando-o-docear/">
 
 
 
@@ -61,11 +59,11 @@
 
 
     
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2017-12-17%2020%3a37%3a11.717894527%20%2b0000%20UTC%20m%3d%2b0.048793239">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2017-12-17%2020%3a37%3a11.717894527%20%2b0000%20UTC%20m%3d%2b0.048793239">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2017-12-17%2020%3a37%3a11.717894527%20%2b0000%20UTC%20m%3d%2b0.048793239">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2017-12-17%2020%3a37%3a11.71363956%20%2b0000%20UTC%20m%3d%2b0.044538326">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2017-12-17%2020%3a37%3a11.71363956%20%2b0000%20UTC%20m%3d%2b0.044538326">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2017-12-17%2020%3a37%3a11.71363956%20%2b0000%20UTC%20m%3d%2b0.044538326">
     
-        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2017-12-17%2020%3a37%3a11.717894527%20%2b0000%20UTC%20m%3d%2b0.048793239">
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2017-12-17%2020%3a37%3a11.71363956%20%2b0000%20UTC%20m%3d%2b0.044538326">
     
 
 
@@ -182,7 +180,7 @@
                 <div class="title-container">
                     <div class="page-heading">
 
-    Installing a virtualenv with specific python version
+    Apresentando o Docear
 
 </div>
 
@@ -190,7 +188,7 @@
                 </div>
                 <div class="meta">
                     
-                    <div class="date" title='Thu Nov 10 2016 19:11:44 -0300'>Nov 10, 2016</div>
+                    <div class="date" title='Sat Dec 16 2017 06:42:38 -0300'>Dec 16, 2017</div>
                     
                     
 		    <div class="reading-time"><div class="middot"></div>2 minutes read</div>
@@ -198,33 +196,26 @@
                 </div>
             </div>
             <div class="markdown">
-                <p>When trying to install the requirements for a course on coursera I found out that my system&rsquo;s python distribution was a bit outdated. Since I did not want to change anything systemwide (and possibily break things) I decided to finally go for a virtual environment.</p>
+                <p>Já ouviu falar no software Docear? Eu também não havia até o início do mestrado, então deixe-me apresenta-los a este fantástico software.
+</p>
 
-<p></p>
+<p>O <a href="http://www.docear.org/">Docear</a> é uma &ldquo;ferramenta única  para gerenciamento de literatura acadêmica&rdquo;. De forma simplista é a junção do Jabref, gerenciador de bibliografias,  e o Freeplane, um projeto de mindmap, ambos open source. Na prática o software faz bem mais que isso. Aconselho a todos os interessados em dar uma espiada no vídeo de sua página principal.</p>
 
-<p>Creating a virtual environment (venv) is easier than I thought. A venv shadows your current python packages by creating a standalone environment where you have a python executable, pip and easy_install. This means you have all the tools to download and manage packages, and they are not installed in the local user system folders. Every package is installed relative to the folder you have created the virtualenv for.</p>
+<p>A utilização do Docear me auxiliou principalmente na elaboração da seção de revisão bibliográfica de minha dissertação. Isto porque pude utilizar o mindmap para designar os artigos e referencias categorias específicas. Exemplifico abaixo com o &ldquo;esqueleto&rdquo; de minha dissertação. Após delinear todo o &ldquo;índice&rdquo;, isto é a estrutura de como dispor os assuntos do trabalho, pude inserir os pdfs sincronizados na pasta <code>/literature</code> nas categorizações necessárias para elaboração de cada seção, especialmente na seção de revisão bibliográfica onde este trabalho é mais intenso.</p>
 
-<p>As of the time of this writing, python&rsquo;s latest release was the 2.7.12. If you compile a new version from source, and create a virtual environment afterwards specifying the path relative to the new python installation, you might get the same AssertionError as I did:</p>
+<p><img src="https://gtpedrosa.github.io/img/docear_index_pdfs.png" alt="My Docear mindmap for MSc project along with pdfs used for Power Curve session" /></p>
 
-<pre><code>AssertionError: Filename /packages/Python-2.7/Lib/os.py does not start with any of these prefixes: ['/usr/local']
-</code></pre>
+<p>A partir do outline criado é possível solicitar que o Docear exporte a estrutura já para o \( \LaTeX \). Isto é perfeito para a elaboração de artigos científicos. Eu diria no entanto, que para elaboração de trabalhos mais longos como monografias, dissertações e teses a designação de arquivox <code>.tex</code> para cada capítulo é uma maneira que permite melhor organização e navegação do trabalho.</p>
 
-<p>The work arround to this is to compile python from source with the <code>prefix</code> option (thanks to Drachenfels on SO):</p>
+<p>Ganhos adicionais por utilizar o docear:</p>
 
-<pre><code class="language-bash">./configure --prefix=/Path/To/Where/I/Want/Python/After/Compilation/
-make
-make install
-</code></pre>
+<ul>
+<li>Anotações e highlights são importadas automaticamente pelo docear;</li>
+<li>É possível abrir os respectivos arquivos com um simples clique no ícone do pdf diretamente do mindmap;</li>
+<li>Informações do bibfile disponíveis no mindmap (graças ao Jabref!);</li>
+</ul>
 
-<p>This will fix any path issues from the new python executable, if you want to keep the new version in a place other than <code>/usr/bin/</code>. Now, to create the virtual environment:</p>
-
-<pre><code class="language-bash">virtualenv -p /pathToPython/Python-2.7.12/bin/python2.7  venv_name
-cd venv_name
-source /bin/activate
-pip install myProjectPackages
-</code></pre>
-
-<p>And you are all set.</p>
+<p>Espero que tenha convencido alguém a ao menos tentar utilizar o Docear!</p>
                 <br>
 		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
             </div>
@@ -233,8 +224,8 @@ pip install myProjectPackages
                 
             </div>
             <form method="POST" action="https://api.staticman.net/v2/entry////">
-    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/installing-a-virtualenv-with-specific-python-version/#comment-submitted">
-    <input type="hidden" name="options[entryId]" value="24dd82a06d2c84bf435fb9fcca999349">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/apresentando-o-docear/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="5356a02fb19cf1b2ff2be802f4adb33f">
     <input name="fields[name]" type="text" placeholder="Your name">
     <input name="fields[email]" type="email" placeholder="Your email address">
     <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
@@ -280,6 +271,22 @@ ga('send', 'pageview');
 
 
 
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
 
 
 
