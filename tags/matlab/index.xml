@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Matlab on Guilherme Pedrosa</title>
+    <link>https://gtpedrosa.github.io/tags/matlab/</link>
+    <description>Recent content in Matlab on Guilherme Pedrosa</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 23 Sep 2018 13:14:46 -0300</lastBuildDate>
+    
+	<atom:link href="https://gtpedrosa.github.io/tags/matlab/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Exchanging data between Matlab/Octave and R</title>
+      <link>https://gtpedrosa.github.io/blog/exchanging-data-between-matlab/octave-and-r/</link>
+      <pubDate>Sun, 23 Sep 2018 13:14:46 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/exchanging-data-between-matlab/octave-and-r/</guid>
+      <description>&lt;p&gt;Recently I&amp;rsquo;ve had the need to read &lt;em&gt;uff&lt;/em&gt; files into R. This file format was developped at the University of Cincinnati to standardize the way vibration measurements are stored. It so happens there isn&amp;rsquo;t a library capable of importing &lt;em&gt;uff&lt;/em&gt; files into R, but there is one written in python and another for Matlab.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
