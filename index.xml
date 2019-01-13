@@ -6,10 +6,20 @@
     <description>Recent content on Guilherme Pedrosa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sun, 23 Sep 2018 13:14:46 -0300</lastBuildDate>
+    <lastBuildDate>Sun, 13 Jan 2019 13:41:00 -0300</lastBuildDate>
     
 	<atom:link href="https://gtpedrosa.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Using org mode and ox-hugo to replace markdown in hugo workflow</title>
+      <link>https://gtpedrosa.github.io/blog/using-org-mode-and-ox-hugo-to-replace-markdown-in-hugo-workflow/</link>
+      <pubDate>Sun, 13 Jan 2019 13:41:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/using-org-mode-and-ox-hugo-to-replace-markdown-in-hugo-workflow/</guid>
+      <description>I have decided to give org mode blogging a go. Why org mode? The main reasons for this were:
+ Abandon markdown: I always get confused by markdown markup choices. I find myself constantly reaching for markdown cheatsheet to find out how to insert a link. &amp;ldquo;Is it parenthesis or brackets?&amp;rdquo; gets me every time; Increase familiarity with org mode synthax to use it in my literary programming workflows in the near future (tangle+babel); Reduce friction to create new blog posts using the great ox-hugo by Kaushal Modi.</description>
+    </item>
     
     <item>
       <title>Exchanging data between Matlab/Octave and R</title>

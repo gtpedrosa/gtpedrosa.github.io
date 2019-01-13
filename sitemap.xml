@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://gtpedrosa.github.io/blog/using-org-mode-and-ox-hugo-to-replace-markdown-in-hugo-workflow/</loc>
+    <lastmod>2019-01-13T13:41:00-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/blog/exchanging-data-between-matlab/octave-and-r/</loc>
     <lastmod>2018-09-23T13:14:46-03:00</lastmod>
   </url>
@@ -81,7 +86,7 @@
   
   <url>
     <loc>https://gtpedrosa.github.io/</loc>
-    <lastmod>2018-09-23T13:14:46-03:00</lastmod>
+    <lastmod>2019-01-13T13:41:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
