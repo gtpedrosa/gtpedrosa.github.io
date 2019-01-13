@@ -1,0 +1,197 @@
+#+hugo_base_dir: /home/guilherme/blog/
+
+* blog
+:PROPERTIES:
+:EXPORT_HUGO_SECTION: blog
+:END:
+** DONE Using org mode and ox-hugo to replace markdown in hugo workflow
+CLOSED: [2019-01-13 dom 13:41]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2019-01-01-using-org-mode-and-ox-hugo-to-replace-markdown-in-hugo-workflow
+:END:
+
+I have decided to give org mode blogging a go. Why org mode? The main reasons for this were:
+
+- Abandon markdown: I always get confused by markdown markup choices. I find myself constantly reaching for [[https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet][markdown cheatsheet]] to find out how to insert a link. "Is it parenthesis or brackets?" gets me every time;
+- Increase familiarity with org mode synthax to use it in my literary programming workflows in the near future (tangle+babel);
+- Reduce friction to create new blog posts using the great [[https://ox-hugo.scripter.co/][ox-hugo]] by Kaushal Modi.
+
+For anyone trying to do the same, I recommend:
+
+- [[https://www.kengrimes.com/ox-hugo-tutorial/][ox-hugo tutorial by Ken Grimes]]
+- [[https://ox-hugo.scripter.co/][ox-hugo website/manual]]
+- [[https://karl-voit.at/2017/09/23/orgmode-as-markup-only/][Some org mode markup notes and comments by Karl Voigt]]
+- [[http://ergoemacs.org/emacs/emacs_org_markup.html][Most frequently used org mode markup by Xah]]
+
+Since I want this post to be self contained for further reference in the near future, I will summarise what I've learned from the references above.
+
+*** Installation and .emacs setup
+
+- Installation with package manager: 
+#+BEGIN_SRC emacs-lisp
+M-x package-install RET ox-hugo RET
+#+END_SRC
+- Require it in the .emacs file:
+#+BEGIN_SRC org
+(with-eval-after-load 'ox__
+  (require 'ox-hugo))
+#+END_SRC
+- To take advantage of auto exporting on save I added the following to my .emacs file:
+#+BEGIN_SRC org
+;; Hugo orgmode exporter
+(require 'ox-hugo-auto-export) ;If you want the auto-exporting on file saves
+#+END_SRC
+- Now to create a capture template to create new blog postos on the fly:
+#+BEGIN_SRC org
+;; Populates only the EXPORT_FILE_NAME property in the inserted headline.
+(with-eval-after-load 'org-capture
+  (defun org-hugo-new-subtree-post-capture-template ()
+    "Returns `org-capture' template string for new Hugo post.
+See `org-capture-templates' for more information."
+    (let* ((title (read-from-minibuffer "Post Title: ")) ;Prompt to enter the post title
+           (fname (org-hugo-slug title)))
+      (mapconcat #'identity
+                 `(
+                   ,(concat "* TODO " title)
+                   ":PROPERTIES:"
+                   ,(concat ":EXPORT_FILE_NAME: " (format-time-string "%Y-%m-%d-") fname)
+                   ":END:"
+                   "%?\n")          ;Place the cursor here finally
+                 "\n"))))
+
+;; org capture templates
+(setq org-capture-templates
+ '(
+   ("h"                ;`org-capture' binding + h
+                    "Hugo post"
+                    entry
+                    ;; It is assumed that below file is present in `org-directory'
+                    ;; and that it has a "Blog Ideas" heading. It can even be a
+                    ;; symlink pointing to the actual location of all-posts.org!
+                    (file+olp "/home/guilherme/blog/content-org/posts.org" "blog")
+                    (function org-hugo-new-subtree-post-capture-template))
+))
+#+END_SRC
+
+*Note:* everything here so far is in the manual. I only added the current date to the file name being created in the ~EXPORT_FILE_NAME:~ property to be consistent with my previous naming scheme.
+
+*** Org file structure
+
+Ken grimes did a great job explaining how to use one org file to organize a hugo blog. I'll just mention a few things. First of all, Hugo has a contents folder and depending on the theme you use (I use cocoa) it will have 
+
+#+BEGIN_SRC shell :exports both :results output
+  tree -d -L 2 ../content
+#+END_SRC
+
+#+RESULTS:
+: ../content
+: ├── about
+: ├── blog
+: └── projects
+: 
+: 3 directories
+
+I haven't been using ox-hugo in my previous posts, so I already have markdown files that do not have a corresponding org version. However, my posts reside in the blog folder. As an example, a minimal org file used to generate this post would be the following:
+
+#+begin_src org
+#+hugo_base_dir: /home/guilherme/blog/
+ * blog
+:PROPERTIES:
+:EXPORT_HUGO_SECTION: blog
+:END:
+ ** TODO Using org mode and ox-hugo to replace markdown in hugo workflow
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2019-01-01-using-org-mode-and-ox-hugo-to-replace-markdown-in-hugo-workflow
+:END:
+
+ * Footnotes
+ * COMMENT Local Variables                          :ARCHIVE:
+ # Local Variables:
+ # org-hugo-auto-export-on-save: t
+ # End:
+#+end_src
+
+The local variable ~org-hugo-auto-export-on-save~ with the ARCHIVE tag enables hugo auto export to my blog's master org file only.
+
+*** Workflow
+
+To create a new blog post I simply issue ~C+c + h~ and a title for my new post is prompted. Along with it the filename with date are already set by the property in the capture template. Form now on I just write. 
+
+To view any changes on my working post:
+
+#+BEGIN_SRC bash
+hugo serve -D --navigateToChanged
+#+END_SRC
+
+When done with the post, just changing the task from TODO to DONE will create a special property date that will be the post's date published.
+
+*** Markup examples
+I've put together some markup examples spread through the sources mentioned in the beggining of the post. These are for quick lookups, where I can find the synthax for features I use the most.
+
+#+caption: Same Org Logo
+#+name: img__org_logo
+[[/home/guilherme/blog/static/img/gnu-unicorn.png]]
+*Here we refer to [[img__org_logo]].*
+
+ #+BEGIN_QUOTE
+ Everything should be made as simple as possible,
+ but not any simpler -- Albert Einstein
+ #+END_QUOTE
+
+#+BEGIN_SRC org
+ * This Is A Heading
+ ** This Is A Sub-Heading
+ *** And A Sub-Sub-Heading
+
+ Paragraphs are separated by at least one empty line.
+
+ *bold* /italic/ _underlined_ +strikethrough+ =monospaced= ~code~
+ [[http://Karl-Voit.at][Link description]]
+ http://Karl-Voit.at → link without description
+
+ : Simple pre-formatted text such as for source code.
+ : This also respects the line breaks. *bold* is not bold here.
+
+ - list item
+ - another item
+   - sub-item
+     1. also enumerated
+     2. if you like
+ - [ ] yet to be done
+ - [X] item which is done	
+#+END_SRC
+
+#+caption: Hello
+#+name: code__hello
+#+begin_src emacs-lisp
+(message "Hello")
+#+end_src
+*Here we refer to [[code__helloagain]].*
+
+#+include: "./common.org::#lorem-ipsum" :only-contents t
+
+#+caption: Hello Again
+#+name: code__helloagain
+#+begin_src emacs-lisp
+(message "Hello again")
+#+end_src
+*Here we refer to [[code__hello]].*
+** TODO teste
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2019-01-13-teste
+:END:
+Teste
+
+#+begin_src R :exports both :results output
+getwd()
+#+end_src
+
+#+RESULTS:
+: [1] "/home/guilherme/Projects/blog/hugo-blog/content-org"
+
+
+* Footnotes
+* COMMENT Local Variables                          :ARCHIVE:
+# Local Variables:
+# org-hugo-auto-export-on-save: t
+# End:
