@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Guilherme Pedrosa">
+<meta name="description" content="Something that always called my attention is how much more documented and even appealing to newcomers projects in python or R are if compared to Matlab in general. One exception is MatConvNet, a library that implements convolutional neural networks (CNNs) in Matlab and has a good looking and helpful documentation.
+The documentation stands out as it is produced with MkDocs, a static site generator based on markdown specific for project documentation.">
+
+<meta property="og:title" content="Generating documentation of Matlab scripts automatically with mkdocs" />
+<meta property="og:description" content="Something that always called my attention is how much more documented and even appealing to newcomers projects in python or R are if compared to Matlab in general. One exception is MatConvNet, a library that implements convolutional neural networks (CNNs) in Matlab and has a good looking and helpful documentation.
+The documentation stands out as it is produced with MkDocs, a static site generator based on markdown specific for project documentation." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/generating-documentation-of-matlab-scripts-automatically-with-mkdocs/" />
+
+
+
+<meta property="article:published_time" content="2019-01-20T23:06:00-03:00"/>
+
+<meta property="article:modified_time" content="2019-01-20T23:06:00-03:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+<title>
+
+
+     Generating documentation of Matlab scripts automatically with mkdocs 
+
+</title>
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/generating-documentation-of-matlab-scripts-automatically-with-mkdocs/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2019-01-21%2002%3a11%3a31.395628254%20%2b0000%20UTC%20m%3d%2b0.060091343">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2019-01-21%2002%3a11%3a31.395628254%20%2b0000%20UTC%20m%3d%2b0.060091343">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2019-01-21%2002%3a11%3a31.395628254%20%2b0000%20UTC%20m%3d%2b0.060091343">
+    
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2019-01-21%2002%3a11%3a31.395628254%20%2b0000%20UTC%20m%3d%2b0.060091343">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://gtpedrosa.github.io/img/leaf.ico"
+
+>
+
+
+
+
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="https://gtpedrosa.github.io/"><img class="avatar" src="https://gtpedrosa.github.io/img/profile.png" srcset="https://gtpedrosa.github.io/img/profile.png 1x"></a>
+            
+            <a href="https://gtpedrosa.github.io/"><div class="name">Guilherme Pedrosa</div></a>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="https://gtpedrosa.github.io/blog/"><span>Blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="https://gtpedrosa.github.io/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-projects"><a href="https://gtpedrosa.github.io/projects/"><span>Projects</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/github.svg" alt="github" /></a>
+        
+
+        
+            <a href="//twitter.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/twitter.svg" alt="twitter" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/guilherme-pedrosa-73213aa0/" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+            
+        
+
+        
+
+        
+            <a href="mailto:guilherme.pedrosa@gmail.com"><img class="icon" src="https://gtpedrosa.github.io/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="https://gtpedrosa.github.io/index.xml"><img class="icon" src="https://gtpedrosa.github.io/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Generating documentation of Matlab scripts automatically with mkdocs
+
+</div>
+
+                    <div class="initials"><a href="https://gtpedrosa.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Sun Jan 20 2019 23:06:00 -0300'>Jan 20, 2019</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>3 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                <p>Something that always called my attention is how much more documented and even appealing to newcomers projects in python or R are if compared to Matlab in general. One exception is <a href="https://github.com/vlfeat/matconvnet">MatConvNet</a>, a library that implements convolutional neural networks (CNNs) in Matlab and has a good looking and helpful documentation.</p>
+
+<p>The documentation stands out as it is produced with <a href="https://www.mkdocs.org/">MkDocs</a>, a static site generator based on markdown specific for project documentation. Something very different from Matlab&rsquo;s default html help template. But why bother adding another layer of complexity writing markdown files for the documentation? Why not use the source code itself? The authors of MatConvNet created a parser capable of extracting the comments of the functions in mfiles and auto generate the markdown necessary for MkDocs. The python scripts <code>matdoc.py</code> and <code>matdocparser.py</code> do exactly that. I must acknowledge it is copywrited material (Copyright &copy; 2014-16 The MatConvNet Team) and not made by me.</p>
+
+<p>For the remaining of this post consider a simple project composed of two mfiles: <code>addme.m</code> and <code>subtractme.m</code> which do exactly what you would expect from them, add and subtract two numbers. Also consider a <code>index.md</code> and a <code>mkdocs.yml</code> file, the bare minimum for a MkDocs documentation. This is the files setup and they can be downloaded from my github <a href="https://github.com/gtpedrosa/matlab-mkdocs">here</a>.</p>
+
+<pre><code class="language-shell">tree -L 2 ~/Sandbox/docs
+</code></pre>
+
+<pre><code class="language-text">/home/guilherme/Sandbox/docs
+├── addme.m
+├── COPYING
+├── COPYING~
+├── docs
+│   ├── index.md
+│   └── mfiles
+├── makefile
+├── matdocparser.py
+├── matdocparser.pyc
+├── matdoc.py
+├── mkdocs.yml
+└── subtractme.m
+
+2 directories, 10 files
+</code></pre>
+
+<p>The following make file is responsible for the automation of the pocess:</p>
+
+<pre><code class="language-shell">PYTHON = python2
+MKDOCS = mkdocs
+SRC = $(wildcard *.m)
+TAR = $(SRC:.m=.md)
+
+mfiledir = docs/mfiles
+
+$(info SRC is $(SRC))
+$(info TAR is $(TAR))
+$(info mfiledir is $(mfiledir))
+
+.PHONY: all clean
+
+all: $(TAR)
+
+%.md: %.m matdoc.py matdocparser.py
+	$(info $(@))
+	$(info $(@D))
+	mkdir -p $(mfiledir)
+	$(PYTHON) ./matdoc.py &quot;$(&lt;)&quot; &gt; &quot;$(mfiledir)/$(@)&quot;
+
+doc-serve: mkdocs.yml
+	$(MKDOCS) serve
+
+clean:
+	rm -f $(TAR)
+	rm -rf $(mfiledir)
+</code></pre>
+
+<p>Issuing</p>
+
+<pre><code class="language-shell">make all
+make doc-serve
+</code></pre>
+
+<p>This is the expected output:</p>
+
+<pre><code class="language-text">SRC is subtractme.m addme.m
+TAR is subtractme.md addme.md
+mfiledir is docs/mfiles
+subtractme.md
+.
+mkdir -p docs/mfiles
+python2 ./matdoc.py &quot;subtractme.m&quot; &gt; &quot;docs/mfiles/subtractme.md&quot;
+addme.md
+.
+mkdir -p docs/mfiles
+python2 ./matdoc.py &quot;addme.m&quot; &gt; &quot;docs/mfiles/addme.md&quot;
+SRC is subtractme.m addme.m
+TAR is subtractme.md addme.md
+mfiledir is docs/mfiles
+
+INFO    -  Building documentation...
+INFO    -  Cleaning site directory
+[I 190120 22:44:13 server:283] Serving on http://127.0.0.1:8000
+[I 190120 22:44:13 handlers:60] Start watching changes
+[I 190120 22:44:13 handlers:62] Start detecting changes
+[I 190120 22:44:55 handlers:133] Browser Connected: http://localhost:8000/#project-layout
+[I 190120 22:44:55 handlers:133] Browser Connected: http://127.0.0.1:8000/
+
+</code></pre>
+
+<p>And finally, the end result, a home page based on the <code>index.md</code> file:</p>
+
+<p><a id="org7383841"></a></p>
+
+
+<figure >
+    
+        <img src="https://gtpedrosa.github.io/img/mkdocshome.png" alt="Figure 1: MkDocs documentation generated automatically for a matlab project" />
+    
+    
+    <figcaption>
+        <p>
+        Figure 1: MkDocs documentation generated automatically for a matlab project
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<p>And more importantly, automatic documentation for each function in a specific menu called <code>M-files</code>:</p>
+
+<p><a id="orgaa2430d"></a></p>
+
+
+<figure >
+    
+        <img src="https://gtpedrosa.github.io/img/mkdocsfunction.png" alt="Figure 2: Documentation for each mfile" />
+    
+    
+    <figcaption>
+        <p>
+        Figure 2: Documentation for each mfile
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+                <br>
+		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+            <form method="POST" action="https://api.staticman.net/v2/entry////">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/generating-documentation-of-matlab-scripts-automatically-with-mkdocs/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="c03f000abc43a71c09e0e38cba9a89ae">
+    <input name="fields[name]" type="text" placeholder="Your name">
+    <input name="fields[email]" type="email" placeholder="Your email address">
+    <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
+    <input type="submit" value="Submit">
+</form>
+
+
+  	     
+ 
+ 
+
+ 
+   
+ 
+
+ 
+   <p>Hey, be the first who comment this article.</p>
+ 
+
+            
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-93472104-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>
+

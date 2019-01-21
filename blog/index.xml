@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Generating documentation of Matlab scripts automatically with mkdocs</title>
+      <link>https://gtpedrosa.github.io/blog/generating-documentation-of-matlab-scripts-automatically-with-mkdocs/</link>
+      <pubDate>Sun, 20 Jan 2019 23:06:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/generating-documentation-of-matlab-scripts-automatically-with-mkdocs/</guid>
+      <description>Something that always called my attention is how much more documented and even appealing to newcomers projects in python or R are if compared to Matlab in general. One exception is MatConvNet, a library that implements convolutional neural networks (CNNs) in Matlab and has a good looking and helpful documentation.
+The documentation stands out as it is produced with MkDocs, a static site generator based on markdown specific for project documentation.</description>
+    </item>
+    
+    <item>
       <title>Using org mode and ox-hugo to replace markdown in hugo workflow</title>
       <link>https://gtpedrosa.github.io/blog/using-org-mode-and-ox-hugo-to-replace-markdown-in-hugo-workflow/</link>
       <pubDate>Sun, 13 Jan 2019 13:41:00 -0300</pubDate>

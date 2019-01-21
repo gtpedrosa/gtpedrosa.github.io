@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://gtpedrosa.github.io/blog/generating-documentation-of-matlab-scripts-automatically-with-mkdocs/</loc>
+    <lastmod>2019-01-20T23:06:00-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/blog/using-org-mode-and-ox-hugo-to-replace-markdown-in-hugo-workflow/</loc>
     <lastmod>2019-01-13T13:41:00-03:00</lastmod>
   </url>
@@ -86,7 +91,7 @@
   
   <url>
     <loc>https://gtpedrosa.github.io/</loc>
-    <lastmod>2019-01-13T13:41:00-03:00</lastmod>
+    <lastmod>2019-01-20T23:06:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
