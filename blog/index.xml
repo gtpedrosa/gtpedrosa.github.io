@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Using httr with JSON API&#39;s</title>
+      <link>https://gtpedrosa.github.io/blog/using-httr-with-json-apis/</link>
+      <pubDate>Sun, 24 Mar 2019 11:35:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/using-httr-with-json-apis/</guid>
+      <description>It is incredbly easy to make R interact with external API&amp;rsquo;s. I&amp;rsquo;ve found the httr vignette to be a great resource on how to make a wrapper to interact with them. However I&amp;rsquo;ve stumbled in one quirk that is worth mentioning.
+While creating a body to a POST request message, encoded with json, I verified that my requests were being turned down by the server. The issue was related to a behavior of the jsonlite package, one of httr&amp;rsquo;s dependencies which uses auto_unbox=TRUE by default.</description>
+    </item>
+    
+    <item>
       <title>Generating documentation of Matlab scripts automatically with mkdocs</title>
       <link>https://gtpedrosa.github.io/blog/generating-documentation-of-matlab-scripts-automatically-with-mkdocs/</link>
       <pubDate>Sun, 20 Jan 2019 23:06:00 -0300</pubDate>

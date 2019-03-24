@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://gtpedrosa.github.io/blog/using-httr-with-json-apis/</loc>
+    <lastmod>2019-03-24T11:35:00-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/blog/generating-documentation-of-matlab-scripts-automatically-with-mkdocs/</loc>
     <lastmod>2019-01-20T23:06:00-03:00</lastmod>
   </url>
@@ -73,6 +78,12 @@
   </url>
   
   <url>
+    <loc>https://gtpedrosa.github.io/tags/apis/</loc>
+    <lastmod>2019-03-24T11:35:00-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/categories/</loc>
     <priority>0</priority>
   </url>
@@ -91,7 +102,7 @@
   
   <url>
     <loc>https://gtpedrosa.github.io/</loc>
-    <lastmod>2019-01-20T23:06:00-03:00</lastmod>
+    <lastmod>2019-03-24T11:35:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -139,7 +150,7 @@
   
   <url>
     <loc>https://gtpedrosa.github.io/tags/r/</loc>
-    <lastmod>2018-09-23T13:14:46-03:00</lastmod>
+    <lastmod>2019-03-24T11:35:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -151,7 +162,7 @@
   
   <url>
     <loc>https://gtpedrosa.github.io/tags/</loc>
-    <lastmod>2017-12-16T06:42:38-03:00</lastmod>
+    <lastmod>2019-03-24T11:35:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   

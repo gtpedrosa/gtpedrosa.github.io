@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>R on Guilherme Pedrosa</title>
-    <link>https://gtpedrosa.github.io/tags/r/</link>
-    <description>Recent content in R on Guilherme Pedrosa</description>
+    <title>Apis on Guilherme Pedrosa</title>
+    <link>https://gtpedrosa.github.io/tags/apis/</link>
+    <description>Recent content in Apis on Guilherme Pedrosa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Sun, 24 Mar 2019 11:35:00 -0300</lastBuildDate>
     
-	<atom:link href="https://gtpedrosa.github.io/tags/r/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gtpedrosa.github.io/tags/apis/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,17 +19,6 @@
       <guid>https://gtpedrosa.github.io/blog/using-httr-with-json-apis/</guid>
       <description>It is incredbly easy to make R interact with external API&amp;rsquo;s. I&amp;rsquo;ve found the httr vignette to be a great resource on how to make a wrapper to interact with them. However I&amp;rsquo;ve stumbled in one quirk that is worth mentioning.
 While creating a body to a POST request message, encoded with json, I verified that my requests were being turned down by the server. The issue was related to a behavior of the jsonlite package, one of httr&amp;rsquo;s dependencies which uses auto_unbox=TRUE by default.</description>
-    </item>
-    
-    <item>
-      <title>Exchanging data between Matlab/Octave and R</title>
-      <link>https://gtpedrosa.github.io/blog/exchanging-data-between-matlab/octave-and-r/</link>
-      <pubDate>Sun, 23 Sep 2018 13:14:46 -0300</pubDate>
-      
-      <guid>https://gtpedrosa.github.io/blog/exchanging-data-between-matlab/octave-and-r/</guid>
-      <description>&lt;p&gt;Recently I&amp;rsquo;ve had the need to read &lt;em&gt;uff&lt;/em&gt; files into R. This file format was developped at the University of Cincinnati to standardize the way vibration measurements are stored. It so happens there isn&amp;rsquo;t a library capable of importing &lt;em&gt;uff&lt;/em&gt; files into R, but there is one written in python and another for Matlab.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -9,22 +9,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="no-referrer">
 <meta name="author" content="Guilherme Pedrosa">
-<meta name="description" content="Com o objetivo de redigir textos científicos, qual a ferramenta mais adequada para o trabalho? Editores ou processadores de texto?
+<meta name="description" content="It is incredbly easy to make R interact with external API&rsquo;s. I&rsquo;ve found the httr vignette to be a great resource on how to make a wrapper to interact with them. However I&rsquo;ve stumbled in one quirk that is worth mentioning.
+While creating a body to a POST request message, encoded with json, I verified that my requests were being turned down by the server. The issue was related to a behavior of the jsonlite package, one of httr&rsquo;s dependencies which uses auto_unbox=TRUE by default.">
 
-">
-
-<meta property="og:title" content="editor vs processador" />
-<meta property="og:description" content="Com o objetivo de redigir textos científicos, qual a ferramenta mais adequada para o trabalho? Editores ou processadores de texto?
-
-" />
+<meta property="og:title" content="Using httr with JSON API&#39;s" />
+<meta property="og:description" content="It is incredbly easy to make R interact with external API&rsquo;s. I&rsquo;ve found the httr vignette to be a great resource on how to make a wrapper to interact with them. However I&rsquo;ve stumbled in one quirk that is worth mentioning.
+While creating a body to a POST request message, encoded with json, I verified that my requests were being turned down by the server. The issue was related to a behavior of the jsonlite package, one of httr&rsquo;s dependencies which uses auto_unbox=TRUE by default." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gtpedrosa.github.io/blog/editor-vs-processador/" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/using-httr-with-json-apis/" />
 
 
 
-<meta property="article:published_time" content="2017-10-23T17:58:45-03:00"/>
+<meta property="article:published_time" content="2019-03-24T11:35:00-03:00"/>
 
-<meta property="article:modified_time" content="2017-10-23T17:58:45-03:00"/>
+<meta property="article:modified_time" content="2019-03-24T11:35:00-03:00"/>
 
 
 
@@ -40,10 +38,10 @@
 <title>
 
 
-     editor vs processador 
+     Using httr with JSON API&#39;s 
 
 </title>
-<link rel="canonical" href="https://gtpedrosa.github.io/blog/editor-vs-processador/">
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/using-httr-with-json-apis/">
 
 
 
@@ -61,11 +59,11 @@
 
 
     
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2019-03-24%2014%3a56%3a31.624950841%20%2b0000%20UTC%20m%3d%2b0.071283118">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2019-03-24%2014%3a56%3a31.624950841%20%2b0000%20UTC%20m%3d%2b0.071283118">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2019-03-24%2014%3a56%3a31.624950841%20%2b0000%20UTC%20m%3d%2b0.071283118">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2019-03-24%2014%3a56%3a31.609538844%20%2b0000%20UTC%20m%3d%2b0.055871102">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2019-03-24%2014%3a56%3a31.609538844%20%2b0000%20UTC%20m%3d%2b0.055871102">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2019-03-24%2014%3a56%3a31.609538844%20%2b0000%20UTC%20m%3d%2b0.055871102">
     
-        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2019-03-24%2014%3a56%3a31.624950841%20%2b0000%20UTC%20m%3d%2b0.071283118">
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2019-03-24%2014%3a56%3a31.609538844%20%2b0000%20UTC%20m%3d%2b0.055871102">
     
 
 
@@ -190,7 +188,7 @@
                 <div class="title-container">
                     <div class="page-heading">
 
-    editor vs processador
+    Using httr with JSON API&#39;s
 
 </div>
 
@@ -198,7 +196,7 @@
                 </div>
                 <div class="meta">
                     
-                    <div class="date" title='Mon Oct 23 2017 17:58:45 -0300'>Oct 23, 2017</div>
+                    <div class="date" title='Sun Mar 24 2019 11:35:00 -0300'>Mar 24, 2019</div>
                     
                     
 		    <div class="reading-time"><div class="middot"></div>2 minutes read</div>
@@ -206,23 +204,38 @@
                 </div>
             </div>
             <div class="markdown">
-                <p>Com o objetivo de redigir textos científicos, qual a ferramenta mais adequada para o trabalho? Editores ou processadores de texto?</p>
+                <p>It is incredbly easy to make R interact with external API&rsquo;s. I&rsquo;ve found <a href="https://cran.r-project.org/web/packages/httr/vignettes/api-packages.html">the httr vignette</a> to be a great resource on how to make a wrapper to interact with them. However I&rsquo;ve stumbled in one quirk that is worth mentioning.</p>
 
-<p></p>
+<p>While creating a body to a POST request message, encoded with json, I verified that my requests were being turned down by the server. The issue was related  to a behavior of the <code>jsonlite</code> package, one of httr&rsquo;s dependencies which uses  <code>auto_unbox=TRUE</code> by default. This isn&rsquo;t an issue <em>per se</em> but for length one vector jsonlite returned:</p>
 
-<p>Um editor de texto é um software especializado pura e simplesmente na manipulação de texto. Editores focados em power users, como o vi e emacs, podem ter milhões de ferramentas que auxiliem nesta tarefa. Já um processador de texto permite ao usuário trabalhar também nos aspectos de formatação do texto. O principal representante dessa classe é o Microsoft Word.</p>
+<pre><code class="language-R">cat(jsonlite:::toJSON(list(message = &quot;my string&quot;),auto_unbox=T))
+</code></pre>
 
-<p>Com o foco na produção científica, creio que o descoplamento da forma e conteúdo dos trabalhos seja algo extremamente vantajoso. Desta forma, a preparação de artigos científicos com base em dissertações ou teses é algo que torna-se bem menos trabalhoso. Grandes editoras como a Elsevier disponibilizam estilos em LaTeX por exemplo em que os pesquisadores não precisam se preocupar com formatação alguma. Além disso ao gerenciamento de referências e citações torna-se automático neste sistema.</p>
+<pre><code class="language-text">{&quot;message&quot;:&quot;my string&quot;}
+</code></pre>
 
-<p>Dito isto, fica claro minha preferência pelo combo: editor de texto + LaTeX para preparação de textos científicos. Deixo abaixo uma lista com os combos que testei:</p>
+<p>Whereas the API requested a <strong>boxed</strong> response from length one vectors, such the one you get without the <code>auto_unbox=TRUE</code> option</p>
 
-<ul>
-<li><strong>Kate</strong>: Kate permite navegar entre mútliplas pastas com o mouse e possui um terminal embutido onde é possível chamar o latexmk para compilar o documento;</li>
-<li><strong>vim</strong>: Utilizei o vim juntamente com o latexbox. A macro \ll para compilar o documento é bastante útil;</li>
-<li><strong>TexStudio</strong>: Minha opção default para windows. Gostei bastante do completion para comandos com open/end.</li>
-</ul>
+<pre><code class="language-R">cat(jsonlite:::toJSON(list(message = &quot;my string&quot;)))
+</code></pre>
 
-<p>Apesar de muito poderoso, o <em>vim</em> não é tão simples de ser utilizado, fazendo com que eu trabalhasse principalmente no Kate. Em suma: vale a pena testar as diversas opções existentes e selecionar a que mais se adequa ao seu fluxo de trabalho.</p>
+<pre><code class="language-text">{&quot;message&quot;:[&quot;my string&quot;]}
+</code></pre>
+
+<p>Reading <a href="https://github.com/r-lib/httr/issues/159">this github issue</a> might give a more in depth explanation.</p>
+
+<p>This led me to rabbit holes such as forking <code>httr</code> and recompiling with <code>auto_unbox=FALSE</code> option, which I did. But not without breaking other requests which truly needed to be unboxed.</p>
+
+<p>The solution was simpler than I thought and makes use of the function <code>AsIs</code> from the base package. It can be called with the <code>I(x)</code> synthax and changes the class of an object indicating it should be treated <em>as is</em>. What this does is to prevent the <code>auto_unbox</code> behavior on certain fields where this is undesirable, such as in the following example:</p>
+
+<pre><code class="language-R">cat(jsonlite:::toJSON(list(message = &quot;my string&quot;,mymessage = I(&quot;My other string&quot;)),auto_unbox=T))
+</code></pre>
+
+<pre><code class="language-text">{&quot;message&quot;:&quot;my string&quot;,&quot;mymessage&quot;:[&quot;My other string&quot;]}
+</code></pre>
+
+<p>This approach not only did not break anything but also made my requests compatible with the server boxed length one vectors specification as required.</p>
+
                 <br>
 		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
             </div>
@@ -231,8 +244,8 @@
                 
             </div>
             <form method="POST" action="https://api.staticman.net/v2/entry////">
-    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/editor-vs-processador/#comment-submitted">
-    <input type="hidden" name="options[entryId]" value="cc868930e0e81d1bb8c986bd42ab0ec3">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/using-httr-with-json-apis/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="c2fcc617753ba91f5cd054dd8606667d">
     <input name="fields[name]" type="text" placeholder="Your name">
     <input name="fields[email]" type="email" placeholder="Your email address">
     <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
