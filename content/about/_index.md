@@ -5,5 +5,5 @@ title = "About"
 
 +++
 
-Mechanical engineer working in the renewable energy field. Developing new tools for SCADA based and vibration based condition monitoring at [Eólica Tecnologia](www.eolica.com.br). You can find my cv [here](/docs/cv.pdf).
+Mechanical engineer working in the renewable energy field. Developing new tools for SCADA based and vibration based condition monitoring at [Votorantim Energia](http://www.venergia.com.br). You can find my cv [here](/docs/cv.pdf).
 

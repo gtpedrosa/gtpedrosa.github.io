@@ -176,7 +176,212 @@ I've put together some markup examples that were spread through the sources ment
 (message "Hello again")
 #+end_src
 *Here we refer to [[code__hello]].*
+** DONE Generating documentation of Matlab scripts automatically with mkdocs
+CLOSED: [2019-01-20 dom 23:06]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2019-01-20-generating-documentation-of-matlab-scripts-automatically-with-mkdocs
+:END:
 
+Something that always called my attention is how much more documented and even appealing to newcomers projects in python or R are if compared to Matlab in general. One exception is [[https://github.com/vlfeat/matconvnet][MatConvNet]], a library that implements convolutional neural networks (CNNs) in Matlab and has a good looking and helpful documentation. 
+
+The documentation stands out as it is produced with [[https://www.mkdocs.org/][MkDocs]], a static site generator based on markdown specific for project documentation. Something very different from Matlab's default html help template. But why bother adding another layer of complexity writing markdown files for the documentation? Why not use the source code itself? The authors of MatConvNet created a parser capable of extracting the comments of the functions in mfiles and auto generate the markdown necessary for MkDocs. The python scripts ~matdoc.py~ and ~matdocparser.py~ do exactly that. I must acknowledge it is copywrited material (Copyright (c) 2014-16 The MatConvNet Team) and not made by me.
+
+For the remaining of this post consider a simple project composed of two mfiles: ~addme.m~ and ~subtractme.m~ which do exactly what you would expect from them, add and subtract two numbers. Also consider a ~index.md~ and a ~mkdocs.yml~ file, the bare minimum for a MkDocs documentation. This is the files setup and they can be downloaded from my github [[https://github.com/gtpedrosa/matlab-mkdocs][here]].
+
+#+begin_src shell :exports both :results output
+tree -L 2 ~/Sandbox/docs
+#+end_src
+
+#+RESULTS:
+#+begin_example
+/home/guilherme/Sandbox/docs
+├── addme.m
+├── COPYING
+├── COPYING~
+├── docs
+│   └── index.md
+├── makefile
+├── matdocparser.py
+├── matdocparser.pyc
+├── matdoc.py
+├── mkdocs.yml
+└── subtractme.m
+
+1 directory, 10 files
+#+end_example
+
+The following make file is responsible for the automation of the pocess:
+
+#+begin_src shell
+PYTHON = python2
+MKDOCS = mkdocs
+SRC = $(wildcard *.m)
+TAR = $(SRC:.m=.md)
+
+mfiledir = docs/mfiles
+
+$(info SRC is $(SRC))
+$(info TAR is $(TAR))
+$(info mfiledir is $(mfiledir))
+
+.PHONY: all clean
+
+all: $(TAR)
+
+%.md: %.m matdoc.py matdocparser.py
+	$(info $(@))
+	$(info $(@D))
+	mkdir -p $(mfiledir)
+	$(PYTHON) ./matdoc.py "$(<)" > "$(mfiledir)/$(@)"
+
+doc-serve: mkdocs.yml
+	$(MKDOCS) serve
+
+clean:
+	rm -f $(TAR)
+	rm -rf $(mfiledir)
+#+end_src
+
+Issuing 
+
+#+begin_src shell
+make all
+make doc-serve
+#+end_src
+
+This is the expected output:
+
+#+RESULTS:
+#+begin_example
+SRC is subtractme.m addme.m
+TAR is subtractme.md addme.md
+mfiledir is docs/mfiles
+subtractme.md
+.
+mkdir -p docs/mfiles
+python2 ./matdoc.py "subtractme.m" > "docs/mfiles/subtractme.md"
+addme.md
+.
+mkdir -p docs/mfiles
+python2 ./matdoc.py "addme.m" > "docs/mfiles/addme.md"
+SRC is subtractme.m addme.m
+TAR is subtractme.md addme.md
+mfiledir is docs/mfiles
+
+INFO    -  Building documentation... 
+INFO    -  Cleaning site directory 
+[I 190120 22:44:13 server:283] Serving on http://127.0.0.1:8000
+[I 190120 22:44:13 handlers:60] Start watching changes
+[I 190120 22:44:13 handlers:62] Start detecting changes
+[I 190120 22:44:55 handlers:133] Browser Connected: http://localhost:8000/#project-layout
+[I 190120 22:44:55 handlers:133] Browser Connected: http://127.0.0.1:8000/
+
+#+end_example
+
+And finally, the end result, a home page based on the ~index.md~ file:
+
+#+caption: MkDocs documentation generated automatically for a matlab project
+#+name: mkdocsproject
+[[/home/guilherme/blog/static/img/mkdocshome.png]]
+
+And more importantly, automatic documentation for each function in a specific menu called ~M-files~:
+
+#+caption: Documentation for each mfile
+#+name: mkdocsfunctions
+[[/home/guilherme/blog/static/img/mkdocsfunction.png]]
+
+** DONE Using httr with JSON API's                                  :R:APIs:
+CLOSED: [2019-03-24 dom 11:35]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2019-03-24-using-httr-with-json-api-s
+:END:
+
+It is incredbly easy to make R interact with external API's. I've found [[https://cran.r-project.org/web/packages/httr/vignettes/api-packages.html][the httr vignette]] to be a great resource on how to make a wrapper to interact with them. However I've stumbled in one quirk that is worth mentioning.
+
+While creating a body to a POST request message, encoded with json, I verified that my requests were being turned down by the server. The issue was related  to a behavior of the ~jsonlite~ package, one of httr's dependencies which uses  ~auto_unbox=TRUE~ by default. This isn't an issue /per se/ but for length one vector jsonlite returned:
+
+#+BEGIN_SRC R :exports both :results output
+cat(jsonlite:::toJSON(list(message = "my string"),auto_unbox=T))
+#+END_SRC
+
+#+RESULTS:
+: {"message":"my string"}
+
+Whereas the API requested a *boxed* response from length one vectors, such the one you get without the ~auto_unbox=TRUE~ option
+
+#+BEGIN_SRC R :exports both :results output
+cat(jsonlite:::toJSON(list(message = "my string")))
+#+END_SRC
+
+#+RESULTS:
+: {"message":["my string"]}
+
+Reading [[https://github.com/r-lib/httr/issues/159][this github issue]] might give a more in depth explanation.
+
+This led me to rabbit holes such as forking ~httr~ and recompiling with ~auto_unbox=FALSE~ option, which I did. But not without breaking other requests which truly needed to be unboxed.
+
+The solution was simpler than I thought and makes use of the function ~AsIs~ from the base package. It can be called with the ~I(x)~ synthax and changes the class of an object indicating it should be treated /as is/. What this does is to prevent the ~auto_unbox~ behavior on certain fields where this is undesirable, such as in the following example: 
+
+#+BEGIN_SRC R :exports both :results output
+cat(jsonlite:::toJSON(list(message = "my string",mymessage = I("My other string")),auto_unbox=T))
+#+END_SRC
+
+#+RESULTS:
+: {"message":"my string","mymessage":["My other string"]}
+
+This approach not only did not break anything but also made my requests compatible with the server boxed length one vectors specification as required.
+** TODO Retrieving music sheet off midi visualizer in youtube videos using opencv part 1
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2019-01-15-retrieving-music-sheet-off-midi-visualizer-in-youtube-videos-using-opencv
+:END:
+
+I've been with [[https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=2ahUKEwj1qLa5jPrfAhUwHLkGHTNKBZsQyCkwAHoECAoQBQ&url=https%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DDXP1KdZX4io&usg=AOvVaw2fnmqyhFJpLHe0x4F84Fcj][Radiohead's man of war song]] stuck in my head for over a week. While browsing youtube and waiting eagerly for Josh Cohen's songbook to come out, I stumbled upon another gifted youtuber pianist called Alex Franklin. Franklin also happened to have covered this song. In case you are wondering, here are [[https://www.youtube.com/watch?v=M0GQtolLnEU][Josh's]] and [[https://www.youtube.com/watch?v=jTfhYBCrKyc][Alex's]] versions of the song. 
+
+Anyways, I saw the midi visualizer on the top of the piano keys on Franklin's cover and thought "oh my, I would really love to have the piano sheet for this". So here I am, trying to recognize the key strokes from a video and translate it into a piano sheet.
+
+This is the first part of a series of posts (out of as many as needed) where I will publish the milestones of this journey as someone unitiated in visual recognition. The focus of this post is just to recognize the keystrokes of the left and right hands from an screenshot. This will require me to:
+
+- Select the right tools for the job;
+- Setup the development environment
+- Detect the keys being pressed
+- Define which hand is responsible for the keystroke
+- Define the which musical note was played
+- Translate the note to musical notation
+
+And of course, time and will to persevere.
+
+*** The tools
+
+
+I chose python as a programming language for it's ubiquitous presence in machine learning projects. Also for affinity. Python also has pre-built version of the /de facto/ standard library for computational vision: [[https://opencv.org/][OpenCV]]. 
+
+Keystrokes recognized it is time to engrave them in a beautiful sheet. The GNU Project has a program called [[http://lilypond.org/][LilyPond]], which deals exactly with this task. LilyPond files are text files that can be easily manipulated using a library such as [[https://python-ly.readthedocs.io/en/latest/][python-ly]] or even simpler as per [[https://www.python-course.eu/python_scores.php][this example]] using a simple correspondence map.
+
+Docker to ease the pain. Reason in the next session.
+
+*** The setup
+
+OpenCV however is written in C++ and I found it's installation everything but straightforward. Even with the excellent aid of [[https://www.pyimagesearch.com/2018/08/15/how-to-install-opencv-4-on-ubuntu/][Adrian Rosenbrock's tutorial]], I could not execute a simple:
+
+#+begin_src python
+import cv2
+#+end_src
+
+without a "ModuleNotFoundError: No module named 'cv2'". I tried many alternatives swith no success. This led me to download a Docker image and skip this problem altogether. The second image on dockerhub did the trick. The author Josip Janzic hosts it on github ([[https://github.com/janza/docker-python3-opencv][link here]]). It has a more recent version of python and opencv than the first image as of today's date. To get started just issue:
+
+#+begin_src python
+docker run -it jjanzic/docker-python3-opencv python
+#+end_src
+
+And a working environment with opencv installed will be downloaded from dockerhub if a local image is not present. Needless to say you need to have Docker installed.
+
+*** Detecting keystrokes 
+Here's the screenshot used for this experiment:
+
+#+caption: Piano keystrokes. In blue, right hand, in green the left hand.
+#+name: bgkeys
+[[/home/guilherme/blog/static/img/bgkeys.png]]
+*Here we refer to the screenshot*
 * Footnotes
 * COMMENT Local Variables                          :ARCHIVE:
 # Local Variables:
