@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Using SQLAlchemy to navigate an existing database</title>
+      <link>https://gtpedrosa.github.io/blog/using-sqlalchemy-to-navigate-an-existing-database/</link>
+      <pubDate>Sat, 06 Apr 2019 18:56:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/using-sqlalchemy-to-navigate-an-existing-database/</guid>
+      <description>Given the task to interact with an existing database I felt compelled to use the ORM abstraction instead of making queries with raw sql. My aim was to avoid the common pitfalls regarding making text templates for sqlqueries, prone to sql injection exploits, and enhance query composability.
+I&amp;rsquo;ve found there are essentialy two ways to approach this task: through reflextion or a declarative model. Both approaches are explained in the following sections.</description>
+    </item>
+    
+    <item>
       <title>Using httr with JSON API&#39;s</title>
       <link>https://gtpedrosa.github.io/blog/using-httr-with-json-apis/</link>
       <pubDate>Sun, 24 Mar 2019 11:35:00 -0300</pubDate>

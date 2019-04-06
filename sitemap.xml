@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://gtpedrosa.github.io/blog/using-sqlalchemy-to-navigate-an-existing-database/</loc>
+    <lastmod>2019-04-06T18:56:00-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/blog/using-httr-with-json-apis/</loc>
     <lastmod>2019-03-24T11:35:00-03:00</lastmod>
   </url>
@@ -89,6 +94,12 @@
   </url>
   
   <url>
+    <loc>https://gtpedrosa.github.io/tags/databases/</loc>
+    <lastmod>2019-04-06T18:56:00-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/tags/docear/</loc>
     <lastmod>2017-12-16T06:42:38-03:00</lastmod>
     <priority>0</priority>
@@ -102,7 +113,7 @@
   
   <url>
     <loc>https://gtpedrosa.github.io/</loc>
-    <lastmod>2019-03-24T11:35:00-03:00</lastmod>
+    <lastmod>2019-04-06T18:56:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -131,6 +142,12 @@
   </url>
   
   <url>
+    <loc>https://gtpedrosa.github.io/tags/orm/</loc>
+    <lastmod>2019-04-06T18:56:00-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/tags/pesquisa-reprodut%C3%ADvel/</loc>
     <lastmod>2017-04-10T19:11:44-03:00</lastmod>
     <priority>0</priority>
@@ -144,7 +161,7 @@
   
   <url>
     <loc>https://gtpedrosa.github.io/tags/python/</loc>
-    <lastmod>2016-11-10T19:11:44-03:00</lastmod>
+    <lastmod>2019-04-06T18:56:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
