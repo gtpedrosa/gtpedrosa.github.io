@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Emacs on Guilherme Pedrosa</title>
+    <link>https://gtpedrosa.github.io/tags/emacs/</link>
+    <description>Recent content in Emacs on Guilherme Pedrosa</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 12 Apr 2020 10:59:00 -0300</lastBuildDate>
+    
+	<atom:link href="https://gtpedrosa.github.io/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Building Emacs from source</title>
+      <link>https://gtpedrosa.github.io/blog/building-emacs-from-source/</link>
+      <pubDate>Sun, 12 Apr 2020 10:59:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/building-emacs-from-source/</guid>
+      <description>Steps needed to install emacs locally, mantaining pre-existing installation intact. In the end you will two different versions of emacs running in your system.
+ Install dependencies:   sudo apt-get install autoconf automake libtool texinfo build-essential xorg-dev libgtk-3-dev libjpeg-dev libncurses5-dev libdbus-1-dev libgif-dev libtiff-dev libm17n-dev libpng-dev librsvg2-dev libotf-dev libgnutls28-dev libxml2-dev libxpm-dev   Download emacs from a nearby mirror Extract downloaded file. In this case it is emacs-26.3.tar.xz, and go to the extracted folder:   cd ~/Downloads tar -xf emacs-26.</description>
+    </item>
+    
+  </channel>
+</rss>

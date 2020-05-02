@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://gtpedrosa.github.io/blog/building-emacs-from-source/</loc>
+    <lastmod>2020-04-12T10:59:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/blog/reading-sql-dumps-with-sql-server-management-studio/</loc>
+    <lastmod>2020-04-12T10:58:00-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/blog/using-sqlalchemy-to-navigate-an-existing-database/</loc>
     <lastmod>2019-04-06T18:56:00-03:00</lastmod>
   </url>
@@ -95,7 +105,7 @@
   
   <url>
     <loc>https://gtpedrosa.github.io/tags/databases/</loc>
-    <lastmod>2019-04-06T18:56:00-03:00</lastmod>
+    <lastmod>2020-04-12T10:58:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -112,8 +122,14 @@
   </url>
   
   <url>
+    <loc>https://gtpedrosa.github.io/tags/emacs/</loc>
+    <lastmod>2020-04-12T10:59:00-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/</loc>
-    <lastmod>2019-04-06T18:56:00-03:00</lastmod>
+    <lastmod>2020-04-12T10:59:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -174,6 +190,12 @@
   <url>
     <loc>https://gtpedrosa.github.io/tags/refer%C3%AAncias/</loc>
     <lastmod>2017-04-26T19:55:02-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/sql/</loc>
+    <lastmod>2020-04-12T10:58:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   

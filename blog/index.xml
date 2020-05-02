@@ -12,6 +12,26 @@
     
     
     <item>
+      <title>Building Emacs from source</title>
+      <link>https://gtpedrosa.github.io/blog/building-emacs-from-source/</link>
+      <pubDate>Sun, 12 Apr 2020 10:59:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/building-emacs-from-source/</guid>
+      <description>Steps needed to install emacs locally, mantaining pre-existing installation intact. In the end you will two different versions of emacs running in your system.
+ Install dependencies:   sudo apt-get install autoconf automake libtool texinfo build-essential xorg-dev libgtk-3-dev libjpeg-dev libncurses5-dev libdbus-1-dev libgif-dev libtiff-dev libm17n-dev libpng-dev librsvg2-dev libotf-dev libgnutls28-dev libxml2-dev libxpm-dev   Download emacs from a nearby mirror Extract downloaded file. In this case it is emacs-26.3.tar.xz, and go to the extracted folder:   cd ~/Downloads tar -xf emacs-26.</description>
+    </item>
+    
+    <item>
+      <title>Reading SQL Dumps with SQL Server management Studio</title>
+      <link>https://gtpedrosa.github.io/blog/reading-sql-dumps-with-sql-server-management-studio/</link>
+      <pubDate>Sun, 12 Apr 2020 10:58:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/reading-sql-dumps-with-sql-server-management-studio/</guid>
+      <description>This post is about how to inspect the content of SQL database (.mdf and .ldf files). The answer is to attach these files to an existing SQL server instance, instead of opening them directly with a tool such as SQL Management Studio. This was not clear time until I stumbled upon this video.
+Steps  Keep a SQL Server instance running in the background; Fire up SQL Management studio and connect to this instance by providing .</description>
+    </item>
+    
+    <item>
       <title>Using SQLAlchemy to navigate an existing database</title>
       <link>https://gtpedrosa.github.io/blog/using-sqlalchemy-to-navigate-an-existing-database/</link>
       <pubDate>Sat, 06 Apr 2019 18:56:00 -0300</pubDate>

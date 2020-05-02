@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sql on Guilherme Pedrosa</title>
+    <link>https://gtpedrosa.github.io/tags/sql/</link>
+    <description>Recent content in Sql on Guilherme Pedrosa</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 12 Apr 2020 10:58:00 -0300</lastBuildDate>
+    
+	<atom:link href="https://gtpedrosa.github.io/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Reading SQL Dumps with SQL Server management Studio</title>
+      <link>https://gtpedrosa.github.io/blog/reading-sql-dumps-with-sql-server-management-studio/</link>
+      <pubDate>Sun, 12 Apr 2020 10:58:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/reading-sql-dumps-with-sql-server-management-studio/</guid>
+      <description>This post is about how to inspect the content of SQL database (.mdf and .ldf files). The answer is to attach these files to an existing SQL server instance, instead of opening them directly with a tool such as SQL Management Studio. This was not clear time until I stumbled upon this video.
+Steps  Keep a SQL Server instance running in the background; Fire up SQL Management studio and connect to this instance by providing .</description>
+    </item>
+    
+  </channel>
+</rss>

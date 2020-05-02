@@ -9,20 +9,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="no-referrer">
 <meta name="author" content="Guilherme Pedrosa">
-<meta name="description" content="It is incredbly easy to make R interact with external API&rsquo;s. I&rsquo;ve found the httr vignette to be a great resource on how to make a wrapper to interact with them. However I&rsquo;ve stumbled in one quirk that is worth mentioning.
-While creating a body to a POST request message, encoded with json, I verified that my requests were being turned down by the server. The issue was related to a behavior of the jsonlite package, one of httr&rsquo;s dependencies which uses auto_unbox=TRUE by default.">
+<meta name="description" content="This post is about how to inspect the content of SQL database (.mdf and .ldf files). The answer is to attach these files to an existing SQL server instance, instead of opening them directly with a tool such as SQL Management Studio. This was not clear time until I stumbled upon this video.
+Steps  Keep a SQL Server instance running in the background; Fire up SQL Management studio and connect to this instance by providing .">
 
-<meta property="og:title" content="Using httr with JSON API&#39;s" />
-<meta property="og:description" content="It is incredbly easy to make R interact with external API&rsquo;s. I&rsquo;ve found the httr vignette to be a great resource on how to make a wrapper to interact with them. However I&rsquo;ve stumbled in one quirk that is worth mentioning.
-While creating a body to a POST request message, encoded with json, I verified that my requests were being turned down by the server. The issue was related to a behavior of the jsonlite package, one of httr&rsquo;s dependencies which uses auto_unbox=TRUE by default." />
+<meta property="og:title" content="Reading SQL Dumps with SQL Server management Studio" />
+<meta property="og:description" content="This post is about how to inspect the content of SQL database (.mdf and .ldf files). The answer is to attach these files to an existing SQL server instance, instead of opening them directly with a tool such as SQL Management Studio. This was not clear time until I stumbled upon this video.
+Steps  Keep a SQL Server instance running in the background; Fire up SQL Management studio and connect to this instance by providing ." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gtpedrosa.github.io/blog/using-httr-with-json-apis/" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/reading-sql-dumps-with-sql-server-management-studio/" />
 
 
 
-<meta property="article:published_time" content="2019-03-24T11:35:00-03:00"/>
+<meta property="article:published_time" content="2020-04-12T10:58:00-03:00"/>
 
-<meta property="article:modified_time" content="2019-03-24T11:35:00-03:00"/>
+<meta property="article:modified_time" content="2020-04-12T10:58:00-03:00"/>
 
 
 
@@ -38,10 +38,10 @@ While creating a body to a POST request message, encoded with json, I verified t
 <title>
 
 
-     Using httr with JSON API&#39;s 
+     Reading SQL Dumps with SQL Server management Studio 
 
 </title>
-<link rel="canonical" href="https://gtpedrosa.github.io/blog/using-httr-with-json-apis/">
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/reading-sql-dumps-with-sql-server-management-studio/">
 
 
 
@@ -59,11 +59,11 @@ While creating a body to a POST request message, encoded with json, I verified t
 
 
     
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2020-05-02%2015%3a30%3a03.419245537%20%2b0000%20UTC%20m%3d%2b0.048510281">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2020-05-02%2015%3a30%3a03.419245537%20%2b0000%20UTC%20m%3d%2b0.048510281">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2020-05-02%2015%3a30%3a03.419245537%20%2b0000%20UTC%20m%3d%2b0.048510281">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2020-05-02%2015%3a30%3a03.416430059%20%2b0000%20UTC%20m%3d%2b0.045694813">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2020-05-02%2015%3a30%3a03.416430059%20%2b0000%20UTC%20m%3d%2b0.045694813">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2020-05-02%2015%3a30%3a03.416430059%20%2b0000%20UTC%20m%3d%2b0.045694813">
     
-        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2020-05-02%2015%3a30%3a03.419245537%20%2b0000%20UTC%20m%3d%2b0.048510281">
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2020-05-02%2015%3a30%3a03.416430059%20%2b0000%20UTC%20m%3d%2b0.045694813">
     
 
 
@@ -194,7 +194,7 @@ While creating a body to a POST request message, encoded with json, I verified t
                 <div class="title-container">
                     <div class="page-heading">
 
-    Using httr with JSON API&#39;s
+    Reading SQL Dumps with SQL Server management Studio
 
 </div>
 
@@ -202,45 +202,76 @@ While creating a body to a POST request message, encoded with json, I verified t
                 </div>
                 <div class="meta">
                     
-                    <div class="date" title='Sun Mar 24 2019 11:35:00 -0300'>Mar 24, 2019</div>
+                    <div class="date" title='Sun Apr 12 2020 10:58:00 -0300'>Apr 12, 2020</div>
                     
                     
-		    <div class="reading-time"><div class="middot"></div>2 minutes read</div>
+		    <div class="reading-time"><div class="middot"></div>One minute read</div>
                     
                 </div>
             </div>
             <div class="markdown">
-                <p>It is incredbly easy to make R interact with external API&rsquo;s. I&rsquo;ve found <a href="https://cran.r-project.org/web/packages/httr/vignettes/api-packages.html">the httr vignette</a> to be a great resource on how to make a wrapper to interact with them. However I&rsquo;ve stumbled in one quirk that is worth mentioning.</p>
+                
 
-<p>While creating a body to a POST request message, encoded with json, I verified that my requests were being turned down by the server. The issue was related  to a behavior of the <code>jsonlite</code> package, one of httr&rsquo;s dependencies which uses  <code>auto_unbox=TRUE</code> by default. This isn&rsquo;t an issue <em>per se</em> but for length one vector jsonlite returned:</p>
+<p>This post is about how to inspect the content of SQL database (<em>.mdf</em> and <em>.ldf</em> files). The answer is to attach these files to an existing SQL server instance, instead of opening them directly with a tool such as SQL Management Studio. This was not clear time until I stumbled upon <a href="https://www.youtube.com/watch?v=rhIr9Qf-oHw">this video.</a></p>
 
-<pre><code class="language-R">cat(jsonlite:::toJSON(list(message = &quot;my string&quot;),auto_unbox=T))
-</code></pre>
+<h2 id="steps">Steps</h2>
 
-<pre><code class="language-text">{&quot;message&quot;:&quot;my string&quot;}
-</code></pre>
+<ol>
+<li>Keep a SQL Server instance running in the background;</li>
+<li>Fire up SQL Management studio and connect to this instance by providing <em>.\SQLEXPRESS</em> in the &ldquo;Server name&rdquo; field;</li>
+<li>Right click &ldquo;Database&rdquo; and attach the mdf file. The ldf is automatically included;</li>
+</ol>
 
-<p>Whereas the API requested a <strong>boxed</strong> response from length one vectors, such the one you get without the <code>auto_unbox=TRUE</code> option</p>
+<h2 id="attention-points">Attention points</h2>
 
-<pre><code class="language-R">cat(jsonlite:::toJSON(list(message = &quot;my string&quot;)))
-</code></pre>
+<p>To check #1 spin up <em>SQL Configuration Manager</em> and look for *<strong><em>SQL Server
+(SQLEXPRESS)</em></strong>* instance. It should be already running by default, as shown in
+Figure 1.</p>
 
-<pre><code class="language-text">{&quot;message&quot;:[&quot;my string&quot;]}
-</code></pre>
+<p><a id="orgf66bd4a"></a></p>
 
-<p>Reading <a href="https://github.com/r-lib/httr/issues/159">this github issue</a> might give a more in depth explanation.</p>
 
-<p>This led me to rabbit holes such as forking <code>httr</code> and recompiling with <code>auto_unbox=FALSE</code> option, which I did. But not without breaking other requests which truly needed to be unboxed.</p>
+<figure >
+    
+        <img src="https://gtpedrosa.github.io/img/sqlexpress.png" alt="Figure 1: SQL Express running instance" />
+    
+    
+    <figcaption>
+        <p>
+        Figure 1: SQL Express running instance
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
 
-<p>The solution was simpler than I thought and makes use of the function <code>AsIs</code> from the base package. It can be called with the <code>I(x)</code> synthax and changes the class of an object indicating it should be treated <em>as is</em>. What this does is to prevent the <code>auto_unbox</code> behavior on certain fields where this is undesirable, such as in the following example:</p>
 
-<pre><code class="language-R">cat(jsonlite:::toJSON(list(message = &quot;my string&quot;,mymessage = I(&quot;My other string&quot;)),auto_unbox=T))
-</code></pre>
+<p>As for #2 make sure to login using the system credentials as shown in Figure 2.</p>
 
-<pre><code class="language-text">{&quot;message&quot;:&quot;my string&quot;,&quot;mymessage&quot;:[&quot;My other string&quot;]}
-</code></pre>
+<p><a id="orgd5a6918"></a></p>
 
-<p>This approach not only did not break anything but also made my requests compatible with the server boxed length one vectors specification as required.</p>
+
+<figure >
+    
+        <img src="https://gtpedrosa.github.io/img/sqlserver.png" alt="Figure 2: SQL Server login" />
+    
+    
+    <figcaption>
+        <p>
+        Figure 2: SQL Server login
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<p>As for #3, if you are not admin the mdf file needs to be stored somewhere in the
+ Public user profile so the SQLExpress instance is able to locate it.</p>
 
                 <br>
 		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
@@ -250,8 +281,8 @@ While creating a body to a POST request message, encoded with json, I verified t
                 
             </div>
             <form method="POST" action="https://api.staticman.net/v2/entry////">
-    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/using-httr-with-json-apis/#comment-submitted">
-    <input type="hidden" name="options[entryId]" value="c2fcc617753ba91f5cd054dd8606667d">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/reading-sql-dumps-with-sql-server-management-studio/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="b1c0a3299c150773fe03e60cba365362">
     <input name="fields[name]" type="text" placeholder="Your name">
     <input name="fields[email]" type="email" placeholder="Your email address">
     <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
