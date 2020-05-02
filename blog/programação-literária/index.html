@@ -9,32 +9,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="no-referrer">
 <meta name="author" content="Guilherme Pedrosa">
-<meta name="description" content="Este conceito foi criado por ninguém menos que Donald Knuth (lembra-se do \( \LaTeX \)?). Knuth argumenta que os programas de computador devem ser tão legíveis quanto obras literárias.
-
-">
+<meta name="description" content="Este conceito foi criado por ninguém menos que Donald Knuth (lembra-se do \( \LaTeX \)?). Knuth argumenta que os programas de computador devem ser tão legíveis quanto obras literárias.">
 
 <meta property="og:title" content="Programação Literária" />
-<meta property="og:description" content="Este conceito foi criado por ninguém menos que Donald Knuth (lembra-se do \( \LaTeX \)?). Knuth argumenta que os programas de computador devem ser tão legíveis quanto obras literárias.
-
-" />
+<meta property="og:description" content="Este conceito foi criado por ninguém menos que Donald Knuth (lembra-se do \( \LaTeX \)?). Knuth argumenta que os programas de computador devem ser tão legíveis quanto obras literárias." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://gtpedrosa.github.io/blog/programa%C3%A7%C3%A3o-liter%C3%A1ria/" />
-
-
-
-<meta property="article:published_time" content="2017-04-10T19:11:44-03:00"/>
-
-<meta property="article:modified_time" content="2017-04-10T19:11:44-03:00"/>
-
-
-
-
-
-
-
-
-
-
+<meta property="article:published_time" content="2017-04-10T19:11:44-03:00" />
+<meta property="article:modified_time" content="2017-04-10T19:11:44-03:00" />
 
 
 <title>
@@ -61,11 +43,11 @@
 
 
     
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2020-05-02%2015%3a30%3a03.429765055%20%2b0000%20UTC%20m%3d%2b0.059029799">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2020-05-02%2015%3a30%3a03.429765055%20%2b0000%20UTC%20m%3d%2b0.059029799">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2020-05-02%2015%3a30%3a03.429765055%20%2b0000%20UTC%20m%3d%2b0.059029799">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2020-05-02%2022%3a18%3a31.568868927%20%2b0000%20UTC%20m%3d%2b0.060897874">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2020-05-02%2022%3a18%3a31.568868927%20%2b0000%20UTC%20m%3d%2b0.060897874">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2020-05-02%2022%3a18%3a31.568868927%20%2b0000%20UTC%20m%3d%2b0.060897874">
     
-        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2020-05-02%2015%3a30%3a03.429765055%20%2b0000%20UTC%20m%3d%2b0.059029799">
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2020-05-02%2022%3a18%3a31.568868927%20%2b0000%20UTC%20m%3d%2b0.060897874">
     
 
 
@@ -76,8 +58,6 @@
     href="https://gtpedrosa.github.io/img/leaf.ico"
 
 >
-
-
 
 
 
@@ -213,37 +193,20 @@
             </div>
             <div class="markdown">
                 <p>Este conceito foi criado por ninguém menos que Donald Knuth (lembra-se do \( \LaTeX \)?). Knuth argumenta que os programas de computador devem ser tão legíveis quanto obras literárias.</p>
-
-<p></p>
-
 <p>No âmbito de pesquisas reprodutíveis, isto foi uma mudança de paradigma, bastando ver a quantidade de sistemas que &ldquo;brotaram&rdquo; e espalharam-se com extrema velocidade: Jupyter (antigo IPython) notebooks, Knitr e Sweave, Matlab publisher. Independente do sistema ou linguagem de programação adotada, a premissa é a mesma: não só o código é documentado, como também a interpretação dos resultados, acrescido de algumas benécies. O próprio script é então convertido em um documento html ou LaTeX, por exemplo, para publicação diretamente a partir do código fonte. A beleza disto é que qualquer pessoa poderá iteragir com tal trabalho, além de poder executa-lo de forma independente.</p>
-
 <p>Todas as linguages computacionais científicas adaptaram-se para dar suporte a crescente demanda pela programação literária. Dentre as linguagens que considero mais comuns para análise científica de dados estão: Matlab, R e Python. Demonstrarei a seguir brevemente a capacidade de renderização do código utilizando pacotes/funcionalidades de cada uma.</p>
-
 <h2 id="matlab">Matlab</h2>
-
 <p>O <a href="https://www.mathworks.com/help/matlab/matlab_prog/publishing-matlab-code.html">Matlab Publisher</a> permite que o usuário <em>publique</em> (obviamente) o código fonte juntamente com comentários, equações e plots renderizados. A considero ainda uma função subutilizada, apesar de estar disponível, até onde pude constatar, <a href="http://blogs.mathworks.com/community/2009/11/16/publish-to-pdf/">desde 2009</a>.</p>
-
-<p>Durante meus experimentos/testes, elaboração de hipóteses e exploração de dados, criei um <em>mfile</em> contendo tanto o código utilizado para realização de tais tarefas como seus resultados em uma série de arquivos iniciando com o nome <strong>estudo_</strong>. Segue um exemplo sobre o estudo para ganhar intuição sobre uma grandeza da teoria da informação denominada informação mútua:</p>
-
-<p><img src="https://gtpedrosa.github.io/img/Matlab_Publisher.png" alt="Exemplo de arquivo mfile com documento html exibido no navegador." /></p>
-
+<p>Durante meus experimentos/testes, elaboração de hipóteses e exploração de dados, criei um <em>mfile</em> contendo tanto o código utilizado para realização de tais tarefas como seus resultados em uma série de arquivos iniciando com o nome **estudo_**. Segue um exemplo sobre o estudo para ganhar intuição sobre uma grandeza da teoria da informação denominada informação mútua:</p>
+<p><img src="https://gtpedrosa.github.io/img/Matlab_Publisher.png" alt="Exemplo de arquivo mfile com documento html exibido no navegador."></p>
 <h2 id="r">R</h2>
-
 <p>Muito mais presente no ecossistema do <strong>R</strong> até pela sua característica open-source, a reprodutibilidade possui ferramentas adicionais. Na IDE denominada <strong>RStudio</strong> (que eu recomendo fortemente) é fácil elaborar não só códigos documentados no formato <strong>Rmd</strong> que podem ser renderizados em html ou pdf, mas também slides html e até integra-los a serviços como github e RPublisher de forma impecável.</p>
-
-<p><img src="https://gtpedrosa.github.io/img/RStudio_Knittr_html.png" alt="Exemplo de arquivo Rmd no RStudio 1.0.136 com equações renderizadas na IDE." /></p>
-
-<h2 id="python">Python (?)</h2>
-
+<p><img src="https://gtpedrosa.github.io/img/RStudio_Knittr_html.png" alt="Exemplo de arquivo Rmd no RStudio 1.0.136 com equações renderizadas na IDE."></p>
+<h2 id="python-">Python (?)</h2>
 <p>Note a interrogação. Inicialmente criado com o nome <em>iPython notebook</em>, o Jupyter é um ambiente web de código aberto que permite a inserção de equações, gráficos, conteúdos digitais bem como explicações juntamente com o código da análise. É interessante notar que Jupyter notebook evoluiu para um projeto que é <code>linguagem agnóstico</code>. Isto significa que ao modificar-se o <a href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels">kernel</a> pode-se programar em <strong>R</strong>, <strong>Matlab</strong>, <strong>python</strong> ou qualquer outra linguagem suportada, sem precisar para tanto modificar o workflow e adaptar-se a diferentes estilos de <em>markup</em>.</p>
-
-<p><img src="https://gtpedrosa.github.io/img/ipython.png" alt="Exemplo de iPython notebook. Fonte: &lt;https://ipython.org/ipython-doc/3/_images/ipy_013_notebook_spectrogram.png&gt;" /></p>
-
+<p><img src="https://gtpedrosa.github.io/img/ipython.png" alt="Exemplo de iPython notebook. Fonte: "></p>
 <h1 id="leitura-adicional">Leitura adicional</h1>
-
 <p>Apenas destaquei a existência das ferramentas em R, Matlab ou python para auxílio na adoção da programação literária. Separei abaixo alguns links de como utilizar tais ferramentas em cada um dos ambientes de programação:</p>
-
 <ul>
 <li><a href="https://www.mathworks.com/help/matlab/matlab_prog/publishing-matlab-code.html">https://www.mathworks.com/help/matlab/matlab_prog/publishing-matlab-code.html</a></li>
 <li><a href="http://rmarkdown.rstudio.com/">http://rmarkdown.rstudio.com/</a></li>
@@ -285,12 +248,16 @@
 
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-93472104-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-93472104-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

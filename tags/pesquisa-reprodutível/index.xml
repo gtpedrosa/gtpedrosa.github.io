@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pesquisa Reprodutível on Guilherme Pedrosa</title>
@@ -17,20 +17,16 @@
       <pubDate>Mon, 10 Apr 2017 19:11:44 -0300</pubDate>
       
       <guid>https://gtpedrosa.github.io/blog/programa%C3%A7%C3%A3o-liter%C3%A1ria/</guid>
-      <description>&lt;p&gt;Este conceito foi criado por ninguém menos que Donald Knuth (lembra-se do \( \LaTeX \)?). Knuth argumenta que os programas de computador devem ser tão legíveis quanto obras literárias.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Este conceito foi criado por ninguém menos que Donald Knuth (lembra-se do \( \LaTeX \)?). Knuth argumenta que os programas de computador devem ser tão legíveis quanto obras literárias.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Organizando a casa - A estrutura de diretórios</title>
-      <link>https://gtpedrosa.github.io/blog/organizando-a-casa---a-estrutura-de-diret%C3%B3rios/</link>
+      <link>https://gtpedrosa.github.io/blog/organizando-a-casa-a-estrutura-de-diret%C3%B3rios/</link>
       <pubDate>Sat, 28 Jan 2017 19:11:44 -0300</pubDate>
       
-      <guid>https://gtpedrosa.github.io/blog/organizando-a-casa---a-estrutura-de-diret%C3%B3rios/</guid>
-      <description>&lt;p&gt;Antes de inciar o desenvolvimento do meu mestrado me deparei com o seguinte dilema: como organizar o diretório principal? Existe uma maneira ótima e/ou recomendada para organizar os arquivos?&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <guid>https://gtpedrosa.github.io/blog/organizando-a-casa-a-estrutura-de-diret%C3%B3rios/</guid>
+      <description>&lt;p&gt;Antes de inciar o desenvolvimento do meu mestrado me deparei com o seguinte dilema: como organizar o diretório principal? Existe uma maneira ótima e/ou recomendada para organizar os arquivos?&lt;/p&gt;</description>
     </item>
     
   </channel>

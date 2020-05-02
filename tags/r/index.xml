@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R on Guilherme Pedrosa</title>
@@ -27,9 +27,7 @@ While creating a body to a POST request message, encoded with json, I verified t
       <pubDate>Sun, 23 Sep 2018 13:14:46 -0300</pubDate>
       
       <guid>https://gtpedrosa.github.io/blog/exchanging-data-between-matlab/octave-and-r/</guid>
-      <description>&lt;p&gt;Recently I&amp;rsquo;ve had the need to read &lt;em&gt;uff&lt;/em&gt; files into R. This file format was developped at the University of Cincinnati to standardize the way vibration measurements are stored. It so happens there isn&amp;rsquo;t a library capable of importing &lt;em&gt;uff&lt;/em&gt; files into R, but there is one written in python and another for Matlab.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Recently I&amp;rsquo;ve had the need to read &lt;em&gt;uff&lt;/em&gt; files into R. This file format was developped at the University of Cincinnati to standardize the way vibration measurements are stored. It so happens there isn&amp;rsquo;t a library capable of importing &lt;em&gt;uff&lt;/em&gt; files into R, but there is one written in python and another for Matlab.&lt;/p&gt;</description>
     </item>
     
   </channel>

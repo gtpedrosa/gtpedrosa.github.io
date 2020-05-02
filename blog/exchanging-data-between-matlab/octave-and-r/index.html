@@ -9,32 +9,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="no-referrer">
 <meta name="author" content="Guilherme Pedrosa">
-<meta name="description" content="Recently I&rsquo;ve had the need to read uff files into R. This file format was developped at the University of Cincinnati to standardize the way vibration measurements are stored. It so happens there isn&rsquo;t a library capable of importing uff files into R, but there is one written in python and another for Matlab.
-
-">
+<meta name="description" content="Recently I&rsquo;ve had the need to read uff files into R. This file format was developped at the University of Cincinnati to standardize the way vibration measurements are stored. It so happens there isn&rsquo;t a library capable of importing uff files into R, but there is one written in python and another for Matlab.">
 
 <meta property="og:title" content="Exchanging data between Matlab/Octave and R" />
-<meta property="og:description" content="Recently I&rsquo;ve had the need to read uff files into R. This file format was developped at the University of Cincinnati to standardize the way vibration measurements are stored. It so happens there isn&rsquo;t a library capable of importing uff files into R, but there is one written in python and another for Matlab.
-
-" />
+<meta property="og:description" content="Recently I&rsquo;ve had the need to read uff files into R. This file format was developped at the University of Cincinnati to standardize the way vibration measurements are stored. It so happens there isn&rsquo;t a library capable of importing uff files into R, but there is one written in python and another for Matlab." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://gtpedrosa.github.io/blog/exchanging-data-between-matlab/octave-and-r/" />
-
-
-
-<meta property="article:published_time" content="2018-09-23T13:14:46-03:00"/>
-
-<meta property="article:modified_time" content="2018-09-23T13:14:46-03:00"/>
-
-
-
-
-
-
-
-
-
-
+<meta property="article:published_time" content="2018-09-23T13:14:46-03:00" />
+<meta property="article:modified_time" content="2018-09-23T13:14:46-03:00" />
 
 
 <title>
@@ -61,11 +43,11 @@
 
 
     
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2020-05-02%2015%3a30%3a03.42081775%20%2b0000%20UTC%20m%3d%2b0.050082497">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2020-05-02%2015%3a30%3a03.42081775%20%2b0000%20UTC%20m%3d%2b0.050082497">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2020-05-02%2015%3a30%3a03.42081775%20%2b0000%20UTC%20m%3d%2b0.050082497">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2020-05-02%2022%3a18%3a31.571539046%20%2b0000%20UTC%20m%3d%2b0.063568018">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2020-05-02%2022%3a18%3a31.571539046%20%2b0000%20UTC%20m%3d%2b0.063568018">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2020-05-02%2022%3a18%3a31.571539046%20%2b0000%20UTC%20m%3d%2b0.063568018">
     
-        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2020-05-02%2015%3a30%3a03.42081775%20%2b0000%20UTC%20m%3d%2b0.050082497">
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2020-05-02%2022%3a18%3a31.571539046%20%2b0000%20UTC%20m%3d%2b0.063568018">
     
 
 
@@ -76,8 +58,6 @@
     href="https://gtpedrosa.github.io/img/leaf.ico"
 
 >
-
-
 
 
 
@@ -213,15 +193,9 @@
             </div>
             <div class="markdown">
                 <p>Recently I&rsquo;ve had the need to read <em>uff</em> files into R. This file format was developped at the University of Cincinnati to standardize the way vibration measurements are stored. It so happens there isn&rsquo;t a library capable of importing <em>uff</em> files into R, but there is one written in python and another for Matlab.</p>
-
-<p></p>
-
 <p>I ran into a bug while trying to run <a href="https://github.com/openmodal/pyuff">the open modal library</a>, which might have been easy to solve, but after trying <a href="https://www.mathworks.com/matlabcentral/fileexchange/6395-uff-file-reading-and-writing">this matlab library</a> it worked straight away. This left me with the task: how to pass data arround between Matlab/octave into R? Here&rsquo;s a list with the best options I&rsquo;ve found for my use case.</p>
-
 <h2 id="passing-structures-arround-using-json">Passing structures arround using json</h2>
-
 <p>One of my first attempts was to use json, sincce the <em>uff</em> files were imported in a structure full of metadata associated with each measurement. It seemed natural to export the whole structure to a json file, which I did using the function below:</p>
-
 <pre><code>function json_exporter(uff_struct,fname)
   jsonStr = jsonencode(uff_struct);
   fid = fopen(fname, 'w');
@@ -229,36 +203,23 @@
   fwrite(fid, jsonStr, 'char');
   fclose(fid);
 end
-</code></pre>
-
-<p>Finally to get the data into R it is as simple as calling the package <em>rjson</em>:</p>
-
+</code></pre><p>Finally to get the data into R it is as simple as calling the package <em>rjson</em>:</p>
 <pre><code>library('rjson')
 json_data &lt;- fromJSON(file = '/path/to/file.json')
-</code></pre>
-
-<p>The bonus with this approach is that complicated data structures with different types can easily be exported. The downside is duplication of data, which was only in <em>uff</em> format and now has a <em>json</em> equivalent. Also the json equivalent takes more space in disk than the original <em>uff</em> files, what led me to the next memory friendlier approach.</p>
-
+</code></pre><p>The bonus with this approach is that complicated data structures with different types can easily be exported. The downside is duplication of data, which was only in <em>uff</em> format and now has a <em>json</em> equivalent. Also the json equivalent takes more space in disk than the original <em>uff</em> files, what led me to the next memory friendlier approach.</p>
 <h2 id="passing-structured-data-with-hdf5-files">Passing structured data with hdf5 files</h2>
-
 <p>Directly from Wikipedia:</p>
-
 <blockquote>
 <p>Hierarchical Data Format (HDF) is a set of file formats (HDF4, HDF5) designed to store and organize large amounts of data. Originally developed at the National Center for Supercomputing Applications, it is supported by The HDF Group, a non-profit corporation whose mission is to ensure continued development of HDF5 technologies and the continued accessibility of data stored in HDF.</p>
 </blockquote>
-
 <p>Strangely enough I had trouble using octave&rsquo;s hdf5 file to load into R, while hdf5 files generated by Matlab could be read without any issue. Here&rsquo;s how to save two matrices with name <em>amplitude</em> and <em>time</em> into a <strong>sample.hdf5</strong> file:</p>
-
 <pre><code>%% Write h5file
 h5create('sample.h5','/amplitude',size(amplitude))
 h5write('sample.h5','/amplitude',amplitude)
 h5create('sample.h5','/time',size(time))
 h5write('sample.h5','/time',time)
 h5disp('sample.h5')
-</code></pre>
-
-<p>To read the <em>hdf5</em> file I used the <em>h5</em> library since I did not notice it was already deprecated and <em>hdf5r</em> should be used instead:</p>
-
+</code></pre><p>To read the <em>hdf5</em> file I used the <em>h5</em> library since I did not notice it was already deprecated and <em>hdf5r</em> should be used instead:</p>
 <pre><code>library('h5')
 file &lt;- h5file(&quot;~/sample.h5&quot;,mode = 'r')
 data&lt;-file[&quot;data&quot;]
@@ -266,26 +227,14 @@ amplitude&lt;-file['/amplitude']
 tempo&lt;-file['/time']
 adf&lt;-as.data.frame(t(amplitude[]))
 tdf&lt;-as.data.frame(t(tempo[]))
-</code></pre>
-
-<p>Compared to json, hdf5 files had smaller memory footprint. It was my prefered method since exporting matrices to text files would be too cumbersome and in a single hdf5 file it is possible to store multiple variables.</p>
-
+</code></pre><p>Compared to json, hdf5 files had smaller memory footprint. It was my prefered method since exporting matrices to text files would be too cumbersome and in a single hdf5 file it is possible to store multiple variables.</p>
 <h2 id="passing-data-real-time-redis">Passing data real time: Redis</h2>
-
 <p>Since the work involves large ammount of data, I did not want to have to export the <em>uff</em> files into another file in order to manipulate it from R. Hence, I tried to use an in memory data store or a message broker called Redis. To install it just issue:</p>
-
 <pre><code>sudo apt install redis-server
-</code></pre>
-
-<p>To check if the server is up and running:</p>
-
+</code></pre><p>To check if the server is up and running:</p>
 <pre><code>redis-cli ping
-</code></pre>
-
-<p>And check if you get <code>PONG</code> as an answer.</p>
-
+</code></pre><p>And check if you get <code>PONG</code> as an answer.</p>
 <p>Now, to export for isntance a matrix form matlab/octave to R I used the excellent <a href="https://git.osuv.de/m/go-redis">go-redis package</a>. It is worth noting their <a href="https://github.com/markuman/go-redis/wiki/Data-Structure">data structure page</a>, where the first item stored is the size of the matrix, whereas the remaining information is stored in the redis range object. For instance, take the creation of an <em>e</em> matrix in octave and how to write it into redis:</p>
-
 <pre><code># Octave code
 addpath(genpath(pwd))
 R=redisConnection();
@@ -293,10 +242,7 @@ e=rand(7,3)
 redisSet(R,'e',e);
 w=redisGet(R,'e');
 w
-</code></pre>
-
-<p>And finally retrieving it in R:</p>
-
+</code></pre><p>And finally retrieving it in R:</p>
 <pre><code>library(rredis)
 redisConnect()
 list_length&lt;-as.numeric(redisLLen('e')[1])
@@ -305,9 +251,7 @@ rownumber&lt;-as.numeric(msize[[1]][1])
 colnumber&lt;-as.numeric(msize[[1]][2])
 mdata&lt;-redisLRange('e',1,list_length)
 e&lt;-matrix(as.numeric(unlist(mdata)),nrow = rownumber, ncol = colnumber)
-</code></pre>
-
-<p>This method is not as pretty as the others, but it is quite impressive to be able to enchange data seamlesssly between R and matlab/octave without any friction.</p>
+</code></pre><p>This method is not as pretty as the others, but it is quite impressive to be able to enchange data seamlesssly between R and matlab/octave without any friction.</p>
                 <br>
 		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
             </div>
@@ -344,12 +288,16 @@ e&lt;-matrix(as.numeric(unlist(mdata)),nrow = rownumber, ncol = colnumber)
 
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-93472104-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-93472104-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

@@ -17,22 +17,8 @@ While creating a body to a POST request message, encoded with json, I verified t
 While creating a body to a POST request message, encoded with json, I verified that my requests were being turned down by the server. The issue was related to a behavior of the jsonlite package, one of httr&rsquo;s dependencies which uses auto_unbox=TRUE by default." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://gtpedrosa.github.io/blog/using-httr-with-json-apis/" />
-
-
-
-<meta property="article:published_time" content="2019-03-24T11:35:00-03:00"/>
-
-<meta property="article:modified_time" content="2019-03-24T11:35:00-03:00"/>
-
-
-
-
-
-
-
-
-
-
+<meta property="article:published_time" content="2019-03-24T11:35:00-03:00" />
+<meta property="article:modified_time" content="2019-03-24T11:35:00-03:00" />
 
 
 <title>
@@ -59,11 +45,11 @@ While creating a body to a POST request message, encoded with json, I verified t
 
 
     
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2020-05-02%2015%3a30%3a03.419245537%20%2b0000%20UTC%20m%3d%2b0.048510281">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2020-05-02%2015%3a30%3a03.419245537%20%2b0000%20UTC%20m%3d%2b0.048510281">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2020-05-02%2015%3a30%3a03.419245537%20%2b0000%20UTC%20m%3d%2b0.048510281">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2020-05-02%2022%3a18%3a31.583302143%20%2b0000%20UTC%20m%3d%2b0.075331140">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2020-05-02%2022%3a18%3a31.583302143%20%2b0000%20UTC%20m%3d%2b0.075331140">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2020-05-02%2022%3a18%3a31.583302143%20%2b0000%20UTC%20m%3d%2b0.075331140">
     
-        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2020-05-02%2015%3a30%3a03.419245537%20%2b0000%20UTC%20m%3d%2b0.048510281">
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2020-05-02%2022%3a18%3a31.583302143%20%2b0000%20UTC%20m%3d%2b0.075331140">
     
 
 
@@ -74,8 +60,6 @@ While creating a body to a POST request message, encoded with json, I verified t
     href="https://gtpedrosa.github.io/img/leaf.ico"
 
 >
-
-
 
 
 
@@ -211,36 +195,18 @@ While creating a body to a POST request message, encoded with json, I verified t
             </div>
             <div class="markdown">
                 <p>It is incredbly easy to make R interact with external API&rsquo;s. I&rsquo;ve found <a href="https://cran.r-project.org/web/packages/httr/vignettes/api-packages.html">the httr vignette</a> to be a great resource on how to make a wrapper to interact with them. However I&rsquo;ve stumbled in one quirk that is worth mentioning.</p>
-
 <p>While creating a body to a POST request message, encoded with json, I verified that my requests were being turned down by the server. The issue was related  to a behavior of the <code>jsonlite</code> package, one of httr&rsquo;s dependencies which uses  <code>auto_unbox=TRUE</code> by default. This isn&rsquo;t an issue <em>per se</em> but for length one vector jsonlite returned:</p>
-
-<pre><code class="language-R">cat(jsonlite:::toJSON(list(message = &quot;my string&quot;),auto_unbox=T))
-</code></pre>
-
-<pre><code class="language-text">{&quot;message&quot;:&quot;my string&quot;}
-</code></pre>
-
-<p>Whereas the API requested a <strong>boxed</strong> response from length one vectors, such the one you get without the <code>auto_unbox=TRUE</code> option</p>
-
-<pre><code class="language-R">cat(jsonlite:::toJSON(list(message = &quot;my string&quot;)))
-</code></pre>
-
-<pre><code class="language-text">{&quot;message&quot;:[&quot;my string&quot;]}
-</code></pre>
-
-<p>Reading <a href="https://github.com/r-lib/httr/issues/159">this github issue</a> might give a more in depth explanation.</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">cat</span><span class="p">(</span><span class="n">jsonlite</span><span class="o">:::</span><span class="nf">toJSON</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">&#34;my string&#34;</span><span class="p">),</span><span class="n">auto_unbox</span><span class="o">=</span><span class="bp">T</span><span class="p">))</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">{&#34;message&#34;:&#34;my string&#34;}
+</code></pre></div><p>Whereas the API requested a <strong>boxed</strong> response from length one vectors, such the one you get without the <code>auto_unbox=TRUE</code> option</p>
+<div class="highlight"><pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">cat</span><span class="p">(</span><span class="n">jsonlite</span><span class="o">:::</span><span class="nf">toJSON</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">&#34;my string&#34;</span><span class="p">)))</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">{&#34;message&#34;:[&#34;my string&#34;]}
+</code></pre></div><p>Reading <a href="https://github.com/r-lib/httr/issues/159">this github issue</a> might give a more in depth explanation.</p>
 <p>This led me to rabbit holes such as forking <code>httr</code> and recompiling with <code>auto_unbox=FALSE</code> option, which I did. But not without breaking other requests which truly needed to be unboxed.</p>
-
 <p>The solution was simpler than I thought and makes use of the function <code>AsIs</code> from the base package. It can be called with the <code>I(x)</code> synthax and changes the class of an object indicating it should be treated <em>as is</em>. What this does is to prevent the <code>auto_unbox</code> behavior on certain fields where this is undesirable, such as in the following example:</p>
-
-<pre><code class="language-R">cat(jsonlite:::toJSON(list(message = &quot;my string&quot;,mymessage = I(&quot;My other string&quot;)),auto_unbox=T))
-</code></pre>
-
-<pre><code class="language-text">{&quot;message&quot;:&quot;my string&quot;,&quot;mymessage&quot;:[&quot;My other string&quot;]}
-</code></pre>
-
-<p>This approach not only did not break anything but also made my requests compatible with the server boxed length one vectors specification as required.</p>
+<div class="highlight"><pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">cat</span><span class="p">(</span><span class="n">jsonlite</span><span class="o">:::</span><span class="nf">toJSON</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">&#34;my string&#34;</span><span class="p">,</span><span class="n">mymessage</span> <span class="o">=</span> <span class="nf">I</span><span class="p">(</span><span class="s">&#34;My other string&#34;</span><span class="p">)),</span><span class="n">auto_unbox</span><span class="o">=</span><span class="bp">T</span><span class="p">))</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">{&#34;message&#34;:&#34;my string&#34;,&#34;mymessage&#34;:[&#34;My other string&#34;]}
+</code></pre></div><p>This approach not only did not break anything but also made my requests compatible with the server boxed length one vectors specification as required.</p>
 
                 <br>
 		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
@@ -278,12 +244,16 @@ While creating a body to a POST request message, encoded with json, I verified t
 
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-93472104-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-93472104-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

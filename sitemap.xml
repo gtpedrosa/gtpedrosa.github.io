@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
@@ -8,13 +8,58 @@
   </url>
   
   <url>
+    <loc>https://gtpedrosa.github.io/tags/emacs/</loc>
+    <lastmod>2020-04-12T10:59:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/</loc>
+    <lastmod>2020-04-12T10:59:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/</loc>
+    <lastmod>2020-04-12T10:59:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/databases/</loc>
+    <lastmod>2020-04-12T10:58:00-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/blog/reading-sql-dumps-with-sql-server-management-studio/</loc>
     <lastmod>2020-04-12T10:58:00-03:00</lastmod>
   </url>
   
   <url>
+    <loc>https://gtpedrosa.github.io/tags/sql/</loc>
+    <lastmod>2020-04-12T10:58:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/orm/</loc>
+    <lastmod>2019-04-06T18:56:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/python/</loc>
+    <lastmod>2019-04-06T18:56:00-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/blog/using-sqlalchemy-to-navigate-an-existing-database/</loc>
     <lastmod>2019-04-06T18:56:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/apis/</loc>
+    <lastmod>2019-03-24T11:35:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/r/</loc>
+    <lastmod>2019-03-24T11:35:00-03:00</lastmod>
   </url>
   
   <url>
@@ -38,7 +83,32 @@
   </url>
   
   <url>
+    <loc>https://gtpedrosa.github.io/tags/matlab/</loc>
+    <lastmod>2018-09-23T13:14:46-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/octave/</loc>
+    <lastmod>2018-09-23T13:14:46-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/blog/apresentando-o-docear/</loc>
+    <lastmod>2017-12-16T06:42:38-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/docear/</loc>
+    <lastmod>2017-12-16T06:42:38-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/latex/</loc>
+    <lastmod>2017-12-16T06:42:38-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/msc/</loc>
     <lastmod>2017-12-16T06:42:38-03:00</lastmod>
   </url>
   
@@ -53,8 +123,23 @@
   </url>
   
   <url>
+    <loc>https://gtpedrosa.github.io/tags/educa%C3%A7%C3%A3o/</loc>
+    <lastmod>2017-04-26T19:55:02-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/blog/gerenciador-de-refer%C3%AAncias-bibliogr%C3%A1ficas-jabref/</loc>
     <lastmod>2017-04-26T19:55:02-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/refer%C3%AAncias/</loc>
+    <lastmod>2017-04-26T19:55:02-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/pesquisa-reprodut%C3%ADvel/</loc>
+    <lastmod>2017-04-10T19:11:44-03:00</lastmod>
   </url>
   
   <url>
@@ -63,7 +148,7 @@
   </url>
   
   <url>
-    <loc>https://gtpedrosa.github.io/blog/organizando-a-casa---a-estrutura-de-diret%C3%B3rios/</loc>
+    <loc>https://gtpedrosa.github.io/blog/organizando-a-casa-a-estrutura-de-diret%C3%B3rios/</loc>
     <lastmod>2017-01-28T19:11:44-03:00</lastmod>
   </url>
   
@@ -74,6 +159,16 @@
   
   <url>
     <loc>https://gtpedrosa.github.io/blog/installing-a-virtualenv-with-specific-python-version/</loc>
+    <lastmod>2016-11-10T19:11:44-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/programming/</loc>
+    <lastmod>2016-11-10T19:11:44-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/virtualenv/</loc>
     <lastmod>2016-11-10T19:11:44-03:00</lastmod>
   </url>
   
@@ -93,122 +188,7 @@
   </url>
   
   <url>
-    <loc>https://gtpedrosa.github.io/tags/apis/</loc>
-    <lastmod>2019-03-24T11:35:00-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://gtpedrosa.github.io/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/databases/</loc>
-    <lastmod>2020-04-12T10:58:00-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/docear/</loc>
-    <lastmod>2017-12-16T06:42:38-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/educa%C3%A7%C3%A3o/</loc>
-    <lastmod>2017-04-26T19:55:02-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/emacs/</loc>
-    <lastmod>2020-04-12T10:59:00-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/</loc>
-    <lastmod>2020-04-12T10:59:00-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/latex/</loc>
-    <lastmod>2017-12-16T06:42:38-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/matlab/</loc>
-    <lastmod>2018-09-23T13:14:46-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/msc/</loc>
-    <lastmod>2017-12-16T06:42:38-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/octave/</loc>
-    <lastmod>2018-09-23T13:14:46-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/orm/</loc>
-    <lastmod>2019-04-06T18:56:00-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/pesquisa-reprodut%C3%ADvel/</loc>
-    <lastmod>2017-04-10T19:11:44-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/programming/</loc>
-    <lastmod>2016-11-10T19:11:44-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/python/</loc>
-    <lastmod>2019-04-06T18:56:00-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/r/</loc>
-    <lastmod>2019-03-24T11:35:00-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/refer%C3%AAncias/</loc>
-    <lastmod>2017-04-26T19:55:02-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/sql/</loc>
-    <lastmod>2020-04-12T10:58:00-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/</loc>
-    <lastmod>2019-03-24T11:35:00-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/virtualenv/</loc>
-    <lastmod>2016-11-10T19:11:44-03:00</lastmod>
-    <priority>0</priority>
   </url>
   
 </urlset>
