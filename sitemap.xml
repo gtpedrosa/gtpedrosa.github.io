@@ -3,17 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://gtpedrosa.github.io/</loc>
+    <lastmod>2020-05-10T18:04:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/blog/upgrading-an-outdated-hugo-template/</loc>
+    <lastmod>2020-05-10T18:04:00-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/blog/building-emacs-from-source/</loc>
     <lastmod>2020-04-12T10:59:00-03:00</lastmod>
   </url>
   
   <url>
     <loc>https://gtpedrosa.github.io/tags/emacs/</loc>
-    <lastmod>2020-04-12T10:59:00-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/</loc>
     <lastmod>2020-04-12T10:59:00-03:00</lastmod>
   </url>
   

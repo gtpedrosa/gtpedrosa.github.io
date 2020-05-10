@@ -6,10 +6,20 @@
     <description>Recent content on Guilherme Pedrosa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sun, 12 Apr 2020 10:59:00 -0300</lastBuildDate>
+    <lastBuildDate>Sun, 10 May 2020 18:04:00 -0300</lastBuildDate>
     
 	<atom:link href="https://gtpedrosa.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Upgrading an outdated Hugo template</title>
+      <link>https://gtpedrosa.github.io/blog/upgrading-an-outdated-hugo-template/</link>
+      <pubDate>Sun, 10 May 2020 18:04:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/upgrading-an-outdated-hugo-template/</guid>
+      <description>Recently, I wanted to restart blogging in a new machine. After installing the latest hugo version at the time and pulling my git repo I soon realized:
+ My Hugo version in which the blog was built was v0.31, whereas the current one was v0.68.1. The cocoa development was abandonned and no updates were made to cope with hugo enhancements  Since I do like this theme and already had a fork of it I decided to try and upgrade it by myself, even though I have no experience with the go programming language or web development.</description>
+    </item>
     
     <item>
       <title>Building Emacs from source</title>

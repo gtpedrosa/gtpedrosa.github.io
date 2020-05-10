@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Guilherme Pedrosa">
+<meta name="description" content="Recently, I wanted to restart blogging in a new machine. After installing the latest hugo version at the time and pulling my git repo I soon realized:
+ My Hugo version in which the blog was built was v0.31, whereas the current one was v0.68.1. The cocoa development was abandonned and no updates were made to cope with hugo enhancements  Since I do like this theme and already had a fork of it I decided to try and upgrade it by myself, even though I have no experience with the go programming language or web development.">
+
+<meta property="og:title" content="Upgrading an outdated Hugo template" />
+<meta property="og:description" content="Recently, I wanted to restart blogging in a new machine. After installing the latest hugo version at the time and pulling my git repo I soon realized:
+ My Hugo version in which the blog was built was v0.31, whereas the current one was v0.68.1. The cocoa development was abandonned and no updates were made to cope with hugo enhancements  Since I do like this theme and already had a fork of it I decided to try and upgrade it by myself, even though I have no experience with the go programming language or web development." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/upgrading-an-outdated-hugo-template/" />
+<meta property="article:published_time" content="2020-05-10T18:04:00-03:00" />
+<meta property="article:modified_time" content="2020-05-10T18:04:00-03:00" />
+
+
+<title>
+
+
+     Upgrading an outdated Hugo template 
+
+</title>
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/upgrading-an-outdated-hugo-template/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2020-05-10%2021%3a07%3a05.105735415%20%2b0000%20UTC%20m%3d%2b0.100688017">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2020-05-10%2021%3a07%3a05.105735415%20%2b0000%20UTC%20m%3d%2b0.100688017">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2020-05-10%2021%3a07%3a05.105735415%20%2b0000%20UTC%20m%3d%2b0.100688017">
+    
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2020-05-10%2021%3a07%3a05.105735415%20%2b0000%20UTC%20m%3d%2b0.100688017">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://gtpedrosa.github.io/img/leaf.ico"
+
+>
+
+
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="https://gtpedrosa.github.io/"><img class="avatar" src="https://gtpedrosa.github.io/img/profile.png" srcset="https://gtpedrosa.github.io/img/profile.png 1x"></a>
+            
+            <a href="https://gtpedrosa.github.io/"><div class="name">Guilherme Pedrosa</div></a>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="https://gtpedrosa.github.io/blog/"><span>Blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="https://gtpedrosa.github.io/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-projects"><a href="https://gtpedrosa.github.io/projects/"><span>Projects</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/github.svg" alt="github" /></a>
+        
+
+        
+            <a href="//twitter.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/twitter.svg" alt="twitter" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/guilherme-pedrosa-73213aa0/" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+            
+        
+
+        
+
+        
+            <a href="mailto:guilherme.pedrosa@gmail.com"><img class="icon" src="https://gtpedrosa.github.io/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="https://gtpedrosa.github.io/index.xml"><img class="icon" src="https://gtpedrosa.github.io/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Upgrading an outdated Hugo template
+
+</div>
+
+                    <div class="initials"><a href="https://gtpedrosa.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Sun May 10 2020 18:04:00 -0300'>May 10, 2020</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>5 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                <p>Recently, I wanted to restart blogging in a new machine. After installing the
+latest hugo version at the time and pulling my git repo I soon realized:</p>
+<ol>
+<li>My Hugo version in which the blog was built was v0.31, whereas the current one
+was v0.68.1.</li>
+<li>The cocoa development was abandonned and no updates were made to cope with
+hugo enhancements</li>
+</ol>
+<p>Since I do like this theme and already had a fork of it I decided to try and
+upgrade it by myself, even though I have no experience with the go programming
+language or web development.</p>
+<p>This post is to tell you how I went about it.</p>
+<h2 id="finding-where-the-errors-come-from">Finding where the errors come from</h2>
+<p>First of all, running the dated theme with new hugo raised the following errors:</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><img src="https://gtpedrosa.github.io/img/hugo-warnings.png" alt="">
+<strong>Hugo serve warnings on outdated template</strong></p>
+<p>The first thing you may notice is that there is no mention to what part of the
+template is raising the warnings being shown. To overcome this, I grepped the
+offending structures and mapped which template files were triggering the
+warnings:</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><img src="https://gtpedrosa.github.io/img/hugo-warning-lines.png" alt="">
+<strong>Hugo warning files and lines</strong></p>
+<p>Just in case you are wondering here is a summary of the grep flags used:</p>
+<ul>
+<li>r or -R is recursive,</li>
+<li>n is line number, and</li>
+<li>w stands for match the whole word.</li>
+</ul>
+<p>The next step involved fiddling with the source code and learning about each one of the errors.</p>
+<h2 id="page-dot-rsslink-is-deprecated">Page.RSSLink is deprecated</h2>
+<p>I have found some github issues related to the matter, such as <a href="https://github.com/gohugoio/hugo/issues/4427">this one.</a>
+However, what solved my issue was to read the docs <a href="https://gohugo.io/templates/rss/">here</a> and look how an up to dated
+template should handle RSS. Replacing the bit using the <em>.RSSLink</em> construct
+with the snipped below solved the issue.</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">{{ with .OutputFormats.Get &#34;rss&#34; -}}
+    {{ printf `<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;%s&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;%s&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;%s&#34;</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;%s&#34;</span> <span class="p">/&gt;</span>` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+{{ end -}}
+</code></pre></div><h2 id="page-dot-url-is-deprecated">Page.URL is deprecated</h2>
+<p>This error was easier to tackle. The warning gave a reasonable solution that
+worked in my case. By replacing <em>Page.URL</em> with <em>Params.URL</em> everything worked
+as expected. Note that there was some trial and error here since there are other
+two other possible options according to the warning. I iterated until success.</p>
+<h2 id="page-dot-uniqueid-is-deprecated">Page.UniqueID is deprecated</h2>
+<p>Again the warning suggestion was spot on and replacing <em>.UniqueID</em> with
+<em>.File.UniqueID</em> supressed the warning.</p>
+<h2 id="most-recent-blog-posts-not-showing-on-index-dot-html">Most recent blog posts not showing on index.html</h2>
+<p>This was the trickiest to fix. I ended up reading a little bit about <a href="https://gohugo.io/templates/template-debugging/">how to
+debug hugo templates.</a> It so happens that after a couple of iterations printing
+some of the variables in the <em>index.html</em> file with the synthax</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">{{ printf &#34;%#v&#34; .Permalink }}
+</code></pre></div><p>I found out <em>.Data.Pages</em> as not yielding the right ammount of posts.
+Using <em>.Site.RegularPages</em> did. I cannot find the exact resource which brought to
+my attention the difference between the old and new hugo synthax, however, It is
+agreeable that <em>.Data</em> is too generic of a name for this use case.</p>
+<h2 id="final-result">Final result</h2>
+<p>As final result the theme is working without any warnings on hugo v0.68.1.</p>
+<p>The changes applied to the theme are summarised by the git diff below. For more
+reasonable view just check <a href="https://github.com/gtpedrosa/cocoa-hugo-theme">my fork of the cocoa-hugo theme.</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /home/gtpedrosa/Projects/blog/hugo-blog/themes/cocoa/
+git diff c6e7 434d
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">diff --git a/layouts/_default/list.html b/layouts/_default/list.html
+index b2348a1..4490e6c <span class="m">100644</span>
+--- a/layouts/_default/list.html
++++ b/layouts/_default/list.html
+@@ -10,7 +10,7 @@
+             &lt;nav <span class="nv">class</span><span class="o">=</span><span class="s2">&#34;section-items&#34;</span>&gt;
+                 &lt;ul&gt;
+                 <span class="o">{{</span> range .ByWeight <span class="o">}}</span>
+-                    &lt;li&gt;&lt;a <span class="o">{{</span> <span class="nb">printf</span> <span class="s2">&#34;href=%q&#34;</span> .URL <span class="p">|</span> safeHTMLAttr <span class="o">}}</span>&gt;<span class="o">{{</span> default .Title .Params.heading <span class="o">}}</span>&lt;/a&gt;&lt;/li&gt;
++                    &lt;li&gt;&lt;a <span class="o">{{</span> <span class="nb">printf</span> <span class="s2">&#34;href=%q&#34;</span> .Params.url <span class="p">|</span> safeHTMLAttr <span class="o">}}</span>&gt;<span class="o">{{</span> default .Title .Params.heading <span class="o">}}</span>&lt;/a&gt;&lt;/li&gt;
+                 <span class="o">{{</span> end <span class="o">}}</span>
+                 &lt;/ul&gt;
+             &lt;/nav&gt;
+diff --git a/layouts/index.html b/layouts/index.html
+index be3a722..7d6252d <span class="m">100644</span>
+--- a/layouts/index.html
++++ b/layouts/index.html
+@@ -7,12 +7,12 @@
+                     <span class="o">{{</span> .Content <span class="o">}}</span>
+                 &lt;/div&gt;
+             <span class="o">{{</span> end <span class="o">}}</span>
+-            <span class="o">{{</span> <span class="nv">$totalpostscount</span> :<span class="o">=</span> len <span class="o">(</span>where .Data.Pages <span class="s2">&#34;Section&#34;</span> <span class="s2">&#34;blog&#34;</span><span class="o">)</span> <span class="o">}}</span>
++            <span class="o">{{</span> <span class="nv">$totalpostscount</span> :<span class="o">=</span> len <span class="o">(</span>where .Site.RegularPages <span class="s2">&#34;Section&#34;</span> <span class="s2">&#34;==&#34;</span> <span class="s2">&#34;blog&#34;</span><span class="o">)</span> <span class="o">}}</span>
+             <span class="o">{{</span> <span class="nv">$latestpostscount</span> :<span class="o">=</span> .Site.Params.latestpostscount <span class="p">|</span> default <span class="nv">$totalpostscount</span> <span class="o">}}</span>
+             <span class="o">{{</span> <span class="k">if</span> gt <span class="nv">$latestpostscount</span> <span class="m">0</span> <span class="o">}}</span>
+                 &lt;div <span class="nv">class</span><span class="o">=</span><span class="s2">&#34;page-heading&#34;</span>&gt;<span class="o">{{</span> i18n <span class="s2">&#34;latestPosts&#34;</span> <span class="o">}}</span>&lt;/div&gt;
+                 &lt;ul&gt;
+-                    <span class="o">{{</span> range <span class="o">(</span>first <span class="nv">$latestpostscount</span> <span class="o">(</span>where .Data.Pages.ByPublishDate.Reverse <span class="s2">&#34;Section&#34;</span> <span class="s2">&#34;blog&#34;</span><span class="o">))</span> <span class="o">}}</span>
++                    <span class="o">{{</span> range <span class="o">(</span>first <span class="nv">$latestpostscount</span> <span class="o">(</span>where .Site.Pages.ByPublishDate.Reverse <span class="s2">&#34;Section&#34;</span> <span class="s2">&#34;blog&#34;</span><span class="o">))</span> <span class="o">}}</span>
+                         <span class="o">{{</span> partial <span class="s2">&#34;li.html&#34;</span> . <span class="o">}}</span>
+                     <span class="o">{{</span> end <span class="o">}}</span>
+                     <span class="o">{{</span> <span class="k">if</span> gt <span class="nv">$totalpostscount</span> <span class="nv">$latestpostscount</span> <span class="o">}}</span>
+diff --git a/layouts/partials/head_includes.html b/layouts/partials/head_includes.html
+index 3c21e39..24723e2 <span class="m">100644</span>
+--- a/layouts/partials/head_includes.html
++++ b/layouts/partials/head_includes.html
+@@ -51,9 +51,9 @@
+ &gt;
+
+ &lt;!-- RSS --&gt;
+-<span class="o">{{</span> <span class="k">if</span> .RSSLink <span class="o">}}</span>
+-  &lt;link <span class="nv">href</span><span class="o">=</span><span class="s2">&#34;{{ .RSSLink }}&#34;</span> <span class="nv">rel</span><span class="o">=</span><span class="s2">&#34;alternate&#34;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&#34;application/rss+xml&#34;</span> <span class="nv">title</span><span class="o">=</span><span class="s2">&#34;{{ .Site.Title }}&#34;</span> /&gt;
+-<span class="o">{{</span> end <span class="o">}}</span>
++<span class="o">{{</span> with .OutputFormats.Get <span class="s2">&#34;rss&#34;</span> -<span class="o">}}</span>
++    <span class="o">{{</span> <span class="nb">printf</span> <span class="sb">`</span>&lt;link <span class="nv">rel</span><span class="o">=</span><span class="s2">&#34;%s&#34;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&#34;%s&#34;</span> <span class="nv">href</span><span class="o">=</span><span class="s2">&#34;%s&#34;</span> <span class="nv">title</span><span class="o">=</span><span class="s2">&#34;%s&#34;</span> /&gt;<span class="sb">`</span> .Rel .MediaType.Type .Permalink $.Site.Title <span class="p">|</span> safeHTML <span class="o">}}</span>
++<span class="o">{{</span> end -<span class="o">}}</span>
+
+ &lt;!-- gitalk --&gt;
+ <span class="o">{{</span> <span class="k">if</span> .Site.Params.gitalk <span class="o">}}</span>
+diff --git a/layouts/partials/staticman/form-comments.html b/layouts/partials/staticman/form-comments.html
+index 91067df..544301c <span class="m">100644</span>
+--- a/layouts/partials/staticman/form-comments.html
++++ b/layouts/partials/staticman/form-comments.html
+@@ -1,6 +1,6 @@
+ &lt;form <span class="nv">method</span><span class="o">=</span><span class="s2">&#34;POST&#34;</span> <span class="nv">action</span><span class="o">=</span><span class="s2">&#34;https://api.staticman.net/v2/entry/{{ .Site.Params.staticman.username }}/{{ .Site.Params.staticman.repository }}/{{ .Site.Params.staticman.branch }}/&#34;</span>&gt;
+     &lt;input <span class="nv">type</span><span class="o">=</span><span class="s2">&#34;hidden&#34;</span> <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;options[redirect]&#34;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&#34;{{ .Permalink }}#comment-submitted&#34;</span>&gt;
+-    &lt;input <span class="nv">type</span><span class="o">=</span><span class="s2">&#34;hidden&#34;</span> <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;options[entryId]&#34;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&#34;{{ .UniqueID }}&#34;</span>&gt;
++    &lt;input <span class="nv">type</span><span class="o">=</span><span class="s2">&#34;hidden&#34;</span> <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;options[entryId]&#34;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&#34;{{ .File.UniqueID }}&#34;</span>&gt;
+     &lt;input <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;fields[name]&#34;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&#34;text&#34;</span> <span class="nv">placeholder</span><span class="o">=</span><span class="s2">&#34;Your name&#34;</span>&gt;
+     &lt;input <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;fields[email]&#34;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&#34;email&#34;</span> <span class="nv">placeholder</span><span class="o">=</span><span class="s2">&#34;Your email address&#34;</span>&gt;
+     &lt;textarea <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;fields[body]&#34;</span> <span class="nv">placeholder</span><span class="o">=</span><span class="s2">&#34;Your message. Feel free to use Markdown.&#34;</span> <span class="nv">rows</span><span class="o">=</span><span class="s2">&#34;10&#34;</span>&gt;&lt;/textarea&gt;
+diff --git a/layouts/partials/staticman/show-comments.html b/layouts/partials/staticman/show-comments.html
+index bba3b5c..d7ff90e <span class="m">100644</span>
+--- a/layouts/partials/staticman/show-comments.html
++++ b/layouts/partials/staticman/show-comments.html
+@@ -1,6 +1,6 @@
+  <span class="o">{{</span> <span class="nv">$comments</span> :<span class="o">=</span> readDir <span class="s2">&#34;data/comments&#34;</span> <span class="o">}}</span>
+  <span class="o">{{</span> $.Scratch.Add <span class="s2">&#34;hasComments&#34;</span> <span class="m">0</span> <span class="o">}}</span>
+- <span class="o">{{</span> <span class="nv">$entryId</span> :<span class="o">=</span> .UniqueID <span class="o">}}</span>
++ <span class="o">{{</span> <span class="nv">$entryId</span> :<span class="o">=</span> .File.UniqueID <span class="o">}}</span>
+
+  <span class="o">{{</span> range <span class="nv">$comments</span> <span class="o">}}</span>
+    <span class="o">{{</span> <span class="k">if</span> eq .Name <span class="nv">$entryId</span> <span class="o">}}</span>
+</code></pre></div>
+                <br>
+		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+            <form method="POST" action="https://api.staticman.net/v2/entry////">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/upgrading-an-outdated-hugo-template/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="e0f49ec3e3e59f732a943d481dda3ac4">
+    <input name="fields[name]" type="text" placeholder="Your name">
+    <input name="fields[email]" type="email" placeholder="Your email address">
+    <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
+    <input type="submit" value="Submit">
+</form>
+
+
+  	     
+ 
+ 
+
+ 
+   
+ 
+
+ 
+   <p>Hey, be the first who comment this article.</p>
+ 
+
+            
+        </div>
+    </div>
+</section>
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-93472104-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>
+
