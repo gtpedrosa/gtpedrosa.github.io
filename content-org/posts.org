@@ -1,4 +1,4 @@
-#+hugo_base_dir: /home/guilherme/blog/
+ #+hugo_base_dir: /home/gtpedrosa/Projects/blog/hugo-blog/
 
 * blog
 :PROPERTIES:
@@ -27,6 +27,10 @@ Since I want this post to be self contained for further reference in the near fu
 
 *** Installation and .emacs setup
 
+#+begin_quote
+*EDIT Apr 04 2020:* Instructions updated after noticing they failed in brand new system installation
+#+end_quote
+
 - Installation with package manager: 
 #+BEGIN_SRC emacs-lisp
 M-x package-install RET ox-hugo RET
@@ -39,8 +43,12 @@ M-x package-install RET ox-hugo RET
 - To take advantage of auto exporting on save I added the following to my .emacs file:
 #+BEGIN_SRC org
 ;; Hugo orgmode exporter
-(require 'ox-hugo-auto-export) ;If you want the auto-exporting on file saves
+(require 'org-hugo-auto-export-mode) ;If you want the auto-exporting on file saves
 #+END_SRC
+- Enable snippets shortcuts
+#+begin_src org
+(require 'org-tempo);Enable snippets expantions (ex: <s+TAB or <q+TAB)
+#+end_src
 - Now to create a capture template to create new blog postos on the fly:
 #+BEGIN_SRC org
 ;; Populates only the EXPORT_FILE_NAME property in the inserted headline.
@@ -72,6 +80,11 @@ See `org-capture-templates' for more information."
                     (function org-hugo-new-subtree-post-capture-template))
 ))
 #+END_SRC
+- Include a /.dir-locals.el/ file in the project root, assuming all org-files are in a /content-org/ directory below root:
+#+begin_src org
+(("content-org/"
+  . ((org-mode . ((eval . (org-hugo-auto-export-mode)))))))
+#+end_src
 
 *Note:* everything here so far is in the manual. I only added the current date to the file name being created in the ~EXPORT_FILE_NAME:~ property to be consistent with my previous naming scheme.
 
@@ -130,7 +143,7 @@ I've put together some markup examples that were spread through the sources ment
 
 #+caption: Same Org Logo
 #+name: img__org_logo
-[[/home/guilherme/blog/static/img/gnu-unicorn.png]]
+[[/home/gtpedrosa/Projects/blog/hugo-blog/static/img/gnu-unicorn.png]]
 *Here we refer to [[img__org_logo]].*
 
  #+BEGIN_QUOTE
@@ -393,10 +406,261 @@ sqlcodegen --outfile models.py mssql+pyodbc......
 
 The resulting file can be easily imported and the this task promptly abstracted.
 
+** DONE Reading SQL Dumps with SQL Server management Studio :sql:Databases:
+CLOSED: [2020-04-12 dom 10:58]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2020-04-05-reading-sql-dumps-with-sql-management-studio
+:END:
+
+This post is about how to inspect the content of SQL database (/.mdf/ and /.ldf/ files). The answer is to attach these files to an existing SQL server instance, instead of opening them directly with a tool such as SQL Management Studio. This was not clear time until I stumbled upon [[https://www.youtube.com/watch?v=rhIr9Qf-oHw][this video.]]
+
+*** Steps
+
+1. Keep a SQL Server instance running in the background;
+2. Fire up SQL Management studio and connect to this instance by providing /.\SQLEXPRESS/ in the "Server name" field;
+3. Right click "Database" and attach the mdf file. The ldf is automatically included;
+
+*** Attention points
+
+To check #1 spin up /SQL Configuration Manager/ and look for **SQL Server
+(SQLEXPRESS)** instance. It should be already running by default, as shown in
+Figure 1.
+
+#+caption: SQL Express running instance
+#+name: img:sqlexpress
+#+label: img:sqlexpress
+[[/home/gtpedrosa/Projects/blog/hugo-blog/static/img/sqlexpress.png]]
+
+As for #2 make sure to login using the system credentials as shown in Figure 2.
+
+#+caption: SQL Server login
+#+name: img:sqlserver
+#+label: img:sqlserver
+[[/home/gtpedrosa/Projects/blog/hugo-blog/static/img/sqlserver.png]]
+
+As for #3, if you are not admin the mdf file needs to be stored somewhere in the
+ Public user profile so the SQLExpress instance is able to locate it.
+
+** DONE Building Emacs from source :emacs:
+CLOSED: [2020-04-11 sáb 10:59]
+:PROPERTIES: 
+:EXPORT_FILE_NAME: 2020-04-10-building-emacs-from-source-instructions
+:END:
+
+Steps needed to install emacs locally, mantaining pre-existing installation intact. In the end you will two different versions of emacs running in your system.
+
+- [[https://www.emacswiki.org/emacs/EmacsSnapshotAndDebian][Install dependencies:]]
+#+begin_src bash
+sudo apt-get install autoconf automake libtool texinfo build-essential xorg-dev libgtk-3-dev libjpeg-dev libncurses5-dev libdbus-1-dev libgif-dev libtiff-dev libm17n-dev libpng-dev librsvg2-dev libotf-dev libgnutls28-dev libxml2-dev libxpm-dev
+#+end_src
+- [[https://www.gnu.org/software/emacs/download.html][Download emacs from a nearby mirror]]
+- Extract downloaded file. In this case it is /emacs-26.3.tar.xz/, and go to the extracted folder:
+#+begin_src bash
+cd ~/Downloads
+tar -xf emacs-26.3.tar.xz
+cd emacs-26.3.tar.xz
+#+end_src
+- Run /configure/ setting the prefix to the local folder in home directory:
+#+begin_src bash
+./configure --with-mailutils --prefix="${HOME}/local"
+#+end_src
+- Build the components and istall it:
+#+begin_src bash
+make
+make install
+#+end_src
+
+To run it, issue:
+#+begin_src bash
+/home/local/bin/emacs
+#+end_src
+
+The local installation, if any, should still work normally.
+
+** DONE Upgrading an outdated Hugo template
+CLOSED: [2020-05-10 dom 18:04]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2020-05-10-upgrading-an-outdated-hugo-template
+:END:
+
+Recently, I wanted to restart blogging in a new machine. After installing the
+latest hugo version at the time and pulling my git repo I soon realized:
+
+1. My Hugo version in which the blog was built was v0.31, whereas the current one
+   was v0.68.1.
+2. The cocoa development was abandonned and no updates were made to cope with
+   hugo enhancements
+
+Since I do like this theme and already had a fork of it I decided to try and
+upgrade it by myself, even though I have no experience with the go programming
+language or web development.
+
+This post is to tell you how I went about it.
+
+*** Finding where the errors come from
+
+First of all, running the dated theme with new hugo raised the following errors:
+
+#+caption: Running hugo serve on outdated template
+#+name: oldtemplate
+[[/home/gtpedrosa/Projects/blog/hugo-blog/static/img/hugo-warnings.png]]
+*Hugo serve warnings on outdated template*
+
+The first thing you may notice is that there is no mention to what part of the
+template is raising the warnings being shown. To overcome this, I grepped the
+offending structures and mapped which template files were triggering the
+warnings:
+
+#+caption: Finding out offending lines from hugo template
+#+name: greptemplate
+[[/home/gtpedrosa/Projects/blog/hugo-blog/static/img/hugo-warning-lines.png]]
+*Hugo warning files and lines*
+
+Just in case you are wondering here is a summary of the grep flags used:
+
+- r or -R is recursive,
+- n is line number, and
+- w stands for match the whole word.
+
+The next step involved fiddling with the source code and learning about each one of the errors.
+
+*** Page.RSSLink is deprecated
+
+I have found some github issues related to the matter, such as [[https://github.com/gohugoio/hugo/issues/4427][this one.]]
+However, what solved my issue was to read the docs [[https://gohugo.io/templates/rss/][here]] and look how an up to dated
+template should handle RSS. Replacing the bit using the /.RSSLink/ construct
+with the snipped below solved the issue.
+
+#+BEGIN_SRC html
+{{ with .OutputFormats.Get "rss" -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+{{ end -}}
+#+END_SRC
+
+*** Page.URL is deprecated
+
+This error was easier to tackle. The warning gave a reasonable solution that
+worked in my case. By replacing /Page.URL/ with /Params.URL/ everything worked
+as expected. Note that there was some trial and error here since there are other
+two other possible options according to the warning. I iterated until success.
+
+*** Page.UniqueID is deprecated
+
+Again the warning suggestion was spot on and replacing /.UniqueID/ with
+/.File.UniqueID/ supressed the warning.
+
+*** Most recent blog posts not showing on index.html
+
+This was the trickiest to fix. I ended up reading a little bit about [[https://gohugo.io/templates/template-debugging/][how to
+debug hugo templates.]] It so happens that after a couple of iterations printing
+some of the variables in the /index.html/ file with the synthax
+
+#+BEGIN_SRC html
+{{ printf "%#v" .Permalink }}
+#+END_SRC
+
+I found out /.Data.Pages/ as not yielding the right ammount of posts.
+Using /.Site.RegularPages/ did. I cannot find the exact resource which brought to
+my attention the difference between the old and new hugo synthax, however, It is
+agreeable that /.Data/ is too generic of a name for this use case.
+
+*** Final result
+
+As final result the theme is working without any warnings on hugo v0.68.1.
+
+The changes applied to the theme are summarised by the git diff below. For more
+reasonable view just check [[https://github.com/gtpedrosa/cocoa-hugo-theme][my fork of the cocoa-hugo theme.]]
+
+#+BEGIN_SRC shell :results output
+cd /home/gtpedrosa/Projects/blog/hugo-blog/themes/cocoa/
+git diff c6e7 434d
+#+END_SRC
+
+#+BEGIN_SRC shell
+diff --git a/layouts/_default/list.html b/layouts/_default/list.html
+index b2348a1..4490e6c 100644
+--- a/layouts/_default/list.html
++++ b/layouts/_default/list.html
+@@ -10,7 +10,7 @@
+             <nav class="section-items">
+                 <ul>
+                 {{ range .ByWeight }}
+-                    <li><a {{ printf "href=%q" .URL | safeHTMLAttr }}>{{ default .Title .Params.heading }}</a></li>
++                    <li><a {{ printf "href=%q" .Params.url | safeHTMLAttr }}>{{ default .Title .Params.heading }}</a></li>
+                 {{ end }}
+                 </ul>
+             </nav>
+diff --git a/layouts/index.html b/layouts/index.html
+index be3a722..7d6252d 100644
+--- a/layouts/index.html
++++ b/layouts/index.html
+@@ -7,12 +7,12 @@
+                     {{ .Content }}
+                 </div>
+             {{ end }}
+-            {{ $totalpostscount := len (where .Data.Pages "Section" "blog") }}
++            {{ $totalpostscount := len (where .Site.RegularPages "Section" "==" "blog") }}
+             {{ $latestpostscount := .Site.Params.latestpostscount | default $totalpostscount }}
+             {{ if gt $latestpostscount 0 }}
+                 <div class="page-heading">{{ i18n "latestPosts" }}</div>
+                 <ul>
+-                    {{ range (first $latestpostscount (where .Data.Pages.ByPublishDate.Reverse "Section" "blog")) }}
++                    {{ range (first $latestpostscount (where .Site.Pages.ByPublishDate.Reverse "Section" "blog")) }}
+                         {{ partial "li.html" . }}
+                     {{ end }}
+                     {{ if gt $totalpostscount $latestpostscount }}
+diff --git a/layouts/partials/head_includes.html b/layouts/partials/head_includes.html
+index 3c21e39..24723e2 100644
+--- a/layouts/partials/head_includes.html
++++ b/layouts/partials/head_includes.html
+@@ -51,9 +51,9 @@
+ >
+
+ <!-- RSS -->
+-{{ if .RSSLink }}
+-  <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+-{{ end }}
++{{ with .OutputFormats.Get "rss" -}}
++    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
++{{ end -}}
+
+ <!-- gitalk -->
+ {{ if .Site.Params.gitalk }}
+diff --git a/layouts/partials/staticman/form-comments.html b/layouts/partials/staticman/form-comments.html
+index 91067df..544301c 100644
+--- a/layouts/partials/staticman/form-comments.html
++++ b/layouts/partials/staticman/form-comments.html
+@@ -1,6 +1,6 @@
+ <form method="POST" action="https://api.staticman.net/v2/entry/{{ .Site.Params.staticman.username }}/{{ .Site.Params.staticman.repository }}/{{ .Site.Params.staticman.branch }}/">
+     <input type="hidden" name="options[redirect]" value="{{ .Permalink }}#comment-submitted">
+-    <input type="hidden" name="options[entryId]" value="{{ .UniqueID }}">
++    <input type="hidden" name="options[entryId]" value="{{ .File.UniqueID }}">
+     <input name="fields[name]" type="text" placeholder="Your name">
+     <input name="fields[email]" type="email" placeholder="Your email address">
+     <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
+diff --git a/layouts/partials/staticman/show-comments.html b/layouts/partials/staticman/show-comments.html
+index bba3b5c..d7ff90e 100644
+--- a/layouts/partials/staticman/show-comments.html
++++ b/layouts/partials/staticman/show-comments.html
+@@ -1,6 +1,6 @@
+  {{ $comments := readDir "data/comments" }}
+  {{ $.Scratch.Add "hasComments" 0 }}
+- {{ $entryId := .UniqueID }}
++ {{ $entryId := .File.UniqueID }}
+
+  {{ range $comments }}
+    {{ if eq .Name $entryId }}
+#+END_SRC
+
+
 ** TODO Retrieving music sheet off midi visualizer in youtube videos using opencv part 1
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2019-01-15-retrieving-music-sheet-off-midi-visualizer-in-youtube-videos-using-opencv
 :END:
+
+#+begin_quote
+TESTE
+#+end_quote
 
 I've been with [[https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=2ahUKEwj1qLa5jPrfAhUwHLkGHTNKBZsQyCkwAHoECAoQBQ&url=https%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DDXP1KdZX4io&usg=AOvVaw2fnmqyhFJpLHe0x4F84Fcj][Radiohead's man of war song]] stuck in my head for over a week. While browsing youtube and waiting eagerly for Josh Cohen's songbook to come out, I stumbled upon another gifted youtuber pianist called Alex Franklin. Franklin also happened to have covered this song. In case you are wondering, here are [[https://www.youtube.com/watch?v=M0GQtolLnEU][Josh's]] and [[https://www.youtube.com/watch?v=jTfhYBCrKyc][Alex's]] versions of the song. 
 
@@ -411,12 +675,11 @@ This is the first part of a series of posts (out of as many as needed) where I w
 - Define the which musical note was played
 - Translate the note to musical notation
 
-And of course, time and will to persevere.
+And of course, time and will to persevere. 
 
 *** The tools
 
-
-I chose python as a programming language for it's ubiquitous presence in machine learning projects. Also for affinity. Python also has pre-built version of the /de facto/ standard library for computational vision: [[https://opencv.org/][OpenCV]]. 
+I chose python as a programming language for it's ubiquitous presence in machine learning projects. Also for affinity. Python also has pre-built version of the /de facto/ standard library for computational vision: [[https://opencv.org/][OpenCV]]. Alternatives were [[http://tutorial.simplecv.org/en/latest/][SimpleCV]] and [[https://scikit-image.org/][scikit-image]], however I wanted to try the most popular and powerful tool out there.
 
 Keystrokes recognized it is time to engrave them in a beautiful sheet. The GNU Project has a program called [[http://lilypond.org/][LilyPond]], which deals exactly with this task. LilyPond files are text files that can be easily manipulated using a library such as [[https://python-ly.readthedocs.io/en/latest/][python-ly]] or even simpler as per [[https://www.python-course.eu/python_scores.php][this example]] using a simple correspondence map.
 
@@ -424,7 +687,7 @@ Docker to ease the pain. Reason in the next session.
 
 *** The setup
 
-OpenCV however is written in C++ and I found it's installation everything but straightforward. Even with the excellent aid of [[https://www.pyimagesearch.com/2018/08/15/how-to-install-opencv-4-on-ubuntu/][Adrian Rosenbrock's tutorial]], I could not execute a simple:
+OpenCV is written in C++ and I found it's installation everything but straightforward. Even with the excellent aid of [[https://www.pyimagesearch.com/2018/08/15/how-to-install-opencv-4-on-ubuntu/][Adrian Rosenbrock's tutorial]], I could not execute a simple:
 
 #+begin_src python
 import cv2
@@ -438,13 +701,134 @@ docker run -it jjanzic/docker-python3-opencv python
 
 And a working environment with opencv installed will be downloaded from dockerhub if a local image is not present. Needless to say you need to have Docker installed.
 
-*** Detecting keystrokes 
+Since I've made a minor modification in the original Dockerfile, I had to rebuild the image and renamed it for this project:
+
+#+begin_src python
+docker build -t vis_enc .
+#+end_src
+
+But nothing is perfect and while I was eager to try out some code, I got stuck with the following error:
+
+#+begin_quote
+cv2.error: OpenCV(4.0.0) /opencv-4.0.0/modules/highgui/src/window.cpp:625: error: (-2:Unspecified error) The function is not implemented. Rebuild the library with Windows, GTK+ 2.x or Cocoa support. If you are on Ubuntu or Debian, install libgtk2.0-dev and pkg-config, then re-run cmake or configure script in function 'cvShowImage'
+#+end_quote
+
+Which led me to modify the Dockerfile yet again and rebuild the image.
+
+*** Detecting keystrokes
 Here's the screenshot used for this experiment:
 
 #+caption: Piano keystrokes. In blue, right hand, in green the left hand.
 #+name: bgkeys
 [[/home/guilherme/blog/static/img/bgkeys.png]]
-*Here we refer to the screenshot*
+*Right hand in green and left hand in blue*
+
+** TODO DS setup without admin rights on windows
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2020-04-05-ds-setuo-wo-admin-rights-windows
+:END:
+*** Strategy
+Installing any program on "C:\Program Files", Windows default installation folder, requires admin rights. To bypass this, an easy workarround is to install programs on "HOME" folder. It is usually "C:\Users\yourusername\" and can be accessed by typing ~%HOME%~ on the address bar.
+
+Many programs will work out just fine without any customization. However some programs will need to be set up in order to iteract with each other. The following list is a personal preference related to the tools realted to DS tasks I found easiest to setup without admin rights.
+*** Alias
+#+BEGIN_SRC cmd
+@echo off
+
+:: RESOURCES:
+::
+:: Curl download:
+:: https://bintray.com/vszakats/generic/curl/
+::
+:: CMD aliases:
+:: https://stackoverflow.com/questions/20530996/aliases-in-windows-command-prompt
+:: You may make the alias(es) persistent with the following steps,
+::
+:: 1. Create a .bat or .cmd file with your DOSKEY commands.
+:: 2. Run regedit and go to HKEY_CURRENT_USER\Software\Microsoft\Command Processor
+:: 3. Add String Value entry with the name AutoRun and the full path of your .bat/.cmd file.
+::
+::  For example, %USERPROFILE%\alias.cmd, replacing the initial segment of the path with %USERPROFILE% is useful for :: syncing ::among multiple machines.
+::
+:: This way, every time cmd is run, the aliases are loaded.
+::
+:: Python download:
+:: https://www.python.org/downloads/release/python-370/
+:: Windows x86-64 executable installer
+::
+:: R and RSTudio:
+:: https://rpubs.com/tomhopper/windows_nonadmin_install
+
+:: Temporary system path at cmd startup
+
+set PATH=%PATH%;
+
+:: Commands
+
+DOSKEY ls=dir /B
+DOSKEY npp="C:\Users\guilhermetmcp\npp\notepad++.exe"
+DOSKEY alias=notepad %USERPROFILE%\alias.cmd
+DOSKEY vim="C:\Users\guilhermetmcp\Vim\vim81\gvim.exe"
+DOSKEY mfe=cd "C:\Users\guilhermetmcp\mfe" ^& "venv\Scripts\activate"
+DOSKEY qa=cd "C:\Users\guilhermetmcp\quality" ^& "venv\Scripts\activate"
+DOSKEY va="venv\Scripts\activate"
+DOSKEY vd="venv\Scripts\deactivate"
+
+set curldir="C:\Users\guilhermetmcp\curl\bin\curl.exe"
+set gitdir="C:\Users\guilhermetmcp\PortableGit\cmd"
+set jupyterdir="C:\users\guilhermetmcp\appdata\local\programs\python\python37\Scripts"
+set subldir="C:\Users\guilhermetmcp\Sublime"
+set rcdir="C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x64"
+set bashesdir="C:\Users\guilhermetmcp\bashes"
+set cmakedir="C:\Users\guilhermetmcp\cmake\bin"
+
+set pythonpath="C:\Users\guilhermetmcp\AppData\Local\Programs\Python\Python37"
+set pythonscripts="C:\Users\guilhermetmcp\AppData\Local\Programs\Python\Python37\Scripts"
+set rdir="C:\Users\guilhermetmcp\R\R-3.5.1\bin"
+set PATH=%curldir%;%gitdir%;%cmakedir%;%pythonpath%;%pythonscripts%;%subldir%;%rcdir%;%bashesdir%;%rdir%;%PATH%
+#+END_SRC
+*** Sublime
+*** Git
+*** R
+*** RStudio
+*** MikTex
+Miktex has a portable edition.  Download it from [[https://miktex.org/download][MikTex download page]] and unzip it to you "HOME" folder. Once MikTex is there, it is time to make RStudio find it otherwise Sweaving documents to pdf will be unavailale.
+*** Python
+It is possible to download the excutable
+**** Apache airflow
+Apache airflow could not be installed without a admin rights. In fact it should, but I did not have Microsoft Visual C++ Build Tools in my system, as per the error below.
+
+#+BEGIN_QUOTE
+ error: Microsoft Visual C++ 14.0 is required. Get it with "Microsoft Visual C++ Build Tools": https://visualstudio.microsoft.com/downloads/
+#+END_QUOTE
+
+However, having this sorted out was not enough. The following error plagued me:
+
+#+BEGIN_QUOTE
+error: command 'C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\BIN\\x86_amd64\\link.exe' failed with exit status 1158
+#+END_QUOTE
+
+Basically it meant that ~link.exe~ could not find ~rc.exe~ (go figure...). So I promptly inserted it in my alias path:
+
+#+BEGIN_SRC cmd
+set rcdir="C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x64"
+#+END_SRC
+
+After all this process, the taste of success:
+
+#+BEGIN_SRC sh
+Installing collected packages: setproctitle, apache-airflow
+Successfully installed apache-airflow-1.10.2 setproctitle-1.1.10
+#+END_SRC
+
+*** IPython
+
+The first error was "ModuleNotFoundError: No module named 'ipykernel'", solved with ~pip install ipykernel~.
+
+
+Ipython ~%matplotlib inline~ did not work out of the box. It threw an error ~No event loop integration for 'inline'. Supported event loops are: qt, qt4, qt5, gtk, gtk2, gtk3, tk, wx, pyglet, glut, osx~ related to the backend available to display the images.
+
+To solve this error I just installed ~PyQt5~ via pip and issued ~%matplotlib qt~ as an alternative to ~inline~. Note it is necessary ot have the ~ipykernel~ also installed via pip prior to ~PyQt5~ installation.
 * Footnotes
 * COMMENT Local Variables                          :ARCHIVE:
 # Local Variables:
