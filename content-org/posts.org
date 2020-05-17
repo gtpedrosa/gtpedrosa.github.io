@@ -652,6 +652,52 @@ index bba3b5c..d7ff90e 100644
     {{ if eq .Name $entryId }}
 #+END_SRC
 
+** DONE Moving files on windows with python: shutil alternative
+CLOSED: [2020-05-17 dom 11:20]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2020-05-17-moving-files-on-windows-with-python-shutil-alternative
+:END:
+
+Transfering data from my HD across a network, I have hit a bottleneck: the file
+transfer speed was dramatically slow. In fact, the transfer took more time to finish than it took to generate the files. It was an unnaceptable situation due HD constraints.
+
+It turns out that the file being copied to another partition is virtually
+chunked, and each of them copied sequentialy. The more chunks the slower the
+transfer is, while larger chunks increase memory usage [[https://superuser.com/questions/558292/how-does-copy-and-paste-for-large-files-work][[1]​]]. Iniatially I thought
+I had to change the shutil module itself to make it work, so I avoided this
+path [[https://stackoverflow.com/questions/21799210/python-copy-larger-file-too-slow][[2]​]].
+
+The solution I came up, however, was switching to Windows Robust File Copy utility, or ~robocopy~. It has some perks, including showing the status of the
+transfer on the command line, which was handy at this particular time. The
+solution looks like the following:
+
+#+BEGIN_SRC python
+import time
+import os
+
+source = '\\source\\folder'
+target = '\\target\\folder'
+
+while True:
+    for filename in os.listdir(source):
+        os.system('Robocopy "%s" "%s" "%s" /MOV' %
+                  (source, target, filename))
+    time.sleep(300)
+#+END_SRC
+
+The python usage was only necessary to periodically move incoming files, keeping HD usage controlled.
+
+#+BEGIN_QUOTE
+**Attention:** Do not use ~/MOVE~ unless you want the folder structure to be
+  moved as well. ~/MOV~ will keep the folder structure intact, moving only the
+  files targeted.
+#+END_QUOTE
+
+Later I have found out you can manage to adjust buffer size directly
+without modifying the source code directly [[https://blogs.blumetech.com/blumetechs-tech-blog/2011/05/faster-python-file-copy.html][[3]​]]. I will keep that in mind for the
+next time.
+
+
 ** TODO Retrieving music sheet off midi visualizer in youtube videos using opencv part 1
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2019-01-15-retrieving-music-sheet-off-midi-visualizer-in-youtube-videos-using-opencv
@@ -828,51 +874,6 @@ The first error was "ModuleNotFoundError: No module named 'ipykernel'", solved w
 Ipython ~%matplotlib inline~ did not work out of the box. It threw an error ~No event loop integration for 'inline'. Supported event loops are: qt, qt4, qt5, gtk, gtk2, gtk3, tk, wx, pyglet, glut, osx~ related to the backend available to display the images.
 
 To solve this error I just installed ~PyQt5~ via pip and issued ~%matplotlib qt~ as an alternative to ~inline~. Note it is necessary ot have the ~ipykernel~ also installed via pip prior to ~PyQt5~ installation.
-** TODO Moving files on windows with python: shutil alternative
-:PROPERTIES:
-:EXPORT_FILE_NAME: 2020-05-17-moving-files-on-windows-with-python-shutil-alternative
-:END:
-
-Transfering data from my HD across a network, I have hit a bottleneck: the file
-transfer speed was dramatically slow. In fact, the transfer took more time to finish than it took to generate the files. It was an unnaceptable situation due HD constraints.
-
-It turns out that the file being copied to another partition is virtually
-chunked, and each of them copied sequentialy. The more chunks the slower the
-transfer is, while larger chunks increase memory usage [[https://superuser.com/questions/558292/how-does-copy-and-paste-for-large-files-work][[1]​]]. Iniatially I thought
-I had to change the shutil module itself to make it work, so I avoided this
-path [[https://stackoverflow.com/questions/21799210/python-copy-larger-file-too-slow][[2]​]].
-
-The solution I came up, however, was switching to Windows Robust File Copy utility, or ~robocopy~. It has some perks, including showing the status of the
-transfer on the command line, which was handy at this particular time. The
-solution looks like the following:
-
-#+BEGIN_SRC python
-import time
-import os
-
-source = '\\source\\folder'
-target = '\\target\\folder'
-
-while True:
-    for filename in os.listdir(source):
-        os.system('Robocopy "%s" "%s" "%s" /MOV' %
-                  (source, target, filename))
-    time.sleep(300)
-#+END_SRC
-
-The python usage was only necessary to periodically move incoming files, keeping HD usage controlled.
-
-#+BEGIN_QUOTE
-**Attention:** Do not use ~/MOVE~ unless you want the folder structure to be
-  moved as well. ~/MOV~ will keep the folder structure intact, moving only the
-  files targeted.
-#+END_QUOTE
-
-Later I have found out you can manage to adjust buffer size directly
-without modifying the source code directly [[https://blogs.blumetech.com/blumetechs-tech-blog/2011/05/faster-python-file-copy.html][[3]​]]. I will keep that in mind for the
-next time.
-
-
 * Footnotes
 * COMMENT Local Variables                          :ARCHIVE:
 # Local Variables:
