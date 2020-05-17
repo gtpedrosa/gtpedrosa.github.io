@@ -1,8 +1,8 @@
 +++
 title = "Building Emacs from source"
 author = ["Guilherme Pedrosa"]
-date = 2020-04-12T10:59:00-03:00
-tags = ["emacs"]
+date = 2020-04-11T10:59:00-03:00
+tags = ["emacs", "source"]
 draft = false
 +++
 

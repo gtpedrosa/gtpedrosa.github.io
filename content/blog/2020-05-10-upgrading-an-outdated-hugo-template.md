@@ -2,13 +2,14 @@
 title = "Upgrading an outdated Hugo template"
 author = ["Guilherme Pedrosa"]
 date = 2020-05-10T18:04:00-03:00
+tags = ["hugo"]
 draft = false
 +++
 
 Recently, I wanted to restart blogging in a new machine. After installing the
 latest hugo version at the time and pulling my git repo I soon realized:
 
-1.  My Hugo version in which the blog was built was v0.31, whereas the current one
+1.  Hugo version in which the blog was built was v0.31, whereas the current one
     was v0.68.1.
 2.  The cocoa development was abandonned and no updates were made to cope with
     hugo enhancements
@@ -24,7 +25,7 @@ This post is to tell you how I went about it.
 
 First of all, running the dated theme with new hugo raised the following errors:
 
-<a id="org4b9e274"></a>
+<a id="orge822d67"></a>
 
 ![](/img/hugo-warnings.png)
 **Hugo serve warnings on outdated template**
@@ -34,7 +35,7 @@ template is raising the warnings being shown. To overcome this, I grepped the
 offending structures and mapped which template files were triggering the
 warnings:
 
-<a id="org45ed49f"></a>
+<a id="orgfa35530"></a>
 
 ![](/img/hugo-warning-lines.png)
 **Hugo warning files and lines**
@@ -53,7 +54,7 @@ The next step involved fiddling with the source code and learning about each one
 I have found some github issues related to the matter, such as [this one.](https://github.com/gohugoio/hugo/issues/4427)
 However, what solved my issue was to read the docs [here](https://gohugo.io/templates/rss/) and look how an up to dated
 template should handle RSS. Replacing the bit using the _.RSSLink_ construct
-with the snipped below solved the issue.
+with the snippet below solved the issue.
 
 ```html
 {{ with .OutputFormats.Get "rss" -}}
@@ -65,7 +66,7 @@ with the snipped below solved the issue.
 ## Page.URL is deprecated {#page-dot-url-is-deprecated}
 
 This error was easier to tackle. The warning gave a reasonable solution that
-worked in my case. By replacing _Page.URL_ with _Params.URL_ everything worked
+worked in my case. By replacing _Page.URL_ with _.Permalink_ everything worked
 as expected. Note that there was some trial and error here since there are other
 two other possible options according to the warning. I iterated until success.
 
