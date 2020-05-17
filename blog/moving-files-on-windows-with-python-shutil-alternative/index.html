@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Guilherme Pedrosa">
+<meta name="description" content="Transfering data from my HD across a network, I have hit a bottleneck: the file transfer speed was dramatically slow. In fact, the transfer took more time to finish than it took to generate the files. It was an unnaceptable situation due HD constraints.
+It turns out that the file being copied to another partition is virtually chunked, and each of them copied sequentialy. The more chunks the slower the transfer is, while larger chunks increase memory usage [1]​.">
+
+<meta property="og:title" content="Moving files on windows with python: shutil alternative" />
+<meta property="og:description" content="Transfering data from my HD across a network, I have hit a bottleneck: the file transfer speed was dramatically slow. In fact, the transfer took more time to finish than it took to generate the files. It was an unnaceptable situation due HD constraints.
+It turns out that the file being copied to another partition is virtually chunked, and each of them copied sequentialy. The more chunks the slower the transfer is, while larger chunks increase memory usage [1]​." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/moving-files-on-windows-with-python-shutil-alternative/" />
+<meta property="article:published_time" content="2020-05-17T11:20:00-03:00" />
+<meta property="article:modified_time" content="2020-05-17T11:20:00-03:00" />
+
+
+<title>
+
+
+     Moving files on windows with python: shutil alternative 
+
+</title>
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/moving-files-on-windows-with-python-shutil-alternative/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2020-05-17%2014%3a24%3a08.53860336%20%2b0000%20UTC%20m%3d%2b0.099890250">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2020-05-17%2014%3a24%3a08.53860336%20%2b0000%20UTC%20m%3d%2b0.099890250">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2020-05-17%2014%3a24%3a08.53860336%20%2b0000%20UTC%20m%3d%2b0.099890250">
+    
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2020-05-17%2014%3a24%3a08.53860336%20%2b0000%20UTC%20m%3d%2b0.099890250">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://gtpedrosa.github.io/img/leaf.ico"
+
+>
+
+
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="https://gtpedrosa.github.io/"><img class="avatar" src="https://gtpedrosa.github.io/img/profile.png" srcset="https://gtpedrosa.github.io/img/profile.png 1x"></a>
+            
+            <a href="https://gtpedrosa.github.io/"><div class="name">Guilherme Pedrosa</div></a>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="https://gtpedrosa.github.io/blog/"><span>Blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="https://gtpedrosa.github.io/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-projects"><a href="https://gtpedrosa.github.io/projects/"><span>Projects</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/github.svg" alt="github" /></a>
+        
+
+        
+            <a href="//twitter.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/twitter.svg" alt="twitter" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/guilherme-pedrosa-73213aa0/" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+            
+        
+
+        
+
+        
+            <a href="mailto:guilherme.pedrosa@gmail.com"><img class="icon" src="https://gtpedrosa.github.io/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="https://gtpedrosa.github.io/index.xml"><img class="icon" src="https://gtpedrosa.github.io/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Moving files on windows with python: shutil alternative
+
+</div>
+
+                    <div class="initials"><a href="https://gtpedrosa.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Sun May 17 2020 11:20:00 -0300'>May 17, 2020</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>2 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                <p>Transfering data from my HD across a network, I have hit a bottleneck: the file
+transfer speed was dramatically slow. In fact, the transfer took more time to finish than it took to generate the files. It was an unnaceptable situation due HD constraints.</p>
+<p>It turns out that the file being copied to another partition is virtually
+chunked, and each of them copied sequentialy. The more chunks the slower the
+transfer is, while larger chunks increase memory usage <a href="https://superuser.com/questions/558292/how-does-copy-and-paste-for-large-files-work">[1]​</a>. Iniatially I thought
+I had to change the shutil module itself to make it work, so I avoided this
+path <a href="https://stackoverflow.com/questions/21799210/python-copy-larger-file-too-slow">[2]​</a>.</p>
+<p>The solution I came up, however, was switching to Windows Robust File Copy utility, or <code>robocopy</code>. It has some perks, including showing the status of the
+transfer on the command line, which was handy at this particular time. The
+solution looks like the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">source</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">source</span><span class="se">\\</span><span class="s1">folder&#39;</span>
+<span class="n">target</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">target</span><span class="se">\\</span><span class="s1">folder&#39;</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;Robocopy &#34;</span><span class="si">%s</span><span class="s1">&#34; &#34;</span><span class="si">%s</span><span class="s1">&#34; &#34;</span><span class="si">%s</span><span class="s1">&#34; /MOV&#39;</span> <span class="o">%</span>
+                  <span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+</code></pre></div><p>The python usage was only necessary to periodically move incoming files, keeping HD usage controlled.</p>
+<blockquote>
+<p><strong><strong>Attention:</strong></strong> Do not use <code>/MOVE</code> unless you want the folder structure to be
+moved as well. <code>/MOV</code> will keep the folder structure intact, moving only the
+files targeted.</p>
+</blockquote>
+<p>Later I have found out you can manage to adjust buffer size directly
+without modifying the source code directly <a href="https://blogs.blumetech.com/blumetechs-tech-blog/2011/05/faster-python-file-copy.html">[3]​</a>. I will keep that in mind for the
+next time.</p>
+
+                <br>
+		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+            <form method="POST" action="https://api.staticman.net/v2/entry////">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/moving-files-on-windows-with-python-shutil-alternative/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="01e7a97990e4294e78d76e2f77e9e370">
+    <input name="fields[name]" type="text" placeholder="Your name">
+    <input name="fields[email]" type="email" placeholder="Your email address">
+    <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
+    <input type="submit" value="Submit">
+</form>
+
+
+  	     
+ 
+ 
+
+ 
+   
+ 
+
+ 
+   <p>Hey, be the first who comment this article.</p>
+ 
+
+            
+        </div>
+    </div>
+</section>
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-93472104-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>
+

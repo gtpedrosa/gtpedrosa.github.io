@@ -18,7 +18,7 @@
       
       <guid>https://gtpedrosa.github.io/about/colophon/</guid>
       <description>This website is a personal homepage.
-The site is built with Hugo—a static site generator made with Go. The website source code is available on GitHub. It uses the cocoatheme. The posts are written in Markdown.
+The site is built with Hugo—a static site generator made with Go. The website source code is available on GitHub. It uses my fork of the cocoatheme, made by nishants. The posts are written in Markdown.
 The primary font face is Open Sans and the monospace font face is Ubuntu Mono. The social icons are from the Ionicons font set. CSS classes for code syntax highlighting are inserted during compile-time by Hugo using Pygments.</description>
     </item>
     

@@ -12,23 +12,23 @@
     
     
     <item>
+      <title>Moving files on windows with python: shutil alternative</title>
+      <link>https://gtpedrosa.github.io/blog/moving-files-on-windows-with-python-shutil-alternative/</link>
+      <pubDate>Sun, 17 May 2020 11:20:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/moving-files-on-windows-with-python-shutil-alternative/</guid>
+      <description>Transfering data from my HD across a network, I have hit a bottleneck: the file transfer speed was dramatically slow. In fact, the transfer took more time to finish than it took to generate the files. It was an unnaceptable situation due HD constraints.
+It turns out that the file being copied to another partition is virtually chunked, and each of them copied sequentialy. The more chunks the slower the transfer is, while larger chunks increase memory usage [1]​.</description>
+    </item>
+    
+    <item>
       <title>Upgrading an outdated Hugo template</title>
       <link>https://gtpedrosa.github.io/blog/upgrading-an-outdated-hugo-template/</link>
       <pubDate>Sun, 10 May 2020 18:04:00 -0300</pubDate>
       
       <guid>https://gtpedrosa.github.io/blog/upgrading-an-outdated-hugo-template/</guid>
       <description>Recently, I wanted to restart blogging in a new machine. After installing the latest hugo version at the time and pulling my git repo I soon realized:
- My Hugo version in which the blog was built was v0.31, whereas the current one was v0.68.1. The cocoa development was abandonned and no updates were made to cope with hugo enhancements  Since I do like this theme and already had a fork of it I decided to try and upgrade it by myself, even though I have no experience with the go programming language or web development.</description>
-    </item>
-    
-    <item>
-      <title>Building Emacs from source</title>
-      <link>https://gtpedrosa.github.io/blog/building-emacs-from-source/</link>
-      <pubDate>Sun, 12 Apr 2020 10:59:00 -0300</pubDate>
-      
-      <guid>https://gtpedrosa.github.io/blog/building-emacs-from-source/</guid>
-      <description>Steps needed to install emacs locally, mantaining pre-existing installation intact. In the end you will two different versions of emacs running in your system.
- Install dependencies:  sudo apt-get install autoconf automake libtool texinfo build-essential xorg-dev libgtk-3-dev libjpeg-dev libncurses5-dev libdbus-1-dev libgif-dev libtiff-dev libm17n-dev libpng-dev librsvg2-dev libotf-dev libgnutls28-dev libxml2-dev libxpm-dev  Download emacs from a nearby mirror Extract downloaded file. In this case it is emacs-26.3.tar.xz, and go to the extracted folder:  cd ~/Downloads tar -xf emacs-26.</description>
+ Hugo version in which the blog was built was v0.31, whereas the current one was v0.68.1. The cocoa development was abandonned and no updates were made to cope with hugo enhancements  Since I do like this theme and already had a fork of it I decided to try and upgrade it by myself, even though I have no experience with the go programming language or web development.</description>
     </item>
     
     <item>
@@ -39,6 +39,16 @@
       <guid>https://gtpedrosa.github.io/blog/reading-sql-dumps-with-sql-server-management-studio/</guid>
       <description>This post is about how to inspect the content of SQL database (.mdf and .ldf files). The answer is to attach these files to an existing SQL server instance, instead of opening them directly with a tool such as SQL Management Studio. This was not clear time until I stumbled upon this video.
 Steps  Keep a SQL Server instance running in the background; Fire up SQL Management studio and connect to this instance by providing .</description>
+    </item>
+    
+    <item>
+      <title>Building Emacs from source</title>
+      <link>https://gtpedrosa.github.io/blog/building-emacs-from-source/</link>
+      <pubDate>Sat, 11 Apr 2020 10:59:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/building-emacs-from-source/</guid>
+      <description>Steps needed to install emacs locally, mantaining pre-existing installation intact. In the end you will two different versions of emacs running in your system.
+ Install dependencies:  sudo apt-get install autoconf automake libtool texinfo build-essential xorg-dev libgtk-3-dev libjpeg-dev libncurses5-dev libdbus-1-dev libgif-dev libtiff-dev libm17n-dev libpng-dev librsvg2-dev libotf-dev libgnutls28-dev libxml2-dev libxpm-dev  Download emacs from a nearby mirror Extract downloaded file. In this case it is emacs-26.3.tar.xz, and go to the extracted folder:  cd ~/Downloads tar -xf emacs-26.</description>
     </item>
     
     <item>

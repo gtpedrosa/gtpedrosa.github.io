@@ -10,11 +10,11 @@
 <meta name="referrer" content="no-referrer">
 <meta name="author" content="Guilherme Pedrosa">
 <meta name="description" content="Recently, I wanted to restart blogging in a new machine. After installing the latest hugo version at the time and pulling my git repo I soon realized:
- My Hugo version in which the blog was built was v0.31, whereas the current one was v0.68.1. The cocoa development was abandonned and no updates were made to cope with hugo enhancements  Since I do like this theme and already had a fork of it I decided to try and upgrade it by myself, even though I have no experience with the go programming language or web development.">
+ Hugo version in which the blog was built was v0.31, whereas the current one was v0.68.1. The cocoa development was abandonned and no updates were made to cope with hugo enhancements  Since I do like this theme and already had a fork of it I decided to try and upgrade it by myself, even though I have no experience with the go programming language or web development.">
 
 <meta property="og:title" content="Upgrading an outdated Hugo template" />
 <meta property="og:description" content="Recently, I wanted to restart blogging in a new machine. After installing the latest hugo version at the time and pulling my git repo I soon realized:
- My Hugo version in which the blog was built was v0.31, whereas the current one was v0.68.1. The cocoa development was abandonned and no updates were made to cope with hugo enhancements  Since I do like this theme and already had a fork of it I decided to try and upgrade it by myself, even though I have no experience with the go programming language or web development." />
+ Hugo version in which the blog was built was v0.31, whereas the current one was v0.68.1. The cocoa development was abandonned and no updates were made to cope with hugo enhancements  Since I do like this theme and already had a fork of it I decided to try and upgrade it by myself, even though I have no experience with the go programming language or web development." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://gtpedrosa.github.io/blog/upgrading-an-outdated-hugo-template/" />
 <meta property="article:published_time" content="2020-05-10T18:04:00-03:00" />
@@ -45,11 +45,11 @@
 
 
     
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2020-05-10%2021%3a07%3a05.105735415%20%2b0000%20UTC%20m%3d%2b0.100688017">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2020-05-10%2021%3a07%3a05.105735415%20%2b0000%20UTC%20m%3d%2b0.100688017">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2020-05-10%2021%3a07%3a05.105735415%20%2b0000%20UTC%20m%3d%2b0.100688017">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2020-05-17%2014%3a24%3a08.541987936%20%2b0000%20UTC%20m%3d%2b0.103274822">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2020-05-17%2014%3a24%3a08.541987936%20%2b0000%20UTC%20m%3d%2b0.103274822">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2020-05-17%2014%3a24%3a08.541987936%20%2b0000%20UTC%20m%3d%2b0.103274822">
     
-        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2020-05-10%2021%3a07%3a05.105735415%20%2b0000%20UTC%20m%3d%2b0.100688017">
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2020-05-17%2014%3a24%3a08.541987936%20%2b0000%20UTC%20m%3d%2b0.103274822">
     
 
 
@@ -201,7 +201,7 @@
                 <p>Recently, I wanted to restart blogging in a new machine. After installing the
 latest hugo version at the time and pulling my git repo I soon realized:</p>
 <ol>
-<li>My Hugo version in which the blog was built was v0.31, whereas the current one
+<li>Hugo version in which the blog was built was v0.31, whereas the current one
 was v0.68.1.</li>
 <li>The cocoa development was abandonned and no updates were made to cope with
 hugo enhancements</li>
@@ -233,13 +233,13 @@ warnings:</p>
 <p>I have found some github issues related to the matter, such as <a href="https://github.com/gohugoio/hugo/issues/4427">this one.</a>
 However, what solved my issue was to read the docs <a href="https://gohugo.io/templates/rss/">here</a> and look how an up to dated
 template should handle RSS. Replacing the bit using the <em>.RSSLink</em> construct
-with the snipped below solved the issue.</p>
+with the snippet below solved the issue.</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">{{ with .OutputFormats.Get &#34;rss&#34; -}}
     {{ printf `<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;%s&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;%s&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;%s&#34;</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;%s&#34;</span> <span class="p">/&gt;</span>` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
 {{ end -}}
 </code></pre></div><h2 id="page-dot-url-is-deprecated">Page.URL is deprecated</h2>
 <p>This error was easier to tackle. The warning gave a reasonable solution that
-worked in my case. By replacing <em>Page.URL</em> with <em>Params.URL</em> everything worked
+worked in my case. By replacing <em>Page.URL</em> with <em>.Permalink</em> everything worked
 as expected. Note that there was some trial and error here since there are other
 two other possible options according to the warning. I iterated until success.</p>
 <h2 id="page-dot-uniqueid-is-deprecated">Page.UniqueID is deprecated</h2>
