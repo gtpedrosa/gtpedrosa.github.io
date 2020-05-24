@@ -6,10 +6,19 @@
     <description>Recent content on Guilherme Pedrosa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sun, 17 May 2020 11:20:00 -0300</lastBuildDate>
+    <lastBuildDate>Sat, 23 May 2020 20:29:37 -0700</lastBuildDate>
     
 	<atom:link href="https://gtpedrosa.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Books</title>
+      <link>https://gtpedrosa.github.io/standalone/books/</link>
+      <pubDate>Sat, 23 May 2020 20:29:37 -0700</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/standalone/books/</guid>
+      <description>.gr_grid_container { /* customize grid container div here. eg: width: 500px; */ } .gr_grid_book_container { /* customize book cover container div here */ float: left; width: 98px; height: 160px; padding: 0px 0px; overflow: hidden; }   Guilherme&#39;s bookshelf: read                      Guilherme&#39;s favorite books » Share book reviews and ratings with Guilherme, and even join a book club on Goodreads.</description>
+    </item>
     
     <item>
       <title>Moving files on windows with python: shutil alternative</title>
