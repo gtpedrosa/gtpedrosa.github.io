@@ -1,4 +1,4 @@
- #+hugo_base_dir: /home/gtpedrosa/Projects/blog/hugo-blog/
+#+hugo_base_dir: /home/gtpedrosa/Projects/blog/hugo-blog/
 
 * blog
 :PROPERTIES:
@@ -31,59 +31,59 @@ Since I want this post to be self contained for further reference in the near fu
 *EDIT Apr 04 2020:* Instructions updated after noticing they failed in brand new system installation
 #+end_quote
 
-- Installation with package manager: 
-#+BEGIN_SRC emacs-lisp
-M-x package-install RET ox-hugo RET
-#+END_SRC
+- Installation with package manager:
+#+begin_src emacs-lisp
+  M-x package-install RET ox-hugo RET
+#+end_src
 - Require it in the .emacs file:
-#+BEGIN_SRC org
-(with-eval-after-load 'ox__
-  (require 'ox-hugo))
-#+END_SRC
+#+begin_src org
+  (with-eval-after-load 'ox__
+    (require 'ox-hugo))
+#+end_src
 - To take advantage of auto exporting on save I added the following to my .emacs file:
-#+BEGIN_SRC org
-;; Hugo orgmode exporter
-(require 'org-hugo-auto-export-mode) ;If you want the auto-exporting on file saves
-#+END_SRC
+#+begin_src org
+  ;; Hugo orgmode exporter
+  (require 'org-hugo-auto-export-mode) ;If you want the auto-exporting on file saves
+#+end_src
 - Enable snippets shortcuts
 #+begin_src org
-(require 'org-tempo);Enable snippets expantions (ex: <s+TAB or <q+TAB)
+  (require 'org-tempo);Enable snippets expantions (ex: <s+TAB or <q+TAB)
 #+end_src
 - Now to create a capture template to create new blog postos on the fly:
-#+BEGIN_SRC org
-;; Populates only the EXPORT_FILE_NAME property in the inserted headline.
-(with-eval-after-load 'org-capture
-  (defun org-hugo-new-subtree-post-capture-template ()
-    "Returns `org-capture' template string for new Hugo post.
-See `org-capture-templates' for more information."
-    (let* ((title (read-from-minibuffer "Post Title: ")) ;Prompt to enter the post title
-           (fname (org-hugo-slug title)))
-      (mapconcat #'identity
-                 `(
-                   ,(concat "* TODO " title)
-                   ":PROPERTIES:"
-                   ,(concat ":EXPORT_FILE_NAME: " (format-time-string "%Y-%m-%d-") fname)
-                   ":END:"
-                   "%?\n")          ;Place the cursor here finally
-                 "\n"))))
+#+begin_src org
+  ;; Populates only the EXPORT_FILE_NAME property in the inserted headline.
+  (with-eval-after-load 'org-capture
+    (defun org-hugo-new-subtree-post-capture-template ()
+      "Returns `org-capture' template string for new Hugo post.
+  See `org-capture-templates' for more information."
+      (let* ((title (read-from-minibuffer "Post Title: ")) ;Prompt to enter the post title
+             (fname (org-hugo-slug title)))
+        (mapconcat #'identity
+                   `(
+                     ,(concat "* TODO " title)
+                     ":PROPERTIES:"
+                     ,(concat ":EXPORT_FILE_NAME: " (format-time-string "%Y-%m-%d-") fname)
+                     ":END:"
+                     "%?\n")          ;Place the cursor here finally
+                   "\n"))))
 
-;; org capture templates
-(setq org-capture-templates
- '(
-   ("h"                ;`org-capture' binding + h
-                    "Hugo post"
-                    entry
-                    ;; It is assumed that below file is present in `org-directory'
-                    ;; and that it has a "Blog Ideas" heading. It can even be a
-                    ;; symlink pointing to the actual location of all-posts.org!
-                    (file+olp "/home/guilherme/blog/content-org/posts.org" "blog")
-                    (function org-hugo-new-subtree-post-capture-template))
-))
-#+END_SRC
+  ;; org capture templates
+  (setq org-capture-templates
+   '(
+     ("h"                ;`org-capture' binding + h
+                      "Hugo post"
+                      entry
+                      ;; It is assumed that below file is present in `org-directory'
+                      ;; and that it has a "Blog Ideas" heading. It can even be a
+                      ;; symlink pointing to the actual location of all-posts.org!
+                      (file+olp "/home/guilherme/blog/content-org/posts.org" "blog")
+                      (function org-hugo-new-subtree-post-capture-template))
+  ))
+#+end_src
 - Include a /.dir-locals.el/ file in the project root, assuming all org-files are in a /content-org/ directory below root:
 #+begin_src org
-(("content-org/"
-  . ((org-mode . ((eval . (org-hugo-auto-export-mode)))))))
+  (("content-org/"
+    . ((org-mode . ((eval . (org-hugo-auto-export-mode)))))))
 #+end_src
 
 *Note:* everything here so far is in the manual. I only added the current date to the file name being created in the ~EXPORT_FILE_NAME:~ property to be consistent with my previous naming scheme.
@@ -92,11 +92,11 @@ See `org-capture-templates' for more information."
 
 Ken grimes did a great job explaining how to use one org file to organize a hugo blog. I'll just mention a few things. First of all, Hugo has a contents folder and depending on the theme you use (I use cocoa) it will have 
 
-#+BEGIN_SRC shell :exports both :results output
+#+begin_src shell :exports both :results output
   tree -d -L 2 ../content
-#+END_SRC
+#+end_src
 
-#+RESULTS:
+#+results: 
 : ../content
 : ├── about
 : ├── blog
@@ -104,24 +104,26 @@ Ken grimes did a great job explaining how to use one org file to organize a hugo
 : 
 : 3 directories
 
+
+
 I haven't been using ox-hugo in my previous posts, so I already have markdown files that do not have a corresponding org version. However, my posts reside in the blog folder. As an example, a minimal org file used to generate this post would be the following:
 
 #+begin_src org
-#+hugo_base_dir: /home/guilherme/blog/
- * blog
-:PROPERTIES:
-:EXPORT_HUGO_SECTION: blog
-:END:
- ** TODO Using org mode and ox-hugo to replace markdown in hugo workflow
-:PROPERTIES:
-:EXPORT_FILE_NAME: 2019-01-01-using-org-mode-and-ox-hugo-to-replace-markdown-in-hugo-workflow
-:END:
+  ,#+hugo_base_dir: /home/guilherme/blog/
+   ,* blog
+  :PROPERTIES:
+  :EXPORT_HUGO_SECTION: blog
+  :END:
+   ,** TODO Using org mode and ox-hugo to replace markdown in hugo workflow
+  :PROPERTIES:
+  :EXPORT_FILE_NAME: 2019-01-01-using-org-mode-and-ox-hugo-to-replace-markdown-in-hugo-workflow
+  :END:
 
- * Footnotes
- * COMMENT Local Variables                          :ARCHIVE:
- # Local Variables:
- # org-hugo-auto-export-on-save: t
- # End:
+   ,* Footnotes
+   ,* COMMENT Local Variables                          :ARCHIVE:
+   # Local Variables:
+   # org-hugo-auto-export-on-save: t
+   # End:
 #+end_src
 
 The local variable ~org-hugo-auto-export-on-save~ with the ARCHIVE tag enables hugo auto export to my blog's master org file only.
@@ -132,9 +134,9 @@ To create a new blog post I simply issue ~C+c C+c + h~ and a title for my new po
 
 To view any changes on my working post:
 
-#+BEGIN_SRC bash
-hugo serve -D --navigateToChanged
-#+END_SRC
+#+begin_src bash
+  hugo serve -D --navigateToChanged
+#+end_src
 
 When done with the post, just changing the task from TODO to DONE will create a special property date that will be the post's date published.
 
@@ -143,41 +145,41 @@ I've put together some markup examples that were spread through the sources ment
 
 #+caption: Same Org Logo
 #+name: img__org_logo
-[[/home/gtpedrosa/Projects/blog/hugo-blog/static/img/gnu-unicorn.png]]
+[[file:/home/gtpedrosa/Projects/blog/hugo-blog/static/img/gnu-unicorn.png]]
 *Here we refer to [[img__org_logo]].*
 
- #+BEGIN_QUOTE
- Everything should be made as simple as possible,
- but not any simpler -- Albert Einstein
- #+END_QUOTE
+#+begin_quote
+Everything should be made as simple as possible,
+but not any simpler -- Albert Einstein
+#+end_quote
 
-#+BEGIN_SRC org
- * This Is A Heading
- ** This Is A Sub-Heading
- *** And A Sub-Sub-Heading
+#+begin_src org
+  ,* This Is A Heading
+  ,** This Is A Sub-Heading
+  ,*** And A Sub-Sub-Heading
 
- Paragraphs are separated by at least one empty line.
+  Paragraphs are separated by at least one empty line.
 
- *bold* /italic/ _underlined_ +strikethrough+ =monospaced= ~code~
- [[http://Karl-Voit.at][Link description]]
- http://Karl-Voit.at → link without description
+  ,*bold* /italic/ _underlined_ +strikethrough+ =monospaced= ~code~
+  [[http://Karl-Voit.at][Link description]]
+  http://Karl-Voit.at → link without description
 
- : Simple pre-formatted text such as for source code.
- : This also respects the line breaks. *bold* is not bold here.
+  : Simple pre-formatted text such as for source code.
+  : This also respects the line breaks. *bold* is not bold here.
 
- - list item
- - another item
-   - sub-item
-     1. also enumerated
-     2. if you like
- - [ ] yet to be done
- - [X] item which is done	
-#+END_SRC
+  - list item
+  - another item
+    - sub-item
+      1. also enumerated
+      2. if you like
+  - [ ] yet to be done
+  - [X] item which is done	
+#+end_src
 
 #+caption: Hello
 #+name: code__hello
 #+begin_src emacs-lisp
-(message "Hello")
+  (message "Hello")
 #+end_src
 *Here we refer to [[code__helloagain]].*
 
@@ -186,7 +188,7 @@ I've put together some markup examples that were spread through the sources ment
 #+caption: Hello Again
 #+name: code__helloagain
 #+begin_src emacs-lisp
-(message "Hello again")
+  (message "Hello again")
 #+end_src
 *Here we refer to [[code__hello]].*
 ** DONE Generating documentation of Matlab scripts automatically with mkdocs
@@ -202,108 +204,107 @@ The documentation stands out as it is produced with [[https://www.mkdocs.org/][M
 For the remaining of this post consider a simple project composed of two mfiles: ~addme.m~ and ~subtractme.m~ which do exactly what you would expect from them, add and subtract two numbers. Also consider a ~index.md~ and a ~mkdocs.yml~ file, the bare minimum for a MkDocs documentation. This is the files setup and they can be downloaded from my github [[https://github.com/gtpedrosa/matlab-mkdocs][here]].
 
 #+begin_src shell :exports both :results output
-tree -L 2 ~/Sandbox/docs
+  tree -L 2 ~/Sandbox/docs
 #+end_src
 
-#+RESULTS:
+#+results: 
 #+begin_example
-/home/guilherme/Sandbox/docs
-├── addme.m
-├── COPYING
-├── COPYING~
-├── docs
-│   └── index.md
-├── makefile
-├── matdocparser.py
-├── matdocparser.pyc
-├── matdoc.py
-├── mkdocs.yml
-└── subtractme.m
+  /home/guilherme/Sandbox/docs
+  ├── addme.m
+  ├── COPYING
+  ├── COPYING~
+  ├── docs
+  │   └── index.md
+  ├── makefile
+  ├── matdocparser.py
+  ├── matdocparser.pyc
+  ├── matdoc.py
+  ├── mkdocs.yml
+  └── subtractme.m
 
-1 directory, 10 files
+  1 directory, 10 files
 #+end_example
 
 The following make file is responsible for the automation of the pocess:
 
 #+begin_src shell
-PYTHON = python2
-MKDOCS = mkdocs
-SRC = $(wildcard *.m)
-TAR = $(SRC:.m=.md)
+  PYTHON = python2
+  MKDOCS = mkdocs
+  SRC = $(wildcard *.m)
+  TAR = $(SRC:.m=.md)
 
-mfiledir = docs/mfiles
+  mfiledir = docs/mfiles
 
-$(info SRC is $(SRC))
-$(info TAR is $(TAR))
-$(info mfiledir is $(mfiledir))
+  $(info SRC is $(SRC))
+  $(info TAR is $(TAR))
+  $(info mfiledir is $(mfiledir))
 
-.PHONY: all clean
+  .PHONY: all clean
 
-all: $(TAR)
+  all: $(TAR)
 
-%.md: %.m matdoc.py matdocparser.py
-	$(info $(@))
-	$(info $(@D))
-	mkdir -p $(mfiledir)
-	$(PYTHON) ./matdoc.py "$(<)" > "$(mfiledir)/$(@)"
+  %.md: %.m matdoc.py matdocparser.py
+        $(info $(@))
+        $(info $(@D))
+        mkdir -p $(mfiledir)
+        $(PYTHON) ./matdoc.py "$(<)" > "$(mfiledir)/$(@)"
 
-doc-serve: mkdocs.yml
-	$(MKDOCS) serve
+  doc-serve: mkdocs.yml
+        $(MKDOCS) serve
 
-clean:
-	rm -f $(TAR)
-	rm -rf $(mfiledir)
+  clean:
+        rm -f $(TAR)
+        rm -rf $(mfiledir)
 #+end_src
 
 Issuing 
 
 #+begin_src shell
-make all
-make doc-serve
+  make all
+  make doc-serve
 #+end_src
 
 This is the expected output:
 
-#+RESULTS:
+#+results: 
 #+begin_example
-SRC is subtractme.m addme.m
-TAR is subtractme.md addme.md
-mfiledir is docs/mfiles
-subtractme.md
-.
-mkdir -p docs/mfiles
-python2 ./matdoc.py "subtractme.m" > "docs/mfiles/subtractme.md"
-addme.md
-.
-mkdir -p docs/mfiles
-python2 ./matdoc.py "addme.m" > "docs/mfiles/addme.md"
-SRC is subtractme.m addme.m
-TAR is subtractme.md addme.md
-mfiledir is docs/mfiles
+  SRC is subtractme.m addme.m
+  TAR is subtractme.md addme.md
+  mfiledir is docs/mfiles
+  subtractme.md
+  .
+  mkdir -p docs/mfiles
+  python2 ./matdoc.py "subtractme.m" > "docs/mfiles/subtractme.md"
+  addme.md
+  .
+  mkdir -p docs/mfiles
+  python2 ./matdoc.py "addme.m" > "docs/mfiles/addme.md"
+  SRC is subtractme.m addme.m
+  TAR is subtractme.md addme.md
+  mfiledir is docs/mfiles
 
-INFO    -  Building documentation... 
-INFO    -  Cleaning site directory 
-[I 190120 22:44:13 server:283] Serving on http://127.0.0.1:8000
-[I 190120 22:44:13 handlers:60] Start watching changes
-[I 190120 22:44:13 handlers:62] Start detecting changes
-[I 190120 22:44:55 handlers:133] Browser Connected: http://localhost:8000/#project-layout
-[I 190120 22:44:55 handlers:133] Browser Connected: http://127.0.0.1:8000/
-
+  INFO    -  Building documentation... 
+  INFO    -  Cleaning site directory 
+  [I 190120 22:44:13 server:283] Serving on http://127.0.0.1:8000
+  [I 190120 22:44:13 handlers:60] Start watching changes
+  [I 190120 22:44:13 handlers:62] Start detecting changes
+  [I 190120 22:44:55 handlers:133] Browser Connected: http://localhost:8000/#project-layout
+  [I 190120 22:44:55 handlers:133] Browser Connected: http://127.0.0.1:8000/
 #+end_example
 
 And finally, the end result, a home page based on the ~index.md~ file:
 
 #+caption: MkDocs documentation generated automatically for a matlab project
 #+name: mkdocsproject
-[[/home/guilherme/blog/static/img/mkdocshome.png]]
+[[file:/home/guilherme/blog/static/img/mkdocshome.png]]
 
 And more importantly, automatic documentation for each function in a specific menu called ~M-files~:
 
 #+caption: Documentation for each mfile
 #+name: mkdocsfunctions
-[[/home/guilherme/blog/static/img/mkdocsfunction.png]]
+[[file:/home/guilherme/blog/static/img/mkdocsfunction.png]]
 
-** DONE Using httr with JSON API's                                  :R:APIs:
+** DONE Using httr with JSON API's                                   :R:APIs:
 CLOSED: [2019-03-24 dom 11:35]
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2019-03-24-using-httr-with-json-api-s
@@ -313,21 +314,25 @@ It is incredbly easy to make R interact with external API's. I've found [[https:
 
 While creating a body to a POST request message, encoded with json, I verified that my requests were being turned down by the server. The issue was related  to a behavior of the ~jsonlite~ package, one of httr's dependencies which uses  ~auto_unbox=TRUE~ by default. This isn't an issue /per se/ but for length one vector jsonlite returned:
 
-#+BEGIN_SRC R :exports both :results output
-cat(jsonlite:::toJSON(list(message = "my string"),auto_unbox=T))
-#+END_SRC
+#+begin_src R :exports both :results output
+  cat(jsonlite:::toJSON(list(message = "my string"),auto_unbox=T))
+#+end_src
 
-#+RESULTS:
+#+results: 
 : {"message":"my string"}
+
+
 
 Whereas the API requested a *boxed* response from length one vectors, such the one you get without the ~auto_unbox=TRUE~ option
 
-#+BEGIN_SRC R :exports both :results output
-cat(jsonlite:::toJSON(list(message = "my string")))
-#+END_SRC
+#+begin_src R :exports both :results output
+  cat(jsonlite:::toJSON(list(message = "my string")))
+#+end_src
 
-#+RESULTS:
+#+results: 
 : {"message":["my string"]}
+
+
 
 Reading [[https://github.com/r-lib/httr/issues/159][this github issue]] might give a more in depth explanation.
 
@@ -335,12 +340,14 @@ This led me to rabbit holes such as forking ~httr~ and recompiling with ~auto_un
 
 The solution was simpler than I thought and makes use of the function ~AsIs~ from the base package. It can be called with the ~I(x)~ synthax and changes the class of an object indicating it should be treated /as is/. What this does is to prevent the ~auto_unbox~ behavior on certain fields where this is undesirable, such as in the following example: 
 
-#+BEGIN_SRC R :exports both :results output
-cat(jsonlite:::toJSON(list(message = "my string",mymessage = I("My other string")),auto_unbox=T))
-#+END_SRC
+#+begin_src R :exports both :results output
+  cat(jsonlite:::toJSON(list(message = "my string",mymessage = I("My other string")),auto_unbox=T))
+#+end_src
 
-#+RESULTS:
+#+results: 
 : {"message":"my string","mymessage":["My other string"]}
+
+
 
 This approach not only did not break anything but also made my requests compatible with the server boxed length one vectors specification as required.
 ** DONE Using SQLAlchemy to navigate an existing database :python:ORM:Databases:
@@ -359,54 +366,53 @@ Reflection uses metadata property to access schema constructs. It offers a few m
 
 The downside of this approach is mantainability, since schema changes can make code unreliable. Here's an eample of how to access the /TimeStamp/ column of a /Table_I_Want_to_Interact/ in a generic database:
 
-#+BEGIN_SRC python
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine, MetaData, Table
+#+begin_src python
+  from sqlalchemy.orm import sessionmaker
+  from sqlalchemy import create_engine, MetaData, Table
 
-# Using SQLAlchemy reflection example
-engine = create_engine('connectionstringhere')
-table1meta = MetaData(engine)
-table1 = Table('Table_I_Want_to_Interact', table1meta, autoload=True)
-DBSession = sessionmaker(bind=engine)
-session = DBSession()
-results = session.query(table1).filter(table1.columns.TimeStamp>="2019-02-26 18:00:00.000")
-results.all()
-#+END_SRC
+  # Using SQLAlchemy reflection example
+  engine = create_engine('connectionstringhere')
+  table1meta = MetaData(engine)
+  table1 = Table('Table_I_Want_to_Interact', table1meta, autoload=True)
+  DBSession = sessionmaker(bind=engine)
+  session = DBSession()
+  results = session.query(table1).filter(table1.columns.TimeStamp>="2019-02-26 18:00:00.000")
+  results.all()
+#+end_src
 
 *** SQLAlchemy declarative model
 
 The declarative model needs Table objects to be explicitly declared. Due to this inherent verbose nature, I have found it is easier to grasp what is happening and even how the database is structured after a glance at the source code, such as in the following snippet:
 
-#+BEGIN_SRC python
-from sqlalchemy import create_engine, MetaData, BigInteger, CHAR, Column, DateTime, Float, Integer, SmallInteger, String, Table, Unicode, text
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+#+begin_src python
+  from sqlalchemy import create_engine, MetaData, BigInteger, CHAR, Column, DateTime, Float, Integer, SmallInteger, String, Table, Unicode, text
+  from sqlalchemy.ext.declarative import declarative_base
+  from sqlalchemy.orm import sessionmaker
 
-Base = declarative_base()
-metadata = Base.metadata
+  Base = declarative_base()
+  metadata = Base.metadata
 
 
-my_table_object = Table(
-    'table_name', metadata,
-    Column('Column1', Integer, nullable=False),
-    Column('TimeStamp', DateTime, nullable=False),
-    Column('Column3', Integer, nullable=False),
-    Column('Column4', Unicode(2000))
-)
-
-#+END_SRC
+  my_table_object = Table(
+      'table_name', metadata,
+      Column('Column1', Integer, nullable=False),
+      Column('TimeStamp', DateTime, nullable=False),
+      Column('Column3', Integer, nullable=False),
+      Column('Column4', Unicode(2000))
+  )
+#+end_src
 
 Here a table named /table_name/ in the database is being mapped to the /my_table_object/ instance. It should be noted that not all columns need to be mapped. Uninteresting columns can be left out with no drawbacks.
 
 Depending on the database structure size, however,  it could be cumbersome to define multiple tables. For use cases like this, I have found the package [[https://pypi.org/project/sqlacodegen/][sqlacodegen]] of great help. It automates the task of creating the declarative models for you. Providing an output file and a connections tring it is as easy as issuing:
 
-#+BEGIN_SRC shell
-sqlcodegen --outfile models.py mssql+pyodbc......
-#+END_SRC
+#+begin_src shell
+  sqlcodegen --outfile models.py mssql+pyodbc......
+#+end_src
 
 The resulting file can be easily imported and the this task promptly abstracted.
 
-** DONE Reading SQL Dumps with SQL Server management Studio :sql:Databases:
+** DONE Reading SQL Dumps with SQL Server management Studio   :sql:Databases:
 CLOSED: [2020-04-12 dom 10:58]
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2020-04-05-reading-sql-dumps-with-sql-management-studio
@@ -428,22 +434,20 @@ Figure 1.
 
 #+caption: SQL Express running instance
 #+name: img:sqlexpress
-#+label: img:sqlexpress
-[[/home/gtpedrosa/Projects/blog/hugo-blog/static/img/sqlexpress.png]]
+[[file:/home/gtpedrosa/Projects/blog/hugo-blog/static/img/sqlexpress.png]]
 
 As for #2 make sure to login using the system credentials as shown in Figure 2.
 
 #+caption: SQL Server login
 #+name: img:sqlserver
-#+label: img:sqlserver
-[[/home/gtpedrosa/Projects/blog/hugo-blog/static/img/sqlserver.png]]
+[[file:/home/gtpedrosa/Projects/blog/hugo-blog/static/img/sqlserver.png]]
 
 As for #3, if you are not admin the mdf file needs to be stored somewhere in the
  Public user profile so the SQLExpress instance is able to locate it.
 
-** DONE Building Emacs from source :emacs:source:
+** DONE Building Emacs from source                             :emacs:source:
 CLOSED: [2020-04-11 sáb 10:59]
-:PROPERTIES: 
+:PROPERTIES:
 :EXPORT_FILE_NAME: 2020-04-10-building-emacs-from-source-instructions
 :END:
 
@@ -451,33 +455,33 @@ Steps needed to install emacs locally, mantaining pre-existing installation inta
 
 - [[https://www.emacswiki.org/emacs/EmacsSnapshotAndDebian][Install dependencies:]]
 #+begin_src bash
-sudo apt-get install autoconf automake libtool texinfo build-essential xorg-dev libgtk-3-dev libjpeg-dev libncurses5-dev libdbus-1-dev libgif-dev libtiff-dev libm17n-dev libpng-dev librsvg2-dev libotf-dev libgnutls28-dev libxml2-dev libxpm-dev
+  sudo apt-get install autoconf automake libtool texinfo build-essential xorg-dev libgtk-3-dev libjpeg-dev libncurses5-dev libdbus-1-dev libgif-dev libtiff-dev libm17n-dev libpng-dev librsvg2-dev libotf-dev libgnutls28-dev libxml2-dev libxpm-dev
 #+end_src
 - [[https://www.gnu.org/software/emacs/download.html][Download emacs from a nearby mirror]]
 - Extract downloaded file. In this case it is /emacs-26.3.tar.xz/, and go to the extracted folder:
 #+begin_src bash
-cd ~/Downloads
-tar -xf emacs-26.3.tar.xz
-cd emacs-26.3.tar.xz
+  cd ~/Downloads
+  tar -xf emacs-26.3.tar.xz
+  cd emacs-26.3.tar.xz
 #+end_src
 - Run /configure/ setting the prefix to the local folder in home directory:
 #+begin_src bash
-./configure --with-mailutils --prefix="${HOME}/local"
+  ./configure --with-mailutils --prefix="${HOME}/local"
 #+end_src
 - Build the components and istall it:
 #+begin_src bash
-make
-make install
+  make
+  make install
 #+end_src
 
 To run it, issue:
 #+begin_src bash
-/home/local/bin/emacs
+  /home/local/bin/emacs
 #+end_src
 
 The local installation, if any, should still work normally.
 
-** DONE Upgrading an outdated Hugo template :hugo:
+** DONE Upgrading an outdated Hugo template                            :hugo:
 CLOSED: [2020-05-10 dom 18:04]
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2020-05-10-upgrading-an-outdated-hugo-template
@@ -503,7 +507,7 @@ First of all, running the dated theme with new hugo raised the following errors:
 
 #+caption: Running hugo serve on outdated template
 #+name: oldtemplate
-[[/home/gtpedrosa/Projects/blog/hugo-blog/static/img/hugo-warnings.png]]
+[[file:/home/gtpedrosa/Projects/blog/hugo-blog/static/img/hugo-warnings.png]]
 *Hugo serve warnings on outdated template*
 
 The first thing you may notice is that there is no mention to what part of the
@@ -513,7 +517,7 @@ warnings:
 
 #+caption: Finding out offending lines from hugo template
 #+name: greptemplate
-[[/home/gtpedrosa/Projects/blog/hugo-blog/static/img/hugo-warning-lines.png]]
+[[file:/home/gtpedrosa/Projects/blog/hugo-blog/static/img/hugo-warning-lines.png]]
 *Hugo warning files and lines*
 
 Just in case you are wondering here is a summary of the grep flags used:
@@ -531,11 +535,11 @@ However, what solved my issue was to read the docs [[https://gohugo.io/templates
 template should handle RSS. Replacing the bit using the /.RSSLink/ construct
 with the snippet below solved the issue.
 
-#+BEGIN_SRC html
-{{ with .OutputFormats.Get "rss" -}}
-    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-{{ end -}}
-#+END_SRC
+#+begin_src html
+  {{ with .OutputFormats.Get "rss" -}}
+      {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+  {{ end -}}
+#+end_src
 
 *** Page.URL is deprecated
 
@@ -555,9 +559,9 @@ This was the trickiest to fix. I ended up reading a little bit about [[https://g
 debug hugo templates.]] It so happens that after a couple of iterations printing
 some of the variables in the /index.html/ file with the synthax
 
-#+BEGIN_SRC html
-{{ printf "%#v" .Permalink }}
-#+END_SRC
+#+begin_src html
+  {{ printf "%#v" .Permalink }}
+#+end_src
 
 I found out /.Data.Pages/ as not yielding the right ammount of posts.
 Using /.Site.RegularPages/ did. I cannot find the exact resource which brought to
@@ -571,86 +575,86 @@ As final result the theme is working without any warnings on hugo v0.68.1.
 The changes applied to the theme are summarised by the git diff below. For more
 reasonable view just check [[https://github.com/gtpedrosa/cocoa-hugo-theme][my fork of the cocoa-hugo theme.]]
 
-#+BEGIN_SRC shell :results output
-cd /home/gtpedrosa/Projects/blog/hugo-blog/themes/cocoa/
-git diff c6e7 434d
-#+END_SRC
+#+begin_src shell :results output
+  cd /home/gtpedrosa/Projects/blog/hugo-blog/themes/cocoa/
+  git diff c6e7 434d
+#+end_src
 
-#+BEGIN_SRC shell
-diff --git a/layouts/_default/list.html b/layouts/_default/list.html
-index b2348a1..4490e6c 100644
---- a/layouts/_default/list.html
-+++ b/layouts/_default/list.html
-@@ -10,7 +10,7 @@
-             <nav class="section-items">
-                 <ul>
-                 {{ range .ByWeight }}
--                    <li><a {{ printf "href=%q" .URL | safeHTMLAttr }}>{{ default .Title .Params.heading }}</a></li>
-+                    <li><a {{ printf "href=%q" .Params.url | safeHTMLAttr }}>{{ default .Title .Params.heading }}</a></li>
-                 {{ end }}
-                 </ul>
-             </nav>
-diff --git a/layouts/index.html b/layouts/index.html
-index be3a722..7d6252d 100644
---- a/layouts/index.html
-+++ b/layouts/index.html
-@@ -7,12 +7,12 @@
-                     {{ .Content }}
-                 </div>
-             {{ end }}
--            {{ $totalpostscount := len (where .Data.Pages "Section" "blog") }}
-+            {{ $totalpostscount := len (where .Site.RegularPages "Section" "==" "blog") }}
-             {{ $latestpostscount := .Site.Params.latestpostscount | default $totalpostscount }}
-             {{ if gt $latestpostscount 0 }}
-                 <div class="page-heading">{{ i18n "latestPosts" }}</div>
-                 <ul>
--                    {{ range (first $latestpostscount (where .Data.Pages.ByPublishDate.Reverse "Section" "blog")) }}
-+                    {{ range (first $latestpostscount (where .Site.Pages.ByPublishDate.Reverse "Section" "blog")) }}
-                         {{ partial "li.html" . }}
-                     {{ end }}
-                     {{ if gt $totalpostscount $latestpostscount }}
-diff --git a/layouts/partials/head_includes.html b/layouts/partials/head_includes.html
-index 3c21e39..24723e2 100644
---- a/layouts/partials/head_includes.html
-+++ b/layouts/partials/head_includes.html
-@@ -51,9 +51,9 @@
- >
+#+begin_src shell
+  diff --git a/layouts/_default/list.html b/layouts/_default/list.html
+  index b2348a1..4490e6c 100644
+  --- a/layouts/_default/list.html
+  +++ b/layouts/_default/list.html
+  @@ -10,7 +10,7 @@
+               <nav class="section-items">
+                   <ul>
+                   {{ range .ByWeight }}
+  -                    <li><a {{ printf "href=%q" .URL | safeHTMLAttr }}>{{ default .Title .Params.heading }}</a></li>
+  +                    <li><a {{ printf "href=%q" .Params.url | safeHTMLAttr }}>{{ default .Title .Params.heading }}</a></li>
+                   {{ end }}
+                   </ul>
+               </nav>
+  diff --git a/layouts/index.html b/layouts/index.html
+  index be3a722..7d6252d 100644
+  --- a/layouts/index.html
+  +++ b/layouts/index.html
+  @@ -7,12 +7,12 @@
+                       {{ .Content }}
+                   </div>
+               {{ end }}
+  -            {{ $totalpostscount := len (where .Data.Pages "Section" "blog") }}
+  +            {{ $totalpostscount := len (where .Site.RegularPages "Section" "==" "blog") }}
+               {{ $latestpostscount := .Site.Params.latestpostscount | default $totalpostscount }}
+               {{ if gt $latestpostscount 0 }}
+                   <div class="page-heading">{{ i18n "latestPosts" }}</div>
+                   <ul>
+  -                    {{ range (first $latestpostscount (where .Data.Pages.ByPublishDate.Reverse "Section" "blog")) }}
+  +                    {{ range (first $latestpostscount (where .Site.Pages.ByPublishDate.Reverse "Section" "blog")) }}
+                           {{ partial "li.html" . }}
+                       {{ end }}
+                       {{ if gt $totalpostscount $latestpostscount }}
+  diff --git a/layouts/partials/head_includes.html b/layouts/partials/head_includes.html
+  index 3c21e39..24723e2 100644
+  --- a/layouts/partials/head_includes.html
+  +++ b/layouts/partials/head_includes.html
+  @@ -51,9 +51,9 @@
+   >
 
- <!-- RSS -->
--{{ if .RSSLink }}
--  <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
--{{ end }}
-+{{ with .OutputFormats.Get "rss" -}}
-+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-+{{ end -}}
+   <!-- RSS -->
+  -{{ if .RSSLink }}
+  -  <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+  -{{ end }}
+  +{{ with .OutputFormats.Get "rss" -}}
+  +    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+  +{{ end -}}
 
- <!-- gitalk -->
- {{ if .Site.Params.gitalk }}
-diff --git a/layouts/partials/staticman/form-comments.html b/layouts/partials/staticman/form-comments.html
-index 91067df..544301c 100644
---- a/layouts/partials/staticman/form-comments.html
-+++ b/layouts/partials/staticman/form-comments.html
-@@ -1,6 +1,6 @@
- <form method="POST" action="https://api.staticman.net/v2/entry/{{ .Site.Params.staticman.username }}/{{ .Site.Params.staticman.repository }}/{{ .Site.Params.staticman.branch }}/">
-     <input type="hidden" name="options[redirect]" value="{{ .Permalink }}#comment-submitted">
--    <input type="hidden" name="options[entryId]" value="{{ .UniqueID }}">
-+    <input type="hidden" name="options[entryId]" value="{{ .File.UniqueID }}">
-     <input name="fields[name]" type="text" placeholder="Your name">
-     <input name="fields[email]" type="email" placeholder="Your email address">
-     <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
-diff --git a/layouts/partials/staticman/show-comments.html b/layouts/partials/staticman/show-comments.html
-index bba3b5c..d7ff90e 100644
---- a/layouts/partials/staticman/show-comments.html
-+++ b/layouts/partials/staticman/show-comments.html
-@@ -1,6 +1,6 @@
-  {{ $comments := readDir "data/comments" }}
-  {{ $.Scratch.Add "hasComments" 0 }}
-- {{ $entryId := .UniqueID }}
-+ {{ $entryId := .File.UniqueID }}
+   <!-- gitalk -->
+   {{ if .Site.Params.gitalk }}
+  diff --git a/layouts/partials/staticman/form-comments.html b/layouts/partials/staticman/form-comments.html
+  index 91067df..544301c 100644
+  --- a/layouts/partials/staticman/form-comments.html
+  +++ b/layouts/partials/staticman/form-comments.html
+  @@ -1,6 +1,6 @@
+   <form method="POST" action="https://api.staticman.net/v2/entry/{{ .Site.Params.staticman.username }}/{{ .Site.Params.staticman.repository }}/{{ .Site.Params.staticman.branch }}/">
+       <input type="hidden" name="options[redirect]" value="{{ .Permalink }}#comment-submitted">
+  -    <input type="hidden" name="options[entryId]" value="{{ .UniqueID }}">
+  +    <input type="hidden" name="options[entryId]" value="{{ .File.UniqueID }}">
+       <input name="fields[name]" type="text" placeholder="Your name">
+       <input name="fields[email]" type="email" placeholder="Your email address">
+       <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
+  diff --git a/layouts/partials/staticman/show-comments.html b/layouts/partials/staticman/show-comments.html
+  index bba3b5c..d7ff90e 100644
+  --- a/layouts/partials/staticman/show-comments.html
+  +++ b/layouts/partials/staticman/show-comments.html
+  @@ -1,6 +1,6 @@
+    {{ $comments := readDir "data/comments" }}
+    {{ $.Scratch.Add "hasComments" 0 }}
+  - {{ $entryId := .UniqueID }}
+  + {{ $entryId := .File.UniqueID }}
 
-  {{ range $comments }}
-    {{ if eq .Name $entryId }}
-#+END_SRC
+    {{ range $comments }}
+      {{ if eq .Name $entryId }}
+#+end_src
 
 ** DONE Moving files on windows with python: shutil alternative
 CLOSED: [2020-05-17 dom 11:20]
@@ -671,33 +675,140 @@ The solution I came up, however, was switching to Windows Robust File Copy utili
 transfer on the command line, which was handy at this particular time. The
 solution looks like the following:
 
-#+BEGIN_SRC python
-import time
-import os
+#+begin_src python
+  import time
+  import os
 
-source = '\\source\\folder'
-target = '\\target\\folder'
+  source = '\\source\\folder'
+  target = '\\target\\folder'
 
-while True:
-    for filename in os.listdir(source):
-        os.system('Robocopy "%s" "%s" "%s" /MOV' %
-                  (source, target, filename))
-    time.sleep(300)
-#+END_SRC
+  while True:
+      for filename in os.listdir(source):
+          os.system('Robocopy "%s" "%s" "%s" /MOV' %
+                    (source, target, filename))
+      time.sleep(300)
+#+end_src
 
 The python usage was only necessary to periodically move incoming files, keeping HD usage controlled.
 
-#+BEGIN_QUOTE
+#+begin_quote
 **Attention:** Do not use ~/MOVE~ unless you want the folder structure to be
   moved as well. ~/MOV~ will keep the folder structure intact, moving only the
   files targeted.
-#+END_QUOTE
+#+end_quote
 
 Later I have found out you can manage to adjust buffer size directly
 without modifying the source code directly [[https://blogs.blumetech.com/blumetechs-tech-blog/2011/05/faster-python-file-copy.html][[3]​]]. I will keep that in mind for the
 next time.
 
+** DONE Setting up a Data Science local environment without administrative rights on Windows :data:science:windows:R:Python:Git:editors:IDE:
+CLOSED: [2020-06-07 dom 18:24]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2020-06-07-data-science-local-environment-without-administrative-rights-on-windows
+:END:
 
+Installing any program on ~C:\Program Files~, Windows default installation folder, requires administrative rights. It is possible, however, to install programs on the ~HOME~ folder without any special permissions. The default ~HOME~ path is set to ~C:\Users\yourusername\~ and can be accessed by typing ~%HOME%~ on the address bar. I have found this approach makes it possible to have some autonomy from the IT department without compromising security.
+
+Using this approach, the softwares will run just fine without any customization. One caveat, however, is that some set up is needed in order to make them interact with one another properly. 
+
+The following list is a personal preference related to the tools used to perform the data science tasks I found easiest to setup without administrative (admin) rights and how to make them work without any problems.
+
+*** Softwares
+
+The main softwares I use are listed below:
+
+- **Languages:** I use R mainly for data exploration/prototyping and Python for solution development. Bear in mind, however, that you can get some mileage with R exclusively depending on the need;
+- **Editors:** I have installed notepad++, vim, emacs and Sublime Text 3. I end up using notepad++ for quick inspections of files, emacs for orgmode exclusively and Sublime for all my Python needs;
+- **IDEs:** Why an IDE if you have a bunch of editors you might ask. Well, I find the experience of using RStudio for data explorations using R very well streamlined. Packaging works, I can do literate programming and weave the code into reports that work as an engineering memorandum and a reference for my future self or present analysis results;
+- **VCS:** Git, indispensable in the analysis workflow and necessary to expand the toolbox set by pulling packages;
+
+*** Configuration
+**** Portable Programs
+
+[[https://www.sublimetext.com/3][Sublime Editor]], [[https://git-scm.com/download/win][Git]], [[https://cran.r-project.org/bin/windows/base/][R]], [[https://rstudio.com/products/rstudio/download/][RStudio]] and [[https://www.python.org/downloads/windows/][Python]] all have portable versions, which do not require any installation. If not, they allow you to proceed with the installation process selecting a folder of your choice, such as ~HOME~.
+
+The downfall of this installation process is that none of the above programs will be on the system path, nor they will be available through the command line. Here is where the ~aliases.cmd~ comes in.
+
+**** aliases.cmd
+
+To make a program available system wide, it's path should be appended to the ~PATH~ variable. Unfortunately, doing this permanently is also a privileged operation. It is possible however, to append the new paths every time you start a terminal for instance. To accomplish this, you can take the following approach, borrowed from [[https://stackoverflow.com/questions/20530996/aliases-in-windows-command-prompt][this SO answer]]: 
+
+1. Create a .bat or .cmd file with your DOSKEY commands.
+2. Run regedit and go to HKEY_CURRENT_USER\Software\Microsoft\Command Processor
+3. Add String Value entry with the name AutoRun and the full path of your .bat/.cmd file.
+ 
+In my case, I have created a ~alias.cmd~ file in my ~HOME~ folder. The file is reproduced below:
+
+   #+begin_src cmd
+  @echo off
+
+  :: Temporary system path at cmd startup
+
+  set PATH=%PATH%;
+
+  :: Commands
+
+  DOSKEY ls=dir /B
+  DOSKEY npp="C:\Users\yourusername\npp\notepad++.exe"
+  DOSKEY alias=notepad %USERPROFILE%\alias.cmd
+  DOSKEY vim="C:\Users\yourusername\Vim\vim81\gvim.exe"
+  DOSKEY p1=cd "C:\Users\yourusername\p1" ^& "venv\Scripts\activate"
+  DOSKEY va="venv\Scripts\activate"
+  DOSKEY vd="venv\Scripts\deactivate"
+
+  set curldir="C:\Users\yourusername\curl\bin\curl.exe"
+  set gitdir="C:\Users\yourusername\PortableGit\cmd"
+  set jupyterdir="C:\Users\yourusername\appdata\local\programs\python\python37\Scripts"
+  set subldir="C:\Users\yourusername\Sublime"
+  set rcdir="C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x64"
+  set bashesdir="C:\Users\yourusername\bashes"
+  set cmakedir="C:\Users\yourusername\cmake\bin"
+
+  set pythonpath="C:\Users\yourusername\AppData\Local\Programs\Python\Python37"
+  set pythonscripts="C:\Users\yourusername\AppData\Local\Programs\Python\Python37\Scripts"
+  set rdir="C:\Users\yourusername\R\R-3.5.1\bin"
+  set PATH=%curldir%;%gitdir%;%cmakedir%;%pythonpath%;%pythonscripts%;%subldir%;%rcdir%;%bashesdir%;%rdir%;%PATH%
+  #+end_src
+
+Some interesting points about this configuration:
+
+- Typing ~alias~ in the terminal brings me to the file above so I can tweak it easily;
+- Part of my workflow with python relies on using virtual environments. I have a standardized name for my virtual environments which is ~venv~. Therefore, I alieased the actiavtion/deactivation from the project root to ~va~ and ~vd~. This works across all my projects;
+- Usual projects received their own aliases, such as the ~p1~ example;
+- Python, Git, curl and R could are appended to the system path;
+
+Now, either running a new terminal or executing the software, you should feel no difference in usage regardless of how/where the tools were installed.
+
+*** Failures
+
+This blog post would not be complete if I did not talk about the things i could **not** get to work. 
+
+**** WSL
+I have previously used Windows Subsystem for Linux (WSL) with success for personal projects. In fact, I believe that the [[https://nickjanetakis.com/blog/a-linux-dev-environment-on-windows-with-wsl-docker-tmux-and-vscode][setup proposed]] by Nick Janetakis is great. However, even asking for a privileged user to install and enable the WSL, I could not get it running with my unprivileged user. 
+**** Docker
+Similarly to what happened to the WSL, I have also tried to make docker available without any success. It seemed that all the changes made by a privileged user did not persist when I tried to use the installed software with my unprivileged credentials. 
+**** Apache airflow
+Apache airflow could not be installed without a admin rights. 
+
+In fact it should, but I did not have Microsoft Visual C++ Build Tools in my system, as per the error below.
+
+#+begin_quote
+error: Microsoft Visual C++ 14.0 is required. Get it with "Microsoft Visual C++ Build Tools": https://visualstudio.microsoft.com/downloads/
+#+end_quote
+
+Since it was not a pre requesite for my projects, I have not investigated any further.
+
+**** MikTex
+I still have not figured out how to properly set MikTex to R's path. Miktex has a portable edition that can be downloaded from [[https://miktex.org/download][MikTex download page]]. As of now, weaving documents to pdf are still unavailale in my system and will require further integration.
+
+*** Closing Notes
+
+This is a simple, yet useful standard of tools and ways of operating with them. It should be noted:
+
+- I have not been working with tools for front-end, but did have npm installed recently to make slide decks with [[https://revealjs.com/][reveal.js]] using the same approach;
+- My analysis are not really considered data-heavy. In the cases where they were more intensive, relying on libraries such as [[https://diskframe.com/][diskframe]] or caches worked fine;
+
+Let me know if you managed to get WSL, docker or Miktex working, or have a set-up willing to share.
 ** TODO Retrieving music sheet off midi visualizer in youtube videos using opencv part 1
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2019-01-15-retrieving-music-sheet-off-midi-visualizer-in-youtube-videos-using-opencv
@@ -735,13 +846,13 @@ Docker to ease the pain. Reason in the next session.
 OpenCV is written in C++ and I found it's installation everything but straightforward. Even with the excellent aid of [[https://www.pyimagesearch.com/2018/08/15/how-to-install-opencv-4-on-ubuntu/][Adrian Rosenbrock's tutorial]], I could not execute a simple:
 
 #+begin_src python
-import cv2
+  import cv2
 #+end_src
 
 without a "ModuleNotFoundError: No module named 'cv2'". I tried many alternatives swith no success. This led me to download a Docker image and skip this problem altogether. The second image on dockerhub did the trick. The author Josip Janzic hosts it on github ([[https://github.com/janza/docker-python3-opencv][link here]]). It has a more recent version of python and opencv than the first image as of today's date. To get started just issue:
 
 #+begin_src python
-docker run -it jjanzic/docker-python3-opencv python
+  docker run -it jjanzic/docker-python3-opencv python
 #+end_src
 
 And a working environment with opencv installed will be downloaded from dockerhub if a local image is not present. Needless to say you need to have Docker installed.
@@ -749,7 +860,7 @@ And a working environment with opencv installed will be downloaded from dockerhu
 Since I've made a minor modification in the original Dockerfile, I had to rebuild the image and renamed it for this project:
 
 #+begin_src python
-docker build -t vis_enc .
+  docker build -t vis_enc .
 #+end_src
 
 But nothing is perfect and while I was eager to try out some code, I got stuck with the following error:
@@ -765,115 +876,9 @@ Here's the screenshot used for this experiment:
 
 #+caption: Piano keystrokes. In blue, right hand, in green the left hand.
 #+name: bgkeys
-[[/home/guilherme/blog/static/img/bgkeys.png]]
+[[file:/home/guilherme/blog/static/img/bgkeys.png]]
 *Right hand in green and left hand in blue*
 
-** TODO DS setup without admin rights on windows
-:PROPERTIES:
-:EXPORT_FILE_NAME: 2020-04-05-ds-setuo-wo-admin-rights-windows
-:END:
-*** Strategy
-Installing any program on "C:\Program Files", Windows default installation folder, requires admin rights. To bypass this, an easy workarround is to install programs on "HOME" folder. It is usually "C:\Users\yourusername\" and can be accessed by typing ~%HOME%~ on the address bar.
-
-Many programs will work out just fine without any customization. However some programs will need to be set up in order to iteract with each other. The following list is a personal preference related to the tools realted to DS tasks I found easiest to setup without admin rights.
-*** Alias
-#+BEGIN_SRC cmd
-@echo off
-
-:: RESOURCES:
-::
-:: Curl download:
-:: https://bintray.com/vszakats/generic/curl/
-::
-:: CMD aliases:
-:: https://stackoverflow.com/questions/20530996/aliases-in-windows-command-prompt
-:: You may make the alias(es) persistent with the following steps,
-::
-:: 1. Create a .bat or .cmd file with your DOSKEY commands.
-:: 2. Run regedit and go to HKEY_CURRENT_USER\Software\Microsoft\Command Processor
-:: 3. Add String Value entry with the name AutoRun and the full path of your .bat/.cmd file.
-::
-::  For example, %USERPROFILE%\alias.cmd, replacing the initial segment of the path with %USERPROFILE% is useful for :: syncing ::among multiple machines.
-::
-:: This way, every time cmd is run, the aliases are loaded.
-::
-:: Python download:
-:: https://www.python.org/downloads/release/python-370/
-:: Windows x86-64 executable installer
-::
-:: R and RSTudio:
-:: https://rpubs.com/tomhopper/windows_nonadmin_install
-
-:: Temporary system path at cmd startup
-
-set PATH=%PATH%;
-
-:: Commands
-
-DOSKEY ls=dir /B
-DOSKEY npp="C:\Users\guilhermetmcp\npp\notepad++.exe"
-DOSKEY alias=notepad %USERPROFILE%\alias.cmd
-DOSKEY vim="C:\Users\guilhermetmcp\Vim\vim81\gvim.exe"
-DOSKEY mfe=cd "C:\Users\guilhermetmcp\mfe" ^& "venv\Scripts\activate"
-DOSKEY qa=cd "C:\Users\guilhermetmcp\quality" ^& "venv\Scripts\activate"
-DOSKEY va="venv\Scripts\activate"
-DOSKEY vd="venv\Scripts\deactivate"
-
-set curldir="C:\Users\guilhermetmcp\curl\bin\curl.exe"
-set gitdir="C:\Users\guilhermetmcp\PortableGit\cmd"
-set jupyterdir="C:\users\guilhermetmcp\appdata\local\programs\python\python37\Scripts"
-set subldir="C:\Users\guilhermetmcp\Sublime"
-set rcdir="C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x64"
-set bashesdir="C:\Users\guilhermetmcp\bashes"
-set cmakedir="C:\Users\guilhermetmcp\cmake\bin"
-
-set pythonpath="C:\Users\guilhermetmcp\AppData\Local\Programs\Python\Python37"
-set pythonscripts="C:\Users\guilhermetmcp\AppData\Local\Programs\Python\Python37\Scripts"
-set rdir="C:\Users\guilhermetmcp\R\R-3.5.1\bin"
-set PATH=%curldir%;%gitdir%;%cmakedir%;%pythonpath%;%pythonscripts%;%subldir%;%rcdir%;%bashesdir%;%rdir%;%PATH%
-#+END_SRC
-*** Sublime
-*** Git
-*** R
-*** RStudio
-*** MikTex
-Miktex has a portable edition.  Download it from [[https://miktex.org/download][MikTex download page]] and unzip it to you "HOME" folder. Once MikTex is there, it is time to make RStudio find it otherwise Sweaving documents to pdf will be unavailale.
-*** Python
-It is possible to download the excutable
-**** Apache airflow
-Apache airflow could not be installed without a admin rights. In fact it should, but I did not have Microsoft Visual C++ Build Tools in my system, as per the error below.
-
-#+BEGIN_QUOTE
- error: Microsoft Visual C++ 14.0 is required. Get it with "Microsoft Visual C++ Build Tools": https://visualstudio.microsoft.com/downloads/
-#+END_QUOTE
-
-However, having this sorted out was not enough. The following error plagued me:
-
-#+BEGIN_QUOTE
-error: command 'C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\BIN\\x86_amd64\\link.exe' failed with exit status 1158
-#+END_QUOTE
-
-Basically it meant that ~link.exe~ could not find ~rc.exe~ (go figure...). So I promptly inserted it in my alias path:
-
-#+BEGIN_SRC cmd
-set rcdir="C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x64"
-#+END_SRC
-
-After all this process, the taste of success:
-
-#+BEGIN_SRC sh
-Installing collected packages: setproctitle, apache-airflow
-Successfully installed apache-airflow-1.10.2 setproctitle-1.1.10
-#+END_SRC
-
-*** IPython
-
-The first error was "ModuleNotFoundError: No module named 'ipykernel'", solved with ~pip install ipykernel~.
-
-
-Ipython ~%matplotlib inline~ did not work out of the box. It threw an error ~No event loop integration for 'inline'. Supported event loops are: qt, qt4, qt5, gtk, gtk2, gtk3, tk, wx, pyglet, glut, osx~ related to the backend available to display the images.
-
-To solve this error I just installed ~PyQt5~ via pip and issued ~%matplotlib qt~ as an alternative to ~inline~. Note it is necessary ot have the ~ipykernel~ also installed via pip prior to ~PyQt5~ installation.
 * Footnotes
 * COMMENT Local Variables                          :ARCHIVE:
 # Local Variables:
