@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Setting up a Data Science local environment without administrative rights on Windows</title>
+      <link>https://gtpedrosa.github.io/blog/setting-up-a-data-science-local-environment-without-administrative-rights-on-windows/</link>
+      <pubDate>Sun, 07 Jun 2020 18:24:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/setting-up-a-data-science-local-environment-without-administrative-rights-on-windows/</guid>
+      <description>Installing any program on C:\Program Files, Windows default installation folder, requires administrative rights. It is possible, however, to install programs on the HOME folder without any special permissions. The default HOME path is set to C:\Users\yourusername\ and can be accessed by typing %HOME% on the address bar. I have found this approach makes it possible to have some autonomy from the IT department without compromising security.
+Using this approach, the softwares will run just fine without any customization.</description>
+    </item>
+    
+    <item>
       <title>Moving files on windows with python: shutil alternative</title>
       <link>https://gtpedrosa.github.io/blog/moving-files-on-windows-with-python-shutil-alternative/</link>
       <pubDate>Sun, 17 May 2020 11:20:00 -0300</pubDate>

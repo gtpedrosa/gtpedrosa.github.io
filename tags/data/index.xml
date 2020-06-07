@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>data on Guilherme Pedrosa</title>
+    <link>https://gtpedrosa.github.io/tags/data/</link>
+    <description>Recent content in data on Guilherme Pedrosa</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 07 Jun 2020 18:24:00 -0300</lastBuildDate>
+    
+	<atom:link href="https://gtpedrosa.github.io/tags/data/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Setting up a Data Science local environment without administrative rights on Windows</title>
+      <link>https://gtpedrosa.github.io/blog/setting-up-a-data-science-local-environment-without-administrative-rights-on-windows/</link>
+      <pubDate>Sun, 07 Jun 2020 18:24:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/setting-up-a-data-science-local-environment-without-administrative-rights-on-windows/</guid>
+      <description>Installing any program on C:\Program Files, Windows default installation folder, requires administrative rights. It is possible, however, to install programs on the HOME folder without any special permissions. The default HOME path is set to C:\Users\yourusername\ and can be accessed by typing %HOME% on the address bar. I have found this approach makes it possible to have some autonomy from the IT department without compromising security.
+Using this approach, the softwares will run just fine without any customization.</description>
+    </item>
+    
+  </channel>
+</rss>

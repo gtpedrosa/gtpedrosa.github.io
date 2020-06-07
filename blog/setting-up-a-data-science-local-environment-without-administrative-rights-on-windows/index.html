@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Guilherme Pedrosa">
+<meta name="description" content="Installing any program on C:\Program Files, Windows default installation folder, requires administrative rights. It is possible, however, to install programs on the HOME folder without any special permissions. The default HOME path is set to C:\Users\yourusername\ and can be accessed by typing %HOME% on the address bar. I have found this approach makes it possible to have some autonomy from the IT department without compromising security.
+Using this approach, the softwares will run just fine without any customization.">
+
+<meta property="og:title" content="Setting up a Data Science local environment without administrative rights on Windows" />
+<meta property="og:description" content="Installing any program on C:\Program Files, Windows default installation folder, requires administrative rights. It is possible, however, to install programs on the HOME folder without any special permissions. The default HOME path is set to C:\Users\yourusername\ and can be accessed by typing %HOME% on the address bar. I have found this approach makes it possible to have some autonomy from the IT department without compromising security.
+Using this approach, the softwares will run just fine without any customization." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/setting-up-a-data-science-local-environment-without-administrative-rights-on-windows/" />
+<meta property="article:published_time" content="2020-06-07T18:24:00-03:00" />
+<meta property="article:modified_time" content="2020-06-07T18:24:00-03:00" />
+
+
+<title>
+
+
+     Setting up a Data Science local environment without administrative rights on Windows 
+
+</title>
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/setting-up-a-data-science-local-environment-without-administrative-rights-on-windows/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2020-06-07%2021%3a30%3a35.821137084%20%2b0000%20UTC%20m%3d%2b0.122994181">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2020-06-07%2021%3a30%3a35.821137084%20%2b0000%20UTC%20m%3d%2b0.122994181">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2020-06-07%2021%3a30%3a35.821137084%20%2b0000%20UTC%20m%3d%2b0.122994181">
+    
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2020-06-07%2021%3a30%3a35.821137084%20%2b0000%20UTC%20m%3d%2b0.122994181">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://gtpedrosa.github.io/img/leaf.ico"
+
+>
+
+
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="https://gtpedrosa.github.io/"><img class="avatar" src="https://gtpedrosa.github.io/img/profile.png" srcset="https://gtpedrosa.github.io/img/profile.png 1x"></a>
+            
+            <a href="https://gtpedrosa.github.io/"><div class="name">Guilherme Pedrosa</div></a>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="https://gtpedrosa.github.io/blog/"><span>Blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="https://gtpedrosa.github.io/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-projects"><a href="https://gtpedrosa.github.io/projects/"><span>Projects</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/github.svg" alt="github" /></a>
+        
+
+        
+            <a href="//twitter.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/twitter.svg" alt="twitter" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/guilherme-pedrosa-73213aa0/" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+            
+        
+
+        
+
+        
+            <a href="mailto:guilherme.pedrosa@gmail.com"><img class="icon" src="https://gtpedrosa.github.io/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="https://gtpedrosa.github.io/index.xml"><img class="icon" src="https://gtpedrosa.github.io/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Setting up a Data Science local environment without administrative rights on Windows
+
+</div>
+
+                    <div class="initials"><a href="https://gtpedrosa.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Sun Jun 7 2020 18:24:00 -0300'>Jun 7, 2020</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>5 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                <p>Installing any program on <code>C:\Program Files</code>, Windows default installation folder, requires administrative rights. It is possible, however, to install programs on the <code>HOME</code> folder without any special permissions. The default <code>HOME</code> path is set to <code>C:\Users\yourusername\</code> and can be accessed by typing <code>%HOME%</code> on the address bar. I have found this approach makes it possible to have some autonomy from the IT department without compromising security.</p>
+<p>Using this approach, the softwares will run just fine without any customization. One caveat, however, is that some set up is needed in order to make them interact with one another properly.</p>
+<p>The following list is a personal preference related to the tools used to perform the data science tasks I found easiest to setup without administrative (admin) rights and how to make them work without any problems.</p>
+<h2 id="softwares">Softwares</h2>
+<p>The main softwares I use are listed below:</p>
+<ul>
+<li><strong><strong>Languages:</strong></strong> I use R mainly for data exploration/prototyping and Python for solution development. Bear in mind, however, that you can get some mileage with R exclusively depending on the need;</li>
+<li><strong><strong>Editors:</strong></strong> I have installed notepad++, vim, emacs and Sublime Text 3. I end up using notepad++ for quick inspections of files, emacs for orgmode exclusively and Sublime for all my Python needs;</li>
+<li><strong><strong>IDEs:</strong></strong> Why an IDE if you have a bunch of editors you might ask. Well, I find the experience of using RStudio for data explorations using R very well streamlined. Packaging works, I can do literate programming and weave the code into reports that work as an engineering memorandum and a reference for my future self or present analysis results;</li>
+<li><strong><strong>VCS:</strong></strong> Git, indispensable in the analysis workflow and necessary to expand the toolbox set by pulling packages;</li>
+</ul>
+<h2 id="configuration">Configuration</h2>
+<h3 id="portable-programs">Portable Programs</h3>
+<p><a href="https://www.sublimetext.com/3">Sublime Editor</a>, <a href="https://git-scm.com/download/win">Git</a>, <a href="https://cran.r-project.org/bin/windows/base/">R</a>, <a href="https://rstudio.com/products/rstudio/download/">RStudio</a> and <a href="https://www.python.org/downloads/windows/">Python</a> all have portable versions, which do not require any installation. If not, they allow you to proceed with the installation process selecting a folder of your choice, such as <code>HOME</code>.</p>
+<p>The downfall of this installation process is that none of the above programs will be on the system path, nor they will be available through the command line. Here is where the <code>aliases.cmd</code> comes in.</p>
+<h3 id="aliases-dot-cmd">aliases.cmd</h3>
+<p>To make a program available system wide, it&rsquo;s path should be appended to the <code>PATH</code> variable. Unfortunately, doing this permanently is also a privileged operation. It is possible however, to append the new paths every time you start a terminal for instance. To accomplish this, you can take the following approach, borrowed from <a href="https://stackoverflow.com/questions/20530996/aliases-in-windows-command-prompt">this SO answer</a>:</p>
+<ol>
+<li>Create a .bat or .cmd file with your DOSKEY commands.</li>
+<li>Run regedit and go to HKEY_CURRENT_USER\Software\Microsoft\Command Processor</li>
+<li>Add String Value entry with the name AutoRun and the full path of your .bat/.cmd file.</li>
+</ol>
+<p>In my case, I have created a <code>alias.cmd</code> file in my <code>HOME</code> folder. The file is reproduced below:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cmd" data-lang="cmd"><span class="p">@</span><span class="k">echo</span> off
+
+<span class="p">:</span><span class="c1">: Temporary system path at cmd startup</span>
+
+<span class="k">set</span> <span class="nv">PATH</span><span class="p">=</span><span class="nv">%PATH%</span>;
+
+<span class="p">:</span><span class="c1">: Commands</span>
+
+DOSKEY ls=dir /B
+DOSKEY npp=<span class="s2">&#34;C:\Users\yourusername\npp\notepad++.exe&#34;</span>
+DOSKEY alias=notepad <span class="nv">%USERPROFILE%</span>\alias.cmd
+DOSKEY vim=<span class="s2">&#34;C:\Users\yourusername\Vim\vim81\gvim.exe&#34;</span>
+DOSKEY p1=cd <span class="s2">&#34;C:\Users\yourusername\p1&#34;</span> <span class="se">^&amp;</span> <span class="s2">&#34;venv\Scripts\activate&#34;</span>
+DOSKEY va=<span class="s2">&#34;venv\Scripts\activate&#34;</span>
+DOSKEY vd=<span class="s2">&#34;venv\Scripts\deactivate&#34;</span>
+
+<span class="k">set</span> <span class="nv">curldir</span><span class="p">=</span><span class="s2">&#34;C:\Users\yourusername\curl\bin\curl.exe&#34;</span>
+<span class="k">set</span> <span class="nv">gitdir</span><span class="p">=</span><span class="s2">&#34;C:\Users\yourusername\PortableGit\cmd&#34;</span>
+<span class="k">set</span> <span class="nv">jupyterdir</span><span class="p">=</span><span class="s2">&#34;C:\Users\yourusername\appdata\local\programs\python\python37\Scripts&#34;</span>
+<span class="k">set</span> <span class="nv">subldir</span><span class="p">=</span><span class="s2">&#34;C:\Users\yourusername\Sublime&#34;</span>
+<span class="k">set</span> <span class="nv">rcdir</span><span class="p">=</span><span class="s2">&#34;C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x64&#34;</span>
+<span class="k">set</span> <span class="nv">bashesdir</span><span class="p">=</span><span class="s2">&#34;C:\Users\yourusername\bashes&#34;</span>
+<span class="k">set</span> <span class="nv">cmakedir</span><span class="p">=</span><span class="s2">&#34;C:\Users\yourusername\cmake\bin&#34;</span>
+
+<span class="k">set</span> <span class="nv">pythonpath</span><span class="p">=</span><span class="s2">&#34;C:\Users\yourusername\AppData\Local\Programs\Python\Python37&#34;</span>
+<span class="k">set</span> <span class="nv">pythonscripts</span><span class="p">=</span><span class="s2">&#34;C:\Users\yourusername\AppData\Local\Programs\Python\Python37\Scripts&#34;</span>
+<span class="k">set</span> <span class="nv">rdir</span><span class="p">=</span><span class="s2">&#34;C:\Users\yourusername\R\R-3.5.1\bin&#34;</span>
+<span class="k">set</span> <span class="nv">PATH</span><span class="p">=</span><span class="nv">%curldir%</span>;<span class="nv">%gitdir%</span>;<span class="nv">%cmakedir%</span>;<span class="nv">%pythonpath%</span>;<span class="nv">%pythonscripts%</span>;<span class="nv">%subldir%</span>;<span class="nv">%rcdir%</span>;<span class="nv">%bashesdir%</span>;<span class="nv">%rdir%</span>;<span class="nv">%PATH%</span>
+</code></pre></div><p>Some interesting points about this configuration:</p>
+<ul>
+<li>Typing <code>alias</code> in the terminal brings me to the file above so I can tweak it easily;</li>
+<li>Part of my workflow with python relies on using virtual environments. I have a standardized name for my virtual environments which is <code>venv</code>. Therefore, I alieased the actiavtion/deactivation from the project root to <code>va</code> and <code>vd</code>. This works across all my projects;</li>
+<li>Usual projects received their own aliases, such as the <code>p1</code> example;</li>
+<li>Python, Git, curl and R could are appended to the system path;</li>
+</ul>
+<p>Now, either running a new terminal or executing the software, you should feel no difference in usage regardless of how/where the tools were installed.</p>
+<h2 id="failures">Failures</h2>
+<p>This blog post would not be complete if I did not talk about the things i could <strong><strong>not</strong></strong> get to work.</p>
+<h3 id="wsl">WSL</h3>
+<p>I have previously used Windows Subsystem for Linux (WSL) with success for personal projects. In fact, I believe that the <a href="https://nickjanetakis.com/blog/a-linux-dev-environment-on-windows-with-wsl-docker-tmux-and-vscode">setup proposed</a> by Nick Janetakis is great. However, even asking for a privileged user to install and enable the WSL, I could not get it running with my unprivileged user.</p>
+<h3 id="docker">Docker</h3>
+<p>Similarly to what happened to the WSL, I have also tried to make docker available without any success. It seemed that all the changes made by a privileged user did not persist when I tried to use the installed software with my unprivileged credentials.</p>
+<h3 id="apache-airflow">Apache airflow</h3>
+<p>Apache airflow could not be installed without a admin rights.</p>
+<p>In fact it should, but I did not have Microsoft Visual C++ Build Tools in my system, as per the error below.</p>
+<blockquote>
+<p>error: Microsoft Visual C++ 14.0 is required. Get it with &ldquo;Microsoft Visual C++ Build Tools&rdquo;: <a href="https://visualstudio.microsoft.com/downloads/">https://visualstudio.microsoft.com/downloads/</a></p>
+</blockquote>
+<p>Since it was not a pre requesite for my projects, I have not investigated any further.</p>
+<h3 id="miktex">MikTex</h3>
+<p>I still have not figured out how to properly set MikTex to R&rsquo;s path. Miktex has a portable edition that can be downloaded from <a href="https://miktex.org/download">MikTex download page</a>. As of now, weaving documents to pdf are still unavailale in my system and will require further integration.</p>
+<h2 id="closing-notes">Closing Notes</h2>
+<p>This is a simple, yet useful standard of tools and ways of operating with them. It should be noted:</p>
+<ul>
+<li>I have not been working with tools for front-end, but did have npm installed recently to make slide decks with <a href="https://revealjs.com/">reveal.js</a> using the same approach;</li>
+<li>My analysis are not really considered data-heavy. In the cases where they were more intensive, relying on libraries such as <a href="https://diskframe.com/">diskframe</a> or caches worked fine;</li>
+</ul>
+<p>Let me know if you managed to get WSL, docker or Miktex working, or have a set-up willing to share.</p>
+
+                <br>
+		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+            <form method="POST" action="https://api.staticman.net/v2/entry////">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/setting-up-a-data-science-local-environment-without-administrative-rights-on-windows/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="a237524c1707e7f8a95eb933665651a3">
+    <input name="fields[name]" type="text" placeholder="Your name">
+    <input name="fields[email]" type="email" placeholder="Your email address">
+    <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
+    <input type="submit" value="Submit">
+</form>
+
+
+  	     
+ 
+ 
+
+ 
+   
+ 
+
+ 
+   <p>Hey, be the first who comment this article.</p>
+ 
+
+            
+        </div>
+    </div>
+</section>
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-93472104-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>
+
