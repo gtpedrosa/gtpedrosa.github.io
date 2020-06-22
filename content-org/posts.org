@@ -875,7 +875,8 @@ Here's the screenshot used for this experiment:
 [[file:/home/guilherme/blog/static/img/bgkeys.png]]
 *Right hand in green and left hand in blue*
 
-** TODO Enabling Frescobaldi MIDI output
+** DONE Enabling Frescobaldi MIDI output
+CLOSED: [2020-06-21 dom 23:29]
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2020-06-21-enabling-frescobaldi-midi-output
 :END:
