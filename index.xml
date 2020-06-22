@@ -193,5 +193,16 @@ The site is built with Hugo—a static site generator made with Go. The website 
 The primary font face is Open Sans and the monospace font face is Ubuntu Mono. The social icons are from the Ionicons font set. CSS classes for code syntax highlighting are inserted during compile-time by Hugo using Pygments.</description>
     </item>
     
+    <item>
+      <title>Enabling Frescobaldi MIDI output</title>
+      <link>https://gtpedrosa.github.io/blog/enabling-frescobaldi-midi-output/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/enabling-frescobaldi-midi-output/</guid>
+      <description>Trying to export a composition engraved with lilypond to MIDI, I have found out that it was not properly set up. The resulting MIDI was mute, even though I could see its contents using Audacity.
+The solution lies in this post. After installing a MIDI to Wave converter and player called timidity and starting its daemon:
+sudo apt-get install timidity sudo service timidity start A Timidity port 0 should be available after refreshing Midi Settings as player output option in the Edit &amp;gt; Preferences &amp;gt; Midi Settings in Frescobaldi.</description>
+    </item>
+    
   </channel>
 </rss>
