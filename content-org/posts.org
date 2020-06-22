@@ -814,10 +814,6 @@ Let me know if you managed to get WSL, docker or Miktex working, or have a set-u
 :EXPORT_FILE_NAME: 2019-01-15-retrieving-music-sheet-off-midi-visualizer-in-youtube-videos-using-opencv
 :END:
 
-#+begin_quote
-TESTE
-#+end_quote
-
 I've been with [[https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=2ahUKEwj1qLa5jPrfAhUwHLkGHTNKBZsQyCkwAHoECAoQBQ&url=https%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DDXP1KdZX4io&usg=AOvVaw2fnmqyhFJpLHe0x4F84Fcj][Radiohead's man of war song]] stuck in my head for over a week. While browsing youtube and waiting eagerly for Josh Cohen's songbook to come out, I stumbled upon another gifted youtuber pianist called Alex Franklin. Franklin also happened to have covered this song. In case you are wondering, here are [[https://www.youtube.com/watch?v=M0GQtolLnEU][Josh's]] and [[https://www.youtube.com/watch?v=jTfhYBCrKyc][Alex's]] versions of the song. 
 
 Anyways, I saw the midi visualizer on the top of the piano keys on Franklin's cover and thought "oh my, I would really love to have the piano sheet for this". So here I am, trying to recognize the key strokes from a video and translate it into a piano sheet.
@@ -869,7 +865,7 @@ But nothing is perfect and while I was eager to try out some code, I got stuck w
 cv2.error: OpenCV(4.0.0) /opencv-4.0.0/modules/highgui/src/window.cpp:625: error: (-2:Unspecified error) The function is not implemented. Rebuild the library with Windows, GTK+ 2.x or Cocoa support. If you are on Ubuntu or Debian, install libgtk2.0-dev and pkg-config, then re-run cmake or configure script in function 'cvShowImage'
 #+end_quote
 
-Which led me to modify the Dockerfile yet again and rebuild the image.
+Which led me to modify the Dockerfile yet again and rebuild the image. The final image is available in my github profile.
 
 *** Detecting keystrokes
 Here's the screenshot used for this experiment:
@@ -878,6 +874,23 @@ Here's the screenshot used for this experiment:
 #+name: bgkeys
 [[file:/home/guilherme/blog/static/img/bgkeys.png]]
 *Right hand in green and left hand in blue*
+
+** TODO Enabling Frescobaldi MIDI output
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2020-06-21-enabling-frescobaldi-midi-output
+:END:
+
+Trying to export a composition engraved with lilypond to MIDI, I have found out that it was not properly set up. The resulting MIDI was mute, even though I could see its contents using Audacity.
+
+The solution lies in [[https://askubuntu.com/questions/463575/frescobaldi-midi-player-seems-to-be-working-fine-but-doesnt-produce-any-sound][this post]]. After installing a MIDI to Wave converter and player called timidity and starting its daemon:
+
+#+BEGIN_SRC shell
+sudo apt-get install timidity
+sudo service timidity start
+#+END_SRC
+
+A /Timidity port 0/ should be available after refreshing Midi Settings as player output option in the /Edit > Preferences > Midi Settings/ in Frescobaldi.
+
 
 * Footnotes
 * COMMENT Local Variables                          :ARCHIVE:
