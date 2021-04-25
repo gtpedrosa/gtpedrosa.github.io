@@ -2,6 +2,7 @@
 title = "Enabling Frescobaldi MIDI output"
 author = ["Guilherme Pedrosa"]
 date = 2020-06-21T23:29:00-03:00
+tags = ["MIDI", "lilypond", "Frescobaldi"]
 draft = false
 +++
 

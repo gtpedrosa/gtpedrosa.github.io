@@ -1,7 +1,8 @@
 +++
 title = "Enabling Frescobaldi MIDI output"
 author = ["Guilherme Pedrosa"]
-draft = true
+date = 2020-06-21T23:29:00-03:00
+draft = false
 +++
 
 Trying to export a composition engraved with lilypond to MIDI, I have found out that it was not properly set up. The resulting MIDI was mute, even though I could see its contents using Audacity.

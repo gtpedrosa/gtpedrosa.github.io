@@ -809,6 +809,24 @@ This is a simple, yet useful standard of tools and ways of operating with them. 
 - My analysis are not really considered data-heavy. In the cases where they were more intensive, relying on libraries such as [[https://diskframe.com/][diskframe]] or caches worked fine;
 
 Let me know if you managed to get WSL, docker or Miktex working, or have a set-up willing to share.
+** DONE Enabling Frescobaldi MIDI output         :MIDI:lilypond:Frescobaldi:
+CLOSED: [2020-06-21 dom 23:29]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2020-06-21-enabling-frescobaldi-midi-output
+:END:
+
+Trying to export a composition engraved with lilypond to MIDI, I have found out that it was not properly set up. The resulting MIDI was mute, even though I could see its contents using Audacity.
+
+The solution lies in [[https://askubuntu.com/questions/463575/frescobaldi-midi-player-seems-to-be-working-fine-but-doesnt-produce-any-sound][this post]]. After installing a MIDI to Wave converter and player called timidity and starting its daemon:
+
+#+BEGIN_SRC shell
+sudo apt-get install timidity
+sudo service timidity start
+#+END_SRC
+
+A /Timidity port 0/ should be available after refreshing Midi Settings as player output option in the /Edit > Preferences > Midi Settings/ in Frescobaldi.
+
+
 ** TODO Retrieving music sheet off midi visualizer in youtube videos using opencv part 1
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2019-01-15-retrieving-music-sheet-off-midi-visualizer-in-youtube-videos-using-opencv
@@ -874,24 +892,6 @@ Here's the screenshot used for this experiment:
 #+name: bgkeys
 [[file:/home/guilherme/blog/static/img/bgkeys.png]]
 *Right hand in green and left hand in blue*
-
-** DONE Enabling Frescobaldi MIDI output
-CLOSED: [2020-06-21 dom 23:29]
-:PROPERTIES:
-:EXPORT_FILE_NAME: 2020-06-21-enabling-frescobaldi-midi-output
-:END:
-
-Trying to export a composition engraved with lilypond to MIDI, I have found out that it was not properly set up. The resulting MIDI was mute, even though I could see its contents using Audacity.
-
-The solution lies in [[https://askubuntu.com/questions/463575/frescobaldi-midi-player-seems-to-be-working-fine-but-doesnt-produce-any-sound][this post]]. After installing a MIDI to Wave converter and player called timidity and starting its daemon:
-
-#+BEGIN_SRC shell
-sudo apt-get install timidity
-sudo service timidity start
-#+END_SRC
-
-A /Timidity port 0/ should be available after refreshing Midi Settings as player output option in the /Edit > Preferences > Midi Settings/ in Frescobaldi.
-
 
 * Footnotes
 * COMMENT Local Variables                          :ARCHIVE:

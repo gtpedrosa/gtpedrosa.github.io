@@ -1,0 +1,19 @@
+on: 2
+jobs:
+  build:
+    docker:
+      - image: z0li/hugo-builder:latest
+    working_directory: /src
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "xN/0EFTfIreyg3cOehl5gwYXmf8vIY7PxYYdS7sS5no"
+      - checkout
+      - run: git submodule update --init
+      - run: hugo -v -s /src -d /src/public
+      - run:
+          name: test the generated html files
+          command: htmlproofer /src/public --allow-hash-href --check-html --empty-alt-ignore --disable-external
+      - deploy:
+          name: push to master branch
+          command: sh deploy_ci.sh

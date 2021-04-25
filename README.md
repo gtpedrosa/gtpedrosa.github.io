@@ -1,3 +1,3 @@
-[![Build Status](https://travis-ci.org/gtpedrosa/gtpedrosa.github.io.svg?branch=code)](https://travis-ci.org/gtpedrosa/gtpedrosa.github.io)
+[![Build Status](https://circleci.com/gh/gtpedrosa/gtpedrosa.github.io/tree/master.svg?style=svg)](https://app.circleci.com/pipelines/github/gtpedrosa/gtpedrosa.github.io)
 
 [Personal blog](http://gtpedrosa.github.io/).
