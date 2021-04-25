@@ -12,7 +12,7 @@ echo "* pushing to master:"
 cd master
 echo "cd OK"
 git config user.name "CircleCI"
-git config user.email ${GIT_EMAIL}
+git config user.email "guilherme.pedrosa@gmail.com"
 echo "git config OK"
 git add -A
 echo "git add OK"
