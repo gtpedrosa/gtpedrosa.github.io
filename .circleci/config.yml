@@ -13,4 +13,4 @@ jobs:
       - run: hugo -v -s /src -d /src/public
       - deploy:
           name: push to master branch
-          command: sh deploy_ci.sh
+          command: sh /src/scripts/deploy_ci.sh
