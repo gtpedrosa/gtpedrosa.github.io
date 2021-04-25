@@ -2,7 +2,7 @@ on: 2
 jobs:
   build:
     docker:
-      - image: z0li/hugo-builder:latest
+      - image: gtpedrosa/hugo-build:latest
     working_directory: /src
     steps:
       - add_ssh_keys:
