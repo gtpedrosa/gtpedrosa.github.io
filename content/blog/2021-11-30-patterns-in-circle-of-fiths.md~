@@ -7,7 +7,7 @@ draft = true
 
 Last Sunday I decided to start (re)learning some music theory by myself. The objective was to learn the scales and the entrypoint for that was the circle of fiths. I don't know why, but I felt the need to hold the circle of fiths chart I was consulting in my own hands. So instead of printing it I made my own, and while I was at it I thought it would be cool if the inner circle could spin, so I made it likewise. Here's the outcome:
 
-<a id="orgf8b7d78"></a>
+<a id="orgbfa113b"></a>
 
 [Hand-made circle of fiths](/home/guilherme/blog/static/img/circle_of_fiths.jpg)
 
@@ -29,7 +29,7 @@ Well, if you pay close attention between ****F**** and ****B**** counterclockwis
 
 ### Sharps {#sharps}
 
-Add +1 or go to the next note after the sharp. For instance, what is the major key for a key signature with a single sharp (F#)? F+1=G.
+Add a semitone to the last sharp, or roughly add a note to it. For instance, what is the major key for a key signature with a single sharp (F#)? F+1=G.
 
 
 ### Flats {#flats}
@@ -46,7 +46,7 @@ The thing which is fascinating in the circle of the fiths is that it can be easi
 
 Here T stands for tone and S for semi-tone. The funny thing is, if you remove the last two intervals of a major scale (TS) and transfer it to the beginning of the remaining intervals (TTSTT) you get the minor scale formulation. This realization is even cooler in the circle itself:
 
-<a id="orgfae0bb2"></a>
+<a id="orgb5672c7"></a>
 
 [Spun circle of fiths](/home/guilherme/blog/static/img/circle_of_fiths_spun.jpg)
 

@@ -1,13 +1,14 @@
 +++
 title = "Patterns in Circle of Fiths"
 author = ["Guilherme Pedrosa"]
+date = 2021-11-30T21:09:00-03:00
 tags = ["music", "theory", "piano"]
-draft = true
+draft = false
 +++
 
 Last Sunday I decided to start (re)learning some music theory by myself. The objective was to learn the scales and the entrypoint for that was the circle of fiths. I don't know why, but I felt the need to hold the circle of fiths chart I was consulting in my own hands. So instead of printing it I made my own, and while I was at it I thought it would be cool if the inner circle could spin, so I made it likewise. Here's the outcome:
 
-<a id="org42c1c75"></a>
+<a id="org346792c"></a>
 
 [Hand-made circle of fiths](/home/guilherme/blog/static/img/circle_of_fiths.jpg)
 
@@ -46,7 +47,7 @@ The thing which is fascinating in the circle of the fiths is that it can be easi
 
 Here T stands for tone and S for semi-tone. The funny thing is, if you remove the last two intervals of a major scale (TS) and transfer it to the beginning of the remaining intervals (TTSTT) you get the minor scale formulation. This realization is even cooler in the circle itself:
 
-<a id="org0f720b5"></a>
+<a id="org8891235"></a>
 
 [Spun circle of fiths](/home/guilherme/blog/static/img/circle_of_fiths_spun.jpg)
 
