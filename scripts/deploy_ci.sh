@@ -2,7 +2,7 @@
 set -e
 
 echo "* checking out the master branch:"
-git clone --single-branch --branch master git@github.com:gtpedrosa/gtpedrosa.github.io.git
+git clone --single-branch --branch master git@github.com:gtpedrosa/gtpedrosa.github.io.git master
 
 echo "* synchronizing the files:"
 rsync -arv public/ master --delete --exclude ".git"
