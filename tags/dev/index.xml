@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>dev on Guilherme Pedrosa</title>
+    <link>https://gtpedrosa.github.io/tags/dev/</link>
+    <description>Recent content in dev on Guilherme Pedrosa</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 05 Dec 2021 09:11:00 -0300</lastBuildDate>
+    
+	<atom:link href="https://gtpedrosa.github.io/tags/dev/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Migrating CI tool from travis to circleci for hugo blog on ghpages</title>
+      <link>https://gtpedrosa.github.io/blog/migrating-ci-tool-from-travis-to-circleci-for-hugo-blog-on-ghpages/</link>
+      <pubDate>Sun, 05 Dec 2021 09:11:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/migrating-ci-tool-from-travis-to-circleci-for-hugo-blog-on-ghpages/</guid>
+      <description>When Travis CI was acquired by Idera, it didn&amp;rsquo;t take long to cease its support for open source projects. This affected this blog since I overengineered it to learn some dev-ops skills. As result, I was forced to migrate the continuous integration (CI) tool from Travis to CircleCI. While I was at it, I took advantage and included a docker image for the build instead of declaring the dependencies installation as part of the CI build.</description>
+    </item>
+    
+  </channel>
+</rss>

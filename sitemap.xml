@@ -3,12 +3,82 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://gtpedrosa.github.io/tags/circleci/</loc>
+    <lastmod>2021-12-05T09:11:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/dev/</loc>
+    <lastmod>2021-12-05T09:11:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/ghpages/</loc>
+    <lastmod>2021-12-05T09:11:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/</loc>
+    <lastmod>2021-12-05T09:11:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/hugo/</loc>
+    <lastmod>2021-12-05T09:11:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/blog/migrating-ci-tool-from-travis-to-circleci-for-hugo-blog-on-ghpages/</loc>
+    <lastmod>2021-12-05T09:11:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/ops/</loc>
+    <lastmod>2021-12-05T09:11:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/</loc>
+    <lastmod>2021-12-05T09:11:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/music/</loc>
+    <lastmod>2021-11-30T21:09:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/blog/patterns-in-circle-of-fiths/</loc>
+    <lastmod>2021-11-30T21:09:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/piano/</loc>
+    <lastmod>2021-11-30T21:09:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/theory/</loc>
+    <lastmod>2021-11-30T21:09:00-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/blog/enabling-frescobaldi-midi-output/</loc>
     <lastmod>2020-06-21T23:29:00-03:00</lastmod>
   </url>
   
   <url>
-    <loc>https://gtpedrosa.github.io/</loc>
+    <loc>https://gtpedrosa.github.io/tags/frescobaldi/</loc>
+    <lastmod>2020-06-21T23:29:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/lilypond/</loc>
+    <lastmod>2020-06-21T23:29:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/midi/</loc>
     <lastmod>2020-06-21T23:29:00-03:00</lastmod>
   </url>
   
@@ -53,11 +123,6 @@
   </url>
   
   <url>
-    <loc>https://gtpedrosa.github.io/tags/</loc>
-    <lastmod>2020-06-07T18:24:00-03:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://gtpedrosa.github.io/tags/windows/</loc>
     <lastmod>2020-06-07T18:24:00-03:00</lastmod>
   </url>
@@ -75,11 +140,6 @@
   <url>
     <loc>https://gtpedrosa.github.io/blog/moving-files-on-windows-with-python-shutil-alternative/</loc>
     <lastmod>2020-05-17T11:20:00-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/hugo/</loc>
-    <lastmod>2020-05-10T18:04:00-03:00</lastmod>
   </url>
   
   <url>
