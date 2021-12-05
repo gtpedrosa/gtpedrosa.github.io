@@ -1,3 +1,4 @@
+version: 2.1
 jobs:
   build:
     docker:
@@ -13,12 +14,3 @@ jobs:
       - deploy:
           name: push to master branch
           command: sh /src/scripts/deploy_ci.sh
-workflows:
-  version: 2.1
-  build:
-    jobs:
-      - build
-	filters:
-	  branches:
-	    only:
-	      - code
