@@ -8,7 +8,7 @@ draft = false
 
 Last Sunday I decided to start (re)learning some music theory by myself. The objective was to learn the scales and the entrypoint for that was the circle of fiths. I don't know why, but I felt the need to hold the circle of fiths chart I was consulting in my own hands. So instead of printing it I made my own, and while I was at it I thought it would be cool if the inner circle could spin, so I made it likewise. Here's the outcome:
 
-<a id="org6c4e33c"></a>
+<a id="orga63d3e1"></a>
 
 ![](/img/circle_of_fiths.jpg)
 **Handmade circle of fiths chart**
@@ -18,7 +18,7 @@ The phisicality of it made me eager to play with this tool. Soon, I started gain
 
 ## 1.Notes Interwined {#1-dot-notes-interwined}
 
-Notice how by starting at ****F****, it is possible to spot the following sequence: F\_G\_A\_B. The underscores just mean that a not is missing (is skipped). The interesting part is that you can fill the gaps with another sequence: <span class="underline">C\_D\_E</span>, yielding the full sequence FCGDAEB. So 7/12 notes of the circle are easily spotted as the white notes on the piano. But what about the other 5/12?
+Notice how by starting at ****F****, it is possible to spot the following sequence: F\_G\_A\_B. The underscores just mean that a note is skipped. The interesting part is that you can fill the gaps with another sequence: <span class="underline">C\_D\_E</span>, yielding the full sequence FCGDAEB. So 7/12 notes of the circle are easily spotted as the white notes on the piano. But what about the other 5/12?
 
 
 ## 2.Accidental Simmetry {#2-dot-accidental-simmetry}
@@ -58,7 +58,7 @@ The major and minor scales can be obtained through the following interval compos
 
 Here T stands for tone and S for semi-tone. The funny thing is, if you remove the last two intervals of a major scale (TS) and transfer it to the beginning of the remaining intervals (TTSTT) you get the minor scale formulation. This realization is even cooler in the circle itself:
 
-<a id="orgfac3029"></a>
+<a id="org4c3c015"></a>
 
 ![](/img/circle_of_fiths_spun.jpg)
 **Spun inner circle**

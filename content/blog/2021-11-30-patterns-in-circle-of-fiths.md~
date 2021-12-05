@@ -8,7 +8,7 @@ draft = false
 
 Last Sunday I decided to start (re)learning some music theory by myself. The objective was to learn the scales and the entrypoint for that was the circle of fiths. I don't know why, but I felt the need to hold the circle of fiths chart I was consulting in my own hands. So instead of printing it I made my own, and while I was at it I thought it would be cool if the inner circle could spin, so I made it likewise. Here's the outcome:
 
-<a id="org6bd6c68"></a>
+<a id="org6c4e33c"></a>
 
 ![](/img/circle_of_fiths.jpg)
 **Handmade circle of fiths chart**
@@ -58,7 +58,7 @@ The major and minor scales can be obtained through the following interval compos
 
 Here T stands for tone and S for semi-tone. The funny thing is, if you remove the last two intervals of a major scale (TS) and transfer it to the beginning of the remaining intervals (TTSTT) you get the minor scale formulation. This realization is even cooler in the circle itself:
 
-<a id="orgf517dde"></a>
+<a id="orgfac3029"></a>
 
 ![](/img/circle_of_fiths_spun.jpg)
 **Spun inner circle**
