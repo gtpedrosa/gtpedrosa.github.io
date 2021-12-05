@@ -836,7 +836,8 @@ Last Sunday I decided to start (re)learning some music theory by myself. The obj
 
 #+caption: Handmade circle of fiths
 #+name: cof
-[[file:~/Projects/blog/hugo-blog/static/img/circle_of_fiths.jpg][Hand-made circle of fiths]]
+[[file:~/Projects/blog/hugo-blog/static/img/circle_of_fiths.jpg]]
+*Handmade circle of fiths chart*
 
 The phisicality of it made me eager to play with this tool. Soon, I started gaining insights that might be obvious for a seasoned musician or someone who is proficient in theory. Nonetheless, here are some findings that I found amusing.
 
@@ -878,7 +879,8 @@ Here T stands for tone and S for semi-tone. The funny thing is, if you remove th
 
 #+caption: Spun inner circle of the circle of fiths
 #+name: spuncof
-[[file:~/Projects/blog/hugo-blog/static/img/circle_of_fiths_spun.jpg][Spun circle of fiths]]
+[[file:~/Projects/blog/hugo-blog/static/img/circle_of_fiths_spun.jpg]]
+*Spun inner circle*
 
 Here if you spin the inner circle by 1,5 tones (3 notes) you arrive at the same configuration as the major scale. So to obtain the relative minor to a major scale remove 1,5 tones from it. To derive the major from the minor add 1,5 tones. Example: What is the relative minor for D major? B minor. Try to see it on a piano, it is way easier. Another example the other way: What is the relative major scale to C# minor? E major. 
 ** TODO Retrieving music sheet off midi visualizer in youtube videos using opencv part 1

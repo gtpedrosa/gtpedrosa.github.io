@@ -8,9 +8,10 @@ draft = false
 
 Last Sunday I decided to start (re)learning some music theory by myself. The objective was to learn the scales and the entrypoint for that was the circle of fiths. I don't know why, but I felt the need to hold the circle of fiths chart I was consulting in my own hands. So instead of printing it I made my own, and while I was at it I thought it would be cool if the inner circle could spin, so I made it likewise. Here's the outcome:
 
-<a id="orgabda812"></a>
+<a id="org6bd6c68"></a>
 
-[Hand-made circle of fiths](/img/circle_of_fiths.jpg)
+![](/img/circle_of_fiths.jpg)
+**Handmade circle of fiths chart**
 
 The phisicality of it made me eager to play with this tool. Soon, I started gaining insights that might be obvious for a seasoned musician or someone who is proficient in theory. Nonetheless, here are some findings that I found amusing.
 
@@ -57,8 +58,9 @@ The major and minor scales can be obtained through the following interval compos
 
 Here T stands for tone and S for semi-tone. The funny thing is, if you remove the last two intervals of a major scale (TS) and transfer it to the beginning of the remaining intervals (TTSTT) you get the minor scale formulation. This realization is even cooler in the circle itself:
 
-<a id="orgf30793d"></a>
+<a id="orgf517dde"></a>
 
-[Spun circle of fiths](/img/circle_of_fiths_spun.jpg)
+![](/img/circle_of_fiths_spun.jpg)
+**Spun inner circle**
 
 Here if you spin the inner circle by 1,5 tones (3 notes) you arrive at the same configuration as the major scale. So to obtain the relative minor to a major scale remove 1,5 tones from it. To derive the major from the minor add 1,5 tones. Example: What is the relative minor for D major? B minor. Try to see it on a piano, it is way easier. Another example the other way: What is the relative major scale to C# minor? E major.
