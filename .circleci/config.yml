@@ -1,9 +1,5 @@
-version: 2.1
 jobs:
   build:
-    filters:
-      branches:
-        only: code
     docker:
       - image: gtpedrosa/hugo-build:latest
     working_directory: /src
@@ -17,3 +13,12 @@ jobs:
       - deploy:
           name: push to master branch
           command: sh /src/scripts/deploy_ci.sh
+workflows:
+  version: 2.1
+  build:
+    jobs:
+      - build
+	filters:
+	  branches:
+	    only:
+	      - code
