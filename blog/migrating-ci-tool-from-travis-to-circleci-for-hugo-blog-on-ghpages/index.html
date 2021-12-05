@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Guilherme Pedrosa">
+<meta name="description" content="When Travis CI was acquired by Idera, it didn&rsquo;t take long to cease its support for open source projects. This affected this blog since I overengineered it to learn some dev-ops skills. As result, I was forced to migrate the continuous integration (CI) tool from Travis to CircleCI. While I was at it, I took advantage and included a docker image for the build instead of declaring the dependencies installation as part of the CI build.">
+
+<meta property="og:title" content="Migrating CI tool from travis to circleci for hugo blog on ghpages" />
+<meta property="og:description" content="When Travis CI was acquired by Idera, it didn&rsquo;t take long to cease its support for open source projects. This affected this blog since I overengineered it to learn some dev-ops skills. As result, I was forced to migrate the continuous integration (CI) tool from Travis to CircleCI. While I was at it, I took advantage and included a docker image for the build instead of declaring the dependencies installation as part of the CI build." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/migrating-ci-tool-from-travis-to-circleci-for-hugo-blog-on-ghpages/" />
+<meta property="article:published_time" content="2021-12-05T09:11:00-03:00" />
+<meta property="article:modified_time" content="2021-12-05T09:11:00-03:00" />
+
+
+<title>
+
+
+     Migrating CI tool from travis to circleci for hugo blog on ghpages 
+
+</title>
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/migrating-ci-tool-from-travis-to-circleci-for-hugo-blog-on-ghpages/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2021-12-05%2012%3a14%3a01.060349545%20%2b0000%20UTC%20m%3d%2b0.142858061">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2021-12-05%2012%3a14%3a01.060349545%20%2b0000%20UTC%20m%3d%2b0.142858061">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2021-12-05%2012%3a14%3a01.060349545%20%2b0000%20UTC%20m%3d%2b0.142858061">
+    
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2021-12-05%2012%3a14%3a01.060349545%20%2b0000%20UTC%20m%3d%2b0.142858061">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://gtpedrosa.github.io/img/leaf.ico"
+
+>
+
+
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="https://gtpedrosa.github.io/"><img class="avatar" src="https://gtpedrosa.github.io/img/profile.png" srcset="https://gtpedrosa.github.io/img/profile.png 1x"></a>
+            
+            <a href="https://gtpedrosa.github.io/"><div class="name">Guilherme Pedrosa</div></a>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="https://gtpedrosa.github.io/blog/"><span>Blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="https://gtpedrosa.github.io/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-projects"><a href="https://gtpedrosa.github.io/projects/"><span>Projects</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/github.svg" alt="github" /></a>
+        
+
+        
+            <a href="//twitter.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/twitter.svg" alt="twitter" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/guilherme-pedrosa-73213aa0/" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+            
+        
+
+        
+
+        
+            <a href="mailto:guilherme.pedrosa@gmail.com"><img class="icon" src="https://gtpedrosa.github.io/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="https://gtpedrosa.github.io/index.xml"><img class="icon" src="https://gtpedrosa.github.io/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Migrating CI tool from travis to circleci for hugo blog on ghpages
+
+</div>
+
+                    <div class="initials"><a href="https://gtpedrosa.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Sun Dec 5 2021 09:11:00 -0300'>Dec 5, 2021</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>4 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                <p>When Travis CI was acquired by Idera, it didn&rsquo;t take long to cease its support for open source projects. This affected this blog since I overengineered it to learn some dev-ops skills. As result, I was forced to migrate the continuous integration (CI) tool from Travis to CircleCI. While I was at it, I took advantage and included a docker image for the build instead of declaring the dependencies installation as part of the CI build.</p>
+<p>I am indebted to <a href="https://github.com/z0li/hugo-builder">z0li</a> who provided a guide I was able to follow through <a href="https://z0li.github.io/deliver-static-sites-with-hugo-circleci-github/">here.</a> The Docker image, config.yml and deploy scripts were modified from z0li&rsquo;s post.</p>
+<h2 id="1-dot-docker-image">1.Docker Image</h2>
+<p>This is the base Docker image upon which the blog is built. It still contains htmlproofer even though I am not using it at the moment. It is something either I&rsquo;ll adopt or drop in the future. It also contains, of course, hugo version 0.68.1 which is the last one I troubleshooted the cocoa theme for as detailed in my <a href="https://gtpedrosa.github.io/blog/upgrading-an-outdated-hugo-template/">previous post.</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="k">FROM</span><span class="s"> ruby:2.6-alpine3.9</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">ENV</span> <span class="nv">HUGO_VERSION</span><span class="o">=</span><span class="m">0</span>.68.1<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> apk add --no-cache make gcc libc-dev bash libcurl ruby-nokogiri <span class="se">\
+</span><span class="se"></span>      openssh-client rsync git <span class="o">&amp;&amp;</span> <span class="se">\
+</span><span class="se"></span>    gem install --no-document html-proofer<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> mkdir /tmp/hugo <span class="o">&amp;&amp;</span> <span class="se">\
+</span><span class="se"></span>    <span class="nb">cd</span> /tmp/hugo <span class="o">&amp;&amp;</span> <span class="se">\
+</span><span class="se"></span>    wget https://github.com/spf13/hugo/releases/download/v<span class="si">${</span><span class="nv">HUGO_VERSION</span><span class="si">}</span>/hugo_<span class="si">${</span><span class="nv">HUGO_VERSION</span><span class="si">}</span>_Linux-64bit.tar.gz <span class="o">&amp;&amp;</span> <span class="se">\
+</span><span class="se"></span>    tar xzvf hugo_<span class="si">${</span><span class="nv">HUGO_VERSION</span><span class="si">}</span>_Linux-64bit.tar.gz <span class="o">&amp;&amp;</span> <span class="se">\
+</span><span class="se"></span>    mv /tmp/hugo/hugo /usr/local/bin/ <span class="o">&amp;&amp;</span> <span class="se">\
+</span><span class="se"></span>    rm -rf /tmp/hugo<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">CMD</span> <span class="p">[</span> <span class="s2">&#34;hugo&#34;</span><span class="p">,</span> <span class="s2">&#34;version&#34;</span> <span class="p">]</span><span class="err">
+</span></code></pre></div><h2 id="2-dot-config-dot-yml">2. config.yml</h2>
+<p>This is where most of the action happens, the <strong>config.yml</strong> file required by CircleCI.</p>
+<div class="highlight"><pre class="chroma"><code class="language-config.yml" data-lang="config.yml"><span class="k">version</span><span class="p">:</span><span class="w"> </span><span class="m">2.1</span><span class="w">
+</span><span class="w"></span><span class="k">jobs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">build</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">docker</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="k">image</span><span class="p">:</span><span class="w"> </span>gtpedrosa/hugo-build<span class="p">:</span>latest<span class="w">
+</span><span class="w">    </span><span class="k">working_directory</span><span class="p">:</span><span class="w"> </span>/src<span class="w">
+</span><span class="w">    </span><span class="k">steps</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="k">add_ssh_keys</span><span class="p">:</span><span class="w">
+</span><span class="w">	  </span><span class="k">fingerprints</span><span class="p">:</span><span class="w">
+</span><span class="w">	    </span>- <span class="s2">&#34;x4TBLAoCPktmU+ECc3aoxBPuymLldWBEaFpnR8yFDdE&#34;</span><span class="w">
+</span><span class="w">      </span>- checkout<span class="w">
+</span><span class="w">      </span>- <span class="k">run</span><span class="p">:</span><span class="w"> </span>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w">
+</span><span class="w">      </span>- <span class="k">run</span><span class="p">:</span><span class="w"> </span>hugo<span class="w"> </span>-v<span class="w"> </span>-s<span class="w"> </span>/src<span class="w"> </span>-d<span class="w"> </span>/src/public<span class="w">
+</span><span class="w">      </span>- <span class="k">deploy</span><span class="p">:</span><span class="w">
+</span><span class="w">	  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>push<span class="w"> </span>to<span class="w"> </span>master<span class="w"> </span>branch<span class="w">
+</span><span class="w">	  </span><span class="k">command</span><span class="p">:</span><span class="w"> </span>sh<span class="w"> </span>/src/scripts/deploy_ci.sh<span class="w">
+</span></code></pre></div><p>Notice:</p>
+<ul>
+<li>docker: it pulls the image previously uploaded to dockerhub and <a href="https://github.com/gtpedrosa/hugo-build/blob/master/Dockerfile">linked to my github repo.</a></li>
+<li>working_directory: specify the location to work from</li>
+<li>add_ssh_keys: include necessary credentials so circleci communicates to github</li>
+<li>checkout: special command to checkout the gtpedriosa.github.io repo</li>
+<li>first run: update submodules, in this case, the hugo theme used and <a href="https://github.com/gtpedrosa/cocoa-hugo-theme">fork that I mantain</a>, but designed by Nishanth Shanmugham</li>
+<li>second run: after pulling the code it runs hugo and saves the html in the usual <strong>public</strong> folder</li>
+<li>deploy: calls deploy script where the rest of action happens, which I&rsquo;ll document in the following section.</li>
+</ul>
+<h2 id="3-dot-deploy-ci-dot-sh">3. deploy_ci.sh</h2>
+<p>Admitedly, I made inumerous mistakes in this transition. And learned a lot by trial and error, so here&rsquo;s the full file:</p>
+<div class="highlight"><pre class="chroma"><code class="language-deploy_ci.sh" data-lang="deploy_ci.sh"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="nb">set</span> -e
+
+<span class="nb">echo</span> <span class="s2">&#34;* checking out the master branch:&#34;</span>
+git clone --single-branch --branch master git@github.com:gtpedrosa/gtpedrosa.github.io.git master
+
+<span class="nb">echo</span> <span class="s2">&#34;* synchronizing the files:&#34;</span>
+rsync -arv /src/public/ master --delete --exclude <span class="s2">&#34;.git&#34;</span>
+cp README.md master/
+
+<span class="nb">echo</span> <span class="s2">&#34;* pushing to master:&#34;</span>
+<span class="nb">cd</span> master
+<span class="nb">echo</span> <span class="s2">&#34;cd OK&#34;</span>
+git config user.name <span class="s2">&#34;CircleCI&#34;</span>
+git config user.email <span class="s2">&#34;guilherme.pedrosa@gmail.com&#34;</span>
+<span class="nb">echo</span> <span class="s2">&#34;git config OK&#34;</span>
+git add -A
+<span class="nb">echo</span> <span class="s2">&#34;git add OK&#34;</span>
+git commit -m <span class="s2">&#34;Automated deployment job </span><span class="si">${</span><span class="nv">CIRCLE_BRANCH</span><span class="si">}</span><span class="s2"> #</span><span class="si">${</span><span class="nv">CIRCLE_BUILD_NUM</span><span class="si">}</span><span class="s2"> [skip ci]&#34;</span> --allow-empty
+<span class="nb">echo</span> <span class="s2">&#34;git commit OK&#34;</span>
+git push origin master
+
+<span class="nb">echo</span> <span class="s2">&#34;* done&#34;</span>
+</code></pre></div><p>Now, let&rsquo;s break it down in three parts and make some comments.</p>
+<pre><code class="language-p1" data-lang="p1">set -e
+</code></pre><p>The first excerpt causes the execution of the script to fail if an error is raised, instead of the default behavior of ignoring it. Therefore, any issues in the deployment will cause the build to fail.</p>
+<pre><code class="language-p2" data-lang="p2">echo &quot;* checking out the master branch:&quot;
+git clone --single-branch --branch master git@github.com:gtpedrosa/gtpedrosa.github.io.git master
+
+echo &quot;* synchronizing the files:&quot;
+rsync -arv /src/public/ master --delete --exclude &quot;.git&quot;
+cp README.md master/
+</code></pre><p>The html files in the master branch are cloned in this second part. The generated html pages from the hugo run (refer to the second run statement in the <em>config.yml</em> file) are synced to the folder where the html files were cloned. Notice where they are coming from in the rsync argument. This is basically where the new posts are added to the previous ones.</p>
+<pre><code class="language-p3" data-lang="p3">echo &quot;* pushing to master:&quot;
+cd master
+echo &quot;cd OK&quot;
+git config user.name &quot;CircleCI&quot;
+git config user.email &quot;guilherme.pedrosa@gmail.com&quot;
+echo &quot;git config OK&quot;
+git add -A
+echo &quot;git add OK&quot;
+git commit -m &quot;Automated deployment job ${CIRCLE_BRANCH} #${CIRCLE_BUILD_NUM} [skip ci]&quot; --allow-empty
+echo &quot;git commit OK&quot;
+git push origin master
+
+echo &quot;* done&quot;
+</code></pre><p>Lastly, the changes are commited and pushed to master. This will update the ghpages site automatically. One detail to note is the <em>[skip ci]</em> tag. From the documentation:</p>
+<blockquote>
+<p>By default, CircleCI automatically triggers a pipeline whenever you push changes to your project. You can override this behavior by adding a [ci skip] or [skip ci] tag within the first 250 characters of the body or title of the commit.</p>
+</blockquote>
+<p>If you ommit it, another job will be triggered and fail. This is messing up with the badge in the readme of the repository at this exact moment.</p>
+<p>Also, any issue in the build can be debugged in the newly spun environment by <a href="https://circleci.com/docs/2.0/ssh-access-jobs/">sshing in an interactive shell.</a> I really appreciated this to understand where I messed up with my paths.</p>
+<p>Well, I hope this breakdown distilled some of the learnings in the process.</p>
+
+                <br>
+		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+            <form method="POST" action="https://api.staticman.net/v2/entry////">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/migrating-ci-tool-from-travis-to-circleci-for-hugo-blog-on-ghpages/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="ba2d75c08a11d6570697c21c52ba12b3">
+    <input name="fields[name]" type="text" placeholder="Your name">
+    <input name="fields[email]" type="email" placeholder="Your email address">
+    <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
+    <input type="submit" value="Submit">
+</form>
+
+
+  	     
+ 
+ 
+
+ 
+   
+ 
+
+ 
+   <p>Hey, be the first who comment this article.</p>
+ 
+
+            
+        </div>
+    </div>
+</section>
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-93472104-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>
+

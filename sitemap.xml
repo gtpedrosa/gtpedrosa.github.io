@@ -4,7 +4,12 @@
   
   <url>
     <loc>https://gtpedrosa.github.io/</loc>
-    <lastmod>2021-11-30T21:09:00-03:00</lastmod>
+    <lastmod>2021-12-05T09:11:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/blog/migrating-ci-tool-from-travis-to-circleci-for-hugo-blog-on-ghpages/</loc>
+    <lastmod>2021-12-05T09:11:00-03:00</lastmod>
   </url>
   
   <url>
