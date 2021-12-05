@@ -883,7 +883,7 @@ Here T stands for tone and S for semi-tone. The funny thing is, if you remove th
 *Spun inner circle*
 
 Here if you spin the inner circle by 1,5 tones (3 notes) you arrive at the same configuration as the major scale. So to obtain the relative minor to a major scale remove 1,5 tones from it. To derive the major from the minor add 1,5 tones. Example: What is the relative minor for D major? B minor. Try to see it on a piano, it is way easier. Another example the other way: What is the relative major scale to C# minor? E major. 
-** DONE Migrating CI tool from travis to circleci for hugo blog on ghpages
+** DONE Migrating CI tool from travis to circleci for hugo blog on ghpages :dev:ops:hugo:ghpages:circleci:
 CLOSED: [2021-12-05 dom 09:11]
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2021-12-05-migrating-ci-tool-from-travis-to-circleci-for-hugo-blog-on-ghpages

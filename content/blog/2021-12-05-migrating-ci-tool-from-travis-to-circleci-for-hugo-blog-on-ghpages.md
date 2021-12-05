@@ -2,6 +2,7 @@
 title = "Migrating CI tool from travis to circleci for hugo blog on ghpages"
 author = ["Guilherme Pedrosa"]
 date = 2021-12-05T09:11:00-03:00
+tags = ["dev", "ops", "hugo", "ghpages", "circleci"]
 draft = false
 +++
 

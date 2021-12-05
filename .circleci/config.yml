@@ -1,6 +1,9 @@
 version: 2.1
 jobs:
   build:
+    filters:
+      branches:
+        only: code
     docker:
       - image: gtpedrosa/hugo-build:latest
     working_directory: /src

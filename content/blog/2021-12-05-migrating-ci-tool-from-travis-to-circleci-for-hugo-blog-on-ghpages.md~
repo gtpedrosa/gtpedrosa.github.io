@@ -1,7 +1,8 @@
 +++
 title = "Migrating CI tool from travis to circleci for hugo blog on ghpages"
 author = ["Guilherme Pedrosa"]
-draft = true
+date = 2021-12-05T09:11:00-03:00
+draft = false
 +++
 
 When Travis CI was acquired by Idera, it didn't take long to cease its support for open source projects. This affected this blog since I overengineered it to learn some dev-ops skills. As result, I was forced to migrate the continuous integration (CI) tool from Travis to CircleCI. While I was at it, I took advantage and included a docker image for the build instead of declaring the dependencies installation as part of the CI build.
