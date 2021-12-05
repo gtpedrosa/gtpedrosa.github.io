@@ -6,10 +6,55 @@
     <description>Recent content in Tags on Guilherme Pedrosa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 30 Nov 2021 21:09:00 -0300</lastBuildDate>
+    <lastBuildDate>Sun, 05 Dec 2021 09:11:00 -0300</lastBuildDate>
     
 	<atom:link href="https://gtpedrosa.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>circleci</title>
+      <link>https://gtpedrosa.github.io/tags/circleci/</link>
+      <pubDate>Sun, 05 Dec 2021 09:11:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/tags/circleci/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dev</title>
+      <link>https://gtpedrosa.github.io/tags/dev/</link>
+      <pubDate>Sun, 05 Dec 2021 09:11:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/tags/dev/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ghpages</title>
+      <link>https://gtpedrosa.github.io/tags/ghpages/</link>
+      <pubDate>Sun, 05 Dec 2021 09:11:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/tags/ghpages/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://gtpedrosa.github.io/tags/hugo/</link>
+      <pubDate>Sun, 05 Dec 2021 09:11:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ops</title>
+      <link>https://gtpedrosa.github.io/tags/ops/</link>
+      <pubDate>Sun, 05 Dec 2021 09:11:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/tags/ops/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>music</title>
@@ -134,15 +179,6 @@
       <pubDate>Sun, 07 Jun 2020 18:24:00 -0300</pubDate>
       
       <guid>https://gtpedrosa.github.io/tags/windows/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>hugo</title>
-      <link>https://gtpedrosa.github.io/tags/hugo/</link>
-      <pubDate>Sun, 10 May 2020 18:04:00 -0300</pubDate>
-      
-      <guid>https://gtpedrosa.github.io/tags/hugo/</guid>
       <description></description>
     </item>
     
