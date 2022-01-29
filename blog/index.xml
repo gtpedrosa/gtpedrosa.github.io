@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Installing Linux on HP 246 G6</title>
+      <link>https://gtpedrosa.github.io/blog/installing-linux-on-hp-246-g6/</link>
+      <pubDate>Sat, 29 Jan 2022 15:43:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/installing-linux-on-hp-246-g6/</guid>
+      <description>Trying to speed-up my notebook HP 246 G6, I decided to upgrade my HD to a SSD. While at it, I have also decided to switch from Windows to Ubuntu. However, things did not go as smooth as I thought they would.
+Firstly, I could not flash a new Ubuntu image successfully on my 16GB CruzerBlade thumbdrive. I used the Balena Etcher electron app. In case you have never used it before, just issue the following in the command line to get it running:</description>
+    </item>
+    
+    <item>
       <title>Migrating CI tool from travis to circleci for hugo blog on ghpages</title>
       <link>https://gtpedrosa.github.io/blog/migrating-ci-tool-from-travis-to-circleci-for-hugo-blog-on-ghpages/</link>
       <pubDate>Sun, 05 Dec 2021 09:11:00 -0300</pubDate>

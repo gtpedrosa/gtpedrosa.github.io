@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Guilherme Pedrosa">
+<meta name="description" content="Trying to speed-up my notebook HP 246 G6, I decided to upgrade my HD to a SSD. While at it, I have also decided to switch from Windows to Ubuntu. However, things did not go as smooth as I thought they would.
+Firstly, I could not flash a new Ubuntu image successfully on my 16GB CruzerBlade thumbdrive. I used the Balena Etcher electron app. In case you have never used it before, just issue the following in the command line to get it running:">
+
+<meta property="og:title" content="Installing Linux on HP 246 G6" />
+<meta property="og:description" content="Trying to speed-up my notebook HP 246 G6, I decided to upgrade my HD to a SSD. While at it, I have also decided to switch from Windows to Ubuntu. However, things did not go as smooth as I thought they would.
+Firstly, I could not flash a new Ubuntu image successfully on my 16GB CruzerBlade thumbdrive. I used the Balena Etcher electron app. In case you have never used it before, just issue the following in the command line to get it running:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/installing-linux-on-hp-246-g6/" />
+<meta property="article:published_time" content="2022-01-29T15:43:00-03:00" />
+<meta property="article:modified_time" content="2022-01-29T15:43:00-03:00" />
+
+
+<title>
+
+
+     Installing Linux on HP 246 G6 
+
+</title>
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/installing-linux-on-hp-246-g6/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2022-01-29%2018%3a48%3a45.840969315%20%2b0000%20UTC%20m%3d%2b0.087524203">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2022-01-29%2018%3a48%3a45.840969315%20%2b0000%20UTC%20m%3d%2b0.087524203">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2022-01-29%2018%3a48%3a45.840969315%20%2b0000%20UTC%20m%3d%2b0.087524203">
+    
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2022-01-29%2018%3a48%3a45.840969315%20%2b0000%20UTC%20m%3d%2b0.087524203">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://gtpedrosa.github.io/img/leaf.ico"
+
+>
+
+
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="https://gtpedrosa.github.io/"><img class="avatar" src="https://gtpedrosa.github.io/img/profile.png" srcset="https://gtpedrosa.github.io/img/profile.png 1x"></a>
+            
+            <a href="https://gtpedrosa.github.io/"><div class="name">Guilherme Pedrosa</div></a>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="https://gtpedrosa.github.io/blog/"><span>Blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="https://gtpedrosa.github.io/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-projects"><a href="https://gtpedrosa.github.io/projects/"><span>Projects</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/github.svg" alt="github" /></a>
+        
+
+        
+            <a href="//twitter.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/twitter.svg" alt="twitter" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/guilherme-pedrosa-73213aa0/" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+            
+        
+
+        
+
+        
+            <a href="mailto:guilherme.pedrosa@gmail.com"><img class="icon" src="https://gtpedrosa.github.io/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="https://gtpedrosa.github.io/index.xml"><img class="icon" src="https://gtpedrosa.github.io/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Installing Linux on HP 246 G6
+
+</div>
+
+                    <div class="initials"><a href="https://gtpedrosa.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Sat Jan 29 2022 15:43:00 -0300'>Jan 29, 2022</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>2 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                <p>Trying to speed-up my notebook HP 246 G6, I decided to upgrade my HD to a SSD. While at it, I have also decided to switch from Windows to Ubuntu. However, things did not go as smooth as I thought they would.</p>
+<p>Firstly, I could not flash a new Ubuntu image successfully on my 16GB CruzerBlade thumbdrive. I used the <a href="https://www.balena.io/etcher/">Balena Etcher electron app</a>. In case you have never used it before, just issue the following in the command line to get it running:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo ./balenaEtcher-1.7.3-x64.AppImage
+</code></pre></div><p>I do not remeber why, but it is worth noticing that running without privileges I ran into trouble. Same thing for <strong>Gparted</strong> used to format the CruzerBlade. I had to run it with <strong><strong>sudo</strong></strong> in order to work and format the thumbdrive, which would not work otherwise.</p>
+<p>Image flashed, I moved on to installation. To select the booting device on a HP machine, press <strong><strong>F9</strong></strong>. Ubuntu GUI for installation appeared after HD check, but it would freeze before the installation process effectively started. Mind you this was Ubuntu 20.04 and found <a href="https://appuals.com/how-to-fix-ubuntu-20-04-installer-stuck-at-updates/">I was not alone with this issue</a>. Without any success resolving it, I decided to give Debian a try.</p>
+<p>I chose to download the DVD image, and re-flashed the CruzerBlade. Installation ran smoothly until the &ldquo;Setup connection&rdquo; part. It would not recognize my Wifi driver. After installation, I had add my user to sudo:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">su -
+usermod -aG sudo username
+<span class="nb">exit</span>
+</code></pre></div><p>And restart the PC to take effect. To see if it worked, try to find <strong><strong>sudo</strong></strong> in the groups listed by</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">groups
+</code></pre></div><p>Before issuing any commands, I also had to remove the &ldquo;CD Rom&rdquo; drives as source for other software in Synaptic. Otherwise, no internet mirrors were reached for updates. Now I could finally update the system and download new software.</p>
+<p>First thing to do is to findout the driver, which was easy after some search for the right command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">lspci
+</code></pre></div><p>It gave me that my Wireless Network Adapter was the Realtek RTL8723BE. Again, I was not the only one in trouble and found an excellent guide <a href="https://trendoceans.com/how-to-fix-rtl872be-no-wifi-network-connection-in-debian/">here.</a> However, My fix was much shorter as It was already bundled in a <a href="https://debian.pkgs.org/10/debian-nonfree-amd64/firmware-realtek%5F20190114-2%5Fall.deb.html">debian mirror in version 10</a> and I had just installed Debian 11 LTS. So after installing it (with mirrors working now):</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install firmware-realtek
+</code></pre></div><p>I had it working. I am writing this as a reminder to my future self of this little saga to get the notebook up and running.</p>
+
+                <br>
+		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+            <form method="POST" action="https://api.staticman.net/v2/entry////">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/installing-linux-on-hp-246-g6/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="9978c242a967ebc61a129b70cbfcdcbe">
+    <input name="fields[name]" type="text" placeholder="Your name">
+    <input name="fields[email]" type="email" placeholder="Your email address">
+    <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
+    <input type="submit" value="Submit">
+</form>
+
+
+  	     
+ 
+ 
+
+ 
+   
+ 
+
+ 
+   <p>Hey, be the first who comment this article.</p>
+ 
+
+            
+        </div>
+    </div>
+</section>
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-93472104-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>
+
