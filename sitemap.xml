@@ -4,7 +4,27 @@
   
   <url>
     <loc>https://gtpedrosa.github.io/tags/debian/</loc>
-    <lastmod>2022-01-29T15:43:00-03:00</lastmod>
+    <lastmod>2022-03-06T22:49:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/blog/fixing-ever-growing-kern.log-messages-and-syslog-files-on-debian/</loc>
+    <lastmod>2022-03-06T22:49:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/</loc>
+    <lastmod>2022-03-06T22:49:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/linux/</loc>
+    <lastmod>2022-03-06T22:49:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/</loc>
+    <lastmod>2022-03-06T22:49:00-03:00</lastmod>
   </url>
   
   <url>
@@ -13,22 +33,7 @@
   </url>
   
   <url>
-    <loc>https://gtpedrosa.github.io/</loc>
-    <lastmod>2022-01-29T15:43:00-03:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://gtpedrosa.github.io/blog/installing-linux-on-hp-246-g6/</loc>
-    <lastmod>2022-01-29T15:43:00-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/linux/</loc>
-    <lastmod>2022-01-29T15:43:00-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/</loc>
     <lastmod>2022-01-29T15:43:00-03:00</lastmod>
   </url>
   

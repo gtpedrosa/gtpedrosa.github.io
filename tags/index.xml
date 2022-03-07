@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Guilherme Pedrosa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sat, 29 Jan 2022 15:43:00 -0300</lastBuildDate>
+    <lastBuildDate>Sun, 06 Mar 2022 22:49:00 -0300</lastBuildDate>
     
 	<atom:link href="https://gtpedrosa.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,18 @@
     <item>
       <title>debian</title>
       <link>https://gtpedrosa.github.io/tags/debian/</link>
-      <pubDate>Sat, 29 Jan 2022 15:43:00 -0300</pubDate>
+      <pubDate>Sun, 06 Mar 2022 22:49:00 -0300</pubDate>
       
       <guid>https://gtpedrosa.github.io/tags/debian/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://gtpedrosa.github.io/tags/linux/</link>
+      <pubDate>Sun, 06 Mar 2022 22:49:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/tags/linux/</guid>
       <description></description>
     </item>
     
@@ -26,15 +35,6 @@
       <pubDate>Sat, 29 Jan 2022 15:43:00 -0300</pubDate>
       
       <guid>https://gtpedrosa.github.io/tags/driver/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://gtpedrosa.github.io/tags/linux/</link>
-      <pubDate>Sat, 29 Jan 2022 15:43:00 -0300</pubDate>
-      
-      <guid>https://gtpedrosa.github.io/tags/linux/</guid>
       <description></description>
     </item>
     

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Guilherme Pedrosa">
+<meta name="description" content="After a Fresh install of Debian, I was suddenly surprised by the current lack of disk space to save a file. This post is a memo for my future self of how I managed to solve this issue.
+In summary, the lack of disk space was caused by ever-growing logging messages stored on three files located in /var/log: messages, kern.log, and syslog. What messages? Specifically these:
+guilherme@gtpedrosa: sudo tail syslog Mar 5 12:11:50 gtpedrosa kernel: [ 256.">
+
+<meta property="og:title" content="Fixing ever-growing kern.log, messages and syslog files on Debian" />
+<meta property="og:description" content="After a Fresh install of Debian, I was suddenly surprised by the current lack of disk space to save a file. This post is a memo for my future self of how I managed to solve this issue.
+In summary, the lack of disk space was caused by ever-growing logging messages stored on three files located in /var/log: messages, kern.log, and syslog. What messages? Specifically these:
+guilherme@gtpedrosa: sudo tail syslog Mar 5 12:11:50 gtpedrosa kernel: [ 256." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/fixing-ever-growing-kern.log-messages-and-syslog-files-on-debian/" />
+<meta property="article:published_time" content="2022-03-06T22:49:00-03:00" />
+<meta property="article:modified_time" content="2022-03-06T22:49:00-03:00" />
+
+
+<title>
+
+
+     Fixing ever-growing kern.log, messages and syslog files on Debian 
+
+</title>
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/fixing-ever-growing-kern.log-messages-and-syslog-files-on-debian/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2022-03-07%2002%3a56%3a11.563255873%20%2b0000%20UTC%20m%3d%2b0.108187474">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2022-03-07%2002%3a56%3a11.563255873%20%2b0000%20UTC%20m%3d%2b0.108187474">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2022-03-07%2002%3a56%3a11.563255873%20%2b0000%20UTC%20m%3d%2b0.108187474">
+    
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2022-03-07%2002%3a56%3a11.563255873%20%2b0000%20UTC%20m%3d%2b0.108187474">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://gtpedrosa.github.io/img/leaf.ico"
+
+>
+
+
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="https://gtpedrosa.github.io/"><img class="avatar" src="https://gtpedrosa.github.io/img/profile.png" srcset="https://gtpedrosa.github.io/img/profile.png 1x"></a>
+            
+            <a href="https://gtpedrosa.github.io/"><div class="name">Guilherme Pedrosa</div></a>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="https://gtpedrosa.github.io/blog/"><span>Blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="https://gtpedrosa.github.io/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-projects"><a href="https://gtpedrosa.github.io/projects/"><span>Projects</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/github.svg" alt="github" /></a>
+        
+
+        
+            <a href="//twitter.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/twitter.svg" alt="twitter" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/guilherme-pedrosa-73213aa0/" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+            
+        
+
+        
+
+        
+            <a href="mailto:guilherme.pedrosa@gmail.com"><img class="icon" src="https://gtpedrosa.github.io/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="https://gtpedrosa.github.io/index.xml"><img class="icon" src="https://gtpedrosa.github.io/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Fixing ever-growing kern.log, messages and syslog files on Debian
+
+</div>
+
+                    <div class="initials"><a href="https://gtpedrosa.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Sun Mar 6 2022 22:49:00 -0300'>Mar 6, 2022</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>3 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                <p>After a Fresh install of Debian, I was suddenly surprised by the current lack of disk space to save a file. This post is a memo for my future self of how I managed to solve this issue.</p>
+<p>In summary, the lack of disk space was caused by ever-growing logging messages stored on three files located in <strong>/var/log</strong>: messages, kern.log, and syslog. What messages? Specifically these:</p>
+<pre><code class="language-nil" data-lang="nil">guilherme@gtpedrosa: sudo tail syslog
+Mar  5 12:11:50 gtpedrosa kernel: [  256.873658] pcieport 0000:00:1d.0: AER: Corrected error received: 0000:00:1d.0
+Mar  5 12:11:50 gtpedrosa kernel: [  256.873661] pcieport 0000:00:1d.0: PCIe Bus Error: severity=Corrected, type=Physical Layer, (Receiver ID)
+Mar  5 12:11:50 gtpedrosa kernel: [  256.873662] pcieport 0000:00:1d.0:   device [8086:9d18] error status/mask=00000001/00002000
+Mar  5 12:11:50 gtpedrosa kernel: [  256.873662] pcieport 0000:00:1d.0:    [ 0] RxErr
+Mar  5 12:11:50 gtpedrosa kernel: [  256.873669] pcieport 0000:00:1d.0: AER: Corrected error received: 0000:00:1d.0
+Mar  5 12:11:50 gtpedrosa kernel: [  256.873679] pcieport 0000:00:1d.0: AER: can't find device of ID00e8
+Mar  5 12:11:50 gtpedrosa kernel: [  256.873680] pcieport 0000:00:1d.0: AER: Corrected error received: 0000:00:1d.0
+Mar  5 12:11:50 gtpedrosa kernel: [  256.873684] pcieport 0000:00:1d.0: PCIe Bus Error: severity=Corrected, type=Physical Layer, (Receiver ID)
+Mar  5 12:11:50 gtpedrosa kernel: [  256.873688] pcieport 0000:00:1d.0:   device [8086:9d18] error status/mask=00000001/00002000
+Mar  5 12:11:50 gtpedrosa kernel: [  256.873689] pcieport 0000:00:1d.0:    [ 0] RxErr
+</code></pre><p>Having no clue how to proceed, the following resources shed some light on how I should approach the issue:</p>
+<ul>
+<li><a href="https://gist.github.com/Brainiarc7/3179144393747f35e5155fdbfd675554">Github gist</a></li>
+<li><a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1521173">Launchpad</a></li>
+<li><a href="https://unix.stackexchange.com/questions/195360/my-var-log-is-mysteriously-filling-up-gbs-in-minutes-any-cure-before-i-re-ins">StackExchange</a></li>
+</ul>
+<p>Following the gist resource, I found that the offending Bus error was owed to my PCI (<em>Peripheral Computer Interface</em>) bridge. The bus info is exactly the one reported in the log files:</p>
+<pre><code class="language-nil" data-lang="nil">guilherme@gtpedrosa:/var/log$ sudo lshw -numeric
+	*-pci:2
+	     description: PCI bridge
+	     product: Sunrise Point-LP PCI Express Root Port #9 [8086:9D18]
+	     vendor: Intel Corporation [8086]
+	     physical id: 1d
+	     bus info: pci@0000:00:1d.0
+	     version: f1
+	     width: 32 bits
+	     clock: 33MHz
+	     capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+	     configuration: driver=pcieport
+	     resources: irq:124 ioport:3000(size=4096) memory:b1000000-b10fffff
+	   *-network
+		description: Wireless interface
+		product: RTL8723BE PCIe Wireless Network Adapter [10EC:B723]
+		vendor: Realtek Semiconductor Co., Ltd. [10EC]
+		physical id: 0
+		bus info: pci@0000:03:00.0
+		logical name: wlo1
+		version: 00
+		serial: b0:52:16:ff:33:9f
+		width: 64 bits
+		clock: 33MHz
+		capabilities: pm msi pciexpress bus_master cap_list ethernet physical wireless
+		configuration: broadcast=yes driver=rtl8723be driverversion=5.10.0-11-amd64 firmware=N/A ip=192.168.15.15 latency=0 link=yes multicast=yes wireless=IEEE 802.11
+		resources: irq:16 ioport:3000(size=256) memory:b1000000-b1003fff
+</code></pre><p>After identifying the key information I tried to rewrite the base registry manually. The current output was:</p>
+<pre><code class="language-nil" data-lang="nil">guilherme@gtpedrosa:/var/log$ sudo setpci -v -d 8086:9d18 CAP_EXP+0x8.w
+0000:00:1d.0 (cap 10 @40) @48 = 000f
+</code></pre><p>And the expected output should be <strong>000e</strong> (according to the gist author). However, after trying to overwrite it:</p>
+<pre><code class="language-nil" data-lang="nil">guilherme@gtpedrosa:/var/log$ sudo setpci -v -d 8086:9d18 CAP_EXP+0x8.w=0x0e
+pcilib: sysfs_write: write failed: Operation not permitted
+0000:00:1d.0 (cap 10 @40) @48 000e
+</code></pre><p>I got permission denied. <strong><strong>The only way to make sysfs_write work was to disable secure boot</strong></strong>. Only then, the above command ran without issue. It took me quite a while to figure this piece out. However, this only halted the logs in the current session, meaning that after a restart it would grow again until I re-issued the command. This led me to alter the grub file, as per the launchpad suggestion. The final answer involved editing <strong>/etc/default/grub</strong> and replacing the existing <strong>GURB_CMD_LINE_LINUX_DEFAULT</strong> with the following:</p>
+<pre><code class="language-nil" data-lang="nil">GRUB_CMDLINE_LINUX_DEFAULT=&quot;quiet splash pci=noaer&quot;
+</code></pre><p>Emphasis on the <strong>pci=noaer</strong> option. What this does, according to the <a href="https://www.kernel.org/doc/html/v4.14/admin-guide/kernel-parameters.html">Linux Kernel manual</a>, is to disable the PCI Express advanced logging. Note that <strong>grub-update</strong> is necessary. This was only possible after disabling secure boot as well. The <em>how-to</em> is in one of the answers of the StackExchange link.</p>
+<p>Sadly, this is only a workaround. Probably, as per <a href="https://gtpedrosa.github.io/blog/installing-linux-on-hp-246-g6/">my previous post</a>, and <a href="https://askubuntu.com/questions/1104219/what-does-pci-noaer-or-pci-nomsi-mean">this insight</a>, a hardware (my wireless driver) does not communicate with the kernel properly with MSI. Nonetheless, the HP notebook is ready for some serious work.</p>
+
+                <br>
+		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+            <form method="POST" action="https://api.staticman.net/v2/entry////">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/fixing-ever-growing-kern.log-messages-and-syslog-files-on-debian/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="ffd7019ac1017473a796761ab2d1d17e">
+    <input name="fields[name]" type="text" placeholder="Your name">
+    <input name="fields[email]" type="email" placeholder="Your email address">
+    <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
+    <input type="submit" value="Submit">
+</form>
+
+
+  	     
+ 
+ 
+
+ 
+   
+ 
+
+ 
+   <p>Hey, be the first who comment this article.</p>
+ 
+
+            
+        </div>
+    </div>
+</section>
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-93472104-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>
+
