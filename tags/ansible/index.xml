@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>driver on Guilherme Pedrosa</title>
-    <link>https://gtpedrosa.github.io/tags/driver/</link>
-    <description>Recent content in driver on Guilherme Pedrosa</description>
+    <title>Ansible on Guilherme Pedrosa</title>
+    <link>https://gtpedrosa.github.io/tags/ansible/</link>
+    <description>Recent content in Ansible on Guilherme Pedrosa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Sun, 20 Mar 2022 17:46:00 -0300</lastBuildDate>
     
-	<atom:link href="https://gtpedrosa.github.io/tags/driver/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gtpedrosa.github.io/tags/ansible/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,16 +19,6 @@
       <guid>https://gtpedrosa.github.io/blog/setting-up-debian-11-on-my-hp-pavillion-dv7-6199us/</guid>
       <description>The HP Pavillion dv7-6199us has been my notebook for over 10 years. I accidentally trashed my system and could not fix it when it crashed during an upgrade. This led me to format it over, which was long due. Taking advantage of my previous experience with my other HP, the 246, I tried to install Debian 11 instead of Ubuntu. Here are my other findings during the OS switch.
 Debian does not come with non-libre software.</description>
-    </item>
-    
-    <item>
-      <title>Installing Linux on HP 246 G6</title>
-      <link>https://gtpedrosa.github.io/blog/installing-linux-on-hp-246-g6/</link>
-      <pubDate>Sat, 29 Jan 2022 15:43:00 -0300</pubDate>
-      
-      <guid>https://gtpedrosa.github.io/blog/installing-linux-on-hp-246-g6/</guid>
-      <description>Trying to speed-up my notebook HP 246 G6, I decided to upgrade my HD to a SSD. While at it, I have also decided to switch from Windows to Ubuntu. However, things did not go as smooth as I thought they would.
-Firstly, I could not flash a new Ubuntu image successfully on my 16GB CruzerBlade thumbdrive. I used the Balena Etcher electron app. In case you have never used it before, just issue the following in the command line to get it running:</description>
     </item>
     
   </channel>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Guilherme Pedrosa">
+<meta name="description" content="The HP Pavillion dv7-6199us has been my notebook for over 10 years. I accidentally trashed my system and could not fix it when it crashed during an upgrade. This led me to format it over, which was long due. Taking advantage of my previous experience with my other HP, the 246, I tried to install Debian 11 instead of Ubuntu. Here are my other findings during the OS switch.
+Debian does not come with non-libre software.">
+
+<meta property="og:title" content="Setting up Debian 11 on my HP Pavillion dv7-6199us" />
+<meta property="og:description" content="The HP Pavillion dv7-6199us has been my notebook for over 10 years. I accidentally trashed my system and could not fix it when it crashed during an upgrade. This led me to format it over, which was long due. Taking advantage of my previous experience with my other HP, the 246, I tried to install Debian 11 instead of Ubuntu. Here are my other findings during the OS switch.
+Debian does not come with non-libre software." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/setting-up-debian-11-on-my-hp-pavillion-dv7-6199us/" />
+<meta property="article:published_time" content="2022-03-20T17:46:00-03:00" />
+<meta property="article:modified_time" content="2022-03-20T17:46:00-03:00" />
+
+
+<title>
+
+
+     Setting up Debian 11 on my HP Pavillion dv7-6199us 
+
+</title>
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/setting-up-debian-11-on-my-hp-pavillion-dv7-6199us/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2022-03-21%2002%3a11%3a45.057204603%20%2b0000%20UTC%20m%3d%2b0.148704107">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2022-03-21%2002%3a11%3a45.057204603%20%2b0000%20UTC%20m%3d%2b0.148704107">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2022-03-21%2002%3a11%3a45.057204603%20%2b0000%20UTC%20m%3d%2b0.148704107">
+    
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2022-03-21%2002%3a11%3a45.057204603%20%2b0000%20UTC%20m%3d%2b0.148704107">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://gtpedrosa.github.io/img/leaf.ico"
+
+>
+
+
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="https://gtpedrosa.github.io/"><img class="avatar" src="https://gtpedrosa.github.io/img/profile.png" srcset="https://gtpedrosa.github.io/img/profile.png 1x"></a>
+            
+            <a href="https://gtpedrosa.github.io/"><div class="name">Guilherme Pedrosa</div></a>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="https://gtpedrosa.github.io/blog/"><span>Blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="https://gtpedrosa.github.io/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-projects"><a href="https://gtpedrosa.github.io/projects/"><span>Projects</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/github.svg" alt="github" /></a>
+        
+
+        
+            <a href="//twitter.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/twitter.svg" alt="twitter" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/guilherme-pedrosa-73213aa0/" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+            
+        
+
+        
+
+        
+            <a href="mailto:guilherme.pedrosa@gmail.com"><img class="icon" src="https://gtpedrosa.github.io/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="https://gtpedrosa.github.io/index.xml"><img class="icon" src="https://gtpedrosa.github.io/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Setting up Debian 11 on my HP Pavillion dv7-6199us
+
+</div>
+
+                    <div class="initials"><a href="https://gtpedrosa.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Sun Mar 20 2022 17:46:00 -0300'>Mar 20, 2022</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>3 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                <p>The HP Pavillion dv7-6199us has been my notebook for over 10 years. I accidentally trashed my system and could not fix it when it crashed during an upgrade. This led me to format it over, which was long due. Taking advantage of my previous experience with my other HP, the 246, I tried to install Debian 11 instead of Ubuntu. Here are my other findings during the OS switch.</p>
+<p>Debian does not come with non-libre software. This is the reason the wifi driver was not supported <a href="https://gtpedrosa.github.io/blog/installing-linux-on-hp-246-g6/">previously</a>. Following my notes, I was able to quickly set this up. Interestingly, I have found that the drivers are located at <strong>/lib/firmware</strong> which I did not know before trying a manual install. I ended up installing all the available driver options by issuing</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Wifi proprietary driver</span>
+sudo apt update <span class="o">&amp;&amp;</span> sudo apt install firmware-iwlwifi
+ls /lib/firmware
+</code></pre></div><p>Meanwhile, I have noticed the fan noise pretty loud since the startup. I tracked this issue to be related to my graphics card. I do not recall where I have found this info, but updating the graphic drivers did the trick:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Avoid fan overwork</span>
+sudo apt-get install firmware-amd-graphics libgl1-mesa-dri libglx-mesa0 mesa-vulkan-drivers xserver-xorg-video-all
+</code></pre></div><p>These were quirks related to this device only. However, due to my recent system installation, I thought about how could I automate this process. My research showed that Ansible is quite a powerful tool worth exploring in this area. For simplicity sake, my first approach was to keep a bash script. It tracked all the software I needed and the commands necessary to set them up. I hope to turn it into an Ansible playbook in the future. Meanwhile here&rsquo;s the bash script:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># curl</span>
+sudo apt install curl
+
+<span class="c1"># pass</span>
+sudo apt install pass -y
+
+<span class="c1"># Install keychain to start ssh-agent if it isn&#39;t running</span>
+<span class="c1"># https://stackoverflow.com/questions/18880024/start-ssh-agent-on-login</span>
+sudo apt install keychain -y
+
+<span class="c1"># gpg keys</span>
+gpg --import ~/.gnupg/pubring.gpg
+gpg --import ~/.gnupg/secring.gpg
+<span class="c1"># https://stackoverflow.com/questions/33361068/gnupg-there-is-no-assurance-this-key-belongs-to-the-named-user</span>
+<span class="c1"># gpg --edit-key &lt;KEY-ID&gt;</span>
+<span class="c1"># trust</span>
+<span class="c1"># 5</span>
+<span class="c1"># quit</span>
+
+<span class="c1"># Dropbox</span>
+<span class="nb">cd</span> ~ <span class="o">&amp;&amp;</span> wget -O - <span class="s2">&#34;https://www.dropbox.com/download?plat=lnx.x86_64&#34;</span> <span class="p">|</span> tar xzf -
+~/.dropbox-dist/dropboxd
+
+<span class="c1"># Spotify</span>
+curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg <span class="p">|</span> sudo apt-key add -
+<span class="nb">echo</span> <span class="s2">&#34;deb http://repository.spotify.com stable non-free&#34;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get install spotify-client
+
+<span class="c1"># gnucash</span>
+<span class="c1"># Install sqlite3 backend</span>
+sudo apt install libdbd-sqlite3 gnucash -y
+
+<span class="c1"># Install applet to fix battery status (&#34;Estimating...&#34; indefinetly&#34;)</span>
+<span class="c1">#sudo add-apt-repository ppa:iaz/battery-status &amp;&amp; sudo apt-get update</span>
+<span class="c1">#sudo apt-get install battery-status</span>
+
+<span class="c1"># Editors</span>
+sudo apt install emacs neovim -y
+<span class="c1"># emacs uninstall org 9.3 and org related packages. Install spacemacs-theme. Restart.</span>
+
+<span class="c1"># Fish shell</span>
+sudo apt install fish -y
+
+<span class="c1"># i3</span>
+sudo apt install i3 -y
+
+<span class="c1"># librewolf</span>
+<span class="nb">echo</span> <span class="s2">&#34;deb [arch=amd64] http://deb.librewolf.net </span><span class="k">$(</span>lsb_release -sc<span class="k">)</span><span class="s2"> main&#34;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/librewolf.list
+sudo wget https://deb.librewolf.net/keyring.gpg -O /etc/apt/trusted.gpg.d/librewolf.gpg
+sudo apt update
+sudo apt install librewolf -y
+
+<span class="c1"># dotfiles</span>
+sudo sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsLS chezmoi.io/get<span class="k">)</span><span class="s2">&#34;</span> -- init --apply gtpedrosa
+sudo mv ./bin/chezmoi /bin/
+rm -rf ./bin
+<span class="c1"># OBS: emacs agenda only worked after reinstalling org package. Theme was not applied</span>
+
+<span class="c1"># pyenv</span>
+sudo curl https://pyenv.run <span class="p">|</span> bash
+
+<span class="c1"># Calibre</span>
+sudo -v <span class="o">&amp;&amp;</span> wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh <span class="p">|</span> sudo sh /dev/stdin
+
+<span class="c1"># Zotero</span>
+<span class="c1"># download latest version manually</span>
+
+<span class="c1"># Hugo</span>
+<span class="c1"># download latest version form github</span>
+https://github.com/gohugoio/hugo/releases/download/v0.95.0/hugo_0.95.0_Linux-64bit.deb
+sudo dpkg -i ./Downloads/hugo_0.95.0_Linux-64bit.deb
+
+<span class="c1"># htop</span>
+sudo apt install htop
+
+<span class="c1"># frescobaldi</span>
+sudo apt install frescobaldi
+
+<span class="c1"># FreeCAD</span>
+sudo apt install freecad
+<span class="c1"># Download ODA converter for dwg import and install</span>
+<span class="c1"># https://www.opendesign.com/guestfiles/oda_file_converter</span>
+</code></pre></div><p>This episode was a great learning experience OS-wise. As a side effect, I got my dotfiles cruft reduced and made them more portable. By the way, shoutout to <a href="https://www.chezmoi.io/">chezmoi</a>, which made the setup of the dotfiles a breeze.</p>
+
+                <br>
+		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+            <form method="POST" action="https://api.staticman.net/v2/entry////">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/setting-up-debian-11-on-my-hp-pavillion-dv7-6199us/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="bfb85d90c4ffa1bc7d217aedc67d371f">
+    <input name="fields[name]" type="text" placeholder="Your name">
+    <input name="fields[email]" type="email" placeholder="Your email address">
+    <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
+    <input type="submit" value="Submit">
+</form>
+
+
+  	     
+ 
+ 
+
+ 
+   
+ 
+
+ 
+   <p>Hey, be the first who comment this article.</p>
+ 
+
+            
+        </div>
+    </div>
+</section>
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-93472104-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>
+
