@@ -1272,6 +1272,22 @@ sudo apt install freecad
 
 This episode was a great learning experience OS-wise. As a side effect, I got my dotfiles cruft reduced and made them more portable. By the way, shoutout to [[https://www.chezmoi.io/][chezmoi]], which made the setup of the dotfiles a breeze.
 
+** DONE Initializing aliases on cmd startup :windows:cmd:registry:
+CLOSED: [2022-05-22 Sun 21:09]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2022-05-22-initializing-aliases-on-cmd-startup
+:END:
+
+On my [[https://gtpedrosa.github.io/blog/setting-up-a-data-science-local-environment-without-administrative-rights-on-windows/][previous post]] about setting up a data-science development environment without admin rights on Windows, there is a step where the registry needs to be edited. Recently, I have tried to follow the same instructions I wrote back then without success. It happens that the Command Processor entry cannot simply be found anymore.
+
+In order to make my aliases stored on HOME directory initialize upon cmd startup, I have found the following work around:
+
+#+begin_src bash
+reg add "HKCU\Software\Microsoft\Command Processor" /v AutoRun /t REG_EXPAND_SZ /d "%"USERPROFILE"%\alias.cmd" /f
+#+end_src
+
+It correctly autoruns the alias on cmd startup, solving the issue. More info on Microsoft’s docs.
+
 ** TODO Retrieving music sheet off midi visualizer in youtube videos using opencv part 1
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2019-01-15-retrieving-music-sheet-off-midi-visualizer-in-youtube-videos-using-opencv
