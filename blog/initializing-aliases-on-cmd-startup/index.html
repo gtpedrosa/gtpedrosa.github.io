@@ -9,23 +9,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="no-referrer">
 <meta name="author" content="Guilherme Pedrosa">
-<meta name="description" content="When trying to install the requirements for a course on coursera I found out that my system&rsquo;s python distribution was a bit outdated. Since I did not want to change anything systemwide (and possibily break things) I decided to finally go for a virtual environment.">
+<meta name="description" content="On my previous post about setting up a data-science development environment without admin rights on Windows, there is a step where the registry needs to be edited. Recently, I have tried to follow the same instructions I wrote back then without success. It happens that the Command Processor entry cannot simply be found anymore.
+In order to make my aliases stored on HOME directory initialize upon cmd startup, I have found the following work around:">
 
-<meta property="og:title" content="Installing a virtualenv with specific python version" />
-<meta property="og:description" content="When trying to install the requirements for a course on coursera I found out that my system&rsquo;s python distribution was a bit outdated. Since I did not want to change anything systemwide (and possibily break things) I decided to finally go for a virtual environment." />
+<meta property="og:title" content="Initializing aliases on cmd startup" />
+<meta property="og:description" content="On my previous post about setting up a data-science development environment without admin rights on Windows, there is a step where the registry needs to be edited. Recently, I have tried to follow the same instructions I wrote back then without success. It happens that the Command Processor entry cannot simply be found anymore.
+In order to make my aliases stored on HOME directory initialize upon cmd startup, I have found the following work around:" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gtpedrosa.github.io/blog/installing-a-virtualenv-with-specific-python-version/" />
-<meta property="article:published_time" content="2016-11-10T19:11:44-03:00" />
-<meta property="article:modified_time" content="2016-11-10T19:11:44-03:00" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/initializing-aliases-on-cmd-startup/" />
+<meta property="article:published_time" content="2022-05-22T21:09:00-03:00" />
+<meta property="article:modified_time" content="2022-05-22T21:09:00-03:00" />
 
 
 <title>
 
 
-     Installing a virtualenv with specific python version 
+     Initializing aliases on cmd startup 
 
 </title>
-<link rel="canonical" href="https://gtpedrosa.github.io/blog/installing-a-virtualenv-with-specific-python-version/">
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/initializing-aliases-on-cmd-startup/">
 
 
 
@@ -43,11 +45,11 @@
 
 
     
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2022-05-23%2000%3a11%3a44.277233716%20%2b0000%20UTC%20m%3d%2b0.068578667">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2022-05-23%2000%3a11%3a44.277233716%20%2b0000%20UTC%20m%3d%2b0.068578667">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2022-05-23%2000%3a11%3a44.277233716%20%2b0000%20UTC%20m%3d%2b0.068578667">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2022-05-23%2000%3a11%3a44.270127856%20%2b0000%20UTC%20m%3d%2b0.061472799">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2022-05-23%2000%3a11%3a44.270127856%20%2b0000%20UTC%20m%3d%2b0.061472799">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2022-05-23%2000%3a11%3a44.270127856%20%2b0000%20UTC%20m%3d%2b0.061472799">
     
-        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2022-05-23%2000%3a11%3a44.277233716%20%2b0000%20UTC%20m%3d%2b0.068578667">
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2022-05-23%2000%3a11%3a44.270127856%20%2b0000%20UTC%20m%3d%2b0.061472799">
     
 
 
@@ -186,7 +188,7 @@
                 <div class="title-container">
                     <div class="page-heading">
 
-    Installing a virtualenv with specific python version
+    Initializing aliases on cmd startup
 
 </div>
 
@@ -194,28 +196,19 @@
                 </div>
                 <div class="meta">
                     
-                    <div class="date" title='Thu Nov 10 2016 19:11:44 -0300'>Nov 10, 2016</div>
+                    <div class="date" title='Sun May 22 2022 21:09:00 -0300'>May 22, 2022</div>
                     
                     
-		    <div class="reading-time"><div class="middot"></div>2 minutes read</div>
+		    <div class="reading-time"><div class="middot"></div>One minute read</div>
                     
                 </div>
             </div>
             <div class="markdown">
-                <p>When trying to install the requirements for a course on coursera I found out that my system&rsquo;s python distribution was a bit outdated. Since I did not want to change anything systemwide (and possibily break things) I decided to finally go for a virtual environment.</p>
-<p>Creating a virtual environment (venv) is easier than I thought. A venv shadows your current python packages by creating a standalone environment where you have a python executable, pip and easy_install. This means you have all the tools to download and manage packages, and they are not installed in the local user system folders. Every package is installed relative to the folder you have created the virtualenv for.</p>
-<p>As of the time of this writing, python&rsquo;s latest release was the 2.7.12. If you compile a new version from source, and create a virtual environment afterwards specifying the path relative to the new python installation, you might get the same AssertionError as I did:</p>
-<pre><code>AssertionError: Filename /packages/Python-2.7/Lib/os.py does not start with any of these prefixes: ['/usr/local']
-</code></pre><p>The work arround to this is to compile python from source with the <code>prefix</code> option (thanks to Drachenfels on SO):</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">./configure --prefix<span class="o">=</span>/Path/To/Where/I/Want/Python/After/Compilation/
-make
-make install
-</code></pre></div><p>This will fix any path issues from the new python executable, if you want to keep the new version in a place other than <code>/usr/bin/</code>. Now, to create the virtual environment:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">virtualenv -p /pathToPython/Python-2.7.12/bin/python2.7  venv_name
-<span class="nb">cd</span> venv_name
-<span class="nb">source</span> /bin/activate
-pip install myProjectPackages
-</code></pre></div><p>And you are all set.</p>
+                <p>On my <a href="https://gtpedrosa.github.io/blog/setting-up-a-data-science-local-environment-without-administrative-rights-on-windows/">previous post</a> about setting up a data-science development environment without admin rights on Windows, there is a step where the registry needs to be edited. Recently, I have tried to follow the same instructions I wrote back then without success. It happens that the Command Processor entry cannot simply be found anymore.</p>
+<p>In order to make my aliases stored on HOME directory initialize upon cmd startup, I have found the following work around:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">reg add <span class="s2">&#34;HKCU\Software\Microsoft\Command Processor&#34;</span> /v AutoRun /t REG_EXPAND_SZ /d <span class="s2">&#34;%&#34;</span>USERPROFILE<span class="s2">&#34;%\alias.cmd&#34;</span> /f
+</code></pre></div><p>It correctly autoruns the alias on cmd startup, solving the issue. More info on Microsoft’s docs.</p>
+
                 <br>
 		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
             </div>
@@ -224,8 +217,8 @@ pip install myProjectPackages
                 
             </div>
             <form method="POST" action="https://api.staticman.net/v2/entry////">
-    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/installing-a-virtualenv-with-specific-python-version/#comment-submitted">
-    <input type="hidden" name="options[entryId]" value="24dd82a06d2c84bf435fb9fcca999349">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/initializing-aliases-on-cmd-startup/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="c706b1adc210af756254cca7fd5bb2a1">
     <input name="fields[name]" type="text" placeholder="Your name">
     <input name="fields[email]" type="email" placeholder="Your email address">
     <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>

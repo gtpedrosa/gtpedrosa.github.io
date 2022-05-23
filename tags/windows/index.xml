@@ -6,10 +6,20 @@
     <description>Recent content in windows on Guilherme Pedrosa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sun, 07 Jun 2020 18:24:00 -0300</lastBuildDate>
+    <lastBuildDate>Sun, 22 May 2022 21:09:00 -0300</lastBuildDate>
     
 	<atom:link href="https://gtpedrosa.github.io/tags/windows/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Initializing aliases on cmd startup</title>
+      <link>https://gtpedrosa.github.io/blog/initializing-aliases-on-cmd-startup/</link>
+      <pubDate>Sun, 22 May 2022 21:09:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/initializing-aliases-on-cmd-startup/</guid>
+      <description>On my previous post about setting up a data-science development environment without admin rights on Windows, there is a step where the registry needs to be edited. Recently, I have tried to follow the same instructions I wrote back then without success. It happens that the Command Processor entry cannot simply be found anymore.
+In order to make my aliases stored on HOME directory initialize upon cmd startup, I have found the following work around:</description>
+    </item>
     
     <item>
       <title>Setting up a Data Science local environment without administrative rights on Windows</title>

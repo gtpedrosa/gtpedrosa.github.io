@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Initializing aliases on cmd startup</title>
+      <link>https://gtpedrosa.github.io/blog/initializing-aliases-on-cmd-startup/</link>
+      <pubDate>Sun, 22 May 2022 21:09:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/initializing-aliases-on-cmd-startup/</guid>
+      <description>On my previous post about setting up a data-science development environment without admin rights on Windows, there is a step where the registry needs to be edited. Recently, I have tried to follow the same instructions I wrote back then without success. It happens that the Command Processor entry cannot simply be found anymore.
+In order to make my aliases stored on HOME directory initialize upon cmd startup, I have found the following work around:</description>
+    </item>
+    
+    <item>
       <title>Setting up Debian 11 on my HP Pavillion dv7-6199us</title>
       <link>https://gtpedrosa.github.io/blog/setting-up-debian-11-on-my-hp-pavillion-dv7-6199us/</link>
       <pubDate>Sun, 20 Mar 2022 17:46:00 -0300</pubDate>

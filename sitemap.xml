@@ -3,6 +3,41 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://gtpedrosa.github.io/tags/cmd/</loc>
+    <lastmod>2022-05-22T21:09:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/</loc>
+    <lastmod>2022-05-22T21:09:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/blog/initializing-aliases-on-cmd-startup/</loc>
+    <lastmod>2022-05-22T21:09:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/r/</loc>
+    <lastmod>2022-05-22T21:09:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/registry/</loc>
+    <lastmod>2022-05-22T21:09:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/</loc>
+    <lastmod>2022-05-22T21:09:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/windows/</loc>
+    <lastmod>2022-05-22T21:09:00-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/tags/ansible/</loc>
     <lastmod>2022-03-20T17:46:00-03:00</lastmod>
   </url>
@@ -23,22 +58,12 @@
   </url>
   
   <url>
-    <loc>https://gtpedrosa.github.io/</loc>
-    <lastmod>2022-03-20T17:46:00-03:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://gtpedrosa.github.io/tags/linux/</loc>
     <lastmod>2022-03-20T17:46:00-03:00</lastmod>
   </url>
   
   <url>
     <loc>https://gtpedrosa.github.io/blog/setting-up-debian-11-on-my-hp-pavillion-dv7-6199us/</loc>
-    <lastmod>2022-03-20T17:46:00-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/</loc>
     <lastmod>2022-03-20T17:46:00-03:00</lastmod>
   </url>
   
@@ -148,22 +173,12 @@
   </url>
   
   <url>
-    <loc>https://gtpedrosa.github.io/tags/r/</loc>
-    <lastmod>2020-06-07T18:24:00-03:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://gtpedrosa.github.io/tags/science/</loc>
     <lastmod>2020-06-07T18:24:00-03:00</lastmod>
   </url>
   
   <url>
     <loc>https://gtpedrosa.github.io/blog/setting-up-a-data-science-local-environment-without-administrative-rights-on-windows/</loc>
-    <lastmod>2020-06-07T18:24:00-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/windows/</loc>
     <lastmod>2020-06-07T18:24:00-03:00</lastmod>
   </url>
   
