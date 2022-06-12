@@ -17,8 +17,8 @@
  Abandon markdown: I always get confused by markdown markup choices. I find myself constantly reaching for markdown cheatsheet to find out how to insert a link. &ldquo;Is it parenthesis or brackets?&rdquo; gets me every time; Increase familiarity with org mode synthax to use it in my literary programming workflows in the near future (tangle&#43;babel); Reduce friction to create new blog posts using the great ox-hugo by Kaushal Modi." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://gtpedrosa.github.io/blog/using-org-mode-and-ox-hugo-to-replace-markdown-in-hugo-workflow/" />
-<meta property="article:published_time" content="2019-01-13T13:41:00-03:00" />
-<meta property="article:modified_time" content="2019-01-13T13:41:00-03:00" />
+<meta property="article:published_time" content="2019-01-13T13:41:00-02:00" />
+<meta property="article:modified_time" content="2019-01-13T13:41:00-02:00" />
 
 
 <title>
@@ -45,11 +45,11 @@
 
 
     
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2022-05-23%2000%3a11%3a44.379588827%20%2b0000%20UTC%20m%3d%2b0.170933778">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2022-05-23%2000%3a11%3a44.379588827%20%2b0000%20UTC%20m%3d%2b0.170933778">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2022-05-23%2000%3a11%3a44.379588827%20%2b0000%20UTC%20m%3d%2b0.170933778">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2022-06-12%2013%3a07%3a43.64642776%20%2b0000%20UTC%20m%3d%2b0.238108810">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2022-06-12%2013%3a07%3a43.64642776%20%2b0000%20UTC%20m%3d%2b0.238108810">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2022-06-12%2013%3a07%3a43.64642776%20%2b0000%20UTC%20m%3d%2b0.238108810">
     
-        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2022-05-23%2000%3a11%3a44.379588827%20%2b0000%20UTC%20m%3d%2b0.170933778">
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2022-06-12%2013%3a07%3a43.64642776%20%2b0000%20UTC%20m%3d%2b0.238108810">
     
 
 
@@ -79,6 +79,8 @@
                 
                 
                 
+                
+                    
                 
                     
                 
@@ -196,10 +198,10 @@
                 </div>
                 <div class="meta">
                     
-                    <div class="date" title='Sun Jan 13 2019 13:41:00 -0300'>Jan 13, 2019</div>
+                    <div class="date" title='Sun Jan 13 2019 13:41:00 -0200'>Jan 13, 2019</div>
                     
                     
-		    <div class="reading-time"><div class="middot"></div>4 minutes read</div>
+		    <div class="reading-time"><div class="middot"></div>5 minutes read</div>
                     
                 </div>
             </div>
@@ -215,122 +217,140 @@
 <li><a href="https://www.kengrimes.com/ox-hugo-tutorial/">ox-hugo tutorial by Ken Grimes</a></li>
 <li><a href="https://ox-hugo.scripter.co/">ox-hugo website/manual</a></li>
 <li><a href="https://karl-voit.at/2017/09/23/orgmode-as-markup-only/">Some org mode markup notes and comments by Karl Voigt</a></li>
-<li><a href="http://ergoemacs.org/emacs/emacs%5Forg%5Fmarkup.html">Most frequently used org mode markup by Xah</a></li>
+<li><a href="http://ergoemacs.org/emacs/emacs_org_markup.html">Most frequently used org mode markup by Xah</a></li>
 </ul>
 <p>Since I want this post to be self contained for further reference in the near future, I will summarise what I&rsquo;ve learned from the references above.</p>
 <h2 id="installation-and-dot-emacs-setup">Installation and .emacs setup</h2>
+<blockquote>
+<p><strong>EDIT Apr 04 2020:</strong> Instructions updated after noticing they failed in brand new system installation</p>
+</blockquote>
 <ul>
 <li>Installation with package manager:</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="nv">M-x</span> <span class="nv">package-install</span> <span class="nv">RET</span> <span class="nv">ox-hugo</span> <span class="nv">RET</span>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp">  <span class="nv">M-x</span> <span class="nv">package-install</span> <span class="nv">RET</span> <span class="nv">ox-hugo</span> <span class="nv">RET</span>
 </code></pre></div><ul>
 <li>Require it in the .emacs file:</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-org" data-lang="org">(with-eval-after-load &#39;ox__
-  (require &#39;ox-hugo))
+<!-- raw HTML omitted -->
+<div class="highlight"><pre class="chroma"><code class="language-org" data-lang="org">  (with-eval-after-load &#39;ox__
+    (require &#39;ox-hugo))
 </code></pre></div><ul>
 <li>To take advantage of auto exporting on save I added the following to my .emacs file:</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-org" data-lang="org">;; Hugo orgmode exporter
-(require &#39;ox-hugo-auto-export) ;If you want the auto-exporting on file saves
+<!-- raw HTML omitted -->
+<div class="highlight"><pre class="chroma"><code class="language-org" data-lang="org">  ;; Hugo orgmode exporter
+  (require &#39;org-hugo-auto-export-mode) ;If you want the auto-exporting on file saves
+</code></pre></div><ul>
+<li>Enable snippets shortcuts</li>
+</ul>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre class="chroma"><code class="language-org" data-lang="org">  (require &#39;org-tempo);Enable snippets expantions (ex: &lt;s+TAB or &lt;q+TAB)
 </code></pre></div><ul>
 <li>Now to create a capture template to create new blog postos on the fly:</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-org" data-lang="org">;; Populates only the EXPORT_FILE_NAME property in the inserted headline.
-(with-eval-after-load &#39;org-capture
-  (defun org-hugo-new-subtree-post-capture-template ()
-    &#34;Returns `org-capture&#39; template string for new Hugo post.
-See `org-capture-templates&#39; for more information.&#34;
-    (let* ((title (read-from-minibuffer &#34;Post Title: &#34;)) ;Prompt to enter the post title
-	   (fname (org-hugo-slug title)))
-      (mapconcat #&#39;identity
-		 `(
-		   ,(concat &#34;* TODO &#34; title)
-		   &#34;:PROPERTIES:&#34;
-		   ,(concat &#34;:EXPORT_FILE_NAME: &#34; (format-time-string &#34;%Y-%m-%d-&#34;) fname)
-		   &#34;:END:&#34;
-		   &#34;%?\n&#34;)          ;Place the cursor here finally
-		 &#34;\n&#34;))))
+<!-- raw HTML omitted -->
+<div class="highlight"><pre class="chroma"><code class="language-org" data-lang="org">  ;; Populates only the EXPORT_FILE_NAME property in the inserted headline.
+  (with-eval-after-load &#39;org-capture
+    (defun org-hugo-new-subtree-post-capture-template ()
+      &#34;Returns `org-capture&#39; template string for new Hugo post.
+  See `org-capture-templates&#39; for more information.&#34;
+      (let* ((title (read-from-minibuffer &#34;Post Title: &#34;)) ;Prompt to enter the post title
+             (fname (org-hugo-slug title)))
+        (mapconcat #&#39;identity
+                   `(
+                     ,(concat &#34;* TODO &#34; title)
+                     &#34;:PROPERTIES:&#34;
+                     ,(concat &#34;:EXPORT_FILE_NAME: &#34; (format-time-string &#34;%Y-%m-%d-&#34;) fname)
+                     &#34;:END:&#34;
+                     &#34;%?\n&#34;)          ;Place the cursor here finally
+                   &#34;\n&#34;))))
 
-;; org capture templates
-(setq org-capture-templates
- &#39;(
-   (&#34;h&#34;                ;`org-capture&#39; binding + h
-		    &#34;Hugo post&#34;
-		    entry
-		    ;; It is assumed that below file is present in `org-directory&#39;
-		    ;; and that it has a &#34;Blog Ideas&#34; heading. It can even be a
-		    ;; symlink pointing to the actual location of all-posts.org!
-		    (file+olp &#34;/home/guilherme/blog/content-org/posts.org&#34; &#34;blog&#34;)
-		    (function org-hugo-new-subtree-post-capture-template))
-))
+  ;; org capture templates
+  (setq org-capture-templates
+   &#39;(
+     (&#34;h&#34;                ;`org-capture&#39; binding + h
+                      &#34;Hugo post&#34;
+                      entry
+                      ;; It is assumed that below file is present in `org-directory&#39;
+                      ;; and that it has a &#34;Blog Ideas&#34; heading. It can even be a
+                      ;; symlink pointing to the actual location of all-posts.org!
+                      (file+olp &#34;/home/guilherme/blog/content-org/posts.org&#34; &#34;blog&#34;)
+                      (function org-hugo-new-subtree-post-capture-template))
+  ))
+</code></pre></div><ul>
+<li>Include a <em>.dir-locals.el</em> file in the project root, assuming all org-files are in a <em>content-org</em> directory below root:</li>
+</ul>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre class="chroma"><code class="language-org" data-lang="org">  ((&#34;content-org/&#34;
+    . ((org-mode . ((eval . (org-hugo-auto-export-mode)))))))
 </code></pre></div><p><strong>Note:</strong> everything here so far is in the manual. I only added the current date to the file name being created in the <code>EXPORT_FILE_NAME:</code> property to be consistent with my previous naming scheme.</p>
 <h2 id="org-file-structure">Org file structure</h2>
 <p>Ken grimes did a great job explaining how to use one org file to organize a hugo blog. I&rsquo;ll just mention a few things. First of all, Hugo has a contents folder and depending on the theme you use (I use cocoa) it will have</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">tree -d -L <span class="m">2</span> ../content
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">  tree -d -L <span class="m">2</span> ../content
 </code></pre></div><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">../content
 ├── about
 ├── blog
-└── projects
+├── projects
+└── standalone
 
-3 directories
+4 directories
 </code></pre></div><p>I haven&rsquo;t been using ox-hugo in my previous posts, so I already have markdown files that do not have a corresponding org version. However, my posts reside in the blog folder. As an example, a minimal org file used to generate this post would be the following:</p>
-<div class="highlight"><pre class="chroma"><code class="language-org" data-lang="org"><span class="cs">#+hugo_base_dir</span><span class="c">: /home/guilherme/blog/</span>
- <span class="k">* </span>blog
-<span class="c">:PROPERTIES:
-</span><span class="c"></span><span class="cs">:EXPORT_HUGO_SECTION: blog
-</span><span class="cs"></span><span class="c">:END:</span>
- ** TODO Using org mode and ox-hugo to replace markdown in hugo workflow
-<span class="c">:PROPERTIES:
-</span><span class="c"></span><span class="cs">:EXPORT_FILE_NAME: 2019-01-01-using-org-mode-and-ox-hugo-to-replace-markdown-in-hugo-workflow
-</span><span class="cs"></span><span class="c">:END:</span>
+<div class="highlight"><pre class="chroma"><code class="language-org" data-lang="org">  #+hugo_base_dir: /home/guilherme<span class="ge">/blog/</span>
+   <span class="k">* </span>blog
+<span class="c">  :PROPERTIES:
+</span><span class="c"></span><span class="cs">  :EXPORT_HUGO_SECTION: blog
+</span><span class="cs"></span><span class="c">  :END:</span>
+   ** TODO Using org mode and ox-hugo to replace markdown in hugo workflow
+<span class="c">  :PROPERTIES:
+</span><span class="c"></span><span class="cs">  :EXPORT_FILE_NAME: 2019-01-01-using-org-mode-and-ox-hugo-to-replace-markdown-in-hugo-workflow
+</span><span class="cs"></span><span class="c">  :END:</span>
 
- <span class="k">* </span>Footnotes
- <span class="k">* </span>COMMENT Local Variables                          :ARCHIVE:
- # Local Variables:
- # org-hugo-auto-export-on-save: t
- # End:
+   <span class="k">* </span>Footnotes
+   <span class="k">* </span>COMMENT Local Variables                          :ARCHIVE:
+   # Local Variables:
+   # org-hugo-auto-export-on-save: t
+   # End:
 </code></pre></div><p>The local variable <code>org-hugo-auto-export-on-save</code> with the ARCHIVE tag enables hugo auto export to my blog&rsquo;s master org file only.</p>
 <h2 id="workflow">Workflow</h2>
 <p>To create a new blog post I simply issue <code>C+c C+c + h</code> and a title for my new post is prompted. Along with it the filename with date are already set by the property in the capture template. Form now on I just write.</p>
 <p>To view any changes on my working post:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">hugo serve -D --navigateToChanged
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">  hugo serve -D --navigateToChanged
 </code></pre></div><p>When done with the post, just changing the task from TODO to DONE will create a special property date that will be the post&rsquo;s date published.</p>
 <h2 id="markup-examples">Markup examples</h2>
 <p>I&rsquo;ve put together some markup examples that were spread through the sources mentioned in the beggining of the post. These are for quick lookups, where I can find the synthax for features I use the most.</p>
 <p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<p><img src="https://gtpedrosa.github.io/img/gnu-unicorn.png" alt="">
-<strong>Here we refer to <a href="#orgcf95813">1</a>.</strong></p>
+<p><img src="https://gtpedrosa.github.io/home/gtpedrosa/Projects/blog/hugo-blog/static/img/gnu-unicorn.png" alt="">
+<strong>Here we refer to <a href="#org7ab8758">1</a>.</strong></p>
 <blockquote>
 <p>Everything should be made as simple as possible,
 but not any simpler &ndash; Albert Einstein</p>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-org" data-lang="org"><span class="gh">*</span><span class="gs"> This Is A Heading</span>
-<span class="gu">**</span> This Is A Sub-Heading
-<span class="gu">***</span> And A Sub-Sub-Heading
+<div class="highlight"><pre class="chroma"><code class="language-org" data-lang="org">  <span class="k">* </span>This Is A Heading
+  ** This Is A Sub-Heading
+  *** And A Sub-Sub-Heading
 
-Paragraphs are separated by at least one empty line.
-<span class="gs">*bold*</span> <span class="ge">/italic/</span> <span class="gl">_underlined_</span> <span class="gd">+strikethrough+</span> <span class="nc">=monospaced=</span> <span class="nc">~code~</span>
-[[<span class="na">http://Karl-Voit.at</span>][<span class="nt">Link description</span>]]
-http://Karl-Voit.at → link without description
+  Paragraphs are separated by at least one empty line. <span class="gs">*bold*</span> <span class="ge">/italic/</span> <span class="gl">_underlined_</span> <span class="gd">+strikethrough+</span> <span class="nc">=monospaced=</span> <span class="nc">~code~</span>
+  [[<span class="na">http://Karl-Voit.at</span>][<span class="nt">Link description</span>]]
+  http://Karl-Voit.at → link without description
 
-: Simple pre-formatted text such as for source code.
-: This also respects the line breaks. <span class="gs">*bold*</span> is not bold here.
+  : Simple pre-formatted text such as for source code.
+  : This also respects the line breaks. <span class="gs">*bold*</span> is not bold here.
 
-<span class="k">- </span>list item
-<span class="k">- </span>another item
-  <span class="k">- </span>sub-item
-    <span class="k">1.</span> also enumerated
-    <span class="k">2.</span> if you like
-<span class="k">- [ ]</span> yet to be done
-<span class="k">- [X]</span> item which is done
+  <span class="k">- </span>list item
+  <span class="k">- </span>another item
+    <span class="k">- </span>sub-item
+      <span class="k">1.</span> also enumerated
+      <span class="k">2.</span> if you like
+  <span class="k">- [ ]</span> yet to be done
+  <span class="k">- [X]</span> item which is done
 </code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Hello&#34;</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp">  <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Hello&#34;</span><span class="p">)</span>
 </code></pre></div><!-- raw HTML omitted -->
 <p><strong>Here we refer to <a href="#code-snippet--helloagain">2</a>.</strong></p>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque et quam metus. Etiam in iaculis mi, sit amet pretium magna. Donec ut dui mi. Maecenas pharetra sapien nunc, ut mollis enim aliquam quis. Nam at ultricies metus. Nulla tempor augue in vestibulum tristique. Phasellus volutpat pharetra metus quis suscipit. Morbi maximus sem dolor, id accumsan ipsum commodo non.</p>
 <p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Hello again&#34;</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp">  <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Hello again&#34;</span><span class="p">)</span>
 </code></pre></div><!-- raw HTML omitted -->
 <p><strong>Here we refer to <a href="#code-snippet--hello">1</a>.</strong></p>
 

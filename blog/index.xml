@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>My first OpenSCAD Project</title>
+      <link>https://gtpedrosa.github.io/blog/my-first-openscad-project/</link>
+      <pubDate>Sun, 12 Jun 2022 09:55:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/my-first-openscad-project/</guid>
+      <description>I am trying my hand at carpentry and wanted to do some experimentations with a bookshelf of my own design. This led me to a search for a parametric CAD tool, where I could change determined design variables and have the model updated. OpenSCAD fitted the bill.
+In under one hour I went from zero OpenSCAD knowledge to have a working model. The code itself is not optmized, but I was happy with the result.</description>
+    </item>
+    
+    <item>
       <title>Initializing aliases on cmd startup</title>
       <link>https://gtpedrosa.github.io/blog/initializing-aliases-on-cmd-startup/</link>
       <pubDate>Sun, 22 May 2022 21:09:00 -0300</pubDate>
@@ -164,7 +174,7 @@ The documentation stands out as it is produced with MkDocs, a static site genera
     <item>
       <title>Using org mode and ox-hugo to replace markdown in hugo workflow</title>
       <link>https://gtpedrosa.github.io/blog/using-org-mode-and-ox-hugo-to-replace-markdown-in-hugo-workflow/</link>
-      <pubDate>Sun, 13 Jan 2019 13:41:00 -0300</pubDate>
+      <pubDate>Sun, 13 Jan 2019 13:41:00 -0200</pubDate>
       
       <guid>https://gtpedrosa.github.io/blog/using-org-mode-and-ox-hugo-to-replace-markdown-in-hugo-workflow/</guid>
       <description>I have decided to give org mode blogging a go. Why org mode? The main reasons for this were:

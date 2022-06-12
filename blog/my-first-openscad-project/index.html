@@ -9,27 +9,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="no-referrer">
 <meta name="author" content="Guilherme Pedrosa">
-<meta name="description" content="Trying to export a composition engraved with lilypond to MIDI, I have found out that it was not properly set up. The resulting MIDI was mute, even though I could see its contents using Audacity.
-The solution lies in this post. After installing a MIDI to Wave converter and player called timidity and starting its daemon:
-sudo apt-get install timidity sudo service timidity start A Timidity port 0 should be available after refreshing Midi Settings as player output option in the Edit &gt; Preferences &gt; Midi Settings in Frescobaldi.">
+<meta name="description" content="I am trying my hand at carpentry and wanted to do some experimentations with a bookshelf of my own design. This led me to a search for a parametric CAD tool, where I could change determined design variables and have the model updated. OpenSCAD fitted the bill.
+In under one hour I went from zero OpenSCAD knowledge to have a working model. The code itself is not optmized, but I was happy with the result.">
 
-<meta property="og:title" content="Enabling Frescobaldi MIDI output" />
-<meta property="og:description" content="Trying to export a composition engraved with lilypond to MIDI, I have found out that it was not properly set up. The resulting MIDI was mute, even though I could see its contents using Audacity.
-The solution lies in this post. After installing a MIDI to Wave converter and player called timidity and starting its daemon:
-sudo apt-get install timidity sudo service timidity start A Timidity port 0 should be available after refreshing Midi Settings as player output option in the Edit &gt; Preferences &gt; Midi Settings in Frescobaldi." />
+<meta property="og:title" content="My first OpenSCAD Project" />
+<meta property="og:description" content="I am trying my hand at carpentry and wanted to do some experimentations with a bookshelf of my own design. This led me to a search for a parametric CAD tool, where I could change determined design variables and have the model updated. OpenSCAD fitted the bill.
+In under one hour I went from zero OpenSCAD knowledge to have a working model. The code itself is not optmized, but I was happy with the result." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gtpedrosa.github.io/blog/enabling-frescobaldi-midi-output/" />
-<meta property="article:published_time" content="2020-06-21T23:29:00-03:00" />
-<meta property="article:modified_time" content="2020-06-21T23:29:00-03:00" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/my-first-openscad-project/" />
+<meta property="article:published_time" content="2022-06-12T09:55:00-03:00" />
+<meta property="article:modified_time" content="2022-06-12T09:55:00-03:00" />
 
 
 <title>
 
 
-     Enabling Frescobaldi MIDI output 
+     My first OpenSCAD Project 
 
 </title>
-<link rel="canonical" href="https://gtpedrosa.github.io/blog/enabling-frescobaldi-midi-output/">
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/my-first-openscad-project/">
 
 
 
@@ -47,11 +45,11 @@ sudo apt-get install timidity sudo service timidity start A Timidity port 0 shou
 
 
     
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2022-06-12%2013%3a07%3a43.504245678%20%2b0000%20UTC%20m%3d%2b0.095926716">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2022-06-12%2013%3a07%3a43.504245678%20%2b0000%20UTC%20m%3d%2b0.095926716">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2022-06-12%2013%3a07%3a43.504245678%20%2b0000%20UTC%20m%3d%2b0.095926716">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2022-06-12%2013%3a07%3a43.504746007%20%2b0000%20UTC%20m%3d%2b0.096427064">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2022-06-12%2013%3a07%3a43.504746007%20%2b0000%20UTC%20m%3d%2b0.096427064">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2022-06-12%2013%3a07%3a43.504746007%20%2b0000%20UTC%20m%3d%2b0.096427064">
     
-        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2022-06-12%2013%3a07%3a43.504245678%20%2b0000%20UTC%20m%3d%2b0.095926716">
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2022-06-12%2013%3a07%3a43.504746007%20%2b0000%20UTC%20m%3d%2b0.096427064">
     
 
 
@@ -192,7 +190,7 @@ sudo apt-get install timidity sudo service timidity start A Timidity port 0 shou
                 <div class="title-container">
                     <div class="page-heading">
 
-    Enabling Frescobaldi MIDI output
+    My first OpenSCAD Project
 
 </div>
 
@@ -200,19 +198,94 @@ sudo apt-get install timidity sudo service timidity start A Timidity port 0 shou
                 </div>
                 <div class="meta">
                     
-                    <div class="date" title='Sun Jun 21 2020 23:29:00 -0300'>Jun 21, 2020</div>
+                    <div class="date" title='Sun Jun 12 2022 09:55:00 -0300'>Jun 12, 2022</div>
                     
                     
-		    <div class="reading-time"><div class="middot"></div>One minute read</div>
+		    <div class="reading-time"><div class="middot"></div>2 minutes read</div>
                     
                 </div>
             </div>
             <div class="markdown">
-                <p>Trying to export a composition engraved with lilypond to MIDI, I have found out that it was not properly set up. The resulting MIDI was mute, even though I could see its contents using Audacity.</p>
-<p>The solution lies in <a href="https://askubuntu.com/questions/463575/frescobaldi-midi-player-seems-to-be-working-fine-but-doesnt-produce-any-sound">this post</a>. After installing a MIDI to Wave converter and player called timidity and starting its daemon:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo apt-get install timidity
-sudo service timidity start
-</code></pre></div><p>A <em>Timidity port 0</em> should be available after refreshing Midi Settings as player output option in the <em>Edit &gt; Preferences &gt; Midi Settings</em> in Frescobaldi.</p>
+                <p>I am trying my hand at carpentry and wanted to do some experimentations with a bookshelf of my own design. This led me to a search for a parametric CAD tool, where I could change determined design variables and have the model updated. OpenSCAD fitted the bill.</p>
+<p>In under one hour I went from zero OpenSCAD knowledge to have a working model. The code itself is not optmized, but I was happy with the result. As resources go, I would recommend:</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=ecd_eWPnynk&amp;t=46s">Model a Code Brick by mathcodeprint</a></li>
+<li><a href="https://openscad.org/cheatsheet/">OpenSCAD Cheatsheet</a></li>
+</ul>
+<p>By following them I was able to produce a 3D model from a notebook sketch. Here&rsquo;s the result with the accompanying <em>.scad</em>  code:</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><img src="https://gtpedrosa.github.io/img/estante2.png" alt="">
+<strong>Bookshelf model on OpenSCAD</strong></p>
+<pre><code class="language-nil" data-lang="nil">//Variáveis paramétricas
+pe=70;
+h_gaveta=120;
+esp_comp=15;
+nicho=250;
+
+//Pés
+difference(){
+    cube([750,300,1450]);
+    translate([45,0,0])
+    cube([660,300,1450]);
+    translate([0,45,0])
+    cube([750,210,1450]);
+}
+
+// Estantes
+for (i=[0:3]){
+translate([30,0,pe+250*i])
+cube([690,300,15]);
+}
+translate([30,0,pe+250*3+h_gaveta])
+cube([690,300,15]);
+translate([30,0,pe+250*4+h_gaveta])
+cube([690,300,15]);
+
+//Gaveta
+translate([45,0,pe+250*3])
+cube([660,15,h_gaveta]);
+
+// Puxador
+translate([45+330,0,pe+250*3+h_gaveta/2]){
+sphere(r=20);
+}
+// Apoios laterais
+for (i=[0:2]){
+translate([22.5,285,pe+esp_comp+i*nicho+(nicho-esp_comp/2)/2])
+rotate([90,0,0])
+cylinder(270,15,15);
+translate([22.5+660+45,285,pe+esp_comp+i*nicho+(nicho-esp_comp/2)/2])
+rotate([90,0,0])
+cylinder(270,15,15);
+}
+
+translate([22.5,285,pe+esp_comp+h_gaveta+3*nicho+(nicho-esp_comp/2)/2])
+rotate([90,0,0])
+cylinder(270,15,15);
+translate([22.5+660+45,285,pe+esp_comp+h_gaveta+3*nicho+(nicho-esp_comp/2)/2])
+rotate([90,0,0])
+cylinder(270,15,15);
+
+
+translate([22.5,285,pe+esp_comp+h_gaveta+4*nicho+(nicho-esp_comp/2)/2])
+rotate([90,0,0])
+cylinder(270,15,15);
+translate([22.5+660+45,285,pe+esp_comp+h_gaveta+4*nicho+(nicho-esp_comp/2)/2])
+rotate([90,0,0])
+cylinder(270,15,15);
+
+
+// Otimizações
+
+//for (i=[0:4]){
+//    if (i&lt;3){
+//        translate([30,0,pe+250*i])
+//    } else {
+//        translate([30,0,pe+250*i+h_gaveta])
+//    }
+//cube([690,300,15]);
+//}
+</code></pre><p>Note that the model is incomplete. I did not model the drawers completely, as I wanted to nail the dimentions and proportions in order to produce a bill of materials that I could purchase and transport easily. As a caveat, I was not able to retrieve the final quotes from the 3D model. This is something I am willing to explore on another post if I find a solution. The ability Ato export the final dimension is a must for any work on the shop and bring this model to life.</p>
 
                 <br>
 		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
@@ -222,8 +295,8 @@ sudo service timidity start
                 
             </div>
             <form method="POST" action="https://api.staticman.net/v2/entry////">
-    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/enabling-frescobaldi-midi-output/#comment-submitted">
-    <input type="hidden" name="options[entryId]" value="5e0bad59f130dcb05e7a61d2e3392766">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/my-first-openscad-project/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="a93d8e6022d1ab5e7d32684a4a63b147">
     <input name="fields[name]" type="text" placeholder="Your name">
     <input name="fields[email]" type="email" placeholder="Your email address">
     <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
