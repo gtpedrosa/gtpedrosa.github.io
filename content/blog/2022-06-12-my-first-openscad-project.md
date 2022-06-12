@@ -14,7 +14,7 @@ In under one hour I went from zero OpenSCAD knowledge to have a working model. T
 
 By following them I was able to produce a 3D model from a notebook sketch. Here's the result with the accompanying _.scad_  code:
 
-<a id="orge2739ee"></a>
+<a id="org2877a95"></a>
 
 ![](/img/estante2.png)
 **Bookshelf model on OpenSCAD**
@@ -91,4 +91,4 @@ cylinder(270,15,15);
 //}
 ```
 
-Note that the model is incomplete. I did not model the drawers completely, as I wanted to nail the dimentions and proportions in order to produce a bill of materials that I could purchase and transport easily. As a caveat, I was not able to retrieve the final quotes from the 3D model. This is something I am willing to explore on another post if I find a solution. The ability Ato export the final dimension is a must for any work on the shop and bring this model to life.
+Note that the model is incomplete. I did not model the drawers completely, as I wanted to nail the dimentions and proportions in order to produce a bill of materials that I could purchase and transport easily. As a caveat, I was not able to retrieve the final quotes from the 3D model. This is something I am willing to explore on another post if I find a solution. The ability to export the final model dimensions is a must for any work on the shop and bring this project to life.
