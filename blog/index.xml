@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Add ssh-key to Keychain for Session Authentication</title>
+      <link>https://gtpedrosa.github.io/blog/add-ssh-key-to-keychain-for-session-authentication/</link>
+      <pubDate>Wed, 15 Jun 2022 18:35:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/add-ssh-key-to-keychain-for-session-authentication/</guid>
+      <description>Since github retired hhtp authentication, I have moved to the only option available: ssh-key authentication. It makes things easier by not having to type user and password multiple times in the same session. In theory. In practice, this was not my experience. This is when i found out about keychain. From their docs:
+ Keychain helps you to manage SSH and GPG keys in a convenient and secure manner. It acts as a frontend to ssh-agent and ssh-add, but allows you to easily have one long running ssh-agent process per system, rather than the norm of one ssh-agent per login session.</description>
+    </item>
+    
+    <item>
       <title>My first OpenSCAD Project</title>
       <link>https://gtpedrosa.github.io/blog/my-first-openscad-project/</link>
       <pubDate>Sun, 12 Jun 2022 09:55:00 -0300</pubDate>
