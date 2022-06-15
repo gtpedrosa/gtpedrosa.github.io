@@ -1383,6 +1383,33 @@ cylinder(270,15,15);
 #+end_src
 
 Note that the model is incomplete. I did not model the drawers completely, as I wanted to nail the dimentions and proportions in order to produce a bill of materials that I could purchase and transport easily. As a caveat, I was not able to retrieve the final quotes from the 3D model. This is something I am willing to explore on another post if I find a solution. The ability to export the final model dimensions is a must for any work on the shop and bring this project to life.
+** DONE Add ssh-key to Keychain for Session Authentication
+CLOSED: [2022-06-15 Wed 18:35]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2022-06-15-add-ssh-key-to-keychain-for-session-authentication
+:END:
+
+Since github retired hhtp authentication, I have moved to the only option available: ssh-key authentication. It makes things easier by not having to type user and password multiple times in the same session. In theory. In practice, this was not my experience. This is when i found out about [[https://www.funtoo.org/Funtoo:Keychain][keychain]]. From their docs:
+
+#+begin_quote
+Keychain helps you to manage SSH and GPG keys in a convenient and secure manner. It acts as a frontend to ssh-agent and ssh-add, but allows you to easily have one long running ssh-agent process per system, rather than the norm of one ssh-agent per login session.
+
+This dramatically reduces the number of times you need to enter your passphrase. With keychain, you only need to enter a passphrase once every time your local machine is rebooted.
+#+end_quote
+
+And how exactly do you add a ssh-key to the keychain? Here's how:
+
+#+begin_src bash
+guilherme@gtpedrosa:~$eval $(keychain --eval mysshkey)
+
+ * keychain 2.8.5 ~ http://www.funtoo.org
+ * Found existing ssh-agent: 1494
+ * Adding 1 ssh key(s): /home/guilherme/.ssh/mysshkey
+Enter passphrase for /home/guilherme/.ssh/mysshkey:
+ * ssh-add: Identities added: /home/guilherme/.ssh/mysshkey
+#+end_src
+
+No need to insert usernames os passwords until you reboot.
 ** TODO Retrieving music sheet off midi visualizer in youtube videos using opencv part 1
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2019-01-15-retrieving-music-sheet-off-midi-visualizer-in-youtube-videos-using-opencv
