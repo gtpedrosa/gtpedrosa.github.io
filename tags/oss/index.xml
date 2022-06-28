@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>oss on Guilherme Pedrosa</title>
+    <link>https://gtpedrosa.github.io/tags/oss/</link>
+    <description>Recent content in oss on Guilherme Pedrosa</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 26 Jun 2022 22:00:00 -0300</lastBuildDate>
+    
+	<atom:link href="https://gtpedrosa.github.io/tags/oss/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Open Source Tools to Record a Conference Poster Presentation</title>
+      <link>https://gtpedrosa.github.io/blog/open-source-tools-to-record-a-conference-poster-presentation/</link>
+      <pubDate>Sun, 26 Jun 2022 22:00:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/open-source-tools-to-record-a-conference-poster-presentation/</guid>
+      <description>Recently, I and a colleague had a poster accepted to a conference we wanted to attend. Yay! However, we also had to send a video with the poster pitch along with the poster itself. And there, my friend, was an unanticipated challenge!
+First of all, we found out about the video close to the deadline. Our fault. Then, it was difficult and confusing to figure out the etiquette of the whole thing.</description>
+    </item>
+    
+  </channel>
+</rss>
