@@ -2,6 +2,7 @@
 title = "Open Source Tools to Record a Conference Poster Presentation"
 author = ["Guilherme Pedrosa"]
 date = 2022-06-26T22:00:00-03:00
+tags = ["oss", "video"]
 draft = false
 +++
 

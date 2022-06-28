@@ -16,7 +16,7 @@ git config user.email "guilherme.pedrosa@gmail.com"
 echo "git config OK"
 git add -A
 echo "git add OK"
-git commit -m "Automated deployment job ${CIRCLE_BRANCH} #${CIRCLE_BUILD_NUM}" --allow-empty
+git commit -m "Automated deployment job ${CIRCLE_BRANCH} #${CIRCLE_BUILD_NUM} [skip ci]" --allow-empty
 echo "git commit OK"
 git push origin master
 

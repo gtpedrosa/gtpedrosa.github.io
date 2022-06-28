@@ -1288,7 +1288,7 @@ reg add "HKCU\Software\Microsoft\Command Processor" /v AutoRun /t REG_EXPAND_SZ 
 
 It correctly autoruns the alias on cmd startup, solving the issue. More info on Microsoft’s docs.
 
-** DONE My first OpenSCAD Project
+** DONE My first OpenSCAD Project :OpenSCAD:CAD:carpentry:
 CLOSED: [2022-06-12 Sun 09:55]
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2022-06-12-my-first-openscad-project
@@ -1383,7 +1383,7 @@ cylinder(270,15,15);
 #+end_src
 
 Note that the model is incomplete. I did not model the drawers completely, as I wanted to nail the dimentions and proportions in order to produce a bill of materials that I could purchase and transport easily. As a caveat, I was not able to retrieve the final quotes from the 3D model. This is something I am willing to explore on another post if I find a solution. The ability to export the final model dimensions is a must for any work on the shop and bring this project to life.
-** DONE Add ssh-key to Keychain for Session Authentication
+** DONE Add ssh-key to Keychain for Session Authentication :keychain:ssh:key:
 CLOSED: [2022-06-15 Wed 18:35]
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2022-06-15-add-ssh-key-to-keychain-for-session-authentication
@@ -1410,6 +1410,24 @@ Enter passphrase for /home/guilherme/.ssh/mysshkey:
 #+end_src
 
 No need to insert usernames os passwords until you reboot.
+** DONE Open Source Tools to Record a Conference Poster Presentation :oss:video:
+CLOSED: [2022-06-26 Sun 22:00]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2022-06-24-open-source-tools-to-record-a-conference-poster-presentation
+:END:
+
+Recently, I and a colleague had a poster accepted to a conference we wanted to attend. Yay! However, we also had to send a video with the poster pitch along with the poster itself. And there, my friend, was an unanticipated challenge!
+
+First of all, we found out about the video close to the deadline. Our fault. Then, it was difficult and confusing to figure out the etiquette of the whole thing. Should we go over the poster and zoom in and out to better present the content? Or should we make an accompanying slide deck for the pitch? We chose the slide deck approach, only to find out most presenters chose the poster one. We did not regret our decision, though. This is just a simple example of something we had for given that just wasn't.
+
+And then, how to record? Without experience in the /métier/, I ended up with the following recording setup:
+
+- [[https://obsproject.com/pt-br/kb/linux-installation][OBS - Open Broadcaster Software]]: Recording the screen, capturing video and audio.
+- [[https://shotcut.org/][Shotcut]]: Video edition.
+
+I recorded smaller sections without mistakes with OBS and stitched them on Shotcut. I also removed long pauses as I pleased to reduce the presentation length.
+
+The result was pleasing. The video came out with good quality and a small file size. The learning curve of the software was none since both were pretty intuitive for the tasks at hand. I would 10/10 recommend the combo to anyone in a similar situation.
 ** TODO Retrieving music sheet off midi visualizer in youtube videos using opencv part 1
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2019-01-15-retrieving-music-sheet-off-midi-visualizer-in-youtube-videos-using-opencv
@@ -1479,24 +1497,6 @@ Here's the screenshot used for this experiment:
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2021-12-19-trying-out-omnizart-a-python-library-for-automatic-music-transcription
 :END:
-** DONE Open Source Tools to Record a Conference Poster Presentation
-CLOSED: [2022-06-26 Sun 22:00]
-:PROPERTIES:
-:EXPORT_FILE_NAME: 2022-06-24-open-source-tools-to-record-a-conference-poster-presentation
-:END:
-
-Recently, I and a colleague had a poster accepted to a conference we wanted to attend. Yay! However, we also had to send a video with the poster pitch along with the poster itself. And there, my friend, was an unanticipated challenge!
-
-First of all, we found out about the video close to the deadline. Our fault. Then, it was difficult and confusing to figure out the etiquette of the whole thing. Should we go over the poster and zoom in and out to better present the content? Or should we make an accompanying slide deck for the pitch? We chose the slide deck approach, only to find out most presenters chose the poster one. We did not regret our decision, though. This is just a simple example of something we had for given that just wasn't.
-
-And then, how to record? Without experience in the /métier/, I ended up with the following recording setup:
-
-- [[https://obsproject.com/pt-br/kb/linux-installation][OBS - Open Broadcaster Software]]: Recording the screen, capturing video and audio.
-- [[https://shotcut.org/][Shotcut]]: Video edition.
-
-I recorded smaller sections without mistakes with OBS and stitched them on Shotcut. I also removed long pauses as I pleased to reduce the presentation length.
-
-The result was pleasing. The video came out with good quality and a small file size. The learning curve of the software was none since both were pretty intuitive for the tasks at hand. I would 10/10 recommend the combo to anyone in a similar situation.
 * Footnotes
 * COMMENT Local Variables                          :ARCHIVE:
 # Local Variables:
