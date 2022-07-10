@@ -433,13 +433,13 @@ Figure 1.
 
 #+caption: SQL Express running instance
 #+name: img:sqlexpress
-[[file:/home/gtpedrosa/Projects/blog/hugo-blog/static/img/sqlexpress.png]]
+[[file:/img/sqlexpress.png]]
 
 As for #2 make sure to login using the system credentials as shown in Figure 2.
 
 #+caption: SQL Server login
 #+name: img:sqlserver
-[[file:/home/gtpedrosa/Projects/blog/hugo-blog/static/img/sqlserver.png]]
+[[file:/img/sqlserver.png]]
 
 As for #3, if you are not admin the mdf file needs to be stored somewhere in the
  Public user profile so the SQLExpress instance is able to locate it.

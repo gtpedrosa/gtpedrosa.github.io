@@ -22,15 +22,15 @@ To check #1 spin up _SQL Configuration Manager_ and look for ****SQL Server
 (SQLEXPRESS)**** instance. It should be already running by default, as shown in
 Figure 1.
 
-<a id="orgf66bd4a"></a>
+<a id="figure--img:sqlexpress"></a>
 
-{{< figure src="/img/sqlexpress.png" caption="Figure 1: SQL Express running instance" >}}
+{{< figure src="/img/sqlexpress.png" caption="<span class=\"figure-number\">Figure 1: </span>SQL Express running instance" >}}
 
 As for #2 make sure to login using the system credentials as shown in Figure 2.
 
-<a id="orgd5a6918"></a>
+<a id="figure--img:sqlserver"></a>
 
-{{< figure src="/img/sqlserver.png" caption="Figure 2: SQL Server login" >}}
+{{< figure src="/img/sqlserver.png" caption="<span class=\"figure-number\">Figure 2: </span>SQL Server login" >}}
 
 As for #3, if you are not admin the mdf file needs to be stored somewhere in the
  Public user profile so the SQLExpress instance is able to locate it.
