@@ -1428,6 +1428,80 @@ And then, how to record? Without experience in the /métier/, I ended up with th
 I recorded smaller sections without mistakes with OBS and stitched them on Shotcut. I also removed long pauses as I pleased to reduce the presentation length.
 
 The result was pleasing. The video came out with good quality and a small file size. The learning curve of the software was none since both were pretty intuitive for the tasks at hand. I would 10/10 recommend the combo to anyone in a similar situation.
+** DONE Updating HuC firmare on HP 246 G6 running Debian
+CLOSED: [2022-07-10 Sun 12:38]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2022-07-07-updating-huc-firmare-on-hp-246-g6-running-debian
+:END:
+
+After noticing a warning on my boot screen about missing firmware I tried to update the system. In the process, I have received messages similar to the one below:
+
+#+begin_src bash
+W: Possible missing firmware /lib/firmware/i915/bxt_dmc_ver1_07.bin for module i915
+W: Possible missing firmware /lib/firmware/i915/skl_dmc_ver1_27.bin for module i915
+#+end_src
+
+These two resources were really helpful to me:
+
+- [[https://blogs.igalia.com/vjaquez/2017/12/07/enabling-huc-for-sklkbl-in-debiantesting/][vjaquez post]]
+- [[https://unix.stackexchange.com/questions/556946/possible-missing-firmware-lib-firmware-i915-for-module-i915][Unix Stack Exchange Thread]]
+
+From the first resource, I have found what the heck is HuC:
+
+#+begin_quote
+HuC is a firmware, loaded by i915 kernel module, designed to offload some of the media functions from the CPU to GPU. One of these functions is bitrate control when encoding. HuC saves unnecessary CPU-GPU synchronization.
+#+end_quote
+
+Which puts things into perspective, even though I haven't noticed any graphics issue besides a Matlab running on OpenGL warning.
+
+As a solution, the stackexchange post taught me about apt-file, an application that indexes and searches in my available repositories for a particular file. After its installation, I tried to find out the offending drivers:
+
+#+begin_src bash :exports both :results output
+apt-file search skl_huc
+#+end_src
+
+#+RESULTS:
+: firmware-misc-nonfree: /lib/firmware/i915/skl_huc_2.0.0.bin
+: firmware-misc-nonfree: /lib/firmware/i915/skl_huc_ver01_07_1398.bin
+
+And install the package /firmware-linux/:
+
+#+begin_src bash
+sudo apt install firmware-linux
+#+end_src
+
+After this, the update went smoothly and the error messages on boot vanished.
+** TODO Trying out Omnizart: a python library for Automatic Music Transcription :python:music:transcription:AMT:
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2021-12-19-trying-out-omnizart-a-python-library-for-automatic-music-transcription
+:END:
+
+I first heard about Omnizart on hackernews. Since then I have ment to play around with it but did not find the time. During an insomnia incident, that day (night?) came.
+
+*** Installation
+
+First off, let's talk about installation. If you go the the [[https://music-and-culture-technology-lab.github.io/omnizart-doc/quick-start.html][Quick Start]] session on the docs, you will find the pip and the developer installation options. However, I'd rather use docker for something so complex, and the docker instructions were available only on [[https://github.com/Music-and-Culture-Technology-Lab/omnizart][Github README]]. Here's the docker command:
+
+#+begin_src bash
+sudo docker pull mctlab/omnizart:latest
+#+end_src
+
+There is also a colab notebook available, to try it out without installing. And to my surprise here's the first hurdle:
+
+#+begin_src bash
+guilherme@gtpedrosa:~$ sudo docker images
+REPOSITORY        TAG       IMAGE ID       CREATED        SIZE
+mctlab/omnizart   latest    bf7250b93908   6 months ago   8.77GB
+#+end_src
+
+The colab would spend hours downloading and installing the dependencies without ever finishing. The library is massive. But no worries, I am running it locally.
+
+*** Test drive
+
+Moving on with the actual usage, I was eager to try the piano only transcription capability of the library. I am going to use a song I am working on which is [[https://www.youtube.com/watch?v=YKJrKPLfgKA]["Birdwoman" by Poppy Ackroyd.]]
+
+#+RESULTS:
+
 ** TODO Retrieving music sheet off midi visualizer in youtube videos using opencv part 1
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2019-01-15-retrieving-music-sheet-off-midi-visualizer-in-youtube-videos-using-opencv
@@ -1493,10 +1567,6 @@ Here's the screenshot used for this experiment:
 #+name: bgkeys
 [[file:/home/guilherme/blog/static/img/bgkeys.png]]
 *Right hand in green and left hand in blue*
-** TODO Trying out Omnizart: a python library for Automatic Music Transcription :python:music:transcription:AMT:
-:PROPERTIES:
-:EXPORT_FILE_NAME: 2021-12-19-trying-out-omnizart-a-python-library-for-automatic-music-transcription
-:END:
 * Footnotes
 * COMMENT Local Variables                          :ARCHIVE:
 # Local Variables:
