@@ -9,25 +9,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="no-referrer">
 <meta name="author" content="Guilherme Pedrosa">
-<meta name="description" content="Steps needed to install emacs locally, mantaining pre-existing installation intact. In the end you will two different versions of emacs running in your system.
- Install dependencies:  sudo apt-get install autoconf automake libtool texinfo build-essential xorg-dev libgtk-3-dev libjpeg-dev libncurses5-dev libdbus-1-dev libgif-dev libtiff-dev libm17n-dev libpng-dev librsvg2-dev libotf-dev libgnutls28-dev libxml2-dev libxpm-dev  Download emacs from a nearby mirror Extract downloaded file. In this case it is emacs-26.3.tar.xz, and go to the extracted folder:  cd ~/Downloads tar -xf emacs-26.">
+<meta name="description" content="After noticing a warning on my boot screen about missing firmware I tried to update the system. In the process, I have received messages similar to the one below:
+W: Possible missing firmware /lib/firmware/i915/bxt_dmc_ver1_07.bin for module i915 W: Possible missing firmware /lib/firmware/i915/skl_dmc_ver1_27.bin for module i915 These two resources were really helpful to me:
+ vjaquez post Unix Stack Exchange Thread  From the first resource, I have found what the heck is HuC:">
 
-<meta property="og:title" content="Building Emacs from source" />
-<meta property="og:description" content="Steps needed to install emacs locally, mantaining pre-existing installation intact. In the end you will two different versions of emacs running in your system.
- Install dependencies:  sudo apt-get install autoconf automake libtool texinfo build-essential xorg-dev libgtk-3-dev libjpeg-dev libncurses5-dev libdbus-1-dev libgif-dev libtiff-dev libm17n-dev libpng-dev librsvg2-dev libotf-dev libgnutls28-dev libxml2-dev libxpm-dev  Download emacs from a nearby mirror Extract downloaded file. In this case it is emacs-26.3.tar.xz, and go to the extracted folder:  cd ~/Downloads tar -xf emacs-26." />
+<meta property="og:title" content="Updating HuC firmare on HP 246 G6 running Debian" />
+<meta property="og:description" content="After noticing a warning on my boot screen about missing firmware I tried to update the system. In the process, I have received messages similar to the one below:
+W: Possible missing firmware /lib/firmware/i915/bxt_dmc_ver1_07.bin for module i915 W: Possible missing firmware /lib/firmware/i915/skl_dmc_ver1_27.bin for module i915 These two resources were really helpful to me:
+ vjaquez post Unix Stack Exchange Thread  From the first resource, I have found what the heck is HuC:" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gtpedrosa.github.io/blog/building-emacs-from-source/" />
-<meta property="article:published_time" content="2020-04-11T10:59:00-03:00" />
-<meta property="article:modified_time" content="2020-04-11T10:59:00-03:00" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/updating-huc-firmare-on-hp-246-g6-running-debian/" />
+<meta property="article:published_time" content="2022-07-10T12:38:00-03:00" />
+<meta property="article:modified_time" content="2022-07-10T12:38:00-03:00" />
 
 
 <title>
 
 
-     Building Emacs from source 
+     Updating HuC firmare on HP 246 G6 running Debian 
 
 </title>
-<link rel="canonical" href="https://gtpedrosa.github.io/blog/building-emacs-from-source/">
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/updating-huc-firmare-on-hp-246-g6-running-debian/">
 
 
 
@@ -45,11 +47,11 @@
 
 
     
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2022-07-10%2015%3a43%3a57.959551086%20%2b0000%20UTC%20m%3d%2b0.077890200">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2022-07-10%2015%3a43%3a57.959551086%20%2b0000%20UTC%20m%3d%2b0.077890200">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2022-07-10%2015%3a43%3a57.959551086%20%2b0000%20UTC%20m%3d%2b0.077890200">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2022-07-10%2015%3a43%3a57.96016932%20%2b0000%20UTC%20m%3d%2b0.078508440">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2022-07-10%2015%3a43%3a57.96016932%20%2b0000%20UTC%20m%3d%2b0.078508440">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2022-07-10%2015%3a43%3a57.96016932%20%2b0000%20UTC%20m%3d%2b0.078508440">
     
-        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2022-07-10%2015%3a43%3a57.959551086%20%2b0000%20UTC%20m%3d%2b0.077890200">
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2022-07-10%2015%3a43%3a57.96016932%20%2b0000%20UTC%20m%3d%2b0.078508440">
     
 
 
@@ -190,7 +192,7 @@
                 <div class="title-container">
                     <div class="page-heading">
 
-    Building Emacs from source
+    Updating HuC firmare on HP 246 G6 running Debian
 
 </div>
 
@@ -198,7 +200,7 @@
                 </div>
                 <div class="meta">
                     
-                    <div class="date" title='Sat Apr 11 2020 10:59:00 -0300'>Apr 11, 2020</div>
+                    <div class="date" title='Sun Jul 10 2022 12:38:00 -0300'>Jul 10, 2022</div>
                     
                     
 		    <div class="reading-time"><div class="middot"></div>One minute read</div>
@@ -206,34 +208,26 @@
                 </div>
             </div>
             <div class="markdown">
-                <p>Steps needed to install emacs locally, mantaining pre-existing installation intact. In the end you will two different versions of emacs running in your system.</p>
+                <p>After noticing a warning on my boot screen about missing firmware I tried to update the system. In the process, I have received messages similar to the one below:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">W: Possible missing firmware /lib/firmware/i915/bxt_dmc_ver1_07.bin <span class="k">for</span> module i915
+W: Possible missing firmware /lib/firmware/i915/skl_dmc_ver1_27.bin <span class="k">for</span> module i915
+</code></pre></div><p>These two resources were really helpful to me:</p>
 <ul>
-<li><a href="https://www.emacswiki.org/emacs/EmacsSnapshotAndDebian">Install dependencies:</a></li>
+<li><a href="https://blogs.igalia.com/vjaquez/2017/12/07/enabling-huc-for-sklkbl-in-debiantesting/">vjaquez post</a></li>
+<li><a href="https://unix.stackexchange.com/questions/556946/possible-missing-firmware-lib-firmware-i915-for-module-i915">Unix Stack Exchange Thread</a></li>
 </ul>
-<!-- raw HTML omitted -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install autoconf automake libtool texinfo build-essential xorg-dev libgtk-3-dev libjpeg-dev libncurses5-dev libdbus-1-dev libgif-dev libtiff-dev libm17n-dev libpng-dev librsvg2-dev libotf-dev libgnutls28-dev libxml2-dev libxpm-dev
-</code></pre></div><ul>
-<li><a href="https://www.gnu.org/software/emacs/download.html">Download emacs from a nearby mirror</a></li>
-<li>Extract downloaded file. In this case it is <em>emacs-26.3.tar.xz</em>, and go to the extracted folder:</li>
-</ul>
-<!-- raw HTML omitted -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/Downloads
-tar -xf emacs-26.3.tar.xz
-<span class="nb">cd</span> emacs-26.3.tar.xz
-</code></pre></div><ul>
-<li>Run <em>configure</em> setting the prefix to the local folder in home directory:</li>
-</ul>
-<!-- raw HTML omitted -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">./configure --with-mailutils --prefix<span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/local&#34;</span>
-</code></pre></div><ul>
-<li>Build the components and istall it:</li>
-</ul>
-<!-- raw HTML omitted -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">make
-make install
-</code></pre></div><p>To run it, issue:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">/home/local/bin/emacs
-</code></pre></div><p>The local installation, if any, should still work normally.</p>
+<p>From the first resource, I have found what the heck is HuC:</p>
+<blockquote>
+<p>HuC is a firmware, loaded by i915 kernel module, designed to offload some of the media functions from the CPU to GPU. One of these functions is bitrate control when encoding. HuC saves unnecessary CPU-GPU synchronization.</p>
+</blockquote>
+<p>Which puts things into perspective, even though I haven&rsquo;t noticed any graphics issue besides a Matlab running on OpenGL warning.</p>
+<p>As a solution, the stackexchange post taught me about apt-file, an application that indexes and searches in my available repositories for a particular file. After its installation, I tried to find out the offending drivers:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt-file search skl_huc
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">firmware-misc-nonfree: /lib/firmware/i915/skl_huc_2.0.0.bin
+firmware-misc-nonfree: /lib/firmware/i915/skl_huc_ver01_07_1398.bin
+</code></pre></div><p>And install the package <em>firmware-linux</em>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install firmware-linux
+</code></pre></div><p>After this, the update went smoothly and the error messages on boot vanished.</p>
 
                 <br>
 		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
@@ -243,8 +237,8 @@ make install
                 
             </div>
             <form method="POST" action="https://api.staticman.net/v2/entry////">
-    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/building-emacs-from-source/#comment-submitted">
-    <input type="hidden" name="options[entryId]" value="2f1d76e740ac8f52e0eac57a90960001">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/updating-huc-firmare-on-hp-246-g6-running-debian/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="a3aaac50a4f5724cb0521f042433e8f0">
     <input name="fields[name]" type="text" placeholder="Your name">
     <input name="fields[email]" type="email" placeholder="Your email address">
     <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>

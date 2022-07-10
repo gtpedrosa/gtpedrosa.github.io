@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>Updating HuC firmare on HP 246 G6 running Debian</title>
+      <link>https://gtpedrosa.github.io/blog/updating-huc-firmare-on-hp-246-g6-running-debian/</link>
+      <pubDate>Sun, 10 Jul 2022 12:38:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/updating-huc-firmare-on-hp-246-g6-running-debian/</guid>
+      <description>After noticing a warning on my boot screen about missing firmware I tried to update the system. In the process, I have received messages similar to the one below:
+W: Possible missing firmware /lib/firmware/i915/bxt_dmc_ver1_07.bin for module i915 W: Possible missing firmware /lib/firmware/i915/skl_dmc_ver1_27.bin for module i915 These two resources were really helpful to me:
+ vjaquez post Unix Stack Exchange Thread  From the first resource, I have found what the heck is HuC:</description>
+    </item>
+    
+    <item>
       <title>Open Source Tools to Record a Conference Poster Presentation</title>
       <link>https://gtpedrosa.github.io/blog/open-source-tools-to-record-a-conference-poster-presentation/</link>
       <pubDate>Sun, 26 Jun 2022 22:00:00 -0300</pubDate>
