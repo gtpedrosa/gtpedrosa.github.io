@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>zettlekasten on Guilherme Pedrosa</title>
+    <link>https://gtpedrosa.github.io/tags/zettlekasten/</link>
+    <description>Recent content in zettlekasten on Guilherme Pedrosa</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 01 Aug 2022 19:02:00 -0300</lastBuildDate>
+    
+	<atom:link href="https://gtpedrosa.github.io/tags/zettlekasten/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>On taking notes and learning methods</title>
+      <link>https://gtpedrosa.github.io/blog/on-taking-notes-and-learning-methods/</link>
+      <pubDate>Mon, 01 Aug 2022 19:02:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/on-taking-notes-and-learning-methods/</guid>
+      <description>After finishing the book &amp;ldquo;How to take smart notes&amp;rdquo; by Sönke Ahrens, I came to realize the following: I have been exposed to two ways to learn that use notes as a basis of the system. The first is embodied by the Zettlekasten and depicted through Ahrens&amp;rsquo; book. The second relies on spaced repetition and Ankification of notes if you will.
+It is only natural to question myself which way (if any at all) I have found best suited for me.</description>
+    </item>
+    
+  </channel>
+</rss>

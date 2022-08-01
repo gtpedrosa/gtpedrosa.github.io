@@ -3,8 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://gtpedrosa.github.io/tags/anki/</loc>
+    <lastmod>2022-08-01T19:02:00-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/</loc>
-    <lastmod>2022-07-10T12:38:00-03:00</lastmod>
+    <lastmod>2022-08-01T19:02:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/learning/</loc>
+    <lastmod>2022-08-01T19:02:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/blog/on-taking-notes-and-learning-methods/</loc>
+    <lastmod>2022-08-01T19:02:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/</loc>
+    <lastmod>2022-08-01T19:02:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/zettlekasten/</loc>
+    <lastmod>2022-08-01T19:02:00-03:00</lastmod>
   </url>
   
   <url>
@@ -19,11 +44,6 @@
   
   <url>
     <loc>https://gtpedrosa.github.io/tags/oss/</loc>
-    <lastmod>2022-06-26T22:00:00-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/</loc>
     <lastmod>2022-06-26T22:00:00-03:00</lastmod>
   </url>
   
@@ -404,10 +424,6 @@
   
   <url>
     <loc>https://gtpedrosa.github.io/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/blog/on-taking-notes-and-learning-methods/</loc>
   </url>
   
 </urlset>

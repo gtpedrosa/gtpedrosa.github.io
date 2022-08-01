@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>On taking notes and learning methods</title>
+      <link>https://gtpedrosa.github.io/blog/on-taking-notes-and-learning-methods/</link>
+      <pubDate>Mon, 01 Aug 2022 19:02:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/on-taking-notes-and-learning-methods/</guid>
+      <description>After finishing the book &amp;ldquo;How to take smart notes&amp;rdquo; by Sönke Ahrens, I came to realize the following: I have been exposed to two ways to learn that use notes as a basis of the system. The first is embodied by the Zettlekasten and depicted through Ahrens&amp;rsquo; book. The second relies on spaced repetition and Ankification of notes if you will.
+It is only natural to question myself which way (if any at all) I have found best suited for me.</description>
+    </item>
+    
+    <item>
       <title>Updating HuC firmare on HP 246 G6 running Debian</title>
       <link>https://gtpedrosa.github.io/blog/updating-huc-firmare-on-hp-246-g6-running-debian/</link>
       <pubDate>Sun, 10 Jul 2022 12:38:00 -0300</pubDate>
@@ -282,16 +292,6 @@ The documentation stands out as it is produced with MkDocs, a static site genera
       
       <guid>https://gtpedrosa.github.io/blog/installing-a-virtualenv-with-specific-python-version/</guid>
       <description>&lt;p&gt;When trying to install the requirements for a course on coursera I found out that my system&amp;rsquo;s python distribution was a bit outdated. Since I did not want to change anything systemwide (and possibily break things) I decided to finally go for a virtual environment.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>On taking notes and learning methods</title>
-      <link>https://gtpedrosa.github.io/blog/on-taking-notes-and-learning-methods/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://gtpedrosa.github.io/blog/on-taking-notes-and-learning-methods/</guid>
-      <description>After finishing the book &amp;ldquo;How to take smart notes&amp;rdquo; by Sönke Ahrens, I came to realize the following: I have been exposed to two ways to learn that use notes as a basis of the system. The first is embodied by the Zettlekasten and depicted through Ahrens&amp;rsquo; book. The second relies on spaced repetition and Ankification of notes if you will.
-It is only natural to question myself which way (if any at all) I have found best suited for me.</description>
     </item>
     
   </channel>
