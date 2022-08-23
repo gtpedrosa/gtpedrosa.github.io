@@ -1497,7 +1497,20 @@ So, as a result, I believe I aim for depth. I am not optimizing for a productivi
 
 
 
+** DONE Using moderncv on Debian Fresh Installation :linux:debian:latex:
+CLOSED: [2022-08-22 Mon 23:05]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2022-08-22-using-moderncv-on-debian-fresh-installation
+:END:
 
+The easiest way to install a minimal LaTeX installation to use moderncv was using the [[https://packages.debian.org/search?keywords=texlive][debian package repository]]:
+
+#+begin_src bash
+sudo apt install texlive
+sudo apt install texlive-lang-portuguese
+#+end_src
+
+Note to self: I tried to install the vanilla texlive systemwide without the full installation (~7Gb) by using the graphical capability if /install-tl/ but could not get tlmgr to work properly, even after adding the installation path to my /.bashrc/.
 ** TODO Trying out Omnizart: a python library for Automatic Music Transcription :python:music:transcription:AMT:
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2021-12-19-trying-out-omnizart-a-python-library-for-automatic-music-transcription
