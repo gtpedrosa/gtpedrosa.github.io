@@ -6,10 +6,20 @@
     <description>Recent content in Latex on Guilherme Pedrosa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sat, 16 Dec 2017 06:42:38 -0300</lastBuildDate>
+    <lastBuildDate>Mon, 22 Aug 2022 23:05:00 -0300</lastBuildDate>
     
 	<atom:link href="https://gtpedrosa.github.io/tags/latex/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Using moderncv on Debian Fresh Installation</title>
+      <link>https://gtpedrosa.github.io/blog/using-moderncv-on-debian-fresh-installation/</link>
+      <pubDate>Mon, 22 Aug 2022 23:05:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/using-moderncv-on-debian-fresh-installation/</guid>
+      <description>The easiest way to install a minimal LaTeX installation to use moderncv was using the debian package repository:
+sudo apt install texlive sudo apt install texlive-lang-portuguese Note to self: I tried to install the vanilla texlive systemwide without the full installation (~7Gb) by using the graphical capability if install-tl but could not get tlmgr to work properly, even after adding the installation path to my .bashrc.</description>
+    </item>
     
     <item>
       <title>Apresentando o Docear</title>

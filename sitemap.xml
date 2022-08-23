@@ -3,12 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://gtpedrosa.github.io/tags/anki/</loc>
-    <lastmod>2022-08-01T19:02:00-03:00</lastmod>
+    <loc>https://gtpedrosa.github.io/tags/debian/</loc>
+    <lastmod>2022-08-22T23:05:00-03:00</lastmod>
   </url>
   
   <url>
     <loc>https://gtpedrosa.github.io/</loc>
+    <lastmod>2022-08-22T23:05:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/latex/</loc>
+    <lastmod>2022-08-22T23:05:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/linux/</loc>
+    <lastmod>2022-08-22T23:05:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/</loc>
+    <lastmod>2022-08-22T23:05:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/blog/using-moderncv-on-debian-fresh-installation/</loc>
+    <lastmod>2022-08-22T23:05:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/anki/</loc>
     <lastmod>2022-08-01T19:02:00-03:00</lastmod>
   </url>
   
@@ -19,11 +44,6 @@
   
   <url>
     <loc>https://gtpedrosa.github.io/blog/on-taking-notes-and-learning-methods/</loc>
-    <lastmod>2022-08-01T19:02:00-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/</loc>
     <lastmod>2022-08-01T19:02:00-03:00</lastmod>
   </url>
   
@@ -98,17 +118,7 @@
   </url>
   
   <url>
-    <loc>https://gtpedrosa.github.io/tags/debian/</loc>
-    <lastmod>2022-03-20T17:46:00-03:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://gtpedrosa.github.io/tags/driver/</loc>
-    <lastmod>2022-03-20T17:46:00-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/linux/</loc>
     <lastmod>2022-03-20T17:46:00-03:00</lastmod>
   </url>
   
@@ -334,11 +344,6 @@
   
   <url>
     <loc>https://gtpedrosa.github.io/tags/docear/</loc>
-    <lastmod>2017-12-16T06:42:38-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/latex/</loc>
     <lastmod>2017-12-16T06:42:38-03:00</lastmod>
   </url>
   
