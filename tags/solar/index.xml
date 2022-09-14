@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>solar on Guilherme Pedrosa</title>
+    <link>https://gtpedrosa.github.io/tags/solar/</link>
+    <description>Recent content in solar on Guilherme Pedrosa</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 13 Sep 2022 23:35:00 -0300</lastBuildDate>
+    
+	<atom:link href="https://gtpedrosa.github.io/tags/solar/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Offline python documentation with Zeal and doc2dash</title>
+      <link>https://gtpedrosa.github.io/blog/offline-python-documentation-with-zeal-and-doc2dash/</link>
+      <pubDate>Tue, 13 Sep 2022 23:35:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/offline-python-documentation-with-zeal-and-doc2dash/</guid>
+      <description>While working on a python project today, the internet connection went down. For a while, I couldn&amp;rsquo;t reference some API documentation online. This got me thinking: could I have them all offline? Later on (with connection!), I have found the answer: an offline documentation tool called Zeal.
+If the project you are working on is popular, there are already docsets available for download. This will make the documentation for a given package accessible in the blink of an eye!</description>
+    </item>
+    
+  </channel>
+</rss>

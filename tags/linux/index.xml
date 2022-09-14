@@ -6,10 +6,20 @@
     <description>Recent content in linux on Guilherme Pedrosa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 22 Aug 2022 23:05:00 -0300</lastBuildDate>
+    <lastBuildDate>Tue, 13 Sep 2022 23:35:00 -0300</lastBuildDate>
     
 	<atom:link href="https://gtpedrosa.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Offline python documentation with Zeal and doc2dash</title>
+      <link>https://gtpedrosa.github.io/blog/offline-python-documentation-with-zeal-and-doc2dash/</link>
+      <pubDate>Tue, 13 Sep 2022 23:35:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/offline-python-documentation-with-zeal-and-doc2dash/</guid>
+      <description>While working on a python project today, the internet connection went down. For a while, I couldn&amp;rsquo;t reference some API documentation online. This got me thinking: could I have them all offline? Later on (with connection!), I have found the answer: an offline documentation tool called Zeal.
+If the project you are working on is popular, there are already docsets available for download. This will make the documentation for a given package accessible in the blink of an eye!</description>
+    </item>
     
     <item>
       <title>Using moderncv on Debian Fresh Installation</title>
