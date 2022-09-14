@@ -1496,7 +1496,6 @@ Resonated with me deeply. It seems that delegating part of yourself to a tool to
 So, as a result, I believe I aim for depth. I am not optimizing for a productivity metric of some sort. I also do not claim I will not use the Zettlekasten, as I see it fit for academic applications. But as a general principle, I am more inclined to use SRS soon and see how I feel about the subjects studied. For now, this is all subjective and that is ok. Better explore the concepts and stick to something I find coherent given a north.
 
 
-
 ** DONE Using moderncv on Debian Fresh Installation :linux:debian:latex:
 CLOSED: [2022-08-22 Mon 23:05]
 :PROPERTIES:
@@ -1511,6 +1510,30 @@ sudo apt install texlive-lang-portuguese
 #+end_src
 
 Note to self: I tried to install the vanilla texlive systemwide without the full installation (~7Gb) by using the graphical capability if /install-tl/ but could not get tlmgr to work properly, even after adding the installation path to my /.bashrc/.
+
+** DONE Offline python documentation with Zeal and doc2dash :linux:python:documentation:solar:pvlib:
+CLOSED: [2022-09-13 Tue 23:35]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2022-09-13-offline-python-documentation-with-zeal-and-doc2dash
+:END:
+
+While working on a python project today, the internet connection went down. For a while, I couldn't reference some API documentation online. This got me thinking: could I have them all offline? Later on (with connection!), I have found the answer: an offline documentation tool called Zeal.
+
+If the project you are working on is popular, there are already docsets available for download. This will make the documentation for a given package accessible in the blink of an eye! However (and more likely) docsets won't be available. One alternative is to use doc2dash to generate them from the project documentation.
+
+Using the excellent pvlib package as an example:
+
+#+begin_src bash
+pip install pvlib[doc]
+pip install doc2dash
+git clone https://github.com/pvlib/pvlib-python.git
+cd pvlib-python/docs/sphinx
+make html
+doc2dash -A ./build/html
+#+end_src
+
+In Windows, I had some trouble with the *-A* flag which led me to manually move the docset to Zeal. Aside from this, I was pretty satisfied with the result and how fast I could reach the API reference without the internet.
+
 ** TODO Trying out Omnizart: a python library for Automatic Music Transcription :python:music:transcription:AMT:
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2021-12-19-trying-out-omnizart-a-python-library-for-automatic-music-transcription
