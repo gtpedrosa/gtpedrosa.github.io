@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Reading PVSyst&#39;s Module (PAN) and Inverter (OND) files with Python</title>
+      <link>https://gtpedrosa.github.io/blog/reading-pvsysts-module-pan-and-inverter-ond-files-with-python/</link>
+      <pubDate>Tue, 10 Jan 2023 04:22:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/reading-pvsysts-module-pan-and-inverter-ond-files-with-python/</guid>
+      <description>Before diving into solar simulations with PVLib, one of the main concerns I had was how to use the same inputs given to PVSyst, the de facto standard software of the solar industry. That also meant using the same files that describe the main equipments: PAN files for the modules and OND files for the inverters.
+Although It surprised me that PVLib did not come with a PVSyst file&amp;rsquo;s parser, It was not a deal breaker.</description>
+    </item>
+    
+    <item>
       <title>Offline python documentation with Zeal and doc2dash</title>
       <link>https://gtpedrosa.github.io/blog/offline-python-documentation-with-zeal-and-doc2dash/</link>
       <pubDate>Tue, 13 Sep 2022 23:35:00 -0300</pubDate>

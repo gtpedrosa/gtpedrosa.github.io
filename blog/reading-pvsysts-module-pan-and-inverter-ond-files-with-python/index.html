@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Guilherme Pedrosa">
+<meta name="description" content="Before diving into solar simulations with PVLib, one of the main concerns I had was how to use the same inputs given to PVSyst, the de facto standard software of the solar industry. That also meant using the same files that describe the main equipments: PAN files for the modules and OND files for the inverters.
+Although It surprised me that PVLib did not come with a PVSyst file&rsquo;s parser, It was not a deal breaker.">
+
+<meta property="og:title" content="Reading PVSyst&#39;s Module (PAN) and Inverter (OND) files with Python" />
+<meta property="og:description" content="Before diving into solar simulations with PVLib, one of the main concerns I had was how to use the same inputs given to PVSyst, the de facto standard software of the solar industry. That also meant using the same files that describe the main equipments: PAN files for the modules and OND files for the inverters.
+Although It surprised me that PVLib did not come with a PVSyst file&rsquo;s parser, It was not a deal breaker." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/reading-pvsysts-module-pan-and-inverter-ond-files-with-python/" />
+<meta property="article:published_time" content="2023-01-10T04:22:00-03:00" />
+<meta property="article:modified_time" content="2023-01-10T04:22:00-03:00" />
+
+
+<title>
+
+
+     Reading PVSyst&#39;s Module (PAN) and Inverter (OND) files with Python 
+
+</title>
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/reading-pvsysts-module-pan-and-inverter-ond-files-with-python/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2023-01-10%2007%3a27%3a08.605278962%20%2b0000%20UTC%20m%3d%2b0.097047645">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2023-01-10%2007%3a27%3a08.605278962%20%2b0000%20UTC%20m%3d%2b0.097047645">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2023-01-10%2007%3a27%3a08.605278962%20%2b0000%20UTC%20m%3d%2b0.097047645">
+    
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2023-01-10%2007%3a27%3a08.605278962%20%2b0000%20UTC%20m%3d%2b0.097047645">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://gtpedrosa.github.io/img/leaf.ico"
+
+>
+
+
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="https://gtpedrosa.github.io/"><img class="avatar" src="https://gtpedrosa.github.io/img/profile.png" srcset="https://gtpedrosa.github.io/img/profile.png 1x"></a>
+            
+            <a href="https://gtpedrosa.github.io/"><div class="name">Guilherme Pedrosa</div></a>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="https://gtpedrosa.github.io/blog/"><span>Blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="https://gtpedrosa.github.io/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-projects"><a href="https://gtpedrosa.github.io/projects/"><span>Projects</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/github.svg" alt="github" /></a>
+        
+
+        
+            <a href="//twitter.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/twitter.svg" alt="twitter" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/guilherme-pedrosa-73213aa0/" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+            
+        
+
+        
+
+        
+            <a href="mailto:guilherme.pedrosa@gmail.com"><img class="icon" src="https://gtpedrosa.github.io/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="https://gtpedrosa.github.io/index.xml"><img class="icon" src="https://gtpedrosa.github.io/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Reading PVSyst&#39;s Module (PAN) and Inverter (OND) files with Python
+
+</div>
+
+                    <div class="initials"><a href="https://gtpedrosa.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Tue Jan 10 2023 04:22:00 -0300'>Jan 10, 2023</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>4 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                <p>Before diving into solar simulations with <a href="https://pvlib-python.readthedocs.io/en/stable/">PVLib</a>, one of the main concerns I had was how to use the same inputs given to PVSyst, the <em>de facto</em> standard software of the solar industry. That also meant using the same files that describe the main equipments: <strong><strong>PAN</strong></strong> files for the modules and <strong><strong>OND</strong></strong> files for the inverters.</p>
+<p>Although It surprised me that PVLib did not come with a PVSyst file&rsquo;s parser, It was not a deal breaker. The search for such a parser led me to <a href="https://github.com/frivollier/pvsyst_tools">pvsyst_tools</a>. The library worked perfectly for the PAN file I had at hand. Here&rsquo;s a quick demo loading the library and PAN file from a local folder:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+
+<span class="n">spath</span> <span class="o">=</span> <span class="s1">&#39;~/Projects/solar/&#39;</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;current workign directory: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">spath</span><span class="p">))</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">spath</span><span class="p">,</span><span class="s1">&#39;libs&#39;</span><span class="p">))</span>
+
+<span class="kn">import</span> <span class="nn">pvsyst</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;pvsyst module path: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pvsyst</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;pysyst&#39;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># 5 for Verbose 10 for Debug</span>
+
+<span class="n">pan</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">spath</span><span class="p">,</span><span class="s1">&#39;refs&#39;</span><span class="p">,</span><span class="s1">&#39;CS6W-545MB-AG_CSI_EXT_1500V_V7_10_20210419.PAN&#39;</span><span class="p">)</span>  <span class="c1"># example PAN file</span>
+
+<span class="c1"># parse .PAN file into dict</span>
+<span class="n">module_parameters</span> <span class="o">=</span> <span class="n">pvsyst</span><span class="o">.</span><span class="n">pan_to_module_param</span><span class="p">(</span><span class="n">pan</span><span class="p">)</span>  <span class="c1"># return two dicts</span>
+
+<span class="n">module_parameters</span>
+</code></pre></div><pre><code class="language-nil" data-lang="nil">{'Manufacturer': 'CSI Solar Co., Ltd.',
+ 'Model': 'CS6W-545MB-AG 1500V',
+ 'Technol': 'mtSiMono',
+ 'DataSource': 'Manufacture 2020 TUV-SUD data',
+ 'YearBeg': '2020',
+ 'Comment': 'www.csisolar.com',
+ 'Width': 1.134,
+ 'Height': 2.266,
+ 'Depth': 0.035,
+ 'Weight': 32.2,
+ 'RelEffic800': 0.27,
+ 'RelEffic400': -0.21,
+ 'RelEffic200': -1.8,
+ 'NCelS': 72,
+ 'NCelP': 2,
+ 'NDiode': 3,
+ 'GRef': 1000.0,
+ 'TRef': 25.0,
+ 'PNom': 545.0,
+ 'PNomTolLow': '0.00',
+ 'PNomTolUp': '1.80',
+ 'Isc': 13.95,
+ 'Voc': 49.4,
+ 'Imp': 13.14,
+ 'Vmp': 41.5,
+ 'muISC': 6.98,
+ 'muVocSpec': -128.4,
+ 'mIsc_percent': 0.05003584229390681,
+ 'mVoc_percent': -0.259919028340081,
+ 'muPmpReq': -0.34,
+ 'RShunt': 2500.0,
+ 'Rp_0': 10000.0,
+ 'Rp_Exp': 5.5,
+ 'RShunt_stc': 2530.6507857884803,
+ 'RSerie': 0.206,
+ 'Gamma': 0.98,
+ 'muGamma': -0.0004,
+ 'REM_Str_1': 'Frame: Anodized aluminium alloy',
+ 'REM_Str_2': 'Structure: 2.0mm Glass / EVA / 2.0mm Glass',
+ 'REM_Str_3': 'Connections: Cable,T4 series or H4 UTX or MC4-EVO2',
+ 'IAM_Point_1': '20.0,1.00000',
+ 'IAM_Point_2': '40.0,1.00000',
+ 'IAM_Point_3': '60.0,1.00000',
+ 'IAM_Point_4': '65.0,0.99000',
+ 'IAM_Point_5': '70.0,0.96000',
+ 'IAM_Point_6': '75.0,0.92000',
+ 'IAM_Point_7': '80.0,0.84000',
+ 'IAM_Point_8': '85.0,0.72000',
+ 'IAM_Point_9': '90.0,0.00000',
+ 'IAM': array([[20.  , 40.  , 60.  , 65.  , 70.  , 75.  , 80.  , 85.  , 90.  ],
+        [ 1.  ,  1.  ,  1.  ,  0.99,  0.96,  0.92,  0.84,  0.72,  0.  ]]),
+ 'OperPoint_Point_1': 'False,800,25.0,0.27,0.00,0.000,0.000,0.00',
+ 'OperPoint_Point_2': 'False,600,25.0,0.14,0.00,0.000,0.000,0.00',
+ 'OperPoint_Point_3': 'False,400,25.0,-0.21,0.00,0.000,0.000,0.00',
+ 'OperPoint_Point_4': 'False,200,25.0,-1.80,0.00,0.000,0.000,0.00',
+ 'I_o_ref': 2.0352320417866327e-11,
+ 'EgRef': 1.121,
+ 'manufacturer': 'CSI Solar Co., Ltd.',
+ 'module_name': 'CS6W-545MB-AG 1500V',
+ 'Pmpp': 545.0,
+ 'Impp': 13.14,
+ 'Vmpp': 41.5,
+ 'mIsc': 0.00698,
+ 'mVocSpec': -0.12840000000000001,
+ 'mPmpp': -0.34,
+ 'Rshunt': 2500.0,
+ 'Rsh 0': 10000.0,
+ 'Rshexp': 5.5,
+ 'Rserie': 0.206,
+ 'gamma_ref': 0.98,
+ 'mu_gamma': -0.0004,
+ 'I_L_ref': 13.95,
+ 'R_sh_ref': 2530.6507857884803,
+ 'R_sh_0': 10000.0,
+ 'R_s': 0.206,
+ 'R_sh_exp': 5.5,
+ 'cells_in_series': 72,
+ 'alpha_sc': 0.00698}
+</code></pre><p>To parse the OND file, however, I had to patch the <code>inverter.py</code> file from the <em>pvsyst_tools</em> library to include an extra section called <code>ProfilPIO</code>. That is why I decided to load the library form a local copy in the previous example. Here&rsquo;s the patch:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">ond_sections</span> <span class="o">=</span><span class="p">{</span><span class="s1">&#39;PVObject_&#39;</span><span class="p">:</span> <span class="s1">&#39;pvGInverter&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;PVObject_Commercial&#39;</span><span class="p">:</span> <span class="s1">&#39;pvCommercial&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;Converter&#39;</span><span class="p">:</span> <span class="s1">&#39;TConverter&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;Remarks, Count&#39;</span><span class="p">:</span> <span class="s1">&#39;Remarks&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;ProfilPIO&#39;</span><span class="p">:</span> <span class="s1">&#39;ProfilPIO&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;ProfilPIOV1&#39;</span><span class="p">:</span> <span class="s1">&#39;ProfilPIOV1&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;ProfilPIOV2&#39;</span><span class="p">:</span> <span class="s1">&#39;ProfilPIOV2&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;ProfilPIOV3&#39;</span><span class="p">:</span> <span class="s1">&#39;ProfilPIOV3&#39;</span><span class="p">}</span>
+</code></pre></div><p>With this patch in place, the same logic and procedure was applied to retrieve the inverter parameters:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">ond_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;refs&#39;</span>  <span class="c1"># directory of OND files}</span>
+<span class="n">ond</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">spath</span><span class="p">,</span><span class="n">ond_dir</span><span class="p">,</span><span class="s1">&#39;Sungrow_SG3125HV-30_V50_20200903_PVsyst.6.6.7.OND&#39;</span><span class="p">)</span>  <span class="c1"># example PAN file</span>
+
+<span class="c1"># parse .OND file into dict</span>
+<span class="n">inverter_parameters</span> <span class="o">=</span> <span class="n">pvsyst</span><span class="o">.</span><span class="n">ond_to_inverter_param</span><span class="p">(</span><span class="n">ond</span><span class="p">)</span>  <span class="c1"># return two dicts</span>
+
+<span class="n">inverter_parameters</span>
+</code></pre></div><pre><code class="language-nil" data-lang="nil">{'pvGInverter': {'Comment': 'Sungrow\tSG3125HV-30\tManufacturer 2020',
+  'Version': '6.67',
+  'ParObj1': '2020',
+  'Flags': '$003C1463',
+  'pvCommercial': {'Comment': 'Sungrow Power Supply Co., Ltd',
+   'Flags': '$0041',
+   'Manufacturer': 'Sungrow',
+   'Model': 'SG3125HV-30',
+   'DataSource': 'Manufacturer 2020',
+   'YearBeg': '2020',
+   'Width': '2.250',
+   'Height': '2.350',
+   'Depth': '1.160',
+   'Weight': '2700.00',
+   'NPieces': '100',
+   'PriceDate': '26/11/15 14:00',
+   'Currency': 'EUR'},
+  'Transfo': 'Without',
+  'TConverter': {'PNomConv': '3125.000',
+   'PMaxOUT': '3437.000',
+   'VOutConv': '600.0',
+   'VMppMin': '875',
+   'VMPPMax': '1300',
+   'VmppNom': '1100.0',
+   'VAbsMax': '1500',
+   'PSeuil': '3125.0',
+   'EfficMax': '99.00',
+   'EfficEuro': '98.70',
+   'FResNorm': '3.00',
+   'ModeOper': 'MPPT',
+   'CompPMax': 'Lim',
+   'CompVMax': 'Lim',
+   'MonoTri': 'Tri',
+   'ModeAffEnum': 'Efficiencyf_POut',
+   'UnitAffEnum': 'kW',
+   'IDCMax': '0.0',
+   'INomAC': '3007.0',
+   'IMaxAC': '3308.0',
+   'TPNom': '50.0',
+   'TPMax': '45.0',
+   'TPLim1': '52.0',
+   'TPLimAbs': '60.0',
+   'PLim1': '2500.000',
+   'PInEffMax ': '952507.900',
+   'PThreshEff': '5673.4',
+   'HasdefaultPThresh': 'False',
+   'ProfilPIO': {'NPtsMax': '11',
+    'NPtsEff': '8',
+    'LastCompile': '$8089',
+    'Mode': '1',
+    'Point_1': '12500.0,0.0',
+    'Point_2': '75000.0,69249.5',
+    'Point_3': '125000.0,119172.4',
+    'Point_4': '250000.0,243901.1',
+    'Point_5': '500000.0,493020.8',
+    'Point_6': '750000.0,741690.6',
+    'Point_7': '1500000.0,1485000.0',
+    'Point_8': '2500000.0,2469779.2',
+    'Point_9': '0.0,0.0',
+    'Point_10': '0.0,0.0',
+    'Point_11': '0.0,0.0'},
+   'VNomEff': '875.0,1100.0,1300.0,',
+   'EfficMaxV': '99.030,98.860,98.690,',
+   'EfficEuroV': '98.810,98.627,98.421,',
+   'ProfilPIOV1': {'NPtsMax': '11',
+    'NPtsEff': '9',
+    'LastCompile': '$8089',
+    'Mode': '1',
+    'Point_1': '3125.0,0.0',
+    'Point_2': '163952.7,159280.0',
+    'Point_3': '320420.6,315390.0',
+    'Point_4': '635380.4,628010.0',
+    'Point_5': '792268.9,783950.0',
+    'Point_6': '949459.8,940250.0',
+    'Point_7': '1580566.0,1563970.0',
+    'Point_8': '2370556.7,2342110.1',
+    'Point_9': '3155956.3,3115560.1',
+    'Point_10': '0.0,0.0',
+    'Point_11': '0.0,0.0'},
+   'ProfilPIOV2': {'NPtsMax': '11',
+    'NPtsEff': '9',
+    'LastCompile': '$8089',
+    'Mode': '1',
+    'Point_1': '3125.0,0.0',
+    'Point_2': '164523.1,158880.0',
+    'Point_3': '321647.8,315440.0',
+    'Point_4': '636356.2,627320.0',
+    'Point_5': '793900.1,783500.0',
+    'Point_6': '950465.2,939630.0',
+    'Point_7': '1582454.6,1563939.9',
+    'Point_8': '2372756.9,2342860.1',
+    'Point_9': '3170945.7,3124649.9',
+    'Point_10': '0.0,0.0',
+    'Point_11': '0.0,0.0'},
+   'ProfilPIOV3': {'NPtsMax': '11',
+    'NPtsEff': '9',
+    'LastCompile': '$8089',
+    'Mode': '1',
+    'Point_1': '3125.0,0.0',
+    'Point_2': '165697.0,158920.0',
+    'Point_3': '323254.1,315690.0',
+    'Point_4': '637521.6,627640.0',
+    'Point_5': '795473.8,783860.0',
+    'Point_6': '952507.9,940030.0',
+    'Point_7': '1585300.1,1563740.0',
+    'Point_8': '2376773.2,2342310.1',
+    'Point_9': '3177379.0,3125270.0',
+    'Point_10': '0.0,0.0',
+    'Point_11': '0.0,0.0'}},
+  'NbInputs': '18',
+  'NbMPPT': '2',
+  'TanPhiMin': '-0.750',
+  'TanPhiMax': '0.750',
+  'NbMSInterne': '2',
+  'MasterSlave': 'No_M_S',
+  'IsolSurvey ': 'Yes',
+  'DC_Switch': 'Yes',
+  'AC_Switch': 'Yes',
+  'DiscAdjust': 'Yes',
+  'MS_Thresh': '0.8',
+  'Night_Loss': '120.00'}}
+</code></pre><p>How to use the resulting dictionaries with the inverter and mondule parameters is a different story, better left for another post.</p>
+
+                <br>
+		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+            <form method="POST" action="https://api.staticman.net/v2/entry////">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/reading-pvsysts-module-pan-and-inverter-ond-files-with-python/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="f0096766717dd3f75e0ae9521ba3cb71">
+    <input name="fields[name]" type="text" placeholder="Your name">
+    <input name="fields[email]" type="email" placeholder="Your email address">
+    <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
+    <input type="submit" value="Submit">
+</form>
+
+
+  	     
+ 
+ 
+
+ 
+   
+ 
+
+ 
+   <p>Hey, be the first who comment this article.</p>
+ 
+
+            
+        </div>
+    </div>
+</section>
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-93472104-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>
+
