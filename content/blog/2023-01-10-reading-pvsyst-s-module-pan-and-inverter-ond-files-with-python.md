@@ -262,4 +262,4 @@ inverter_parameters
   'Night_Loss': '120.00'}}
 ```
 
-How to use the resulting dictionaries with the inverter and mondule parameters is a different story, better left for another post.
+How to use the resulting dictionaries with the inverter and module parameters is a different story, better left for another post.

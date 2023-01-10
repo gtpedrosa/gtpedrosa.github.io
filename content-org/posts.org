@@ -1795,7 +1795,7 @@ inverter_parameters
   'Night_Loss': '120.00'}}
 #+end_src
 
-How to use the resulting dictionaries with the inverter and mondule parameters is a different story, better left for another post.
+How to use the resulting dictionaries with the inverter and module parameters is a different story, better left for another post.
 
 ** TODO Trying out Omnizart: a python library for Automatic Music Transcription :python:music:transcription:AMT:
 :PROPERTIES:
