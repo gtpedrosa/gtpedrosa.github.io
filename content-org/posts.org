@@ -357,7 +357,7 @@ CLOSED: [2019-04-06 sáb 18:56]
 
 Given the task to interact with an existing database I felt compelled to use the ORM abstraction instead of making queries with raw sql. My aim was to avoid the common pitfalls regarding making text templates for sqlqueries, prone to sql injection exploits, and enhance query composability. 
 
-I've found there are essentialy two ways to approach this task: through reflextion or a declarative model. Both approaches are explained in the following sections.
+I've found there are essentialy two ways to approach this task: through reflection or a declarative model. Both approaches are explained in the following sections.
 
 *** SQLAlchemy reflection
 
@@ -1797,6 +1797,35 @@ inverter_parameters
 
 How to use the resulting dictionaries with the inverter and module parameters is a different story, better left for another post.
 
+** DONE Getting started with Neovim: Notes to self :neovim:python:dofiles:
+CLOSED: [2023-01-22 Sun 21:36]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2023-01-22-getting-started-with-neovim-notes-to-self
+:END:
+
+This week I wanted to up my python development `fu` by focusing on my tooling. My main criterium was to move fast between definitions and files to understand a new code base. For a while, I have been learning about vim from the ThePrimeagen Youtube channel. His latest video on [[https://www.youtube.com/watch?v=w7i4amO_zaE&t=817s][getting started with Neovim]] is simply an excellent resource.
+
+So I took the time to implement each step following the video. In the process, not only I have learned a great deal about how to set up Neovim with Lua, but also what it is like to be /fluent in vim/, and I liked it. My new setup, which is a simplified version of the one in the video is now in [[https://github.com/gtpedrosa/dotfiles][dot files repository]].
+
+Some of the shortcuts that I do not want to forget (not categorized):
+
+- gd: Jump to definition
+- Ctrl-o: Returns cursor to the previous position (e.g. before the jump to definition)
+- '': Similar to Ctrl-o but returns to the line (not position)
+- K: Shows help for the object under the cursor
+- pf: Project find, works with files
+- ps: Project search, works with code/text
+- pv: Opens Netrw navigator
+- f: finds a character in the current line after the cursor
+- a: Inserts after the cursor
+- J: Brings line below to current line
+- zz: Centralize the cursor  in the middle of the screen
+- Ctrl+e: Opens harpoon dialog
+- Spc+a: Marks file to harpoon
+- Ctrl+h: Switch to harpoon position 1
+- Ctrl+t: Switch to harpoon position 2
+
+  At this time, I still have not replaced my development workflow, with Jupyter-lab, with the Neovim setup. Since I work mainly with data, it is necessary to find the best way to bend the new tooling to my REPL workflow. However, getting acquainted with the new code base has been a delight with the new tooling so far.
 ** TODO Trying out Omnizart: a python library for Automatic Music Transcription :python:music:transcription:AMT:
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2021-12-19-trying-out-omnizart-a-python-library-for-automatic-music-transcription
