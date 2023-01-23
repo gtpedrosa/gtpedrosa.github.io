@@ -9,25 +9,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="no-referrer">
 <meta name="author" content="Guilherme Pedrosa">
-<meta name="description" content="Since github retired hhtp authentication, I have moved to the only option available: ssh-key authentication. It makes things easier by not having to type user and password multiple times in the same session. In theory. In practice, this was not my experience. This is when i found out about keychain. From their docs:
- Keychain helps you to manage SSH and GPG keys in a convenient and secure manner. It acts as a frontend to ssh-agent and ssh-add, but allows you to easily have one long running ssh-agent process per system, rather than the norm of one ssh-agent per login session.">
+<meta name="description" content="This week I wanted to up my python development `fu` by focusing on my tooling. My main criterium was to move fast between definitions and files to understand a new code base. For a while, I have been learning about vim from the ThePrimeagen Youtube channel. His latest video on getting started with Neovim is simply an excellent resource.
+So I took the time to implement each step following the video.">
 
-<meta property="og:title" content="Add ssh-key to Keychain for Session Authentication" />
-<meta property="og:description" content="Since github retired hhtp authentication, I have moved to the only option available: ssh-key authentication. It makes things easier by not having to type user and password multiple times in the same session. In theory. In practice, this was not my experience. This is when i found out about keychain. From their docs:
- Keychain helps you to manage SSH and GPG keys in a convenient and secure manner. It acts as a frontend to ssh-agent and ssh-add, but allows you to easily have one long running ssh-agent process per system, rather than the norm of one ssh-agent per login session." />
+<meta property="og:title" content="Getting started with Neovim: Notes to self" />
+<meta property="og:description" content="This week I wanted to up my python development `fu` by focusing on my tooling. My main criterium was to move fast between definitions and files to understand a new code base. For a while, I have been learning about vim from the ThePrimeagen Youtube channel. His latest video on getting started with Neovim is simply an excellent resource.
+So I took the time to implement each step following the video." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gtpedrosa.github.io/blog/add-ssh-key-to-keychain-for-session-authentication/" />
-<meta property="article:published_time" content="2022-06-15T18:35:00-03:00" />
-<meta property="article:modified_time" content="2022-06-15T18:35:00-03:00" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/getting-started-with-neovim-notes-to-self/" />
+<meta property="article:published_time" content="2023-01-22T21:36:00-03:00" />
+<meta property="article:modified_time" content="2023-01-22T21:36:00-03:00" />
 
 
 <title>
 
 
-     Add ssh-key to Keychain for Session Authentication 
+     Getting started with Neovim: Notes to self 
 
 </title>
-<link rel="canonical" href="https://gtpedrosa.github.io/blog/add-ssh-key-to-keychain-for-session-authentication/">
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/getting-started-with-neovim-notes-to-self/">
 
 
 
@@ -45,11 +45,11 @@
 
 
     
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2023-01-23%2000%3a41%3a08.774907923%20%2b0000%20UTC%20m%3d%2b0.051533101">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2023-01-23%2000%3a41%3a08.774907923%20%2b0000%20UTC%20m%3d%2b0.051533101">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2023-01-23%2000%3a41%3a08.774907923%20%2b0000%20UTC%20m%3d%2b0.051533101">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2023-01-23%2000%3a41%3a08.762426787%20%2b0000%20UTC%20m%3d%2b0.039051959">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2023-01-23%2000%3a41%3a08.762426787%20%2b0000%20UTC%20m%3d%2b0.039051959">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2023-01-23%2000%3a41%3a08.762426787%20%2b0000%20UTC%20m%3d%2b0.039051959">
     
-        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2023-01-23%2000%3a41%3a08.774907923%20%2b0000%20UTC%20m%3d%2b0.051533101">
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2023-01-23%2000%3a41%3a08.762426787%20%2b0000%20UTC%20m%3d%2b0.039051959">
     
 
 
@@ -190,7 +190,7 @@
                 <div class="title-container">
                     <div class="page-heading">
 
-    Add ssh-key to Keychain for Session Authentication
+    Getting started with Neovim: Notes to self
 
 </div>
 
@@ -198,28 +198,65 @@
                 </div>
                 <div class="meta">
                     
-                    <div class="date" title='Wed Jun 15 2022 18:35:00 -0300'>Jun 15, 2022</div>
+                    <div class="date" title='Sun Jan 22 2023 21:36:00 -0300'>Jan 22, 2023</div>
                     
                     
-		    <div class="reading-time"><div class="middot"></div>One minute read</div>
+		    <div class="reading-time"><div class="middot"></div>2 minutes read</div>
                     
                 </div>
             </div>
             <div class="markdown">
-                <p>Since github retired hhtp authentication, I have moved to the only option available: ssh-key authentication. It makes things easier by not having to type user and password multiple times in the same session. In theory. In practice, this was not my experience. This is when i found out about <a href="https://www.funtoo.org/Funtoo:Keychain">keychain</a>. From their docs:</p>
-<blockquote>
-<p>Keychain helps you to manage SSH and GPG keys in a convenient and secure manner. It acts as a frontend to ssh-agent and ssh-add, but allows you to easily have one long running ssh-agent process per system, rather than the norm of one ssh-agent per login session.</p>
-<p>This dramatically reduces the number of times you need to enter your passphrase. With keychain, you only need to enter a passphrase once every time your local machine is rebooted.</p>
-</blockquote>
-<p>And how exactly do you add a ssh-key to the keychain? Here&rsquo;s how:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">guilherme@gtpedrosa:~<span class="nv">$eval</span> <span class="k">$(</span>keychain --eval mysshkey<span class="k">)</span>
-
- * keychain 2.8.5 ~ http://www.funtoo.org
- * Found existing ssh-agent: <span class="m">1494</span>
- * Adding <span class="m">1</span> ssh key<span class="o">(</span>s<span class="o">)</span>: /home/guilherme/.ssh/mysshkey
-Enter passphrase <span class="k">for</span> /home/guilherme/.ssh/mysshkey:
- * ssh-add: Identities added: /home/guilherme/.ssh/mysshkey
-</code></pre></div><p>No need to insert usernames os passwords until you reboot.</p>
+                <p>This week I wanted to up my python development `fu` by focusing on my tooling. My main criterium was to move fast between definitions and files to understand a new code base. For a while, I have been learning about vim from the ThePrimeagen Youtube channel. His latest video on <a href="https://www.youtube.com/watch?v=w7i4amO_zaE&amp;t=817s">getting started with Neovim</a> is simply an excellent resource.</p>
+<p>So I took the time to implement each step following the video. In the process, not only I have learned a great deal about how to set up Neovim with Lua, but also what it is like to be <em>fluent in vim</em>, and I liked it. My new setup, which is a simplified version of the one in the video is now in <a href="https://github.com/gtpedrosa/dotfiles">dot files repository</a>.</p>
+<p>Some of the shortcuts that I do not want to forget (not categorized):</p>
+<ul>
+<li>
+<p>gd: Jump to definition</p>
+</li>
+<li>
+<p>Ctrl-o: Returns cursor to the previous position (e.g. before the jump to definition)</p>
+</li>
+<li>
+<p>&lsquo;': Similar to Ctrl-o but returns to the line (not position)</p>
+</li>
+<li>
+<p>K: Shows help for the object under the cursor</p>
+</li>
+<li>
+<p>pf: Project find, works with files</p>
+</li>
+<li>
+<p>ps: Project search, works with code/text</p>
+</li>
+<li>
+<p>pv: Opens Netrw navigator</p>
+</li>
+<li>
+<p>f: finds a character in the current line after the cursor</p>
+</li>
+<li>
+<p>a: Inserts after the cursor</p>
+</li>
+<li>
+<p>J: Brings line below to current line</p>
+</li>
+<li>
+<p>zz: Centralize the cursor  in the middle of the screen</p>
+</li>
+<li>
+<p>Ctrl+e: Opens harpoon dialog</p>
+</li>
+<li>
+<p>Spc+a: Marks file to harpoon</p>
+</li>
+<li>
+<p>Ctrl+h: Switch to harpoon position 1</p>
+</li>
+<li>
+<p>Ctrl+t: Switch to harpoon position 2</p>
+<p>At this time, I still have not replaced my development workflow, with Jupyter-lab, with the Neovim setup. Since I work mainly with data, it is necessary to find the best way to bend the new tooling to my REPL workflow. However, getting acquainted with the new code base has been a delight with the new tooling so far.</p>
+</li>
+</ul>
 
                 <br>
 		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
@@ -229,8 +266,8 @@ Enter passphrase <span class="k">for</span> /home/guilherme/.ssh/mysshkey:
                 
             </div>
             <form method="POST" action="https://api.staticman.net/v2/entry////">
-    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/add-ssh-key-to-keychain-for-session-authentication/#comment-submitted">
-    <input type="hidden" name="options[entryId]" value="f8b5beec801d944c1ee3d79dfdf5010a">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/getting-started-with-neovim-notes-to-self/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="4b84e3419d87b5633b557075c561ce57">
     <input name="fields[name]" type="text" placeholder="Your name">
     <input name="fields[email]" type="email" placeholder="Your email address">
     <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>

@@ -28,7 +28,7 @@ Steps  Keep a SQL Server instance running in the background; Fire up SQL Managem
       
       <guid>https://gtpedrosa.github.io/blog/using-sqlalchemy-to-navigate-an-existing-database/</guid>
       <description>Given the task to interact with an existing database I felt compelled to use the ORM abstraction instead of making queries with raw sql. My aim was to avoid the common pitfalls regarding making text templates for sqlqueries, prone to sql injection exploits, and enhance query composability.
-I&amp;rsquo;ve found there are essentialy two ways to approach this task: through reflextion or a declarative model. Both approaches are explained in the following sections.</description>
+I&amp;rsquo;ve found there are essentialy two ways to approach this task: through reflection or a declarative model. Both approaches are explained in the following sections.</description>
     </item>
     
   </channel>

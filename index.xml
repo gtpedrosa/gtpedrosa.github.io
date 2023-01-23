@@ -6,10 +6,20 @@
     <description>Recent content on Guilherme Pedrosa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 10 Jan 2023 04:22:00 -0300</lastBuildDate>
+    <lastBuildDate>Sun, 22 Jan 2023 21:36:00 -0300</lastBuildDate>
     
 	<atom:link href="https://gtpedrosa.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Getting started with Neovim: Notes to self</title>
+      <link>https://gtpedrosa.github.io/blog/getting-started-with-neovim-notes-to-self/</link>
+      <pubDate>Sun, 22 Jan 2023 21:36:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/getting-started-with-neovim-notes-to-self/</guid>
+      <description>This week I wanted to up my python development `fu` by focusing on my tooling. My main criterium was to move fast between definitions and files to understand a new code base. For a while, I have been learning about vim from the ThePrimeagen Youtube channel. His latest video on getting started with Neovim is simply an excellent resource.
+So I took the time to implement each step following the video.</description>
+    </item>
     
     <item>
       <title>Reading PVSyst&#39;s Module (PAN) and Inverter (OND) files with Python</title>
@@ -228,7 +238,7 @@ Steps  Keep a SQL Server instance running in the background; Fire up SQL Managem
       
       <guid>https://gtpedrosa.github.io/blog/using-sqlalchemy-to-navigate-an-existing-database/</guid>
       <description>Given the task to interact with an existing database I felt compelled to use the ORM abstraction instead of making queries with raw sql. My aim was to avoid the common pitfalls regarding making text templates for sqlqueries, prone to sql injection exploits, and enhance query composability.
-I&amp;rsquo;ve found there are essentialy two ways to approach this task: through reflextion or a declarative model. Both approaches are explained in the following sections.</description>
+I&amp;rsquo;ve found there are essentialy two ways to approach this task: through reflection or a declarative model. Both approaches are explained in the following sections.</description>
     </item>
     
     <item>

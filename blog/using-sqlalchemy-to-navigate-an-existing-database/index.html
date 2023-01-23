@@ -10,11 +10,11 @@
 <meta name="referrer" content="no-referrer">
 <meta name="author" content="Guilherme Pedrosa">
 <meta name="description" content="Given the task to interact with an existing database I felt compelled to use the ORM abstraction instead of making queries with raw sql. My aim was to avoid the common pitfalls regarding making text templates for sqlqueries, prone to sql injection exploits, and enhance query composability.
-I&rsquo;ve found there are essentialy two ways to approach this task: through reflextion or a declarative model. Both approaches are explained in the following sections.">
+I&rsquo;ve found there are essentialy two ways to approach this task: through reflection or a declarative model. Both approaches are explained in the following sections.">
 
 <meta property="og:title" content="Using SQLAlchemy to navigate an existing database" />
 <meta property="og:description" content="Given the task to interact with an existing database I felt compelled to use the ORM abstraction instead of making queries with raw sql. My aim was to avoid the common pitfalls regarding making text templates for sqlqueries, prone to sql injection exploits, and enhance query composability.
-I&rsquo;ve found there are essentialy two ways to approach this task: through reflextion or a declarative model. Both approaches are explained in the following sections." />
+I&rsquo;ve found there are essentialy two ways to approach this task: through reflection or a declarative model. Both approaches are explained in the following sections." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://gtpedrosa.github.io/blog/using-sqlalchemy-to-navigate-an-existing-database/" />
 <meta property="article:published_time" content="2019-04-06T18:56:00-03:00" />
@@ -45,11 +45,11 @@ I&rsquo;ve found there are essentialy two ways to approach this task: through re
 
 
     
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2023-01-10%2023%3a48%3a29.489054948%20%2b0000%20UTC%20m%3d%2b0.054100274">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2023-01-10%2023%3a48%3a29.489054948%20%2b0000%20UTC%20m%3d%2b0.054100274">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2023-01-10%2023%3a48%3a29.489054948%20%2b0000%20UTC%20m%3d%2b0.054100274">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2023-01-23%2000%3a41%3a08.784210298%20%2b0000%20UTC%20m%3d%2b0.060835456">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2023-01-23%2000%3a41%3a08.784210298%20%2b0000%20UTC%20m%3d%2b0.060835456">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2023-01-23%2000%3a41%3a08.784210298%20%2b0000%20UTC%20m%3d%2b0.060835456">
     
-        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2023-01-10%2023%3a48%3a29.489054948%20%2b0000%20UTC%20m%3d%2b0.054100274">
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2023-01-23%2000%3a41%3a08.784210298%20%2b0000%20UTC%20m%3d%2b0.060835456">
     
 
 
@@ -207,42 +207,41 @@ I&rsquo;ve found there are essentialy two ways to approach this task: through re
             </div>
             <div class="markdown">
                 <p>Given the task to interact with an existing database I felt compelled to use the ORM abstraction instead of making queries with raw sql. My aim was to avoid the common pitfalls regarding making text templates for sqlqueries, prone to sql injection exploits, and enhance query composability.</p>
-<p>I&rsquo;ve found there are essentialy two ways to approach this task: through reflextion or a declarative model. Both approaches are explained in the following sections.</p>
+<p>I&rsquo;ve found there are essentialy two ways to approach this task: through reflection or a declarative model. Both approaches are explained in the following sections.</p>
 <h2 id="sqlalchemy-reflection">SQLAlchemy reflection</h2>
 <p>Reflection uses metadata property to access schema constructs. It offers a few methods to access table objects, which do not have to be explicitly declared.</p>
 <p>The downside of this approach is mantainability, since schema changes can make code unreliable. Here&rsquo;s an eample of how to access the <em>TimeStamp</em> column of a <em>Table_I_Want_to_Interact</em> in a generic database:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">MetaData</span><span class="p">,</span> <span class="n">Table</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python">  <span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
+  <span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">MetaData</span><span class="p">,</span> <span class="n">Table</span>
 
-<span class="c1"># Using SQLAlchemy reflection example</span>
-<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;connectionstringhere&#39;</span><span class="p">)</span>
-<span class="n">table1meta</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
-<span class="n">table1</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="s1">&#39;Table_I_Want_to_Interact&#39;</span><span class="p">,</span> <span class="n">table1meta</span><span class="p">,</span> <span class="n">autoload</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">DBSession</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
-<span class="n">session</span> <span class="o">=</span> <span class="n">DBSession</span><span class="p">()</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">table1</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">table1</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">TimeStamp</span><span class="o">&gt;=</span><span class="s2">&#34;2019-02-26 18:00:00.000&#34;</span><span class="p">)</span>
-<span class="n">results</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+  <span class="c1"># Using SQLAlchemy reflection example</span>
+  <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;connectionstringhere&#39;</span><span class="p">)</span>
+  <span class="n">table1meta</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+  <span class="n">table1</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="s1">&#39;Table_I_Want_to_Interact&#39;</span><span class="p">,</span> <span class="n">table1meta</span><span class="p">,</span> <span class="n">autoload</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+  <span class="n">DBSession</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+  <span class="n">session</span> <span class="o">=</span> <span class="n">DBSession</span><span class="p">()</span>
+  <span class="n">results</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">table1</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">table1</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">TimeStamp</span><span class="o">&gt;=</span><span class="s2">&#34;2019-02-26 18:00:00.000&#34;</span><span class="p">)</span>
+  <span class="n">results</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 </code></pre></div><h2 id="sqlalchemy-declarative-model">SQLAlchemy declarative model</h2>
 <p>The declarative model needs Table objects to be explicitly declared. Due to this inherent verbose nature, I have found it is easier to grasp what is happening and even how the database is structured after a glance at the source code, such as in the following snippet:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">MetaData</span><span class="p">,</span> <span class="n">BigInteger</span><span class="p">,</span> <span class="n">CHAR</span><span class="p">,</span> <span class="n">Column</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">SmallInteger</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">Table</span><span class="p">,</span> <span class="n">Unicode</span><span class="p">,</span> <span class="n">text</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="kn">import</span> <span class="n">declarative_base</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python">  <span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">MetaData</span><span class="p">,</span> <span class="n">BigInteger</span><span class="p">,</span> <span class="n">CHAR</span><span class="p">,</span> <span class="n">Column</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">SmallInteger</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">Table</span><span class="p">,</span> <span class="n">Unicode</span><span class="p">,</span> <span class="n">text</span>
+  <span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="kn">import</span> <span class="n">declarative_base</span>
+  <span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
 
-<span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
-<span class="n">metadata</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span>
+  <span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
+  <span class="n">metadata</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span>
 
 
-<span class="n">my_table_object</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
-    <span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s1">&#39;Column1&#39;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s1">&#39;TimeStamp&#39;</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s1">&#39;Column3&#39;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s1">&#39;Column4&#39;</span><span class="p">,</span> <span class="n">Unicode</span><span class="p">(</span><span class="mi">2000</span><span class="p">))</span>
-<span class="p">)</span>
-
+  <span class="n">my_table_object</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
+      <span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span>
+      <span class="n">Column</span><span class="p">(</span><span class="s1">&#39;Column1&#39;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
+      <span class="n">Column</span><span class="p">(</span><span class="s1">&#39;TimeStamp&#39;</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
+      <span class="n">Column</span><span class="p">(</span><span class="s1">&#39;Column3&#39;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
+      <span class="n">Column</span><span class="p">(</span><span class="s1">&#39;Column4&#39;</span><span class="p">,</span> <span class="n">Unicode</span><span class="p">(</span><span class="mi">2000</span><span class="p">))</span>
+  <span class="p">)</span>
 </code></pre></div><p>Here a table named <em>table_name</em> in the database is being mapped to the <em>my_table_object</em> instance. It should be noted that not all columns need to be mapped. Uninteresting columns can be left out with no drawbacks.</p>
 <p>Depending on the database structure size, however,  it could be cumbersome to define multiple tables. For use cases like this, I have found the package <a href="https://pypi.org/project/sqlacodegen/">sqlacodegen</a> of great help. It automates the task of creating the declarative models for you. Providing an output file and a connections tring it is as easy as issuing:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sqlcodegen --outfile models.py mssql+pyodbc......
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">  sqlcodegen --outfile models.py mssql+pyodbc......
 </code></pre></div><p>The resulting file can be easily imported and the this task promptly abstracted.</p>
 
                 <br>
