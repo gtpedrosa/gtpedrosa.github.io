@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>neovim on Guilherme Pedrosa</title>
-    <link>https://gtpedrosa.github.io/tags/neovim/</link>
-    <description>Recent content in neovim on Guilherme Pedrosa</description>
+    <title>jupyter on Guilherme Pedrosa</title>
+    <link>https://gtpedrosa.github.io/tags/jupyter/</link>
+    <description>Recent content in jupyter on Guilherme Pedrosa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Sun, 05 Feb 2023 07:49:00 -0300</lastBuildDate>
     
-	<atom:link href="https://gtpedrosa.github.io/tags/neovim/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gtpedrosa.github.io/tags/jupyter/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,16 +20,6 @@
       <description>I want to expand on the previous post Getting started with nvim touching upon the jupyter-lab integration. I am still unpleased with the current solution, but the following trick addresses a couple of issues.
 Jupyter-lab comes with an IPython interpreter, which in turn has an auto-reload extension. It can be enabled easily as:
 %load_ext autoreload %autoreload 2 The magic command set to &amp;ldquo;2&amp;rdquo; reloads every module before any code is executed.</description>
-    </item>
-    
-    <item>
-      <title>Getting started with Neovim: Notes to self</title>
-      <link>https://gtpedrosa.github.io/blog/getting-started-with-neovim-notes-to-self/</link>
-      <pubDate>Sun, 22 Jan 2023 21:36:00 -0300</pubDate>
-      
-      <guid>https://gtpedrosa.github.io/blog/getting-started-with-neovim-notes-to-self/</guid>
-      <description>This week I wanted to up my python development `fu` by focusing on my tooling. My main criterium was to move fast between definitions and files to understand a new code base. For a while, I have been learning about vim from the ThePrimeagen Youtube channel. His latest video on getting started with Neovim is simply an excellent resource.
-So I took the time to implement each step following the video.</description>
     </item>
     
   </channel>

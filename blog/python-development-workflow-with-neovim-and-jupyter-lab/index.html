@@ -9,23 +9,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="no-referrer">
 <meta name="author" content="Guilherme Pedrosa">
-<meta name="description" content="Com o objetivo de redigir textos científicos, qual a ferramenta mais adequada para o trabalho? Editores ou processadores de texto?">
+<meta name="description" content="I want to expand on the previous post Getting started with nvim touching upon the jupyter-lab integration. I am still unpleased with the current solution, but the following trick addresses a couple of issues.
+Jupyter-lab comes with an IPython interpreter, which in turn has an auto-reload extension. It can be enabled easily as:
+%load_ext autoreload %autoreload 2 The magic command set to &ldquo;2&rdquo; reloads every module before any code is executed.">
 
-<meta property="og:title" content="editor vs processador" />
-<meta property="og:description" content="Com o objetivo de redigir textos científicos, qual a ferramenta mais adequada para o trabalho? Editores ou processadores de texto?" />
+<meta property="og:title" content="Python development workflow with Neovim and Jupyter-lab" />
+<meta property="og:description" content="I want to expand on the previous post Getting started with nvim touching upon the jupyter-lab integration. I am still unpleased with the current solution, but the following trick addresses a couple of issues.
+Jupyter-lab comes with an IPython interpreter, which in turn has an auto-reload extension. It can be enabled easily as:
+%load_ext autoreload %autoreload 2 The magic command set to &ldquo;2&rdquo; reloads every module before any code is executed." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gtpedrosa.github.io/blog/editor-vs-processador/" />
-<meta property="article:published_time" content="2017-10-23T17:58:45-03:00" />
-<meta property="article:modified_time" content="2017-10-23T17:58:45-03:00" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/python-development-workflow-with-neovim-and-jupyter-lab/" />
+<meta property="article:published_time" content="2023-02-05T07:49:00-03:00" />
+<meta property="article:modified_time" content="2023-02-05T07:49:00-03:00" />
 
 
 <title>
 
 
-     editor vs processador 
+     Python development workflow with Neovim and Jupyter-lab 
 
 </title>
-<link rel="canonical" href="https://gtpedrosa.github.io/blog/editor-vs-processador/">
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/python-development-workflow-with-neovim-and-jupyter-lab/">
 
 
 
@@ -43,11 +47,11 @@
 
 
     
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2023-02-05%2010%3a58%3a39.881766606%20%2b0000%20UTC%20m%3d%2b0.061541053">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2023-02-05%2010%3a58%3a39.881766606%20%2b0000%20UTC%20m%3d%2b0.061541053">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2023-02-05%2010%3a58%3a39.881766606%20%2b0000%20UTC%20m%3d%2b0.061541053">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2023-02-05%2010%3a58%3a39.889329984%20%2b0000%20UTC%20m%3d%2b0.069104443">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2023-02-05%2010%3a58%3a39.889329984%20%2b0000%20UTC%20m%3d%2b0.069104443">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2023-02-05%2010%3a58%3a39.889329984%20%2b0000%20UTC%20m%3d%2b0.069104443">
     
-        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2023-02-05%2010%3a58%3a39.881766606%20%2b0000%20UTC%20m%3d%2b0.061541053">
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2023-02-05%2010%3a58%3a39.889329984%20%2b0000%20UTC%20m%3d%2b0.069104443">
     
 
 
@@ -188,7 +192,7 @@
                 <div class="title-container">
                     <div class="page-heading">
 
-    editor vs processador
+    Python development workflow with Neovim and Jupyter-lab
 
 </div>
 
@@ -196,7 +200,7 @@
                 </div>
                 <div class="meta">
                     
-                    <div class="date" title='Mon Oct 23 2017 17:58:45 -0300'>Oct 23, 2017</div>
+                    <div class="date" title='Sun Feb 5 2023 07:49:00 -0300'>Feb 5, 2023</div>
                     
                     
 		    <div class="reading-time"><div class="middot"></div>2 minutes read</div>
@@ -204,16 +208,24 @@
                 </div>
             </div>
             <div class="markdown">
-                <p>Com o objetivo de redigir textos científicos, qual a ferramenta mais adequada para o trabalho? Editores ou processadores de texto?</p>
-<p>Um editor de texto é um software especializado pura e simplesmente na manipulação de texto. Editores focados em power users, como o vi e emacs, podem ter milhões de ferramentas que auxiliem nesta tarefa. Já um processador de texto permite ao usuário trabalhar também nos aspectos de formatação do texto. O principal representante dessa classe é o Microsoft Word.</p>
-<p>Com o foco na produção científica, creio que o descoplamento da forma e conteúdo dos trabalhos seja algo extremamente vantajoso. Desta forma, a preparação de artigos científicos com base em dissertações ou teses é algo que torna-se bem menos trabalhoso. Grandes editoras como a Elsevier disponibilizam estilos em LaTeX por exemplo em que os pesquisadores não precisam se preocupar com formatação alguma. Além disso ao gerenciamento de referências e citações torna-se automático neste sistema.</p>
-<p>Dito isto, fica claro minha preferência pelo combo: editor de texto + LaTeX para preparação de textos científicos. Deixo abaixo uma lista com os combos que testei:</p>
-<ul>
-<li><strong>Kate</strong>: Kate permite navegar entre mútliplas pastas com o mouse e possui um terminal embutido onde é possível chamar o latexmk para compilar o documento;</li>
-<li><strong>vim</strong>: Utilizei o vim juntamente com o latexbox. A macro \ll para compilar o documento é bastante útil;</li>
-<li><strong>TexStudio</strong>: Minha opção default para windows. Gostei bastante do completion para comandos com open/end.</li>
-</ul>
-<p>Apesar de muito poderoso, o <em>vim</em> não é tão simples de ser utilizado, fazendo com que eu trabalhasse principalmente no Kate. Em suma: vale a pena testar as diversas opções existentes e selecionar a que mais se adequa ao seu fluxo de trabalho.</p>
+                <p>I want to expand on the previous post <a href="https://gtpedrosa.github.io/blog/getting-started-with-neovim-notes-to-self/">Getting started with nvim</a> touching upon the jupyter-lab integration. I am still unpleased with the current solution, but the following trick addresses a couple of issues.</p>
+<p>Jupyter-lab comes with an IPython interpreter, which in turn has an <a href="https://ipython.org/ipython-doc/3/config/extensions/autoreload.html">auto-reload extension</a>. It can be enabled easily as:</p>
+<pre><code class="language-nil" data-lang="nil">%load_ext autoreload
+%autoreload 2
+</code></pre><p>The magic command set to &ldquo;2&rdquo; reloads every module before any code is executed. In practice, this allows code edition in Neovim and REPL-like execution in jupyter-lab. Best of both worlds.</p>
+<p>However, there are caveats. Pain points to solve include copy-pasting between editor and interpreter, and modifications to allow some of these snippets to be run as scripts. This could probably be solved using the <a href="https://github.com/jupyter-vim/jupyter-vim">jupyter-vim package</a>. Unfortunately, I could not make it work with my project`s virtual environment.</p>
+<p>The next steps involve translating the following vim script to lua:</p>
+<pre><code class="language-nil" data-lang="nil">&quot; Always use the same virtualenv for vim, regardless of what Python
+&quot; environment is loaded in the shell from which vim is launched
+let g:vim_virtualenv_path = '/path/to/my/new/vim_virtualenv'
+if exists('g:vim_virtualenv_path')
+    pythonx import os; import vim
+    pythonx activate_this = os.path.join(vim.eval('g:vim_virtualenv_path'), 'bin/activate_this.py')
+    pythonx with open(activate_this) as f: exec(f.read(), {'__file__': activate_this})
+endif
+</code></pre><p>and including &ldquo;+y&rdquo; as &ldquo;Y&rdquo; remap in <em>remap.lua</em> file just in case.</p>
+<p>So far, the trade-offs have had a net positive impact.</p>
+
                 <br>
 		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
             </div>
@@ -222,8 +234,8 @@
                 
             </div>
             <form method="POST" action="https://api.staticman.net/v2/entry////">
-    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/editor-vs-processador/#comment-submitted">
-    <input type="hidden" name="options[entryId]" value="cc868930e0e81d1bb8c986bd42ab0ec3">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/python-development-workflow-with-neovim-and-jupyter-lab/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="bb95e6e992369f25145fb87f64fae747">
     <input name="fields[name]" type="text" placeholder="Your name">
     <input name="fields[email]" type="email" placeholder="Your email address">
     <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>

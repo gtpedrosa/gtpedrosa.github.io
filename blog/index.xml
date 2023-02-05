@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>Python development workflow with Neovim and Jupyter-lab</title>
+      <link>https://gtpedrosa.github.io/blog/python-development-workflow-with-neovim-and-jupyter-lab/</link>
+      <pubDate>Sun, 05 Feb 2023 07:49:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/python-development-workflow-with-neovim-and-jupyter-lab/</guid>
+      <description>I want to expand on the previous post Getting started with nvim touching upon the jupyter-lab integration. I am still unpleased with the current solution, but the following trick addresses a couple of issues.
+Jupyter-lab comes with an IPython interpreter, which in turn has an auto-reload extension. It can be enabled easily as:
+%load_ext autoreload %autoreload 2 The magic command set to &amp;ldquo;2&amp;rdquo; reloads every module before any code is executed.</description>
+    </item>
+    
+    <item>
       <title>Getting started with Neovim: Notes to self</title>
       <link>https://gtpedrosa.github.io/blog/getting-started-with-neovim-notes-to-self/</link>
       <pubDate>Sun, 22 Jan 2023 21:36:00 -0300</pubDate>
