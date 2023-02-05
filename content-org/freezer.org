@@ -1,0 +1,97 @@
+#+title: Freezer
+** TODO Trying out Omnizart: a python library for Automatic Music Transcription :python:music:transcription:AMT:
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2021-12-19-trying-out-omnizart-a-python-library-for-automatic-music-transcription
+:END:
+
+I first heard about Omnizart on hackernews. Since then I have ment to play around with it but did not find the time. During an insomnia incident, that day (night?) came.
+
+*** Installation
+
+First off, let's talk about installation. If you go the the [[https://music-and-culture-technology-lab.github.io/omnizart-doc/quick-start.html][Quick Start]] session on the docs, you will find the pip and the developer installation options. However, I'd rather use docker for something so complex, and the docker instructions were available only on [[https://github.com/Music-and-Culture-Technology-Lab/omnizart][Github README]]. Here's the docker command:
+
+#+begin_src bash
+sudo docker pull mctlab/omnizart:latest
+#+end_src
+
+There is also a colab notebook available, to try it out without installing. And to my surprise here's the first hurdle:
+
+#+begin_src bash
+guilherme@gtpedrosa:~$ sudo docker images
+REPOSITORY        TAG       IMAGE ID       CREATED        SIZE
+mctlab/omnizart   latest    bf7250b93908   6 months ago   8.77GB
+#+end_src
+
+The colab would spend hours downloading and installing the dependencies without ever finishing. The library is massive. But no worries, I am running it locally.
+
+*** Test drive
+
+Moving on with the actual usage, I was eager to try the piano only transcription capability of the library. I am going to use a song I am working on which is [[https://www.youtube.com/watch?v=YKJrKPLfgKA]["Birdwoman" by Poppy Ackroyd.]]
+
+#+RESULTS:
+
+** TODO Retrieving music sheet off midi visualizer in youtube videos using opencv part 1
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2019-01-15-retrieving-music-sheet-off-midi-visualizer-in-youtube-videos-using-opencv
+:END:
+
+I've been with [[https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=2ahUKEwj1qLa5jPrfAhUwHLkGHTNKBZsQyCkwAHoECAoQBQ&url=https%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DDXP1KdZX4io&usg=AOvVaw2fnmqyhFJpLHe0x4F84Fcj][Radiohead's man of war song]] stuck in my head for over a week. While browsing youtube and waiting eagerly for Josh Cohen's songbook to come out, I stumbled upon another gifted youtuber pianist called Alex Franklin. Franklin also happened to have covered this song. In case you are wondering, here are [[https://www.youtube.com/watch?v=M0GQtolLnEU][Josh's]] and [[https://www.youtube.com/watch?v=jTfhYBCrKyc][Alex's]] versions of the song.
+
+Anyways, I saw the midi visualizer on the top of the piano keys on Franklin's cover and thought "oh my, I would really love to have the piano sheet for this". So here I am, trying to recognize the key strokes from a video and translate it into a piano sheet.
+
+This is the first part of a series of posts (out of as many as needed) where I will publish the milestones of this journey as someone unitiated in visual recognition. The focus of this post is just to recognize the keystrokes of the left and right hands from an screenshot. This will require me to:
+
+- Select the right tools for the job;
+- Setup the development environment
+- Detect the keys being pressed
+- Define which hand is responsible for the keystroke
+- Define the which musical note was played
+- Translate the note to musical notation
+
+And of course, time and will to persevere.
+
+*** The tools
+
+I chose python as a programming language for it's ubiquitous presence in machine learning projects. Also for affinity. Python also has pre-built version of the /de facto/ standard library for computational vision: [[https://opencv.org/][OpenCV]]. Alternatives were [[http://tutorial.simplecv.org/en/latest/][SimpleCV]] and [[https://scikit-image.org/][scikit-image]], however I wanted to try the most popular and powerful tool out there.
+
+Keystrokes recognized it is time to engrave them in a beautiful sheet. The GNU Project has a program called [[http://lilypond.org/][LilyPond]], which deals exactly with this task. LilyPond files are text files that can be easily manipulated using a library such as [[https://python-ly.readthedocs.io/en/latest/][python-ly]] or even simpler as per [[https://www.python-course.eu/python_scores.php][this example]] using a simple correspondence map.
+
+Docker to ease the pain. Reason in the next session.
+
+*** The setup
+
+OpenCV is written in C++ and I found it's installation everything but straightforward. Even with the excellent aid of [[https://www.pyimagesearch.com/2018/08/15/how-to-install-opencv-4-on-ubuntu/][Adrian Rosenbrock's tutorial]], I could not execute a simple:
+
+#+begin_src python
+  import cv2
+#+end_src
+
+without a "ModuleNotFoundError: No module named 'cv2'". I tried many alternatives swith no success. This led me to download a Docker image and skip this problem altogether. The second image on dockerhub did the trick. The author Josip Janzic hosts it on github ([[https://github.com/janza/docker-python3-opencv][link here]]). It has a more recent version of python and opencv than the first image as of today's date. To get started just issue:
+
+#+begin_src python
+  docker run -it jjanzic/docker-python3-opencv python
+#+end_src
+
+And a working environment with opencv installed will be downloaded from dockerhub if a local image is not present. Needless to say you need to have Docker installed.
+
+Since I've made a minor modification in the original Dockerfile, I had to rebuild the image and renamed it for this project:
+
+#+begin_src python
+  docker build -t vis_enc .
+#+end_src
+
+But nothing is perfect and while I was eager to try out some code, I got stuck with the following error:
+
+#+begin_quote
+cv2.error: OpenCV(4.0.0) /opencv-4.0.0/modules/highgui/src/window.cpp:625: error: (-2:Unspecified error) The function is not implemented. Rebuild the library with Windows, GTK+ 2.x or Cocoa support. If you are on Ubuntu or Debian, install libgtk2.0-dev and pkg-config, then re-run cmake or configure script in function 'cvShowImage'
+#+end_quote
+
+Which led me to modify the Dockerfile yet again and rebuild the image. The final image is available in my github profile.
+
+*** Detecting keystrokes
+Here's the screenshot used for this experiment:
+
+#+caption: Piano keystrokes. In blue, right hand, in green the left hand.
+#+name: bgkeys
+[[file:/home/guilherme/blog/static/img/bgkeys.png]]
+*Right hand in green and left hand in blue*
