@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Guilherme Pedrosa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sun, 05 Feb 2023 07:49:00 -0300</lastBuildDate>
+    <lastBuildDate>Tue, 21 Feb 2023 08:12:00 -0300</lastBuildDate>
     
 	<atom:link href="https://gtpedrosa.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>excel</title>
+      <link>https://gtpedrosa.github.io/tags/excel/</link>
+      <pubDate>Tue, 21 Feb 2023 08:12:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/tags/excel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>plots</title>
+      <link>https://gtpedrosa.github.io/tags/plots/</link>
+      <pubDate>Tue, 21 Feb 2023 08:12:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/tags/plots/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>jupyter</title>

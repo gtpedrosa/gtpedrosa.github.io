@@ -6,10 +6,21 @@
     <description>Recent content on Guilherme Pedrosa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sun, 05 Feb 2023 07:49:00 -0300</lastBuildDate>
+    <lastBuildDate>Tue, 21 Feb 2023 08:12:00 -0300</lastBuildDate>
     
 	<atom:link href="https://gtpedrosa.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Show specific labels in large plots in Excel</title>
+      <link>https://gtpedrosa.github.io/blog/show-specific-labels-in-large-plots-in-excel/</link>
+      <pubDate>Tue, 21 Feb 2023 08:12:00 -0300</pubDate>
+      
+      <guid>https://gtpedrosa.github.io/blog/show-specific-labels-in-large-plots-in-excel/</guid>
+      <description>Suppose you need to highlight specific labels in a large bar or column chart in Excel. Here is a two-step way to accomplish the task.
+With the COUNT.IF formula, you can detect if the current label belongs to a list of specific ones. The neat trick, however, is in the number formatting used to show the labels of interest exclusively:
+[=0]&amp;quot;&amp;quot;;0% The formatting makes the cell show empty when zero (default output of the COUNT.</description>
+    </item>
     
     <item>
       <title>Python development workflow with Neovim and Jupyter-lab</title>

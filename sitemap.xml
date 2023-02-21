@@ -3,8 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://gtpedrosa.github.io/tags/excel/</loc>
+    <lastmod>2023-02-21T08:12:00-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gtpedrosa.github.io/</loc>
-    <lastmod>2023-02-05T07:49:00-03:00</lastmod>
+    <lastmod>2023-02-21T08:12:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/plots/</loc>
+    <lastmod>2023-02-21T08:12:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/blog/show-specific-labels-in-large-plots-in-excel/</loc>
+    <lastmod>2023-02-21T08:12:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gtpedrosa.github.io/tags/</loc>
+    <lastmod>2023-02-21T08:12:00-03:00</lastmod>
   </url>
   
   <url>
@@ -24,11 +44,6 @@
   
   <url>
     <loc>https://gtpedrosa.github.io/blog/python-development-workflow-with-neovim-and-jupyter-lab/</loc>
-    <lastmod>2023-02-05T07:49:00-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gtpedrosa.github.io/tags/</loc>
     <lastmod>2023-02-05T07:49:00-03:00</lastmod>
   </url>
   

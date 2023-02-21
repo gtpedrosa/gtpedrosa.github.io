@@ -9,22 +9,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="no-referrer">
 <meta name="author" content="Guilherme Pedrosa">
-<meta name="description" content="Guilherme Pedrosa">
+<meta name="description" content="Suppose you need to highlight specific labels in a large bar or column chart in Excel. Here is a two-step way to accomplish the task.
+With the COUNT.IF formula, you can detect if the current label belongs to a list of specific ones. The neat trick, however, is in the number formatting used to show the labels of interest exclusively:
+[=0]&quot;&quot;;0% The formatting makes the cell show empty when zero (default output of the COUNT.">
 
-<meta property="og:title" content="neovim" />
-<meta property="og:description" content="Guilherme Pedrosa" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://gtpedrosa.github.io/tags/neovim/" />
-<meta property="og:updated_time" content="2023-02-05T07:49:00-03:00" />
+<meta property="og:title" content="Show specific labels in large plots in Excel" />
+<meta property="og:description" content="Suppose you need to highlight specific labels in a large bar or column chart in Excel. Here is a two-step way to accomplish the task.
+With the COUNT.IF formula, you can detect if the current label belongs to a list of specific ones. The neat trick, however, is in the number formatting used to show the labels of interest exclusively:
+[=0]&quot;&quot;;0% The formatting makes the cell show empty when zero (default output of the COUNT." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/show-specific-labels-in-large-plots-in-excel/" />
+<meta property="article:published_time" content="2023-02-21T08:12:00-03:00" />
+<meta property="article:modified_time" content="2023-02-21T08:12:00-03:00" />
 
 
 <title>
 
 
-     neovim 
+     Show specific labels in large plots in Excel 
 
 </title>
-<link rel="canonical" href="https://gtpedrosa.github.io/tags/neovim/">
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/show-specific-labels-in-large-plots-in-excel/">
 
 
 
@@ -42,11 +47,11 @@
 
 
     
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2023-02-21%2011%3a16%3a03.693637501%20%2b0000%20UTC%20m%3d%2b0.203329221">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2023-02-21%2011%3a16%3a03.693637501%20%2b0000%20UTC%20m%3d%2b0.203329221">
-    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2023-02-21%2011%3a16%3a03.693637501%20%2b0000%20UTC%20m%3d%2b0.203329221">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2023-02-21%2011%3a16%3a03.540131094%20%2b0000%20UTC%20m%3d%2b0.049822767">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2023-02-21%2011%3a16%3a03.540131094%20%2b0000%20UTC%20m%3d%2b0.049822767">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2023-02-21%2011%3a16%3a03.540131094%20%2b0000%20UTC%20m%3d%2b0.049822767">
     
-        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2023-02-21%2011%3a16%3a03.693637501%20%2b0000%20UTC%20m%3d%2b0.203329221">
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2023-02-21%2011%3a16%3a03.540131094%20%2b0000%20UTC%20m%3d%2b0.049822767">
     
 
 
@@ -59,7 +64,6 @@
 >
 
 
-<link rel="alternate" type="application/rss+xml" href="https://gtpedrosa.github.io/tags/neovim/index.xml" title="Guilherme Pedrosa" />
 
 
 
@@ -180,32 +184,69 @@
     </div>
 </section>
 
-<section class="main">
+
+<section class="main post non-narrow zero-top-spacing">
     <div class="container">
         <div class="content">
-            <div class="page-heading">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
 
-    neovim
+    Show specific labels in large plots in Excel
 
 </div>
 
+                    <div class="initials"><a href="https://gtpedrosa.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Tue Feb 21 2023 08:12:00 -0300'>Feb 21, 2023</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>One minute read</div>
+                    
+                </div>
+            </div>
             <div class="markdown">
+                <p>Suppose you need to highlight specific labels in a large bar or column chart in Excel. Here is a two-step way to accomplish the task.</p>
+<p>With the COUNT.IF formula, you can detect if the current label belongs to a list of specific ones. The neat trick, however, is in the number formatting used to show the labels of interest exclusively:</p>
+<pre><code class="language-nil" data-lang="nil">[=0]&quot;&quot;;0%
+</code></pre><p>The formatting makes the cell show empty when zero (default output of the COUNT.IF) and a percentage otherwise (COUNT.IF*CELL output).</p>
+
+                <br>
+		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
                 
             </div>
-            
-            <nav class="section-items">
-                <ul>
-                
-                    <li><a href="https://gtpedrosa.github.io/blog/python-development-workflow-with-neovim-and-jupyter-lab/">Python development workflow with Neovim and Jupyter-lab</a></li>
-                
-                    <li><a href="https://gtpedrosa.github.io/blog/getting-started-with-neovim-notes-to-self/">Getting started with Neovim: Notes to self</a></li>
-                
-                </ul>
-            </nav>
+            <form method="POST" action="https://api.staticman.net/v2/entry////">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/show-specific-labels-in-large-plots-in-excel/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="2b97d9b4958f1bbcbe4d12df41dd0956">
+    <input name="fields[name]" type="text" placeholder="Your name">
+    <input name="fields[email]" type="email" placeholder="Your email address">
+    <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
+    <input type="submit" value="Submit">
+</form>
+
+
+  	     
+ 
+ 
+
+ 
+   
+ 
+
+ 
+   <p>Hey, be the first who comment this article.</p>
+ 
+
             
         </div>
     </div>
 </section>
+
 
 
 <script type="application/javascript">
