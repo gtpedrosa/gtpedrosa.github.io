@@ -1862,6 +1862,22 @@ endif
 and including "+y" as "Y" remap in /remap.lua/ file just in case.
 
 So far, the trade-offs have had a net positive impact.
+** DONE Show specific labels in large plots in Excel :excel:plots:
+CLOSED: [2023-02-21 Tue 08:12]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2023-02-21-show-specific-labels-in-large-plots-in-excel
+:END:
+
+Suppose you need to highlight specific labels in a large bar or column chart in Excel. Here is a two-step way to accomplish the task.
+
+With the COUNT.IF formula, you can detect if the current label belongs to a list of specific ones. The neat trick, however, is in the number formatting used to show the labels of interest exclusively:
+
+#+begin_src
+[=0]"";0%
+#+end_src
+
+The formatting makes the cell show empty when zero (default output of the COUNT.IF) and a percentage otherwise (COUNT.IF*CELL output).
+
 
 * Footnotes
 * COMMENT Local Variables                          :ARCHIVE:
