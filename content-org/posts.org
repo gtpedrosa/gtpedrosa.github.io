@@ -1877,8 +1877,27 @@ With the COUNT.IF formula, you can detect if the current label belongs to a list
 #+end_src
 
 The formatting makes the cell show empty when zero (default output of the COUNT.IF) and a percentage otherwise (COUNT.IF*CELL output).
+** DONE Transfer files between computers using python and lftp :linux:python:
+CLOSED: [2023-09-11 Mon 22:53]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2023-09-09-transfer-files-between-computers-using-python-and-lftp
+:END:
 
+I have found a neat way to transfer single files or whole folders between two computers in the same network.
 
+On one PC, turn it into an HTTP server:
+
+#+begin_src
+python3 -m http.server
+#+end_src
+
+And find its IPV4 address. Use ipconfig (Windows) or ifconfig (Linux).
+
+Finally, using a browser in the other PC, access the server on ~http://my_ip:8000~. From there, you can navigate the file system and download single files easily or download whole folders using lftp:
+
+#+begin_src
+lftp -c 'mirror --parallel=100 http://my_ip:8000/folder ;exit'
+#+end_src
 * Footnotes
 * COMMENT Local Variables                          :ARCHIVE:
 # Local Variables:
