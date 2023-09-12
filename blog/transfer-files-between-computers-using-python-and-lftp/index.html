@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Guilherme Pedrosa">
+<meta name="description" content="I have found a neat way to transfer single files or whole folders between two computers in the same network.
+On one PC, turn it into an HTTP server:
+python3 -m http.server And find its IPV4 address. Use ipconfig (Windows) or ifconfig (Linux).
+Finally, using a browser in the other PC, access the server on http://my_ip:8000. From there, you can navigate the file system and download single files easily or download whole folders using lftp:">
+
+<meta property="og:title" content="Transfer files between computers using python and lftp" />
+<meta property="og:description" content="I have found a neat way to transfer single files or whole folders between two computers in the same network.
+On one PC, turn it into an HTTP server:
+python3 -m http.server And find its IPV4 address. Use ipconfig (Windows) or ifconfig (Linux).
+Finally, using a browser in the other PC, access the server on http://my_ip:8000. From there, you can navigate the file system and download single files easily or download whole folders using lftp:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gtpedrosa.github.io/blog/transfer-files-between-computers-using-python-and-lftp/" />
+<meta property="article:published_time" content="2023-09-11T22:53:00-03:00" />
+<meta property="article:modified_time" content="2023-09-11T22:53:00-03:00" />
+
+
+<title>
+
+
+     Transfer files between computers using python and lftp 
+
+</title>
+<link rel="canonical" href="https://gtpedrosa.github.io/blog/transfer-files-between-computers-using-python-and-lftp/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/reset.css?t=2023-09-12%2001%3a57%3a25.166068583%20%2b0000%20UTC%20m%3d%2b0.057896402">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/pygments.css?t=2023-09-12%2001%3a57%3a25.166068583%20%2b0000%20UTC%20m%3d%2b0.057896402">
+    <link rel="stylesheet" href="https://gtpedrosa.github.io/css/main.css?t=2023-09-12%2001%3a57%3a25.166068583%20%2b0000%20UTC%20m%3d%2b0.057896402">
+    
+        <link rel="stylesheet" href="https://gtpedrosa.github.io/css/override.css?t=2023-09-12%2001%3a57%3a25.166068583%20%2b0000%20UTC%20m%3d%2b0.057896402">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://gtpedrosa.github.io/img/leaf.ico"
+
+>
+
+
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="https://gtpedrosa.github.io/"><img class="avatar" src="https://gtpedrosa.github.io/img/profile.png" srcset="https://gtpedrosa.github.io/img/profile.png 1x"></a>
+            
+            <a href="https://gtpedrosa.github.io/"><div class="name">Guilherme Pedrosa</div></a>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="https://gtpedrosa.github.io/blog/"><span>Blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="https://gtpedrosa.github.io/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-projects"><a href="https://gtpedrosa.github.io/projects/"><span>Projects</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/github.svg" alt="github" /></a>
+        
+
+        
+            <a href="//twitter.com/gtpedrosa" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/twitter.svg" alt="twitter" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/guilherme-pedrosa-73213aa0/" target="_blank" rel="noopener"><img class="icon" src="https://gtpedrosa.github.io/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+            
+        
+
+        
+
+        
+            <a href="mailto:guilherme.pedrosa@gmail.com"><img class="icon" src="https://gtpedrosa.github.io/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="https://gtpedrosa.github.io/index.xml"><img class="icon" src="https://gtpedrosa.github.io/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Transfer files between computers using python and lftp
+
+</div>
+
+                    <div class="initials"><a href="https://gtpedrosa.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Mon Sep 11 2023 22:53:00 -0300'>Sep 11, 2023</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>One minute read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                <p>I have found a neat way to transfer single files or whole folders between two computers in the same network.</p>
+<p>On one PC, turn it into an HTTP server:</p>
+<pre><code class="language-nil" data-lang="nil">python3 -m http.server
+</code></pre><p>And find its IPV4 address. Use ipconfig (Windows) or ifconfig (Linux).</p>
+<p>Finally, using a browser in the other PC, access the server on <code>http://my_ip:8000</code>. From there, you can navigate the file system and download single files easily or download whole folders using lftp:</p>
+<pre><code class="language-nil" data-lang="nil">lftp -c 'mirror --parallel=100 http://my_ip:8000/folder ;exit'
+</code></pre>
+                <br>
+		<p class="back-to-posts"><a href="https://gtpedrosa.github.io/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+            <form method="POST" action="https://api.staticman.net/v2/entry////">
+    <input type="hidden" name="options[redirect]" value="https://gtpedrosa.github.io/blog/transfer-files-between-computers-using-python-and-lftp/#comment-submitted">
+    <input type="hidden" name="options[entryId]" value="a69a9b1e306466d58d42162ebdd56e97">
+    <input name="fields[name]" type="text" placeholder="Your name">
+    <input name="fields[email]" type="email" placeholder="Your email address">
+    <textarea name="fields[body]" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
+    <input type="submit" value="Submit">
+</form>
+
+
+  	     
+ 
+ 
+
+ 
+   
+ 
+
+ 
+   <p>Hey, be the first who comment this article.</p>
+ 
+
+            
+        </div>
+    </div>
+</section>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>
+
